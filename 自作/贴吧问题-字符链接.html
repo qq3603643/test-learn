@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+   <script>
+    
+    var data = [
+[1,2,3],
+[11,22,33],
+['a','b'],
+[5,6,7,8,9],
+['x','y'],
+[0],
+['c','g','j','t','d','s','e'],
+];  
+       var arr = [];
+       var arr1 = [];
+       var arr2 = [];
+       var str = '';
+       var k = 0;
+       
+  for(var i=0;i<data.length;i++){
+  
+      arr.push(data[i].length)
+  }
+      var m=arr.sort()[arr.length-1];
+       
+      for(var k=0;k<m;k++){
+      
+    for(var i=0;i<m;i++){
+          
+      for(var j=1;j<data.length;j++){
+         
+         if(data[j][i] ){
+         arr1.push(data[j][i]);
+         }
+         if(j == data.length-1){ 
+             if(data[0][k]){
+             arr1.unshift(data[0][k]); 
+             arr2.push(arr1.join('-'));
+             arr1 =[];
+             }
+           
+               }
+  } 
+    }
+      }
+    alert(arr2)
+    </script>
+</body>
+</html>

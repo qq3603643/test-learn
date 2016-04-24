@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+<style>
+    p{margin: 0px;text-align: center; width: 80px; height: 20px;background: red;margin-bottom:2px; margin-left: 210px;cursor: pointer;}
+    div{width: 200px;height: 100px;background: black;color: white;display: none;position: absolute;top: 10px;}
+</style>  
+<script>
+window.onload = function(){
+      document.getElementsByTagName('div')[1].style.display ='block';
+    document.getElementsByTagName('p')[0].onclick = function(){
+       document.getElementsByTagName('div')[1].style.display = 'block';
+        document.getElementsByTagName('div')[0].style.display = 'none';
+    }
+      document.getElementsByTagName('p')[1].onclick = function(){
+       document.getElementsByTagName('div')[0].style.display = 'block';
+          document.getElementsByTagName('div')[1].style.display = 'none';
+    }
+}    
+</script>  
+</head>
+<body>
+    <p>title1</p><p>titlel2</p>
+    <div> 2 </div>
+    <div> 1 </div>
+</body>
+</html>

@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0px;
+            padding: 0px
+        }
+        
+        .box {
+            width: 300px;
+            height: 400px;
+            background: black;
+            position: absolute;
+            left: 100px;
+            top: 100px;
+            overflow: hidden;
+        }
+        
+        .box ul {
+            width: auto;
+            position: absolute;
+            left: 0px;
+            top: 0px;
+        }
+        
+        .box ul li {
+            float: left;
+            list-style: none;
+        }
+        
+        .box img {
+            width: 300px;
+            height: 400px;
+        }
+
+    </style>
+    <script src="jquery-1.11.3.js"></script>
+    <script src="jq.move_extend.js"></script>
+    <script>
+        $(function() {
+            var onff = false;
+            $('.box ul').css('width', parseInt($('.box').outerWidth()) * $('.box ul li').length + 'px')
+            $('.box').click(function() {
+                if (onff) {
+                    alert('点击过快');
+                    return;
+                }
+                onff = true;
+                var ileft = $('.box ul').position().left - parseInt($('.box').outerWidth());
+
+                $('.box ul').animate({
+                    left: ileft
+                }, 1000, 'elasticBoth', function() {
+                    onff = false;
+                    if (Math.abs($('.box ul').position().left) == parseInt($('.box').outerWidth()) * ($('.box ul li').length - 1)) {
+
+                        $('.box ul').css('left', '0px');
+                    }
+                });
+            })
+        })
+
+    </script>
+</head>
+
+<body>
+    <div class="box">
+        <ul>
+            <li><img src="img/10.jpg"></li>
+            <li><img src="img/9.jpg"></li>
+            <li><img src="img/8.jpg"></li>
+            <li><img src="img/7.jpg"></li>
+            <li><img src="img/6.jpg"></li>
+            <li><img src="img/10.jpg"></li>
+        </ul>
+    </div>
+</body>
+
+</html>

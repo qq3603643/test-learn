@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+<style>
+    div{position: absolute;}    
+</style>
+<script src="mine.js"></script>
+<script>
+window.onload = function(){
+    
+    for(var i =0;i<5;i++){
+        document.body.innerHTML += '<div style="width:20px;height:20px;"></div>'
+    }
+    
+    var aDiv = document.getElementsByTagName('div');
+    for(var i=0;i<aDiv.length;i++){
+        aDiv[i].style.left =600+ i*20 + 'px';
+        aDiv[i].style.top =200 + 'px';
+        aDiv[i].innerHTML = i;
+        
+        aDiv[i].onmouseover = function(){
+             shakeMove(aDiv,'top',200,210)
+        }
+//        aDiv[i].onmouseout = function(){
+//             shakeMove(aDiv,'top',200,200)
+//        }
+    }
+        
+    
+   
+}    
+</script>
+</head>
+<body>
+   
+</body>
+</html>

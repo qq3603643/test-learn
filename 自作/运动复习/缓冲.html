@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+<style>
+    .move_div{position: absolute;top: 10px;left: 10px;margin: 0px;width: 40px;height: 40px;border: 1px solid red;}  
+     .still_div{position: absolute;top: 0px;left: 400px;margin: 0px;width: 2px;height: 400px;background: black;}  
+</style>
+<script>
+window.onload = function(){
+    var oDiv = document.getElementsByTagName('div')[0];
+    var speed = 0;
+    var timer = null;
+  
+   timer =  setInterval(function(){
+       speed = (400 - oDiv.offsetLeft)/8;
+       speed = Math.ceil(speed);
+
+        if(oDiv.offsetLeft == 400){
+           clearInterval(timer); 
+           
+        }else{
+            oDiv.style.left = oDiv.offsetLeft + speed + 'px';
+        }
+    },50)
+}    
+</script>
+</head>
+<body>
+    <div class="move_div"></div>
+    <div class="still_div"></div>
+</body>
+</html>

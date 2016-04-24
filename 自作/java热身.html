@@ -1,0 +1,48 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<style>
+*{margin:0px}
+a{color:#000000;text-decoration:none;}
+#boby{width:80px;height:80px;background-color:#FFFFFF;margin-left:200px;text-align:center;}
+#head{width:80px;height:20px;background-color:#CCCCCC;text-align:center;font-size:12px;line-height:20px}
+.list{width:80px;height:19px;background-color:#FF0066;text-align:center;margin-top:1px;}
+#foot{display:none;}
+</style>
+
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
+<title>java热身</title>
+
+<script>
+window.onload = function(){
+
+document.getElementById('boby').onmouseover = show;
+document.getElementById('boby').onmouseout =  hide;
+alert('程序到此正确');
+function show() {
+document.getElementById('foot').style.display = 'block';
+document.getElementById('head').style.background = '#FF0066';
+document.getElementById('link').style.color = 'white';
+}
+function hide() {
+document.getElementById('foot').style.display = 'none';
+document.getElementById('head').style.background = '#CCCCCC';
+document.getElementById('link').style.color = '#000000';
+}
+}
+
+</script>
+</head>
+
+<body>
+<div id="boby">
+<div id="head"><a id="link" href="">联系方式</a></div>
+<div id="foot">
+<div class="list"><a href="">web</a></div>
+<div class="list"><a href="">qq</a></div>
+<div class="list"><a href="">tell</a></div>
+</div>
+
+</div>
+</body>
+</html>

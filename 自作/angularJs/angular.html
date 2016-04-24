@@ -1,0 +1,73 @@
+<!DOCTYPE HTML>
+<html ng-app>
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>无标题文档</title>
+    <script src="angular.min.js"></script>
+    <script>
+        function Aaa($scope, $timeout) {
+            $scope.name = 'hello';
+            setTimeout(function() {
+                $scope.name = 'hi';
+
+            }, 2000);
+
+
+            $scope.show = function() {
+                alert();
+                $scope.name = 'fuck';
+            };
+
+        }
+
+        function Bbb($scope) {
+            $scope.apple = {
+
+                price: 3,
+                num: 2,
+
+            }
+
+            $scope.abc = function() {
+                return $scope.apple.price * $scope.apple.num;
+            }
+        }
+
+    </script>
+    <!--
+<script>
+    var str = '{"name":"xjc"}';
+    var json = angular.fromJson(str);
+    console.log(json)
+</script>
+-->
+    <!--  <script>
+        var a = 1;
+        var b = 1;
+        var arr = ["one", "two", "three", "four"];
+        //        alert(angular.equals(a, b))  全等 ===
+        angular.forEach(arr, function(item, i) {
+    
+            alert(item);
+        })
+    
+    </script> -->
+
+</head>
+
+<body>
+    <!--<div ng-controller="Aaa" ng-click="name='hi'">-->
+    <div ng-controller="Aaa" ng-click="show()">
+        <input type="text" ng-model="name">
+        <p>{{name}}</p>
+    </div>
+    <div ng-controller="Bbb">
+        <input type="text" ng-model="apple.price">
+        <input type="text" ng-model="apple.num">
+        <p>
+            总价: <span>{{abc() | currency:'￥'}}</span>
+        </p>
+    </div>
+
+</html>

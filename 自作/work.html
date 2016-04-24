@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+<style>
+    *{margin: 0px;padding: 0px;}
+    ul{width: 490px;height: 120px; border: 2px solid red;overflow: hidden;background: #EAEAEA;position: relative;}
+    .item{position: absolute;list-style: none;width: 100px;height: 30px;background: #FFFFFF;}
+</style>
+<script>
+window.onload = function(){
+      
+  var aLi = document.getElementsByTagName('li');
+  
+     for(var i =0;i<aLi.length;i++){
+          var j =i%4;
+          if(j == 0){
+              
+              for(var k=0;k<4;k++){
+                  aLi[i+k].style.top = (i/4)*40 + 'px';
+                  aLi[i+k].style.left = k*130 + 'px';
+              }
+          }
+     }
+}    
+</script>
+</head>
+<body>
+    <ul>
+        <li class="item"></li>
+        <li class="item"></li>
+        <li class="item"></li>
+        <li class="item"></li>
+        <li class="item"></li>
+        <li class="item"></li>
+        <li class="item"></li>
+        <li class="item"></li>
+        <li class="item"></li>
+        <li class="item"></li>
+        <li class="item"></li>
+        <li class="item"></li>
+    </ul>
+</body>
+</html>

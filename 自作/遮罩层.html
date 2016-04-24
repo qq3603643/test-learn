@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+<style>
+    #contant{width: 10px;position:absolute;left: 100px;height: 2000px;background: black}
+    #content{position: absolute;left: 0px;top: 0px; width: 100%;height: 100%;background: black;filter: alpha(op
+    50);opacity: 0.5;z-index: 1;display: none}  
+    #box{position: absolute;left: 35%;top: 30%; width: 400px;height: 200px;background: white;border: 2px solid black; z-index: 2;padding: 10px 30px;border: 2px solid blue;opacity: 0.3;}
+    #close{position: absolute;top:-2px;right: 0px;background: black;color: white;cursor: pointer;}
+    #close:hover{color:  red;}
+</style>
+<script>
+window.onload = function(){
+    var oBtn = document.getElementsByTagName('input')[0];
+    var oDiv = document.getElementById('content');
+    var oClose = document.getElementById('close');
+    var oSdiv = document.getElementById('box');
+    
+    oBtn.onclick = function(){
+        oDiv.style.display = 'block';
+        clearInterval(oSdiv.timer);
+        var speed = 0.3;
+        oSdiv.timer = setInterval(function(){
+               
+            if (speed+0.3 == 1){ 
+                 clearInterval(oSdiv.timer);
+            }else{
+                 oSdiv.style.opacity = 0.3+speed ;
+                 speed+=0.1;
+            }
+        },200)
+    }
+     oClose.onclick = function(){
+        oDiv.style.display = 'none';
+    }
+     
+     window.onscroll = function(){
+         oDiv.style.height = 
+         document.documentElement.clientHeight + 
+       document.body.scrollTop + 'px';
+         document.title = document.documentElement.clientHeight + 
+       document.body.scrollTop;
+     }
+}    
+</script>
+</head>
+<body>
+   <div id = "contant"></div>
+    <input type="button" value="点击登陆">
+    <div id="content">
+        <div id="box"><span id="close">X</span>
+        <form>
+        <p>student:<br><br>
+        <input style="width:300px;height:30px;font-size:18px;margin-left:20px;" required="required" name="id" type="text"  >
+        </p>
+        <p>password:<br><br>
+        <input type="password"  style="width:300px;height:30px;font-size:18px;margin-left:20px;" required="required" name="password" ></p><input type="submit" value="login" style="position:absolute;right:5px;bottom:5px;">
+        
+        </form>
+        </div>
+        
+    </div>
+    
+</body>
+</html>

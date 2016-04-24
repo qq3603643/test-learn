@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+<style>
+    #btn{margin-top: 20px;}
+    #answer{margin-top: 50px;}
+    #contant{width: 600px;height: 400px;overflow: scroll;border: 1px solid black;}
+    span{background: white;text-decoration: underline;display: inline-block;width: 60px;height: 20px;text-align: center;}
+    p{float: left; margin: 10px 2px;width: 60px;height: 20px;text-align: center;line-height: 100%;background: gray;cursor: pointer;}
+</style>
+
+<script>
+window.onload = function(){
+
+    var oDiv = document.getElementById('contant');
+    var aSpan = document.getElementsByTagName('span');
+    var arr = [];
+    var oAnswer = ['经常','看破','走向','七十','诚信','孔子',];
+    var sCroe = 0;
+    var arr1 = [];
+
+//    alert(sCroe)
+    var aBtn = document.getElementsByTagName('input');
+    var aP = document.getElementsByTagName('p');
+    
+    
+//    alert(aBtn.length)
+    for(var i =0;i<aBtn.length-1;i++){
+        aBtn[i].index = i;
+        aP[i].index = i;
+        
+        aBtn[i].onclick = function(){
+            var that = this.index;
+            
+            
+            for(var j=0;j<aSpan.length;j++){
+                aSpan[j].style.backgroundColor = 'white';
+            }
+            aSpan[this.index].style.background = 'red';
+              
+//            alert(aP.length)
+            for(var k=0;k<aP.length;k++){
+                    
+        aP[k].onclick = function(){
+            for(var d=0;d<aP.length;d++){
+                
+              
+                  aP[d].style.textDecoration = 'none';
+              
+              }  
+             aSpan[that].innerHTML = this.innerHTML;
+             this.style.textDecoration = 'line-through';
+            var allstr = oDiv.innerHTML;
+         
+                var re=/\>([^\<^\>^\w]+)\</g;
+                var str= allstr.match(re);
+            
+                 var str = str.join('').replace(/\</g,'').replace(/\>/g,'');
+                 
+                 for(var y=0;y<aP.length;y++){
+                     if(str.search(aP[y].innerHTML) != -1){
+                         aP[y].style.textDecoration = 'line-through';
+                         aP[y].style.color = 'white';
+                         
+                     }
+                     
+                 }
+                  
+            }
+            
+        }   }   
+                }
+    
+           aBtn[aBtn.length-1].onclick = function(){
+        
+            sCroe = 0;arr1 = [];
+    for(var i = 0;i<aSpan.length;i++){
+        arr1.push(aSpan[i].innerHTML)
+    }
+     
+    for(var j=0;j<oAnswer.length;j++){
+        
+        if(arr1[j] == oAnswer[j]){
+            sCroe+= 30;
+        }
+        
+    }
+        alert('你的答案是：\n'+ arr1)
+        alert('正确答案是：\n' + oAnswer );
+        alert('你的分数为：\n' + sCroe);
+        }  //分数提交
+            
+        }
+
+</script>
+</head>
+<body>
+    
+       <div id="contant">
+        诚信是一面1.<span> _______</span>的明镜，照应着你我的内心；诚信是一股清澈的泉水，洗去肮脏流淌洁净；诚信是一块不朽的基石，让我们踏它前行……以诚待人，以信律己是我们一直以来必须实行的宗旨。可以说：诚信是我们做人的根本。
+记得很小的时候就常常受妈妈的教育：小孩子要诚实，不可以骗人，答应别人的事要说到做到。但因为年纪小，有时还是会打点小谎，说话不算数，说些有的没的给妈妈听，以为这都是一些无关痛痒的小事，即使妈妈看破了，也不会把我怎样。记得有一次，我把2.<span> _______</span>的试卷藏起来，不想给妈妈知道，并假报成绩，骗取了外出游玩的机会。可终究被发现，被妈妈狠揍了一顿。事后，我知道：妈妈不是气在我的分数，而是我没把考卷给她看、把真实的分数告诉她，而且我还骗取她对我学习的信任，让她非常难过。在我一再保证和爸爸的劝慰下，妈妈才原谅了我，也就是从这件事后，我再没犯过此类错误，“诚信”二字也在我心里有了更深层的理解。
+孔子曾道：民无信不立。因此，他也3.<span> _______</span>教育他手下的三千学子须诚信。曾子就为孔子的三千学子之一。有一次，曾子的妻子为了安抚哭泣的孩子而许诺回来给孩子杀猪吃，回来后见曾子捉猪便杀忙上前阻止，曾子却说：“孩子不懂事，凡是由着父母。现你哄骗他，不是教他骗人吗？”于是就立即杀了猪。我记的刚刚听完确实没什么感触，但细细琢磨，心中突然油然而生了一种难以言表的敬佩：诚实守信，说话算话是基本准则，曾子若失言不杀猪，那么家中的猪定能保住，可在一个纯洁孩子的幼小心灵上却留下了不可磨灭的阴影。
+现在的我们正在一天天4.<span> _______</span>社会，同时，诚信的观念更应当一天天加强。我们应当经常用5.<span> _______</span>的尺子来丈量自己，坚持以诚信的言行对待他人，毕竟只有自己的“以诚待人”，才能收获别人的“以诚相报”。
+……
+让我们一同身穿诚信这件最华丽的衣服，手捧心灵这最炫灿的花束，心念“诚信为本”的人生宗旨，做一个既不怕光明，也不惧黑暗的真人吧！
+这是一篇关于诚信的议论文，作者用自己的故事做反面教材来加深对诚信的理解，然后举了6.<span> _______</span>教育弟子诚信做人的的事例来论证文章的中心“诚信为本”。全文观点明确，寓意深刻。
+        </div>
+        <div id="btn">
+        <input type="button" value="1">
+        <input type="button" value="2">
+        <input type="button" value="3">
+        <input type="button" value="4">
+        <input type="button" value="5">
+        <input type="button" value="6">
+        <input type="button" value="提交">
+        </div>
+        <div id = "answer">
+        <p>经常</p><p>看破</p><p>走向</p>
+        <p>七十</p><p>诚信</p><p>孔子</p>
+        </div>
+</body>
+</html>

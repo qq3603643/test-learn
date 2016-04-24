@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style>
+        #wrap {
+            width: 600px;
+            height: 600px;
+            border: 2px solid black;
+            position: relative;
+            margin: 10px auto;
+        }
+        
+        #plan {
+            position: absolute;
+            width: 40px;
+            height: 40px;
+            background: red;
+            bottom: 0px;
+            left: 280px;
+        }
+
+    </style>
+    <script src="jquery-1.11.3.js"></script>
+    <script>
+        $(function() {
+            $(window).keydown(function(ev) {
+                var ev = ev || event;
+                var icode = ev.keyCode;
+                document.title = icode;
+                switch (icode) {
+
+                    case 37:
+                        $('#plan').animate({
+                            'left': 0 + 'px'
+                        }, 2000, 'linear');
+                        break;
+                    case 39:
+                        $('#plan').animate({
+                            'left': 560 + 'px'
+                        }, 2000, 'linear');
+                        break;
+                }
+
+            })
+
+            $(window).keyup(function() {
+
+                $('#plan').stop(true);
+            })
+            creatD()
+
+            function creatD() {
+
+                $Div = $('<div>');
+                var ileft = $('#plan').position().left + parseInt($('#plan').outerWidth()) / 2 - 5;
+                var itop = $('#plan').position().top - 10;
+                $Div.css({
+                    width: '10px',
+                    height: '10px',
+                    left: ileft + 'px',
+                    top: itop + 'px',
+                    position: 'absolute',
+                    background: 'black'
+                });
+                $('#wrap').append($Div);
+                $Div.animate({
+                    top: 0 + 'px'
+                }, 10000, 'linear', function(obj) {
+
+                    obj.remove();
+                })
+            }
+
+            setInterval(function() {
+                creatD();
+            }, 50)
+        })
+
+    </script>
+</head>
+
+<body>
+    <div id="wrap">
+        <div id="plan">
+        </div>
+    </div>
+</body>
+
+</html>

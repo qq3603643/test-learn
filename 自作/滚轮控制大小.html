@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+<style>
+    div{width: 80px;height: 80px;border: 1px solid red;margin: 50px auto;}    
+</style>
+<script>
+window.onload = function(){
+   
+    var oDiv = document.getElementsByTagName('div')[0];
+     
+    oDiv.onmousewheel = function(){
+        
+        var m = event.wheelDelta/3;
+        var speed = 0;
+        var cur = parseInt(getstyle(oDiv,'width')) + m;
+        
+        clearInterval(oDiv.timer);
+        oDiv.timer = setInterval(function(){
+            
+            speed = (cur - parseInt(getstyle(oDiv,'width')))/8;
+            speed = speed>0 ? Math.ceil(speed) : Math.floor(speed);
+        
+            oDiv.style.width = parseInt(getstyle(oDiv,'width')) + speed + 'px';
+    
+            oDiv.style.height = parseInt(getstyle(oDiv,'height')) + speed + 'px';
+            
+         
+        },50)
+    }
+}  
+
+function getstyle(obj,attr){
+    
+    return obj.currentStyle ? obj.currentStyle[attr] : getComputedStyle(obj)[attr];
+}
+</script>
+</head>
+<body>
+    <div></div>
+</body>
+</html>

@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+    <script>
+        var url = 'https://www.ypzdw.com/index?id=123&&name=tangerine#mine-text',
+            $oA = document.createElement('a');
+        $oA.href = url;
+        for( var attr in $oA ) console.log( attr+": "+$oA[attr] );
+        //解析时可轻松找到想要的属性，如：host，hostname，pathname，search，hash；
+        var pathParse = function(url){
+            var $oA = document.createElement('a'),property;
+            $oA.href = url;
+            property = {
+              host: $oA.href,
+              hostname: $oA.hostname,
+              search: $oA.search.toString().substr(1),
+              hash: $oA.hash.toString().substr(1)
+            };
+            return property;
+        }
+    </script>
+</body>
+</html>

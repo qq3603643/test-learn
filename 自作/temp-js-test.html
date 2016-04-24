@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <style></style>
+    <script src="jquery-1.11.3.js"></script>
+    <script src="jq-template.js"></script>
+    <script>
+        $(function(){
+            var data = {
+                        'title':'this is a title',
+                        'content':[
+                            { 'author':'tangerine','female':'man' },
+                            { 'author':'apple','female':'woman' }
+                        ]
+                    },
+                tempHtml = '<ul class="list">' +
+                                '{{each content as value i}}' +
+                                '<li><h2>作者: {{value.author}}</h2></li>'+
+                                '<p>{{value.female}}</p>'+
+                                '{{/each}}'+
+                            '</ul>';
+            var render = template.compile(tempHtml),
+                html = render(data);
+            $('body').html(html);
+        })
+    </script>
+</head>
+<body>
+
+</body>
+</html>

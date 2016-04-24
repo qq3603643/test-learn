@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+<style>
+    span{background-color:red;}
+    </style>
+<script>
+window.onload = function(){ 
+    var aInput = document.getElementsByTagName('input');  
+    var oP = document.getElementsByTagName('p')[0]; 
+     
+     aInput[1].onclick = function(){  
+         var str =  oP.innerHTML ;
+         str = str.split('<span>');
+         str = str.join('');
+         var strr = aInput[0].value; 
+         if (!strr)return;
+
+	     oP.innerHTML = str.split(strr).join('<span>'+strr+'</span>');	
+
+     }
+     
+     aInput[3].onclick = function(){ 
+        var str =  oP.innerHTML ;
+        var strr  = aInput[0].value;
+        var strr1 = aInput[2].value;
+         oP.innerHTML = str.split(strr).join(strr1); 
+
+     }
+}       
+</script>
+</head>
+<body>
+    <input type="text" >
+    <input type="button" value="查找" >
+    <input type="text" >
+    <input type="button" value="替换" >
+    <p  style="width:500px;height:200px;border:2px solid black;font-size:16px;padding:20px;">妙味课堂是一支独具特色的IT培训团队，妙味反对传统IT教育枯燥乏味的教学模式，妙味提供一种全新的快乐学习方法！
+2013年底，妙味课堂最新推出"远程培训"服务，受到很多朋友们的喜爱与追捧，我们必将更加努力的帮助远程学习的朋友实现技术提升……<br/><br/><br/>妙味课堂是一支独具特色的IT培训团队，妙味反对传统IT教育枯燥乏味的教学模式，妙味提供一种全新的快乐学习方法！
+2013年底，妙味课堂最新推出"远程培训"服务，受到很多朋友们的喜爱与追捧，我们必将更加努力的帮助远程学习的朋友实现技术提升……</p>
+</body>
+</html>

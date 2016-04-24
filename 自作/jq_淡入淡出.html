@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style>
+        div{width: 330px;height: 420px;border: 4px solid black;padding: 5px;position: relative;margin: 50px auto;}
+        img{width: 320px;height: 410px;position: absolute;left: 0px;top: 0px;right: 0px;bottom: 0px; margin: auto;z-index: 3;opacity: 0;}
+    </style>
+    <script src="jquery-1.11.3.js"></script>
+    <script>
+    $(document).ready(function(){
+        
+        var m = 0;
+        var timer;
+        $('img').eq(m).css('opacity',1);
+        $('img').eq(m).css('z-index',4);
+       timer =  setInterval(function(){
+          abc(); 
+           
+       },7000)
+        
+        $('div').hover(function(){
+            
+            clearInterval(timer)
+        },function(){
+            
+            timer =  setInterval(function(){
+            abc();
+            
+       },5000)
+        })
+        function abc(){
+        $('img').eq(m).fadeTo(2000,0,function(){
+            
+            $('img').eq(m).css('z-index','3');
+            m++;
+            m = m%$('img').length;
+            $('img').eq(m).css('z-index','4');
+            $('img').eq(m).fadeTo(3000,1)
+        });
+            
+            }
+        
+    })
+    </script>
+</head>
+<body>
+    <div>
+        <img src="img/10.jpg">
+        <img src="img/9.jpg">
+        <img src="img/8.jpg">
+        <img src="img/7.jpg">
+    </div>
+</body>
+</html>

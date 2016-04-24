@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="app">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style>
+        /*
+        @keyframes move {
+            0% {
+                opacity: 0;
+            }
+            100% {
+                opacity: 1;
+            }
+        }
+*/
+        
+        .box1 {
+            width: 100px;
+            height: 100px;
+            background: red;
+            /*            animation: move 1s;*/
+        }
+        
+        .box2 {
+            width: 100px;
+            height: 100px;
+            background: red;
+            /*            animation: move 1s;*/
+        }
+
+    </style>
+    <script src="jquery-1.11.3.js"></script>
+    <script src="angular.min.js"></script>
+    <script src="angular.animate.js"></script>
+    <script>
+        var x = angular.module('app', ['ngAnimate']);
+        x.animation('.box2', function() {
+            return {
+
+                addClass: function(element, sClass, done) { //ng-show对应
+                    element.fadeTo(1000, 0, done);
+                },
+                removeClass: function(element, sClass, done) {
+                    element.css('opacity', '0');
+                    element.fadeTo(1000, 1, done);
+                },
+            }
+        })
+
+        x.animation('.box1', function() {
+
+            return {
+
+                leave: function(element, done) { //ng-if对应
+                    element.fadeTo(1000, 0, done);
+                },
+                enter: function(element, done) {
+                    element.css('opacity', '0');
+                    element.fadeTo(1000, 1, done);
+                },
+            }
+        })
+        x.controller('ac', ['$scope', function($scope) {
+
+            $scope.onff = 'true';
+
+        }])
+
+    </script>
+</head>
+
+<body ng-controller="ac">
+    <input type="checkbox" ng-model="onff">
+    <div class="box1" ng-if="onff"></div>
+    <div class="box2" ng-show="onff"></div>
+</body>
+
+</html>

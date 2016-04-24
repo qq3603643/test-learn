@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        function creatperson(name, sex) {
+            //属性 不一样
+            this.name = name;
+            this.sex = sex;
+
+        }
+        creatperson.prototype.showName = function() {
+            //方法  一样
+            alert('i\'m  ' + this.name);
+        }
+
+        creatperson.prototype.showSex = function() {
+            //方法  一样
+            alert('i\'m  ' + this.sex);
+        }
+        var person = new creatperson('liu', 'felman');
+        var person2 = new creatperson('xjc', 'man');
+        alert(person.showName == person2.showName)
+
+        person.showName();
+        person.showSex();
+
+    </script>
+</body>
+
+</html>

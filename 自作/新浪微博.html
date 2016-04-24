@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+<style>
+    div{position: relative;margin-top: 50px;width: 200px;height: 300px;overflow: hidden;border: 1px solid black;padding: 20px;}
+    li{list-style: none;border-bottom: 1px dashed red;overflow: hidden;padding: 3px;filter: opacity(0);opacity: 0;}
+</style>
+<script src="mine.js"></script>
+<script>
+window.onload = function(){
+    var oText = document.getElementById('text');
+    var oBtn = document.getElementById('btn');
+    var oDiv = document.getElementsByTagName('div')[0];
+    
+    oBtn.onclick = function(){
+        var oLi = document.createElement('li');
+          oLi.innerHTML = oText.value;
+          oText.value = '';
+         
+        if(oDiv.children[0]){
+           oDiv.insertBefore(oLi,oDiv.children[0])
+          
+        }else{
+
+            oDiv.appendChild(oLi);
+           
+        }
+        var iHeight =oLi.offsetHeight;
+        oLi.style.height = 0 ;
+      buffMove2(oLi,8,{height:iHeight},function(){
+          buffMove2(oLi,8,{opacity:100});
+      });
+    }
+}    
+</script>
+</head>
+<body>
+    <input id="text" type="text"><input id ="btn" type="button" value="发送">
+    <div>
+        
+    </div>
+    
+</body>
+</html>

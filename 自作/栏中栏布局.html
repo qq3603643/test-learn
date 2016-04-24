@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style>
+        .wrap {
+            width: 80%;
+            margin-left: 10%;
+            position: relative;
+            color: white;
+            font: 15px/20px 'Microsoft YaHei';
+        }
+        
+        .wrap .left {
+            position: relative;
+            margin-right: 30%;
+            background: blue;
+        }
+        
+        .wrap .left .left_side {
+            width: 20%;
+            height: 200px;
+            background: black;
+            position: absolute;
+        }
+        
+        .wrap .left .left_main {
+            height: 200px;
+            background: red;
+            margin-left: 20%;
+            text-align: center;
+        }
+        
+        .wrap .left .left_main:after{
+            display: inline-block;
+            content: '';
+            height: 100%;
+            width: 0px;
+            vertical-align: middle;
+        }
+        
+        .left_main p{
+            display: inline-block;
+            margin: 0px;
+            padding: 20px 10px;
+            vertical-align: middle;
+        }
+        
+        .wrap .left .main {
+            background: yellow;
+            height: 400px;
+        }
+        
+        .wrap .right {
+            width: 30%;
+            height: 600px;
+            background: gray;
+            position: absolute;
+            right: 0px;
+            top: 0px;
+        }
+
+    </style>
+</head>
+
+<body>
+    <div class="wrap">
+        <div class="left">
+            <div class="left_side">side</div>
+            <div class="left_main">
+                <p>this is something...</p>
+            </div>
+            <div class="main">yellow</div>
+        </div>
+        <div class="right">right</div>
+    </div>
+</body>
+
+</html>

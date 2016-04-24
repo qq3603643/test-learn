@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style>
+        #boll1 {
+            position: absolute;
+            left: 800px;
+            top: 200px;
+            width: 200px;
+            height: 200px;
+            background: red;
+            border-radius: 50%;
+        }
+        
+        #boll2 {
+            position: absolute;
+            left: 100px;
+            top: 300px;
+            width: 100px;
+            height: 100px;
+            background: red;
+            border-radius: 50%;
+        }
+
+    </style>
+    <script src="jquery-1.11.3.js"></script>
+    <script>
+        $(function() {
+
+            var timer = null;
+            var speedx1 = 80;
+            var speedy1 = 0;
+            var speedx2 = 0;
+            var speedy2 = 0;
+            var Xheart2 = 0;
+            var Yheart2 = 0;
+            var Xheart1 = 0;
+            var Yheart1 = 0;
+            var c = 0;
+            var d = (parseInt($('#boll2').outerWidth()) + parseInt($('#boll1').outerWidth())) / 2;
+            timer = setInterval(function() {
+                Xheart2 = $('#boll2').offset().left + parseInt($('#boll2').outerWidth()) / 2;
+                Yheart2 = $('#boll2').offset().top + parseInt($('#boll2').outerHeight()) / 2;
+                Xheart1 = $('#boll1').offset().left + parseInt($('#boll1').outerWidth()) / 2;
+                Yheart1 = $('#boll1').offset().top + parseInt($('#boll1').outerHeight()) / 2;
+                c = Math.sqrt(Math.pow((Xheart1 - Xheart2), 2) + Math.pow((Yheart1 - Yheart2), 2));
+                document.title = c;
+                if (c < d) {
+
+                    var deg = Math.atan(Math.abs(Yheart1 - Yheart2) / Math.abs(Xheart1 - Xheart2));
+                    document.title = deg;
+                    speedx1 = speedx1 - Math.sin(deg) * speedx1 * Math.sin(deg);
+                    speedy1 = Math.cos(deg) * speedx1 * Math.sin(deg) + Math.sin(deg) * speedx1 * Math.cos(deg);
+
+                    speedx2 = Math.cos(deg) * speedx1 * Math.cos(deg);
+                    speedy2 = -Math.cos(deg) * speedx1 * Math.sin(deg);
+                    //                    alert(speedx2 + '||' + speedy2)
+                }
+                if ($('#boll2').offset().top + $('#boll2').outerHeight() > $(window).height() || $('#boll2').offset().top < 0) {
+
+                    speedy1 = -speedy1;
+                }
+                if ($('#boll2').offset().left + $('#boll2').outerWidth() > $(window).width() || $('#boll2').offset().left < 0) {
+
+                    speedx1 = -speedx1;
+                }
+
+                if ($('#boll1').offset().top + $('#boll1').outerHeight() > $(window).height() || $('#boll1').offset().top < 0) {
+
+                    speedy2 = -speedy2;
+                }
+                if ($('#boll1').offset().left + $('#boll1').outerWidth() > $(window).width() || $('#boll1').offset().left < 0) {
+
+                    speedx2 = -speedx2;
+                }
+                var left = $('#boll2').offset().left + speedx1;
+                var top = $('#boll2').offset().top + speedy1;
+                var left1 = $('#boll1').offset().left + speedx2;
+                var top1 = $('#boll1').offset().top + speedy2;
+                document.title = speedx1 + '||' + speedy1;
+                $('#boll2').css({
+                    left: left + 'px',
+                    top: top + 'px'
+                })
+                $('#boll1').css({
+                    left: left1 + 'px',
+                    top: top1 + 'px'
+                })
+
+            }, 20)
+        })
+
+    </script>
+
+</head>
+
+<body>
+    <div id="boll1"></div>
+    <div id="boll2"></div>
+
+</body>
+
+</html>

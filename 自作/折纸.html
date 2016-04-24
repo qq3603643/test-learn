@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style>
+        @keyframes open {
+            0% {
+                transform: rotateX(-120deg);
+            }
+            40% {
+                transform: rotateX(40deg);
+            }
+            60% {
+                transform: rotateX(-30deg);
+            }
+            80% {
+                transform: rotateX(10deg);
+            }
+            100% {
+                transform: rotateX(0deg);
+            }
+        }
+        
+        .hide {
+            transition: 0.4s;
+            transform: rotateX(-120deg);
+        }
+        
+        .open {
+            animation: open 2s;
+            transform: rotateX(0deg) !important;
+        }
+        
+        #wrap .open>span {
+            transition: 1s;
+            box-shadow: inset 0 0 10px 10px rgba(0, 0, 0, 0) !important;
+        }
+        
+        #wrap {
+            width: 120px;
+            margin: 50px auto;
+            perspective: 600px;
+            transform-style: preserve-3d;
+            position: relative;
+        }
+        
+        #wrap div {
+            position: absolute;
+            top: 31px;
+            left: 0px;
+            transform-style: preserve-3d;
+            transform-origin: top;
+            transform: rotateX(-120deg);
+        }
+        
+        #wrap span {
+            display: block;
+            height: 30px;
+            width: 120px;
+            background: red;
+            font: 15px/30px '';
+            color: white;
+            text-align: center;
+            box-shadow: inset 0 0 10px 15px rgba(0, 0, 0, 1);
+        }
+        
+        .btn {
+            background: yellow;
+            display: inline-block;
+            width: 60px;
+            height: 25px;
+            text-align: center;
+            font: 15px/25px '';
+            color: red;
+            border-style: none;
+            outline: none;
+        }
+
+    </style>
+    <script>
+        window.onload = function() {
+            var oBtn = document.getElementsByTagName('button')[0];
+            var oWarp = document.getElementById('wrap');
+            var aDiv = oWarp.getElementsByTagName('div');
+            var onff = false;
+            var str = '收缩';
+            var timer = null;
+            oBtn.onclick = function() {
+                clearInterval(timer);
+                if (onff) {
+                    str = '展开';
+                    onff = false;
+                    oBtn.innerHTML = str;
+                    var i = aDiv.length - 1;
+
+                    timer = setInterval(function() {
+                        aDiv[i].className = 'hide';
+                        i--;
+                        if (i == -1) {
+                            clearInterval(timer);
+                        }
+                    }, 100)
+
+                } else {
+                    str = '收缩';
+                    onff = true;
+                    oBtn.innerHTML = str;
+                    var i = 0;
+                    timer = setInterval(function() {
+                        aDiv[i].className = 'open';
+                        i++;
+                        if (i == aDiv.length) {
+                            clearInterval(timer);
+                        }
+                    }, 100)
+
+
+                }
+            }
+        }
+
+    </script>
+</head>
+
+<body>
+    <button class="btn">展开</button>
+    <div id="wrap">
+        <span>AAAA</span>
+        <div>
+            <span>BBBB</span>
+            <div>
+                <span>CCCC</span>
+                <div>
+                    <span>DDDD</span>
+                    <div>
+                        <span>EEEE</span>
+                        <div>
+                            <span>FFFF</span>
+                            <div>
+                                <span>GGGG</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

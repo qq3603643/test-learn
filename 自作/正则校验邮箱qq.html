@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+<script>
+window.onload = function(){
+    var oText = document.getElementsByTagName('input')[0];
+    var oBtn = document.getElementsByTagName('input')[1];
+//    var re=/^\w+@[a-z0-9]+\.[a-z]{2,4}$/;
+    var re= /^[1-9]\d{4,10}$/
+//
+//    oBtn.onclick = function(){
+//
+//      if(re.test(oText.value)){
+//          alert('pass');
+//      } else{
+//          alert('go out');
+//      } 
+//        
+//    }
+    
+    
+    oBtn.onclick = function(){
+
+      if(re.test(oText.value)){
+          alert('pass');
+      } else{
+          alert('go out');
+      } 
+        
+    }
+     
+}    
+    
+</script>
+</head>
+<body>
+    <input type="text" >
+    <input type="button" value="校验">
+    
+</body>
+</html>

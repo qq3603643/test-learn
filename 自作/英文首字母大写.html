@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+<style>
+    p{width: 500px;height: 500px;padding: 10px;position: absolute;top: 50px;left: 200px;border: 1px solid black;}    
+</style>
+<script>
+window.onload = function(){
+    var oP = document.getElementsByTagName('p')[0];
+    var str = oP.innerHTML;
+    var oBtn = document.getElementsByTagName('input')[0];
+    oBtn.onclick = function(){
+        var arr = str.split(' ');
+        for(var i=0;i<arr.length;i++){
+           var sarr = arr[i].split('');
+           var x = arr[i].charAt(0).toUpperCase();
+           sarr.shift(); 
+           sarr.unshift(x);
+           arr[i] = sarr.join('');
+           
+        }
+       str =  arr.join(' ');
+       oP.innerHTML = str;
+    }
+}    
+</script>
+</head>
+<body>
+    <p>
+    I am the only child in my family, so I get used to doing things by myself. Since I go to school, my teacher always gives us the homework, the problem is that we must finish in a group. At first, I was refused, because I knew I could do it by my own. But my teacher insisted, so I had to work with my group members. I started to find that I got many ideas from my group members and I felt so happy to work with them. Now I realize that teamwork is really good, it not only relieves my pressure, but also brings me happiness. The power of teamwork is infinite. 
+    </p>
+    <input type="button" value="点击首字母大写">
+</body>
+</html>

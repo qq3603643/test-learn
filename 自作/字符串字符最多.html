@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+    var str = '11111235558880000000';
+//    var re = /[^d]/g
+    var arr = [];
+    var m = 0;
+        for(var i=0;i<str.length;i++){
+   var re = new RegExp('[^' + str.charAt(i) +']','g' );
+        
+        m = str.split(re).join('').length
+        arr.push(m)
+    }
+        var str1 = arr.join('');
+        var n = arr.sort()[arr.length-1];
+        alert('字符出现最多的是：' + str.charAt(str1.indexOf(n)) + '\n' +'出现次数为：' + n)
+      
+    </script>
+</body>
+</html>

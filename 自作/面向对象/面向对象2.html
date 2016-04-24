@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        function creatperson(name, sex) {
+
+            //有new时。系统默认自动添加 
+            //var obj = new Object();
+            this.name = name;
+            this.sex = sex;
+            this.showName = function() {
+
+                alert('i\'m  ' + this.name);
+            }
+            this.showSex = function() {
+
+                alert('i\'m  ' + this.sex);
+            }
+
+            //有new时。系统默认自动返回obj
+
+        }
+        var person = new creatperson('liu', 'felman');
+
+        person.showName();
+        person.showSex();
+
+    </script>
+</body>
+
+</html>

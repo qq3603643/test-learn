@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+
+<body>
+    <select id="select"></select>
+    <button id="btn">click</button>
+
+    <script>
+        var oSelect = document.getElementById('select'),
+            oBtn = document.getElementById('btn'),
+            arrEare = ['广安', '重庆', '成都', '北京', '达州', '郫县', '成华', '金牛', '高新'];
+        oBtn.onclick = function() {
+            arrEare.forEach(function(item) {
+                console.log(item);
+                var $option = new Option(item, item);
+
+                oSelect.appendChild($option);
+            })
+        }
+
+    </script>
+</body>
+
+</html>

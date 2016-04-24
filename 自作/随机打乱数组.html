@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    
+<script>
+window.onload = function(){
+    
+    var arr=['11','62','3','24','5'];
+
+    arr.sort(function(){ return 0.5 - Math.random() })   //随机打乱一个数组
+    arr.sort(function(a,b){return a-b})   // 数组的正序排列
+     arr.sort(function(a,b){return b-a})   // 数组的倒序排列
+    alert(arr);
+   
+}    
+    
+</script>
+</head>
+<body>
+    
+</body>
+</html>

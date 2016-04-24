@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="app">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style>
+        @keyframes move {
+            0% {
+                opacity: 0;
+            }
+            100% {
+                opacity: 1;
+            }
+        }
+        
+        li {
+            animation: move 1s;
+        }
+
+    </style>
+    <script src="angular.min.js"></script>
+    <script>
+        var x = angular.module('app', []);
+        x.controller('ac', ['$scope', '$http', '$timeout', function($scope, $http, $timeout) {
+
+            var timer = null;
+            $scope.sou = function(name) {
+                $scope.onff = 'false';
+                $timeout.cancel(timer);
+                timer = $timeout(function() {
+                    $http({
+
+                        method: 'JSONP',
+                        url: 'https://sp0.baidu.com/5a1Fazu8AA54nxGko9WTAnF6hhy/su?wd=' + name + '&cb=JSON_CALLBACK',
+                    }).success(function(data) {
+
+                        $scope.data = '';
+                        $scope.data = data.s;
+                        $scope.onff = 'true';
+                    })
+
+                }, 200)
+            }
+        }])
+
+    </script>
+</head>
+
+<body>
+    <div ng-controller="ac">
+        <input type="text" ng-model="name" ng-keyup="sou(name)">
+        <input type="button" value="搜索" ng-click="sou(name)">
+        <ul>
+            <li ng-repeat="d in data" ng-show="onff">{{d}}</li>
+        </ul>
+    </div>
+</body>
+
+</html>

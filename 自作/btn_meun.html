@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <link href="bootstrapcss/bootstrap.css" type="text/css" rel="stylesheet">
+    <script src="bootstrapjs/jquery-1.11.3.js"></script>
+    <script src="bootstrapjs/bootstrap.js"></script>
+    <style>
+        .my-style-btn button {
+            width: 80px;
+            height: 40px;
+            border-style: none;
+        }
+        
+        .my-style-btn .dropdown-menu {
+            animation: move 0.5s linear;
+        }
+        
+        @keyframes move {
+            0% {
+                opacity: 0;
+                top: 20px;
+            }
+            100% {
+                opacity: 1;
+                top: 40px;
+            }
+        }
+
+    </style>
+</head>
+
+<body>
+
+    <div class="btn-group my-style-btn ">
+        <button type="button" class="btn btn-default dropdown-toggle " data-toggle="dropdown">
+            Action <span class="caret"></span>
+        </button>
+        <ul class="dropdown-menu">
+            <li class="dropdown-header bg-danger">第一组</li>
+            <li><a href="#">Action</a></li>
+            <li class="active"><a href="#">Another action</a></li>
+            <li><a href="#">Something else here</a></li>
+            <li class="divider"></li>
+            <li class="dropdown-header bg-danger">第二组</li>
+            <li><a href="#">Separated link</a></li>
+        </ul>
+    </div>
+</body>
+<script>
+    var timer;
+    if (window.navigator.userAgent.toLowerCase().indexOf('mobile') == -1) {
+
+        $('.dropdown-toggle').hover(function() {
+
+            clearTimeout(timer)
+            $('.btn-group').addClass('open');
+        }, function() {
+            timer = setTimeout(function() {
+
+                $('.btn-group').removeClass('open');
+
+            }, 100)
+
+        })
+
+        $('.dropdown-menu').hover(function() {
+
+            clearTimeout(timer)
+            $('.btn-group').addClass('open');
+        }, function() {
+            timer = setTimeout(function() {
+
+                $('.btn-group').removeClass('open');
+
+            }, 100)
+
+        })
+    }
+
+</script>
+
+</html>

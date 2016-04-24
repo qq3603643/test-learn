@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+<style>
+    p{width: 40px;height: 40px;margin-left: 5px;float: left;border: 1px solid black;margin-top: 60px;background-color: red;color: white;line-height: 40px;font-size: 35px;text-align: center;}
+</style>
+
+<script>
+window.onload = function(){
+    var aP = document.getElementsByTagName('p');
+    var arr = [];
+    var aBtn = document.getElementsByTagName('input');
+    
+    for(var i=0;i<aP.length;i++){
+       arr[i] = i;
+       aP[i].innerHTML = arr[i];
+        }    
+    aBtn[0].onclick = function(){
+        arr.sort(function(){return 0.5-Math.random()})
+        for(var i=0;i<aP.length;i++){
+        aP[i].innerHTML = arr[i];
+        }    
+    }
+    aBtn[1].onclick = function(){
+        arr.sort(function(a,b){return a-b})
+        for(var i=0;i<aP.length;i++){
+        aP[i].innerHTML = arr[i];
+        }   
+    }
+     aBtn[2].onclick = function(){
+        arr.sort(function(a,b){return b-a})
+        for(var i=0;i<aP.length;i++){
+        aP[i].innerHTML = arr[i];
+        }   
+    }
+    
+}    
+    
+    
+</script>
+</head>
+<body>
+    <input type="button" value="点击打乱">
+    <input type="button" value="点击顺序">
+    <input type="button" value="点击倒序">
+    <p></p>
+    <p></p>
+    <p></p>
+    <p></p>
+    <p></p>
+    <p></p>
+    <p></p>
+    <p></p>
+    <p></p>
+    <p></p>
+</body>
+</html>

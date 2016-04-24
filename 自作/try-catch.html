@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+   <script src="jquery-1.11.3.js"></script>
+    <script>
+      var getdata,deldata,data;
+        deldata = function(fn){
+            setTimeout(function(){ data='tangerine';
+                                   fn && fn(data);
+                                 },1000)  
+        };
+        
+        getdata = function(data){ console.log(data) }
+        deldata(getdata)
+    </script>
+</body>
+</html>

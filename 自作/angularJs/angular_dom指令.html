@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="app">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+
+    <script src="angular.min.js"></script>
+    <script>
+        var x = angular.module('app', []);
+        x.controller('ac', function($scope) {
+
+            $scope.name = 'xjc';
+            $scope.onff = true;
+        })
+
+    </script>
+</head>
+
+<body ng-controller="ac">
+    <input type="checkbox" ng-model="onff">
+    <p ng-show="onff">{{name}}</p>
+    <p ng-hide="onff">123</p>
+    //display
+    <p ng-if="onff">{{name}}</p> //remove
+</body>
+
+</html>

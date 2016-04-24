@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="app">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <script src="angular.min.js"></script>
+    <script>
+        var x = angular.module('app', []);
+
+        x.controller('ac', ['$scope', function($scope) {
+
+            $scope.keytips1 = 'defualt';
+            $scope.keytips2 = 'defualt';
+
+            $scope.changKey = function(err, keytips) {
+
+                for (var key in err) {
+                    if (err[key] == true) {
+
+                        $scope[keytips] = key;
+
+                        return;
+                    } else {
+                        $scope[keytips] = 'pass';
+                    }
+                }
+            }
+
+            $scope.Ntext = {
+                keytips: 'defualt',
+                tiplist: [{
+                    name: 'defualt',
+                    tips: '请输入用户名'
+                }, {
+                    name: 'pattern',
+                    tips: '用户名只能为字母'
+                }, {
+                    name: 'required',
+                    tips: '用户名不能为空'
+                }, {
+                    name: 'pass',
+                    tips: 'pass'
+                }, {
+                    name: 'maxlength',
+                    tips: '用户名最多6位'
+                }]
+            }
+            $scope.Npassword = {
+                keytips: 'defualt',
+                tiplist: [{
+                    name: 'defualt',
+                    tips: '请输入密码'
+                }, {
+                    name: 'minlength',
+                    tips: '密码最少6位'
+                }, {
+                    name: 'required',
+                    tips: '密码不能为空'
+                }]
+            }
+        }])
+
+    </script>
+</head>
+
+<body>
+
+    <div ng-controller="ac">
+        <form name="Nform">
+            <h1>username:</h1>
+            <input type="text" name="Ntext" required maxlength="6" ng-pattern="/^[a-zA-Z]+$/" ng-model="Ntext.val" ng-blur="changKey(Nform.Ntext.$error,'keytips1')">
+            <p>{{keytips1}}</p>
+            <p>{{Nform.Ntext.$error}}</p>
+            <p ng-repeat="name in Ntext.tiplist | filter: keytips1 ">{{name.tips}}</p>
+
+            <h1>password:</h1>
+            <input type="password" name="Npassword" required ng-minlength="6" ng-model="Npassword.val" ng-blur="changKey(Nform.Npassword.$error,'keytips2')">
+            <p ng-repeat="name in Npassword.tiplist | filter: keytips2 ">{{name.tips}}</p>
+
+        </form>
+    </div>
+
+</body>
+
+</html>

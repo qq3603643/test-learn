@@ -1,0 +1,639 @@
+<!DOCTYPE html>
+<html><head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>史上最全前端面试题(含答案) - Web开发面试题 - 职友集(发现中国好公司)</title>
+<meta name="keywords" content="史上最全前端面试题(含答案),Web开发面试题">
+<meta name="description" content="HTML+CSS&lt;br /&gt;
+1.对WEB标准以及W3C的理解与认识&lt;br /&gt;
+标签闭合、标签小写、不乱嵌...">
+<meta name="ROBOTS" content="all">
+<meta name="verify-v1" content="jBwyPl3tBTZN6Uue9J5ztOQZGHNulsIY5r/11FPNo2k=">
+<link href="%E5%8F%B2%E4%B8%8A%E6%9C%80%E5%85%A8%E5%89%8D%E7%AB%AF%E9%9D%A2%E8%AF%95%E9%A2%98%28%E5%90%AB%E7%AD%94%E6%A1%88%29%20-%20Web%E5%BC%80%E5%8F%91%E9%9D%A2%E8%AF%95%E9%A2%98%20-%20%E8%81%8C%E5%8F%8B%E9%9B%86%28%E5%8F%91%E7%8E%B0%E4%B8%AD%E5%9B%BD%E5%A5%BD%E5%85%AC%E5%8F%B8%29_files/footer.css" media="all" rel="stylesheet" type="text/css">
+<link href="%E5%8F%B2%E4%B8%8A%E6%9C%80%E5%85%A8%E5%89%8D%E7%AB%AF%E9%9D%A2%E8%AF%95%E9%A2%98%28%E5%90%AB%E7%AD%94%E6%A1%88%29%20-%20Web%E5%BC%80%E5%8F%91%E9%9D%A2%E8%AF%95%E9%A2%98%20-%20%E8%81%8C%E5%8F%8B%E9%9B%86%28%E5%8F%91%E7%8E%B0%E4%B8%AD%E5%9B%BD%E5%A5%BD%E5%85%AC%E5%8F%B8%29_files/template_1___styles___common___mac___mac.css" media="all" rel="stylesheet" type="text/css">
+<link type="image/x-icon" href="http://htm4.jobui.com/template_1/images/favicon.ico" rel="icon">
+<link type="image/x-icon" href="http://htm4.jobui.com/template_1/images/favicon.ico" rel="Bookmark">
+
+	
+<script src="%E5%8F%B2%E4%B8%8A%E6%9C%80%E5%85%A8%E5%89%8D%E7%AB%AF%E9%9D%A2%E8%AF%95%E9%A2%98%28%E5%90%AB%E7%AD%94%E6%A1%88%29%20-%20Web%E5%BC%80%E5%8F%91%E9%9D%A2%E8%AF%95%E9%A2%98%20-%20%E8%81%8C%E5%8F%8B%E9%9B%86%28%E5%8F%91%E7%8E%B0%E4%B8%AD%E5%9B%BD%E5%A5%BD%E5%85%AC%E5%8F%B8%29_files/ca-pub-3380553030912683.js" type="text/javascript" async=""></script><script src="%E5%8F%B2%E4%B8%8A%E6%9C%80%E5%85%A8%E5%89%8D%E7%AB%AF%E9%9D%A2%E8%AF%95%E9%A2%98%28%E5%90%AB%E7%AD%94%E6%A1%88%29%20-%20Web%E5%BC%80%E5%8F%91%E9%9D%A2%E8%AF%95%E9%A2%98%20-%20%E8%81%8C%E5%8F%8B%E9%9B%86%28%E5%8F%91%E7%8E%B0%E4%B8%AD%E5%9B%BD%E5%A5%BD%E5%85%AC%E5%8F%B8%29_files/hm.js"></script><script>
+	var _hmt = _hmt || [];
+	(function() {
+	  var hm = document.createElement("script");
+	  var _bdhmProtocol = (("https:" == document.location.protocol) ? " https://" : " http://");
+	  hm.src = _bdhmProtocol+"hm.baidu.com/hm.js?8b3e2b14eff57d444737b5e71d065e72";
+	  var s = document.getElementsByTagName("script")[0]; 
+	  s.parentNode.insertBefore(hm, s);
+	})();
+</script>
+
+
+
+<script type="text/javascript" src="%E5%8F%B2%E4%B8%8A%E6%9C%80%E5%85%A8%E5%89%8D%E7%AB%AF%E9%9D%A2%E8%AF%95%E9%A2%98%28%E5%90%AB%E7%AD%94%E6%A1%88%29%20-%20Web%E5%BC%80%E5%8F%91%E9%9D%A2%E8%AF%95%E9%A2%98%20-%20%E8%81%8C%E5%8F%8B%E9%9B%86%28%E5%8F%91%E7%8E%B0%E4%B8%AD%E5%9B%BD%E5%A5%BD%E5%85%AC%E5%8F%B8%29_files/m.js"></script>
+
+<script defer="defer">window._bd_share_config = {"common": {"bdSnsKey": {"tsina": "1280773485","tqq": "801323273"},"bdPopupOffsetTop":"-46","bdPopupOffsetLeft":"-236","bdText": typeof(bds_config) != "undefined" ? bds_config.bdText : "","bdMini": "2","bdMiniList": ["mshare","sqq","weixin","qzone","tsohu","tqq","tsina","tieba","renren","thx","kaixin001","bdhome","bdxc","douban","tqf","ty"],"bdPic": typeof(bds_config) != "undefined" ? bds_config.bdPic : "","bdStyle": "0"},"share":[]};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];</script><script src="%E5%8F%B2%E4%B8%8A%E6%9C%80%E5%85%A8%E5%89%8D%E7%AB%AF%E9%9D%A2%E8%AF%95%E9%A2%98%28%E5%90%AB%E7%AD%94%E6%A1%88%29%20-%20Web%E5%BC%80%E5%8F%91%E9%9D%A2%E8%AF%95%E9%A2%98%20-%20%E8%81%8C%E5%8F%8B%E9%9B%86%28%E5%8F%91%E7%8E%B0%E4%B8%AD%E5%9B%BD%E5%A5%BD%E5%85%AC%E5%8F%B8%29_files/share.js"></script><script charset="UTF-8" src="%E5%8F%B2%E4%B8%8A%E6%9C%80%E5%85%A8%E5%89%8D%E7%AB%AF%E9%9D%A2%E8%AF%95%E9%A2%98%28%E5%90%AB%E7%AD%94%E6%A1%88%29%20-%20Web%E5%BC%80%E5%8F%91%E9%9D%A2%E8%AF%95%E9%A2%98%20-%20%E8%81%8C%E5%8F%8B%E9%9B%86%28%E5%8F%91%E7%8E%B0%E4%B8%AD%E5%9B%BD%E5%A5%BD%E5%85%AC%E5%8F%B8%29_files/embed.js" async="" type="text/javascript"></script><link href="%E5%8F%B2%E4%B8%8A%E6%9C%80%E5%85%A8%E5%89%8D%E7%AB%AF%E9%9D%A2%E8%AF%95%E9%A2%98%28%E5%90%AB%E7%AD%94%E6%A1%88%29%20-%20Web%E5%BC%80%E5%8F%91%E9%9D%A2%E8%AF%95%E9%A2%98%20-%20%E8%81%8C%E5%8F%8B%E9%9B%86%28%E5%8F%91%E7%8E%B0%E4%B8%AD%E5%9B%BD%E5%A5%BD%E5%85%AC%E5%8F%B8%29_files/share_style0_16.css" rel="stylesheet"><link href="%E5%8F%B2%E4%B8%8A%E6%9C%80%E5%85%A8%E5%89%8D%E7%AB%AF%E9%9D%A2%E8%AF%95%E9%A2%98%28%E5%90%AB%E7%AD%94%E6%A1%88%29%20-%20Web%E5%BC%80%E5%8F%91%E9%9D%A2%E8%AF%95%E9%A2%98%20-%20%E8%81%8C%E5%8F%8B%E9%9B%86%28%E5%8F%91%E7%8E%B0%E4%B8%AD%E5%9B%BD%E5%A5%BD%E5%85%AC%E5%8F%B8%29_files/embed.css" rel="stylesheet" type="text/css"></head>
+<body style="background-color:#F2F2F2;" class="cmp-tt"><div style="position: absolute; left: -1px; bottom: -1px; z-index: 0; width: 0px; height: 0px; overflow: hidden; visibility: hidden; display: none;" id="BAIDU_DUP_fp_wrapper"><iframe style="width: 0px; height: 0px; visibility: hidden; display: none;" src="%E5%8F%B2%E4%B8%8A%E6%9C%80%E5%85%A8%E5%89%8D%E7%AB%AF%E9%9D%A2%E8%AF%95%E9%A2%98%28%E5%90%AB%E7%AD%94%E6%A1%88%29%20-%20Web%E5%BC%80%E5%8F%91%E9%9D%A2%E8%AF%95%E9%A2%98%20-%20%E8%81%8C%E5%8F%8B%E9%9B%86%28%E5%8F%91%E7%8E%B0%E4%B8%AD%E5%9B%BD%E5%A5%BD%E5%85%AC%E5%8F%B8%29_files/o.htm" id="BAIDU_DUP_fp_iframe"></iframe></div>
+	
+	<div class="header-2014">
+	<div style="position: fixed; top: 0px; left: auto; width: 1349px; z-index: 99;" class="topdat navTabFixed">
+		<div class="Hnav-wrap">
+			<div class="cfix Hnav-wrap-room">
+				<div class="fl">
+					<div class="fl mr10">
+						<a href="http://www.jobui.com/" title="职友集：中国最大的职位搜索引擎，最好的求职找工作网站">
+							<i class="h-icon header-logo"></i>
+							<em class="h-icon txt-logo"></em>
+							<em class="h-icon arrow-right"></em>
+						</a>
+					</div>
+					<ol class="Hnav-list fl">
+						<li class="j-Hnav-title ">
+							<a href="http://www.jobui.com/cmp" class="Hnav-list-txt j-list-txt">公司<span class="select-arrow j-SelectIcon"></span></a>
+							
+							<ul class="Hnav-wrap-small">
+								<li><a href="http://www.jobui.com/cmp">搜索公司</a></li>
+								<li><a href="http://www.jobui.com/industry/">行业招聘</a></li>
+								<li><a href="http://www.jobui.com/foreign/">外企招聘</a></li>
+								<li><a href="http://www.jobui.com/s/500qiang/">500强招聘</a></li>
+								<li><a href="http://www.jobui.com/cmp/album/">酷公司</a></li>
+							</ul>
+						</li>
+						<span class="gray9">/</span>
+						<li class="j-Hnav-title ">
+							<a href="http://www.jobui.com/jobs" class="Hnav-list-txt j-list-txt">工作<span class="select-arrow j-SelectIcon"></span></a>
+							
+							<ul class="Hnav-wrap-small">
+								<li><a href="http://www.jobui.com/jobs">搜索职位</a></li>
+								<li><a href="http://www.jobui.com/yingjiesheng/">应届生招聘</a></li>
+								<li><a href="http://www.jobui.com/shixisheng/">实习生招聘</a></li>
+								<li><a href="http://www.jobui.com/jianzhi/">兼职招聘</a></li>
+								<li><a href="http://www.jobui.com/shujiagong/">暑假工招聘</a></li>
+								<li><a href="http://www.jobui.com/mianshiti/">面试题</a></li>
+							</ul>
+						</li>
+						<span class="gray9">/</span>
+						<li class="j-Hnav-title ">
+							<a href="http://www.jobui.com/salary/" class="Hnav-list-txt j-list-txt">工资</a>
+							
+						</li>
+						<span class="gray9">/</span>
+						<li class="j-Hnav-title ">
+							<a href="http://www.jobui.com/trends/" class="Hnav-list-txt j-list-txt">趋势<span class="select-arrow j-SelectIcon"></span></a>
+							
+							<ul class="Hnav-wrap-small">
+								<li><a href="http://www.jobui.com/trends/yjs/" style="width:160px;">大学生就业形势分析</a></li>
+							</ul>
+						</li>
+						<span class="gray9">/</span>
+						<li class="j-Hnav-title ">
+							<a href="http://edu.jobui.com/" class="Hnav-list-txt j-list-txt">教育<span class="select-arrow j-SelectIcon"></span></a>
+							
+							<ul class="Hnav-wrap-small">
+								<li><a href="http://edu.jobui.com/colleges/">选大学</a></li>
+								<li><a href="http://www.jobui.com/trends/yjs/">选专业</a></li>
+							</ul>
+						</li>
+						<span class="gray9">/</span>
+						<li class="j-Hnav-title ">
+							<a href="http://www.jobui.com/group/" class="Hnav-list-txt j-list-txt">小组</a>
+							
+						</li>
+						<span class="gray9">/</span>
+						<li class="j-Hnav-title ">
+							<a href="http://www.jobui.com/rank/" class="Hnav-list-txt j-list-txt">排行榜<span class="select-arrow j-SelectIcon"></span></a>
+							
+							<ul class="Hnav-wrap-small">
+								<li><a href="http://www.jobui.com/rank/company/vote/quanguo/">最佳口碑雇主</a></li>
+								<li><a href="http://www.jobui.com/rank/company/view/quanguo/">最佳人气雇主</a></li>
+								<li><a href="http://www.jobui.com/rank/company/focus/quanguo/">最多粉丝雇主</a></li>
+							</ul>
+						</li>
+						<span class="gray9">/</span>
+						<li class="j-Hnav-title ">
+							<a href="http://www.jobui.com/s/joinin/" class="Hnav-list-txt j-list-txt">企业入驻<span class="select-arrow j-SelectIcon"></span></a>
+							<span style="color: #FFFFFF; position: absolute; right: -2px; background-color: #FF0000; border-radius: 50%; text-align: center; font-size: 12px; height: 15px; width:20px; top: 3px; line-height: 13px;">hot</span>
+							<ul style="display: none;" class="Hnav-wrap-small">
+								<li><a href="http://www.jobui.com/s/joinin/">申请入驻</a></li>
+								<li><a href="http://www.jobui.com/s/ads/">推广服务</a></li>
+							</ul>
+						</li>
+						<span class="gray9">/</span>
+						<li class="j-Hnav-title ">
+							<a href="http://www.jobui.com/s/mobile/" class="Hnav-list-txt j-list-txt">移动应用<span class="select-arrow j-SelectIcon"></span></a>
+							
+							<ul class="Hnav-wrap-small">
+								<li><a href="http://www.jobui.com/s/mobile/">官方APP</a></li>
+								<li><a href="http://www.jobui.com/s/hr/">HR助手</a></li>
+							</ul>
+						</li>
+						<span class="gray9">/</span>
+						<li class="j-Hnav-title ">
+							<a href="http://www.jobui.com/cmp/album/" class="Hnav-list-txt j-list-txt">酷公司</a>
+							
+						</li>
+					</ol>	
+				</div>
+				<div class="fr">
+					<div class="topbar-login" id="topbar-login">
+						<script>
+							if (document.cookie.indexOf("isloginStatus") == -1) {
+								document.write("<span class='fs16 white'><a class='j-publicUser' href='javascript:;' style='color:#fff;'>个人登录/注册</a><span style='margin:0 10px;color:#ccc;'>|</span><a class='j-enterpriseUser' href='javascript:;' style='color:#fff;'>企业用户入口</a></span>");
+							}else{
+								document.write(unescape("%3Cscript src='http://www.jobui.com/user/login.php?url="+window.location.href+"' %3E%3C/script%3E"));
+							}
+						</script><span class="fs16 white"><a class="j-publicUser" href="javascript:;" style="color:#fff;">个人登录/注册</a><span style="margin:0 10px;color:#ccc;">|</span><a class="j-enterpriseUser" href="javascript:;" style="color:#fff;">企业用户入口</a></span>
+					</div> 
+				</div>
+			</div>
+		</div>
+	</div><div style="display: block; visibility: hidden; height: 44px;" class="topdat"></div>
+	<div class="cfix middat"> 
+		<div class="fl brdcrumb-nav">
+			<a href="http://www.jobui.com/">职友集</a><span>&gt;</span><a href="http://www.jobui.com/mianshiti/it/web/">Web开发面试题</a> &gt; <span>史上最全前端面试题(含答案)
+		</span></div>		
+		
+		<div class="small-form cfix fr">
+			<input id="city-name" value="全国" name="area" type="hidden">
+			<form action="http://www.jobui.com/jobs" method="get" id="sform">
+				<span class="schbar-form-chg fs16 j-schbar-form-chg">
+					<em class="schbar-form-chg-selected j-schbar-form-chg-selected">职位</em>
+					<span id="schbar-form-select" value="company" class="schbar-form-chg-select">
+						<a id="in-company" data-keyward="company">公司</a>
+						<a id="in-job" data-keyward="job">工作</a>
+						<a id="in-salary" data-keyward="salary">工资</a>
+						<a id="in-trend" data-keyward="trend">趋势</a>
+					</span>
+				</span>
+				<input autocomplete="off" class="schbar-form-keyword j-headSearchText j-keywordLenovo" id="schbar-form-keyword" data-set-tipslist="job" name="jobKw" placeholder="搜索你喜欢的职位" type="text">
+				<input id="citykw" value="全国" name="cityKw" type="hidden">
+				<input class="schbar-form-submit" value="" type="submit">
+			</form>
+		</div>
+	    
+	</div>
+</div>
+	
+	
+		<div class="astruct cfix" id="wrapcontainer">
+			
+
+
+
+
+
+
+<div class="aleft">
+	<h1>史上最全前端面试题(含答案)</h1>
+	<div class="jk-box jk-matter">
+		<div class="mcAbout sbox cfix">
+			<p class="mcAboutL">
+				2015-10-30 06:30:03
+				<span>阅读( <em id="newViewNum">385</em> )</span>
+				<input id="articleID" value="5066" type="hidden">
+				<input id="viewNum" value="385" type="hidden">
+			</p>
+			<p class="favorite">
+				<a href="javascript:;" id="favorite">1615人 收藏本页</a>
+			</p>
+		</div>
+		<p class="sbox">
+			标签：<a href="http://www.jobui.com/mianshiti/it/web/">Web开发面试题</a>
+		</p>
+		<div class="mcCon">
+			<div class="fr" style=" margin:0 0 10px 10px" id="pageGG-left-1" data-ggid="920490">
+				<script type="text/javascript">BAIDU_CLB_fillSlot("920490");</script><div id="BAIDU_DUP_wrapper_920490_0"></div><script charset="utf-8" src="%E5%8F%B2%E4%B8%8A%E6%9C%80%E5%85%A8%E5%89%8D%E7%AB%AF%E9%9D%A2%E8%AF%95%E9%A2%98%28%E5%90%AB%E7%AD%94%E6%A1%88%29%20-%20Web%E5%BC%80%E5%8F%91%E9%9D%A2%E8%AF%95%E9%A2%98%20-%20%E8%81%8C%E5%8F%8B%E9%9B%86%28%E5%8F%91%E7%8E%B0%E4%B8%AD%E5%9B%BD%E5%A5%BD%E5%85%AC%E5%8F%B8%29_files/ecom_002"></script><script charset="utf-8" src="%E5%8F%B2%E4%B8%8A%E6%9C%80%E5%85%A8%E5%89%8D%E7%AB%AF%E9%9D%A2%E8%AF%95%E9%A2%98%28%E5%90%AB%E7%AD%94%E6%A1%88%29%20-%20Web%E5%BC%80%E5%8F%91%E9%9D%A2%E8%AF%95%E9%A2%98%20-%20%E8%81%8C%E5%8F%8B%E9%9B%86%28%E5%8F%91%E7%8E%B0%E4%B8%AD%E5%9B%BD%E5%A5%BD%E5%85%AC%E5%8F%B8%29_files/fixed7o.js"></script><script type="text/javascript"><!--
+google_ad_client = "ca-pub-3380553030912683";
+/* 面试题-内容-左侧-上 */
+google_ad_slot = "5305443570";
+google_ad_width = 336;
+google_ad_height = 280;
+//-->
+</script>
+<script type="text/javascript" src="%E5%8F%B2%E4%B8%8A%E6%9C%80%E5%85%A8%E5%89%8D%E7%AB%AF%E9%9D%A2%E8%AF%95%E9%A2%98%28%E5%90%AB%E7%AD%94%E6%A1%88%29%20-%20Web%E5%BC%80%E5%8F%91%E9%9D%A2%E8%AF%95%E9%A2%98%20-%20%E8%81%8C%E5%8F%8B%E9%9B%86%28%E5%8F%91%E7%8E%B0%E4%B8%AD%E5%9B%BD%E5%A5%BD%E5%85%AC%E5%8F%B8%29_files/show_ads.js">
+</script><ins id="aswift_0_expand" style="display:inline-table;border:none;height:280px;margin:0;padding:0;position:relative;visibility:visible;width:336px;background-color:transparent"><ins id="aswift_0_anchor" style="display:block;border:none;height:280px;margin:0;padding:0;position:relative;visibility:visible;width:336px;background-color:transparent"><iframe marginwidth="0" marginheight="0" vspace="0" hspace="0" allowtransparency="true" scrolling="no" allowfullscreen="true" onload="var i=this.id,s=window.google_iframe_oncopy,H=s&amp;&amp;s.handlers,h=H&amp;&amp;H[i],w=this.contentWindow,d;try{d=w.document}catch(e){}if(h&amp;&amp;d&amp;&amp;(!d.body||!d.body.firstChild)){if(h.call){setTimeout(h,0)}else if(h.match){try{h=s.upd(h,i)}catch(e){}w.location.replace(h)}}" id="aswift_0" name="aswift_0" style="left:0;position:absolute;top:0;" frameborder="0" height="280" width="336"></iframe></ins></ins>
+			</div>
+			HTML+CSS<br>
+1.对WEB标准以及W3C的理解与认识<br>
+标签闭合、标签小写、不乱嵌套、提高搜索机器人搜索几率、使用外 
+链css和js脚本、结构行为表现的分离、文件下载与页面速度更快、内容能被更多的用户所访问、内容能被更广泛的设备所访问、更少的代码和组件，容易维 
+护、改版方便，不需要变动页面内容、提供打印版本而不需要复制内容、提高网站易用性；<br>
+<br>
+2.xhtml和html有什么区别<br>
+HTML是一种基本的WEB网页设计语言，XHTML是一个基于XML的置标语言<br>
+最主要的不同：<br>
+XHTML 元素必须被正确地嵌套。<br>
+XHTML 元素必须被关闭。<br>
+标签名必须用小写字母。<br>
+XHTML 文档必须拥有根元素。<br>
+<br>
+3.Doctype? 严格模式与混杂模式-如何触发这两种模式，区分它们有何意义? <br>
+用于声明文档使用那种规范（html/Xhtml）一般为 严格 过度 基于框架的html文档<br>
+加入XMl声明可触发，解析方式更改为IE5.5 拥有IE5.5的bug<br>
+<br>
+4.行内元素有哪些?块级元素有哪些?CSS的盒模型?<br>
+块级元素：div p h1 h2 h3 h4 form ul<br>
+行内元素: a b br i span input select<br>
+Css盒模型:内容，border ,margin，padding<br>
+<br>
+5.CSS引入的方式有哪些? link和@import的区别是?<br>
+内联 内嵌 外链 导入<br>
+区别 ：同时加载<br>
+前者无兼容性，后者CSS2.1以下浏览器不支持<br>
+Link 支持使用javascript改变样式，后者不可<br>
+<br>
+6.CSS选择符有哪些?哪些属性可以继承?优先级算法如何计算?内联和important哪个优先级高?<br>
+标签选择符 类选择符 id选择符<br>
+继承不如指定 Id&gt;class&gt;标签选择<br>
+后者优先级高<br>
+<br>
+7.前端页面有哪三层构成，分别是什么?作用是什么?<br>
+结构层 Html 表示层 CSS 行为层 js<br>
+<br>
+8.css的基本语句构成是?<br>
+选择器{属性1:值1;属性2:值2;……}<br>
+<br>
+9.你做的页面在哪些流览器测试过?这些浏览器的内核分别是什么?<br>
+Ie(Ie内核) 火狐（Gecko） 谷歌（webkit） opear(Presto)<br>
+<br>
+10.写出几种IE6 BUG的解决方法<br>
+1.双边距BUG float引起的 使用display<br>
+2.3像素问题 使用float引起的 使用dislpay:inline -3px<br>
+3.超链接hover 点击后失效 使用正确的书写顺序 link visited hover active<br>
+4.Ie z-index问题 给父级添加position:relative<br>
+5.Png 透明 使用js代码 改<br>
+6.Min-height 最小高度 ！Important 解决’<br>
+7.select 在ie6下遮盖 使用iframe嵌套<br>
+8.为什么没有办法定义1px左右的宽度容器（IE6默认的行高造成的，使用over:hidden,zoom:0.08 line-height:1px）<br>
+<br>
+11.标签上title与alt属性的区别是什么?<br>
+Alt 当图片不显示是 用文字代表。<br>
+Title 为该属性提供信息<br>
+<br>
+12.描述css reset的作用和用途。<br>
+Reset重置浏览器的css默认属性 浏览器的品种不同，样式不同，然后重置，让他们统一<br>
+<br>
+13.解释css sprites，如何使用。<br>
+Css 精灵 把一堆小的图片整合到一张大的图片上，减轻服务器对图片的请求数量<br>
+<br>
+14.浏览器标准模式和怪异模式之间的区别是什么?<br>
+盒子模型 渲染模式的不同<br>
+使用 window.top.document.compatMode 可显示为什么模式<br>
+<br>
+15.你如何对网站的文件和资源进行优化?期待的解决方案包括：<br>
+文件合并<br>
+文件最小化/文件压缩<br>
+使用CDN托管<br>
+缓存的使用<br>
+<br>
+16.什么是语义化的HTML?<br>
+直观的认识标签 对于搜索引擎的抓取有好处<br>
+<br>
+17.清除浮动的几种方式，各自的优缺点<br>
+1.使用空标签清除浮动 clear:both（理论上能清楚任何标签，，，增加无意义的标签）<br>
+2.使用overflow:auto（空标签元素清除浮动而不得不增加无意代码的弊端,,使用zoom:1用于兼容IE）<br>
+3.是用afert伪元素清除浮动(用于非IE浏览器)<br>
+<br>
+Javascript<br>
+1.javascript的typeof返回哪些数据类型<br>
+Object number function boolean underfind<br>
+<br>
+2.例举3种强制类型转换和2种隐式类型转换?<br>
+强制（parseInt,parseFloat,number）<br>
+隐式（== – ===）<br>
+<br>
+3.split() join() 的区别<br>
+前者是切割成数组的形式，后者是将数组转换成字符串<br>
+<br>
+4.数组方法pop() push() unshift() shift()<br>
+Push()尾部添加 pop()尾部删除<br>
+Unshift()头部添加 shift()头部删除<br>
+<br>
+5.事件绑定和普通事件有什么区别<br>
+<br>
+6.IE和DOM事件流的区别<br>
+1.执行顺序不一样、<br>
+2.参数不一样<br>
+3.事件加不加on<br>
+4.this指向问题<br>
+<br>
+7.IE和标准下有哪些兼容性的写法<br>
+Var ev = ev || window.event<br>
+document.documentElement.clientWidth || document.body.clientWidth<br>
+Var target = ev.srcElement||ev.target<br>
+<br>
+8.ajax请求的时候get 和post方式的区别<br>
+一个在url后面 一个放在虚拟载体里面<br>
+有大小限制<br>
+安全问题<br>
+应用不同 一个是论坛等只需要请求的，一个是类似修改密码的<br>
+<br>
+9.call和apply的区别<br>
+Object.call(this,obj1,obj2,obj3)<br>
+Object.apply(this,arguments)<br>
+<br>
+10.ajax请求时，如何解释json数据<br>
+使用eval parse 鉴于安全性考虑 使用parse更靠谱<br>
+11.b继承a的方法<br>
+<br>
+12.写一个获取非行间样式的函数<br>
+<br>
+function getStyle(obj,attr,value)<br>
+{<br>
+if(!value)<br>
+{<br>
+if(obj.currentStyle)<br>
+{<br>
+return obj.currentStyle(attr)<br>
+}<br>
+else<br>
+{<br>
+obj.getComputedStyle(attr,false)<br>
+}<br>
+}<br>
+else<br>
+{<br>
+obj.style[attr]=value<br>
+}<br>
+}<br>
+<br>
+13.事件委托是什么<br>
+让利用事件冒泡的原理，让自己的所触发的事件，让他的父元素代替执行！<br>
+http://www.webasily.com/?p=78 例子可见此链接<br>
+<br>
+14.闭包是什么，有什么特性，对页面有什么影响<br>
+闭包就是能够读取其他函数内部变量的函数。<br>
+http://blog.csdn.net/gaoshanwudi/article/details/7355794 此链接可查看（问这个问题的不是一个公司）<br>
+<br>
+15.如何阻止事件冒泡和默认事件<br>
+canceBubble return false<br>
+<br>
+16.添加 删除 替换 插入到某个接点的方法<br>
+obj.appendChidl()<br>
+obj.innersetBefore<br>
+obj.replaceChild<br>
+obj.removeChild<br>
+<br>
+17.解释jsonp的原理，以及为什么不是真正的ajax<br>
+动态创建script标签，回调函数<br>
+Ajax是页面无刷新请求数据操作<br>
+<br>
+18.javascript的本地对象，内置对象和宿主对象<br>
+本地对象为array obj regexp等可以new实例化<br>
+内置对象为gload Math 等不可以实例化的<br>
+宿主为浏览器自带的document,window 等<br>
+<br>
+19.document load 和document ready的区别<br>
+Document.onload 是在结构和样式加载完才执行js<br>
+Document.ready原生种没有这个方法，jquery中有 $().ready(function)<br>
+<br>
+20.”==”和“===”的不同<br>
+前者会自动转换类型<br>
+后者不会<br>
+<br>
+21.javascript的同源策略<br>
+一段脚本只能读取来自于同一来源的窗口和文档的属性，这里的同一来源指的是主机名、协议和端口号的组合<br>
+<br>
+22.编写一个数组去重的方法<br>
+function oSort(arr)<br>
+{<br>
+var result ={};<br>
+var newArr=[];<br>
+for(var i=0;i&lt;arr.length;i++)<br>
+{<br>
+if(!result[arr])<br>
+{<br>
+newArr.push(arr)<br>
+result[arr]=1<br>
+}<br>
+}<br>
+return newArr<br>
+}<br>
+
+		</div>
+		<p class="box">
+			来自<a href="http://www.mianwww.com/html/2012/11/17077.html" rel="nofollow" target="_blank">IT公司面试手册</a>
+		</p>
+		<div class="j-share bigshare cfix" data-bdshare-type="big">
+	    	<span class="share">分享给朋友：</span>
+	    </div>
+		<p class="sign ssbox">
+			下一篇：<a href="http://www.jobui.com/mianshiti/it/web/5065/">游戏类网页设计师的面试题</a>
+		</p>
+		<p class="sign btCd">
+			上一篇：<a href="http://www.jobui.com/mianshiti/it/web/5067/">WebDeveloper面试题集</a>
+		</p>
+		<p class="box">亲~ 如果您有更好的答案 可在评论区发表您独到的见解。 </p>
+	    <div class="CM-form">
+        
+        	<div id="ds-thread" class="ds-thread"><div id="ds-reset"><div style="display: none;" class="ds-meta"><a href="javascript:void(0)" class="ds-like-thread-button ds-rounded"><span class="ds-icon ds-icon-heart"></span> <span class="ds-thread-like-text">喜欢</span><span class="ds-thread-cancel-like">取消喜欢</span></a><span class="ds-like-panel"></span></div><div class="ds-comments-info"><div class="ds-sort"><a class="ds-order-desc">最新</a><a class="ds-order-asc ds-current">最早</a><a class="ds-order-hot">最热</a></div><ul class="ds-comments-tabs"><li class="ds-tab"><a class="ds-comments-tab-duoshuo ds-current" href="javascript:void(0);"><span class="ds-highlight">16</span>条评论</a></li> <li class="ds-tab"><a class="ds-comments-tab-weibo" href="javascript:void(0);"><span class="ds-highlight">2</span>条新浪微博</a></li> </ul></div><ul class="ds-comments"><li class="ds-post" data-post-id="1220892213924331695"><div class="ds-post-self" data-post-id="1220892213924331695" data-thread-id="1220892213924334394" data-root-id="0" data-source="duoshuo"><div class="ds-avatar" data-user-id="10628051"><a rel="nofollow author" target="_blank" href="http://weibo.com/diaosibaoxiao" onclick="this.href='http://ijobui.duoshuo.com/user-url/?user_id=10628051';" title="刘涛"><img src="%E5%8F%B2%E4%B8%8A%E6%9C%80%E5%85%A8%E5%89%8D%E7%AB%AF%E9%9D%A2%E8%AF%95%E9%A2%98%28%E5%90%AB%E7%AD%94%E6%A1%88%29%20-%20Web%E5%BC%80%E5%8F%91%E9%9D%A2%E8%AF%95%E9%A2%98%20-%20%E8%81%8C%E5%8F%8B%E9%9B%86%28%E5%8F%91%E7%8E%B0%E4%B8%AD%E5%9B%BD%E5%A5%BD%E5%85%AC%E5%8F%B8%29_files/1.jpg" alt="刘涛"></a></div><div class="ds-comment-body"><div class="ds-comment-header"><a class="ds-user-name ds-highlight" data-qqt-account="" href="http://weibo.com/diaosibaoxiao" onclick="this.href='http://ijobui.duoshuo.com/user-url/?user_id=10628051';" rel="nofollow" target="_blank" data-user-id="10628051">刘涛</a></div><p>mark</p><div class="ds-comment-footer ds-comment-actions"><span class="ds-time" datetime="2015-02-07T11:18:19+08:00" title="2015年2月7日 上午11:18:19">2月7日</span><a class="ds-post-reply" href="javascript:void(0);"><span class="ds-icon ds-icon-reply"></span>回复</a><a class="ds-post-likes" href="javascript:void(0);"><span class="ds-icon ds-icon-like"></span>顶</a><a class="ds-post-repost" href="javascript:void(0);"><span class="ds-icon ds-icon-share"></span>转发</a><a class="ds-post-report" href="javascript:void(0);"><span class="ds-icon ds-icon-report"></span>举报</a></div></div></div></li><li class="ds-post" data-post-id="1220892213924331701"><div class="ds-post-self" data-post-id="1220892213924331701" data-thread-id="1220892213924334394" data-root-id="0" data-source="duoshuo"><div class="ds-avatar" data-user-id="10290097"><a rel="nofollow author" target="_blank" href="http://weibo.com/2437305531" onclick="this.href='http://ijobui.duoshuo.com/user-url/?user_id=10290097';" title="P-利-Q"><img src="%E5%8F%B2%E4%B8%8A%E6%9C%80%E5%85%A8%E5%89%8D%E7%AB%AF%E9%9D%A2%E8%AF%95%E9%A2%98%28%E5%90%AB%E7%AD%94%E6%A1%88%29%20-%20Web%E5%BC%80%E5%8F%91%E9%9D%A2%E8%AF%95%E9%A2%98%20-%20%E8%81%8C%E5%8F%8B%E9%9B%86%28%E5%8F%91%E7%8E%B0%E4%B8%AD%E5%9B%BD%E5%A5%BD%E5%85%AC%E5%8F%B8%29_files/1_002.jpg" alt="P-利-Q"></a></div><div class="ds-comment-body"><div class="ds-comment-header"><a class="ds-user-name ds-highlight" data-qqt-account="" href="http://weibo.com/2437305531" onclick="this.href='http://ijobui.duoshuo.com/user-url/?user_id=10290097';" rel="nofollow" target="_blank" data-user-id="10290097">P-利-Q</a></div><p>22题的数组去重复是错误的，更改如下：<br>
+if(!result[arr <img src="%E5%8F%B2%E4%B8%8A%E6%9C%80%E5%85%A8%E5%89%8D%E7%AB%AF%E9%9D%A2%E8%AF%95%E9%A2%98%28%E5%90%AB%E7%AD%94%E6%A1%88%29%20-%20Web%E5%BC%80%E5%8F%91%E9%9D%A2%E8%AF%95%E9%A2%98%20-%20%E8%81%8C%E5%8F%8B%E9%9B%86%28%E5%8F%91%E7%8E%B0%E4%B8%AD%E5%9B%BD%E5%A5%BD%E5%85%AC%E5%8F%B8%29_files/weiboi_org.gif" alt="[i]" title="[i]" class="ds-smiley"> ])<br>
+{<br>
+  newArr.push(arr <img src="%E5%8F%B2%E4%B8%8A%E6%9C%80%E5%85%A8%E5%89%8D%E7%AB%AF%E9%9D%A2%E8%AF%95%E9%A2%98%28%E5%90%AB%E7%AD%94%E6%A1%88%29%20-%20Web%E5%BC%80%E5%8F%91%E9%9D%A2%E8%AF%95%E9%A2%98%20-%20%E8%81%8C%E5%8F%8B%E9%9B%86%28%E5%8F%91%E7%8E%B0%E4%B8%AD%E5%9B%BD%E5%A5%BD%E5%85%AC%E5%8F%B8%29_files/weiboi_org.gif" alt="[i]" title="[i]" class="ds-smiley"> )<br>
+  result[arr <img src="%E5%8F%B2%E4%B8%8A%E6%9C%80%E5%85%A8%E5%89%8D%E7%AB%AF%E9%9D%A2%E8%AF%95%E9%A2%98%28%E5%90%AB%E7%AD%94%E6%A1%88%29%20-%20Web%E5%BC%80%E5%8F%91%E9%9D%A2%E8%AF%95%E9%A2%98%20-%20%E8%81%8C%E5%8F%8B%E9%9B%86%28%E5%8F%91%E7%8E%B0%E4%B8%AD%E5%9B%BD%E5%A5%BD%E5%85%AC%E5%8F%B8%29_files/weiboi_org.gif" alt="[i]" title="[i]" class="ds-smiley"> ]=1<br>
+}</p><div class="ds-comment-footer ds-comment-actions"><span class="ds-time" datetime="2015-03-18T19:38:10+08:00" title="2015年3月18日 下午7:38:10">3月18日</span><a class="ds-post-reply" href="javascript:void(0);"><span class="ds-icon ds-icon-reply"></span>回复</a><a class="ds-post-likes" href="javascript:void(0);"><span class="ds-icon ds-icon-like"></span>顶</a><a class="ds-post-repost" href="javascript:void(0);"><span class="ds-icon ds-icon-share"></span>转发</a><a class="ds-post-report" href="javascript:void(0);"><span class="ds-icon ds-icon-report"></span>举报</a></div></div></div></li><li class="ds-post" data-post-id="1220892213924331702"><div class="ds-post-self" data-post-id="1220892213924331702" data-thread-id="1220892213924334394" data-root-id="0" data-source="duoshuo"><div class="ds-avatar" data-user-id="10290097"><a rel="nofollow author" target="_blank" href="http://weibo.com/2437305531" onclick="this.href='http://ijobui.duoshuo.com/user-url/?user_id=10290097';" title="P-利-Q"><img src="%E5%8F%B2%E4%B8%8A%E6%9C%80%E5%85%A8%E5%89%8D%E7%AB%AF%E9%9D%A2%E8%AF%95%E9%A2%98%28%E5%90%AB%E7%AD%94%E6%A1%88%29%20-%20Web%E5%BC%80%E5%8F%91%E9%9D%A2%E8%AF%95%E9%A2%98%20-%20%E8%81%8C%E5%8F%8B%E9%9B%86%28%E5%8F%91%E7%8E%B0%E4%B8%AD%E5%9B%BD%E5%A5%BD%E5%85%AC%E5%8F%B8%29_files/1_002.jpg" alt="P-利-Q"></a></div><div class="ds-comment-body"><div class="ds-comment-header"><a class="ds-user-name ds-highlight" data-qqt-account="" href="http://weibo.com/2437305531" onclick="this.href='http://ijobui.duoshuo.com/user-url/?user_id=10290097';" rel="nofollow" target="_blank" data-user-id="10290097">P-利-Q</a></div><p>无语了，arr\[i\]怎么会变成表情了</p><div class="ds-comment-footer ds-comment-actions"><span class="ds-time" datetime="2015-03-18T19:39:37+08:00" title="2015年3月18日 下午7:39:37">3月18日</span><a class="ds-post-reply" href="javascript:void(0);"><span class="ds-icon ds-icon-reply"></span>回复</a><a class="ds-post-likes" href="javascript:void(0);"><span class="ds-icon ds-icon-like"></span>顶</a><a class="ds-post-repost" href="javascript:void(0);"><span class="ds-icon ds-icon-share"></span>转发</a><a class="ds-post-report" href="javascript:void(0);"><span class="ds-icon ds-icon-report"></span>举报</a></div></div></div></li><li class="ds-post" data-post-id="1220892213924331704"><div class="ds-post-self" data-post-id="1220892213924331704" data-thread-id="1220892213924334394" data-root-id="0" data-source="duoshuo"><div class="ds-avatar" data-user-id="11216342"><a rel="nofollow author" target="_blank" href="http://t.qq.com/kongt100" onclick="this.href='http://ijobui.duoshuo.com/user-url/?user_id=11216342';" title="kongt100"><img src="%E5%8F%B2%E4%B8%8A%E6%9C%80%E5%85%A8%E5%89%8D%E7%AB%AF%E9%9D%A2%E8%AF%95%E9%A2%98%28%E5%90%AB%E7%AD%94%E6%A1%88%29%20-%20Web%E5%BC%80%E5%8F%91%E9%9D%A2%E8%AF%95%E9%A2%98%20-%20%E8%81%8C%E5%8F%8B%E9%9B%86%28%E5%8F%91%E7%8E%B0%E4%B8%AD%E5%9B%BD%E5%A5%BD%E5%85%AC%E5%8F%B8%29_files/noavatar_default.png" alt="kongt100"></a></div><div class="ds-comment-body"><div class="ds-comment-header"><a class="ds-user-name ds-highlight" data-qqt-account="" href="http://t.qq.com/kongt100" onclick="this.href='http://ijobui.duoshuo.com/user-url/?user_id=11216342';" rel="nofollow" target="_blank" data-user-id="11216342">kongt100</a></div><p>function oSort(arr)<br>
+{<br>
+var result ={};<br>
+var newArr=[];<br>
+for(var i=0;i&lt;arr.length;i++)<br>
+{<br>
+if(!result[arr <img src="%E5%8F%B2%E4%B8%8A%E6%9C%80%E5%85%A8%E5%89%8D%E7%AB%AF%E9%9D%A2%E8%AF%95%E9%A2%98%28%E5%90%AB%E7%AD%94%E6%A1%88%29%20-%20Web%E5%BC%80%E5%8F%91%E9%9D%A2%E8%AF%95%E9%A2%98%20-%20%E8%81%8C%E5%8F%8B%E9%9B%86%28%E5%8F%91%E7%8E%B0%E4%B8%AD%E5%9B%BD%E5%A5%BD%E5%85%AC%E5%8F%B8%29_files/weiboi_org.gif" alt="[i]" title="[i]" class="ds-smiley"> ])<br>
+{<br>
+  <br>
+newArr.push(arr <img src="%E5%8F%B2%E4%B8%8A%E6%9C%80%E5%85%A8%E5%89%8D%E7%AB%AF%E9%9D%A2%E8%AF%95%E9%A2%98%28%E5%90%AB%E7%AD%94%E6%A1%88%29%20-%20Web%E5%BC%80%E5%8F%91%E9%9D%A2%E8%AF%95%E9%A2%98%20-%20%E8%81%8C%E5%8F%8B%E9%9B%86%28%E5%8F%91%E7%8E%B0%E4%B8%AD%E5%9B%BD%E5%A5%BD%E5%85%AC%E5%8F%B8%29_files/weiboi_org.gif" alt="[i]" title="[i]" class="ds-smiley"> )<br>
+result[arr <img src="%E5%8F%B2%E4%B8%8A%E6%9C%80%E5%85%A8%E5%89%8D%E7%AB%AF%E9%9D%A2%E8%AF%95%E9%A2%98%28%E5%90%AB%E7%AD%94%E6%A1%88%29%20-%20Web%E5%BC%80%E5%8F%91%E9%9D%A2%E8%AF%95%E9%A2%98%20-%20%E8%81%8C%E5%8F%8B%E9%9B%86%28%E5%8F%91%E7%8E%B0%E4%B8%AD%E5%9B%BD%E5%A5%BD%E5%85%AC%E5%8F%B8%29_files/weiboi_org.gif" alt="[i]" title="[i]" class="ds-smiley"> ]=1<br>
+}<br>
+}<br>
+return newArr<br>
+}</p><div class="ds-comment-footer ds-comment-actions"><span class="ds-time" datetime="2015-03-23T09:09:28+08:00" title="2015年3月23日 上午9:09:28">3月23日</span><a class="ds-post-reply" href="javascript:void(0);"><span class="ds-icon ds-icon-reply"></span>回复</a><a class="ds-post-likes" href="javascript:void(0);"><span class="ds-icon ds-icon-like"></span>顶</a><a class="ds-post-repost" href="javascript:void(0);"><span class="ds-icon ds-icon-share"></span>转发</a><a class="ds-post-report" href="javascript:void(0);"><span class="ds-icon ds-icon-report"></span>举报</a></div></div></div></li><li class="ds-post" data-post-id="1220892213924331709"><div class="ds-post-self" data-post-id="1220892213924331709" data-thread-id="1220892213924334394" data-root-id="0" data-source="duoshuo"><div class="ds-avatar"><img src="%E5%8F%B2%E4%B8%8A%E6%9C%80%E5%85%A8%E5%89%8D%E7%AB%AF%E9%9D%A2%E8%AF%95%E9%A2%98%28%E5%90%AB%E7%AD%94%E6%A1%88%29%20-%20Web%E5%BC%80%E5%8F%91%E9%9D%A2%E8%AF%95%E9%A2%98%20-%20%E8%81%8C%E5%8F%8B%E9%9B%86%28%E5%8F%91%E7%8E%B0%E4%B8%AD%E5%9B%BD%E5%A5%BD%E5%85%AC%E5%8F%B8%29_files/noavatar_default.png" alt="呵呵大"></div><div class="ds-comment-body"><div class="ds-comment-header"><span class="ds-user-name" data-qqt-account="">呵呵大</span></div><p>mark</p><div class="ds-comment-footer ds-comment-actions"><span class="ds-time" datetime="2015-04-04T15:13:51+08:00" title="2015年4月4日 下午3:13:51">4月4日</span><a class="ds-post-reply" href="javascript:void(0);"><span class="ds-icon ds-icon-reply"></span>回复</a><a class="ds-post-likes" href="javascript:void(0);"><span class="ds-icon ds-icon-like"></span>顶</a><a class="ds-post-repost" href="javascript:void(0);"><span class="ds-icon ds-icon-share"></span>转发</a><a class="ds-post-report" href="javascript:void(0);"><span class="ds-icon ds-icon-report"></span>举报</a></div></div></div></li><li class="ds-post" data-post-id="1220892213924331715"><div class="ds-post-self" data-post-id="1220892213924331715" data-thread-id="1220892213924334394" data-root-id="0" data-source="duoshuo"><div class="ds-avatar" data-user-id="11709234"><a rel="nofollow author" target="_blank" href="http://t.qq.com/weiboyimin9769" onclick="this.href='http://ijobui.duoshuo.com/user-url/?user_id=11709234';" title="易敏"><img src="%E5%8F%B2%E4%B8%8A%E6%9C%80%E5%85%A8%E5%89%8D%E7%AB%AF%E9%9D%A2%E8%AF%95%E9%A2%98%28%E5%90%AB%E7%AD%94%E6%A1%88%29%20-%20Web%E5%BC%80%E5%8F%91%E9%9D%A2%E8%AF%95%E9%A2%98%20-%20%E8%81%8C%E5%8F%8B%E9%9B%86%28%E5%8F%91%E7%8E%B0%E4%B8%AD%E5%9B%BD%E5%A5%BD%E5%85%AC%E5%8F%B8%29_files/50.jpg" alt="易敏"></a></div><div class="ds-comment-body"><div class="ds-comment-header"><a class="ds-user-name ds-highlight" data-qqt-account="" href="http://t.qq.com/weiboyimin9769" onclick="this.href='http://ijobui.duoshuo.com/user-url/?user_id=11709234';" rel="nofollow" target="_blank" data-user-id="11709234">易敏</a></div><p> <img src="%E5%8F%B2%E4%B8%8A%E6%9C%80%E5%85%A8%E5%89%8D%E7%AB%AF%E9%9D%A2%E8%AF%95%E9%A2%98%28%E5%90%AB%E7%AD%94%E6%A1%88%29%20-%20Web%E5%BC%80%E5%8F%91%E9%9D%A2%E8%AF%95%E9%A2%98%20-%20%E8%81%8C%E5%8F%8B%E9%9B%86%28%E5%8F%91%E7%8E%B0%E4%B8%AD%E5%9B%BD%E5%A5%BD%E5%85%AC%E5%8F%B8%29_files/weiboi_org.gif" alt="[i]" title="[i]" class="ds-smiley"> </p><div class="ds-comment-footer ds-comment-actions"><span class="ds-time" datetime="2015-05-05T20:41:37+08:00" title="2015年5月5日 下午8:41:37">5月5日</span><a class="ds-post-reply" href="javascript:void(0);"><span class="ds-icon ds-icon-reply"></span>回复</a><a class="ds-post-likes" href="javascript:void(0);"><span class="ds-icon ds-icon-like"></span>顶</a><a class="ds-post-repost" href="javascript:void(0);"><span class="ds-icon ds-icon-share"></span>转发</a><a class="ds-post-report" href="javascript:void(0);"><span class="ds-icon ds-icon-report"></span>举报</a></div></div></div></li><li class="ds-post" data-post-id="1220892213924331717"><div class="ds-post-self" data-post-id="1220892213924331717" data-thread-id="1220892213924334394" data-root-id="0" data-source="duoshuo"><div class="ds-avatar"><img src="%E5%8F%B2%E4%B8%8A%E6%9C%80%E5%85%A8%E5%89%8D%E7%AB%AF%E9%9D%A2%E8%AF%95%E9%A2%98%28%E5%90%AB%E7%AD%94%E6%A1%88%29%20-%20Web%E5%BC%80%E5%8F%91%E9%9D%A2%E8%AF%95%E9%A2%98%20-%20%E8%81%8C%E5%8F%8B%E9%9B%86%28%E5%8F%91%E7%8E%B0%E4%B8%AD%E5%9B%BD%E5%A5%BD%E5%85%AC%E5%8F%B8%29_files/noavatar_default.png" alt="1"></div><div class="ds-comment-body"><div class="ds-comment-header"><span class="ds-user-name" data-qqt-account="">1</span></div><p> <img src="%E5%8F%B2%E4%B8%8A%E6%9C%80%E5%85%A8%E5%89%8D%E7%AB%AF%E9%9D%A2%E8%AF%95%E9%A2%98%28%E5%90%AB%E7%AD%94%E6%A1%88%29%20-%20Web%E5%BC%80%E5%8F%91%E9%9D%A2%E8%AF%95%E9%A2%98%20-%20%E8%81%8C%E5%8F%8B%E9%9B%86%28%E5%8F%91%E7%8E%B0%E4%B8%AD%E5%9B%BD%E5%A5%BD%E5%85%AC%E5%8F%B8%29_files/weiboi_org.gif" alt="[i]" title="[i]" class="ds-smiley"> </p><div class="ds-comment-footer ds-comment-actions"><span class="ds-time" datetime="2015-05-14T16:30:34+08:00" title="2015年5月14日 下午4:30:34">5月14日</span><a class="ds-post-reply" href="javascript:void(0);"><span class="ds-icon ds-icon-reply"></span>回复</a><a class="ds-post-likes" href="javascript:void(0);"><span class="ds-icon ds-icon-like"></span>顶</a><a class="ds-post-repost" href="javascript:void(0);"><span class="ds-icon ds-icon-share"></span>转发</a><a class="ds-post-report" href="javascript:void(0);"><span class="ds-icon ds-icon-report"></span>举报</a></div></div></div></li><li class="ds-post" data-post-id="1220892213924331718"><div class="ds-post-self" data-post-id="1220892213924331718" data-thread-id="1220892213924334394" data-root-id="0" data-source="duoshuo"><div class="ds-avatar"><img src="%E5%8F%B2%E4%B8%8A%E6%9C%80%E5%85%A8%E5%89%8D%E7%AB%AF%E9%9D%A2%E8%AF%95%E9%A2%98%28%E5%90%AB%E7%AD%94%E6%A1%88%29%20-%20Web%E5%BC%80%E5%8F%91%E9%9D%A2%E8%AF%95%E9%A2%98%20-%20%E8%81%8C%E5%8F%8B%E9%9B%86%28%E5%8F%91%E7%8E%B0%E4%B8%AD%E5%9B%BD%E5%A5%BD%E5%85%AC%E5%8F%B8%29_files/noavatar_default.png" alt="1"></div><div class="ds-comment-body"><div class="ds-comment-header"><span class="ds-user-name" data-qqt-account="">1</span></div><p> <img src="%E5%8F%B2%E4%B8%8A%E6%9C%80%E5%85%A8%E5%89%8D%E7%AB%AF%E9%9D%A2%E8%AF%95%E9%A2%98%28%E5%90%AB%E7%AD%94%E6%A1%88%29%20-%20Web%E5%BC%80%E5%8F%91%E9%9D%A2%E8%AF%95%E9%A2%98%20-%20%E8%81%8C%E5%8F%8B%E9%9B%86%28%E5%8F%91%E7%8E%B0%E4%B8%AD%E5%9B%BD%E5%A5%BD%E5%85%AC%E5%8F%B8%29_files/newh_org.gif" alt="[h]" title="[h]" class="ds-smiley"> </p><div class="ds-comment-footer ds-comment-actions"><span class="ds-time" datetime="2015-05-14T16:30:51+08:00" title="2015年5月14日 下午4:30:51">5月14日</span><a class="ds-post-reply" href="javascript:void(0);"><span class="ds-icon ds-icon-reply"></span>回复</a><a class="ds-post-likes" href="javascript:void(0);"><span class="ds-icon ds-icon-like"></span>顶</a><a class="ds-post-repost" href="javascript:void(0);"><span class="ds-icon ds-icon-share"></span>转发</a><a class="ds-post-report" href="javascript:void(0);"><span class="ds-icon ds-icon-report"></span>举报</a></div></div></div></li><li class="ds-post" data-post-id="1220892213924331721"><div class="ds-post-self" data-post-id="1220892213924331721" data-thread-id="1220892213924334394" data-root-id="0" data-source="duoshuo"><div class="ds-avatar" data-user-id="11883669"><a rel="nofollow author" target="_blank" href="http://t.qq.com/duqili111" onclick="this.href='http://ijobui.duoshuo.com/user-url/?user_id=11883669';" title="杜启利"><img src="%E5%8F%B2%E4%B8%8A%E6%9C%80%E5%85%A8%E5%89%8D%E7%AB%AF%E9%9D%A2%E8%AF%95%E9%A2%98%28%E5%90%AB%E7%AD%94%E6%A1%88%29%20-%20Web%E5%BC%80%E5%8F%91%E9%9D%A2%E8%AF%95%E9%A2%98%20-%20%E8%81%8C%E5%8F%8B%E9%9B%86%28%E5%8F%91%E7%8E%B0%E4%B8%AD%E5%9B%BD%E5%A5%BD%E5%85%AC%E5%8F%B8%29_files/noavatar_default.png" alt="杜启利"></a></div><div class="ds-comment-body"><div class="ds-comment-header"><a class="ds-user-name ds-highlight" data-qqt-account="" href="http://t.qq.com/duqili111" onclick="this.href='http://ijobui.duoshuo.com/user-url/?user_id=11883669';" rel="nofollow" target="_blank" data-user-id="11883669">杜启利</a></div><p>这些问题都太经典了，几乎我都遇到过</p><div class="ds-comment-footer ds-comment-actions"><span class="ds-time" datetime="2015-05-21T17:04:44+08:00" title="2015年5月21日 下午5:04:44">5月21日</span><a class="ds-post-reply" href="javascript:void(0);"><span class="ds-icon ds-icon-reply"></span>回复</a><a class="ds-post-likes" href="javascript:void(0);"><span class="ds-icon ds-icon-like"></span>顶</a><a class="ds-post-repost" href="javascript:void(0);"><span class="ds-icon ds-icon-share"></span>转发</a><a class="ds-post-report" href="javascript:void(0);"><span class="ds-icon ds-icon-report"></span>举报</a></div></div></div></li><li class="ds-post" data-post-id="1220892213924331743"><div class="ds-post-self" data-post-id="1220892213924331743" data-thread-id="1220892213924334394" data-root-id="0" data-source="duoshuo"><div class="ds-avatar"><img src="%E5%8F%B2%E4%B8%8A%E6%9C%80%E5%85%A8%E5%89%8D%E7%AB%AF%E9%9D%A2%E8%AF%95%E9%A2%98%28%E5%90%AB%E7%AD%94%E6%A1%88%29%20-%20Web%E5%BC%80%E5%8F%91%E9%9D%A2%E8%AF%95%E9%A2%98%20-%20%E8%81%8C%E5%8F%8B%E9%9B%86%28%E5%8F%91%E7%8E%B0%E4%B8%AD%E5%9B%BD%E5%A5%BD%E5%85%AC%E5%8F%B8%29_files/noavatar_default.png" alt="的"></div><div class="ds-comment-body"><div class="ds-comment-header"><span class="ds-user-name" data-qqt-account="">的</span></div><p>不经典能叫史上最全吗</p><div class="ds-comment-footer ds-comment-actions"><span class="ds-time" datetime="2015-06-09T21:55:55+08:00" title="2015年6月9日 下午9:55:55">6月9日</span><a class="ds-post-reply" href="javascript:void(0);"><span class="ds-icon ds-icon-reply"></span>回复</a><a class="ds-post-likes" href="javascript:void(0);"><span class="ds-icon ds-icon-like"></span>顶</a><a class="ds-post-repost" href="javascript:void(0);"><span class="ds-icon ds-icon-share"></span>转发</a><a class="ds-post-report" href="javascript:void(0);"><span class="ds-icon ds-icon-report"></span>举报</a></div></div></div></li><li class="ds-post" data-post-id="1220892213924331757"><div class="ds-post-self" data-post-id="1220892213924331757" data-thread-id="1220892213924334394" data-root-id="0" data-source="duoshuo"><div class="ds-avatar"><img src="%E5%8F%B2%E4%B8%8A%E6%9C%80%E5%85%A8%E5%89%8D%E7%AB%AF%E9%9D%A2%E8%AF%95%E9%A2%98%28%E5%90%AB%E7%AD%94%E6%A1%88%29%20-%20Web%E5%BC%80%E5%8F%91%E9%9D%A2%E8%AF%95%E9%A2%98%20-%20%E8%81%8C%E5%8F%8B%E9%9B%86%28%E5%8F%91%E7%8E%B0%E4%B8%AD%E5%9B%BD%E5%A5%BD%E5%85%AC%E5%8F%B8%29_files/noavatar_default.png" alt="21@"></div><div class="ds-comment-body"><div class="ds-comment-header"><span class="ds-user-name" data-qqt-account="">21@</span></div><p>i</p><div class="ds-comment-footer ds-comment-actions"><span class="ds-time" datetime="2015-08-02T16:23:47+08:00" title="2015年8月2日 下午4:23:47">8月2日</span><a class="ds-post-reply" href="javascript:void(0);"><span class="ds-icon ds-icon-reply"></span>回复</a><a class="ds-post-likes" href="javascript:void(0);"><span class="ds-icon ds-icon-like"></span>顶</a><a class="ds-post-repost" href="javascript:void(0);"><span class="ds-icon ds-icon-share"></span>转发</a><a class="ds-post-report" href="javascript:void(0);"><span class="ds-icon ds-icon-report"></span>举报</a></div></div></div></li><li class="ds-post" data-post-id="1220892213924331798"><div class="ds-post-self" data-post-id="1220892213924331798" data-thread-id="1220892213924334394" data-root-id="0" data-source="duoshuo"><div class="ds-avatar"><img src="%E5%8F%B2%E4%B8%8A%E6%9C%80%E5%85%A8%E5%89%8D%E7%AB%AF%E9%9D%A2%E8%AF%95%E9%A2%98%28%E5%90%AB%E7%AD%94%E6%A1%88%29%20-%20Web%E5%BC%80%E5%8F%91%E9%9D%A2%E8%AF%95%E9%A2%98%20-%20%E8%81%8C%E5%8F%8B%E9%9B%86%28%E5%8F%91%E7%8E%B0%E4%B8%AD%E5%9B%BD%E5%A5%BD%E5%85%AC%E5%8F%B8%29_files/noavatar_default.png" alt="331@"></div><div class="ds-comment-body"><div class="ds-comment-header"><span class="ds-user-name" data-qqt-account="">331@</span></div><p> <img src="%E5%8F%B2%E4%B8%8A%E6%9C%80%E5%85%A8%E5%89%8D%E7%AB%AF%E9%9D%A2%E8%AF%95%E9%A2%98%28%E5%90%AB%E7%AD%94%E6%A1%88%29%20-%20Web%E5%BC%80%E5%8F%91%E9%9D%A2%E8%AF%95%E9%A2%98%20-%20%E8%81%8C%E5%8F%8B%E9%9B%86%28%E5%8F%91%E7%8E%B0%E4%B8%AD%E5%9B%BD%E5%A5%BD%E5%85%AC%E5%8F%B8%29_files/weiboi_org.gif" alt="[i]" title="[i]" class="ds-smiley"> </p><div class="ds-comment-footer ds-comment-actions"><span class="ds-time" datetime="2015-09-29T10:58:22+08:00" title="2015年9月29日 上午10:58:22">9月29日</span><a class="ds-post-reply" href="javascript:void(0);"><span class="ds-icon ds-icon-reply"></span>回复</a><a class="ds-post-likes" href="javascript:void(0);"><span class="ds-icon ds-icon-like"></span>顶</a><a class="ds-post-repost" href="javascript:void(0);"><span class="ds-icon ds-icon-share"></span>转发</a><a class="ds-post-report" href="javascript:void(0);"><span class="ds-icon ds-icon-report"></span>举报</a></div></div></div></li><li class="ds-post" data-post-id="1220892213924331809"><div class="ds-post-self" data-post-id="1220892213924331809" data-thread-id="1220892213924334394" data-root-id="0" data-source="duoshuo"><div class="ds-avatar"><img src="%E5%8F%B2%E4%B8%8A%E6%9C%80%E5%85%A8%E5%89%8D%E7%AB%AF%E9%9D%A2%E8%AF%95%E9%A2%98%28%E5%90%AB%E7%AD%94%E6%A1%88%29%20-%20Web%E5%BC%80%E5%8F%91%E9%9D%A2%E8%AF%95%E9%A2%98%20-%20%E8%81%8C%E5%8F%8B%E9%9B%86%28%E5%8F%91%E7%8E%B0%E4%B8%AD%E5%9B%BD%E5%A5%BD%E5%85%AC%E5%8F%B8%29_files/noavatar_default.png" alt="。。"></div><div class="ds-comment-body"><div class="ds-comment-header"><span class="ds-user-name" data-qqt-account="">。。</span></div><p>i</p><div class="ds-comment-footer ds-comment-actions"><span class="ds-time" datetime="2015-10-09T14:20:17+08:00" title="2015年10月9日 下午2:20:17">10月9日</span><a class="ds-post-reply" href="javascript:void(0);"><span class="ds-icon ds-icon-reply"></span>回复</a><a class="ds-post-likes" href="javascript:void(0);"><span class="ds-icon ds-icon-like"></span>顶</a><a class="ds-post-repost" href="javascript:void(0);"><span class="ds-icon ds-icon-share"></span>转发</a><a class="ds-post-report" href="javascript:void(0);"><span class="ds-icon ds-icon-report"></span>举报</a></div></div></div></li><li class="ds-post" data-post-id="6208751044598268674"><div class="ds-post-self" data-post-id="6208751044598268674" data-thread-id="1220892213924334394" data-root-id="0" data-source="duoshuo"><div class="ds-avatar" data-user-id="14010166"><a rel="nofollow author" target="_blank" href="http://t.qq.com/love763695461" onclick="this.href='http://ijobui.duoshuo.com/user-url/?user_id=14010166';" title="龙轲"><img src="%E5%8F%B2%E4%B8%8A%E6%9C%80%E5%85%A8%E5%89%8D%E7%AB%AF%E9%9D%A2%E8%AF%95%E9%A2%98%28%E5%90%AB%E7%AD%94%E6%A1%88%29%20-%20Web%E5%BC%80%E5%8F%91%E9%9D%A2%E8%AF%95%E9%A2%98%20-%20%E8%81%8C%E5%8F%8B%E9%9B%86%28%E5%8F%91%E7%8E%B0%E4%B8%AD%E5%9B%BD%E5%A5%BD%E5%85%AC%E5%8F%B8%29_files/50_002.jpg" alt="龙轲"></a></div><div class="ds-comment-body"><div class="ds-comment-header"><a class="ds-user-name ds-highlight" data-qqt-account="" href="http://t.qq.com/love763695461" onclick="this.href='http://ijobui.duoshuo.com/user-url/?user_id=14010166';" rel="nofollow" target="_blank" data-user-id="14010166">龙轲</a></div><p> <img src="%E5%8F%B2%E4%B8%8A%E6%9C%80%E5%85%A8%E5%89%8D%E7%AB%AF%E9%9D%A2%E8%AF%95%E9%A2%98%28%E5%90%AB%E7%AD%94%E6%A1%88%29%20-%20Web%E5%BC%80%E5%8F%91%E9%9D%A2%E8%AF%95%E9%A2%98%20-%20%E8%81%8C%E5%8F%8B%E9%9B%86%28%E5%8F%91%E7%8E%B0%E4%B8%AD%E5%9B%BD%E5%A5%BD%E5%85%AC%E5%8F%B8%29_files/news_org.gif" alt="[s]" title="[s]" class="ds-smiley"> </p><div class="ds-comment-footer ds-comment-actions"><span class="ds-time" datetime="2015-10-23T16:05:02+08:00" title="2015年10月23日 下午4:05:02">10月23日</span><a class="ds-post-reply" href="javascript:void(0);"><span class="ds-icon ds-icon-reply"></span>回复</a><a class="ds-post-likes" href="javascript:void(0);"><span class="ds-icon ds-icon-like"></span>顶</a><a class="ds-post-repost" href="javascript:void(0);"><span class="ds-icon ds-icon-share"></span>转发</a><a class="ds-post-report" href="javascript:void(0);"><span class="ds-icon ds-icon-report"></span>举报</a></div></div></div></li><li class="ds-post" data-post-id="6212492240285188865"><div class="ds-post-self" data-post-id="6212492240285188865" data-thread-id="1220892213924334394" data-root-id="0" data-source="duoshuo"><div class="ds-avatar"><img src="%E5%8F%B2%E4%B8%8A%E6%9C%80%E5%85%A8%E5%89%8D%E7%AB%AF%E9%9D%A2%E8%AF%95%E9%A2%98%28%E5%90%AB%E7%AD%94%E6%A1%88%29%20-%20Web%E5%BC%80%E5%8F%91%E9%9D%A2%E8%AF%95%E9%A2%98%20-%20%E8%81%8C%E5%8F%8B%E9%9B%86%28%E5%8F%91%E7%8E%B0%E4%B8%AD%E5%9B%BD%E5%A5%BD%E5%85%AC%E5%8F%B8%29_files/noavatar_default.png" alt="jiehui"></div><div class="ds-comment-body"><div class="ds-comment-header"><span class="ds-user-name" data-qqt-account="">jiehui</span></div><p>arr <img src="%E5%8F%B2%E4%B8%8A%E6%9C%80%E5%85%A8%E5%89%8D%E7%AB%AF%E9%9D%A2%E8%AF%95%E9%A2%98%28%E5%90%AB%E7%AD%94%E6%A1%88%29%20-%20Web%E5%BC%80%E5%8F%91%E9%9D%A2%E8%AF%95%E9%A2%98%20-%20%E8%81%8C%E5%8F%8B%E9%9B%86%28%E5%8F%91%E7%8E%B0%E4%B8%AD%E5%9B%BD%E5%A5%BD%E5%85%AC%E5%8F%B8%29_files/weiboi_org.gif" alt="[i]" title="[i]" class="ds-smiley"> </p><div class="ds-comment-footer ds-comment-actions"><span class="ds-time" datetime="2015-11-02T18:02:47+08:00" title="2015年11月2日 下午6:02:47">11月2日</span><a class="ds-post-reply" href="javascript:void(0);"><span class="ds-icon ds-icon-reply"></span>回复</a><a class="ds-post-likes" href="javascript:void(0);"><span class="ds-icon ds-icon-like"></span>顶</a><a class="ds-post-repost" href="javascript:void(0);"><span class="ds-icon ds-icon-share"></span>转发</a><a class="ds-post-report" href="javascript:void(0);"><span class="ds-icon ds-icon-report"></span>举报</a></div></div></div></li><li class="ds-post" data-post-id="6212492360543240962"><div class="ds-post-self" data-post-id="6212492360543240962" data-thread-id="1220892213924334394" data-root-id="0" data-source="duoshuo"><div class="ds-avatar"><img src="%E5%8F%B2%E4%B8%8A%E6%9C%80%E5%85%A8%E5%89%8D%E7%AB%AF%E9%9D%A2%E8%AF%95%E9%A2%98%28%E5%90%AB%E7%AD%94%E6%A1%88%29%20-%20Web%E5%BC%80%E5%8F%91%E9%9D%A2%E8%AF%95%E9%A2%98%20-%20%E8%81%8C%E5%8F%8B%E9%9B%86%28%E5%8F%91%E7%8E%B0%E4%B8%AD%E5%9B%BD%E5%A5%BD%E5%85%AC%E5%8F%B8%29_files/noavatar_default.png" alt="hone"></div><div class="ds-comment-body"><div class="ds-comment-header"><span class="ds-user-name" data-qqt-account="">hone</span></div><p> <img src="%E5%8F%B2%E4%B8%8A%E6%9C%80%E5%85%A8%E5%89%8D%E7%AB%AF%E9%9D%A2%E8%AF%95%E9%A2%98%28%E5%90%AB%E7%AD%94%E6%A1%88%29%20-%20Web%E5%BC%80%E5%8F%91%E9%9D%A2%E8%AF%95%E9%A2%98%20-%20%E8%81%8C%E5%8F%8B%E9%9B%86%28%E5%8F%91%E7%8E%B0%E4%B8%AD%E5%9B%BD%E5%A5%BD%E5%85%AC%E5%8F%B8%29_files/news_org.gif" alt="[s]" title="[s]" class="ds-smiley"> </p><div class="ds-comment-footer ds-comment-actions"><span class="ds-time" datetime="2015-11-02T18:03:15+08:00" title="2015年11月2日 下午6:03:15">11月2日</span><a class="ds-post-reply" href="javascript:void(0);"><span class="ds-icon ds-icon-reply"></span>回复</a><a class="ds-post-likes" href="javascript:void(0);"><span class="ds-icon ds-icon-like"></span>顶</a><a class="ds-post-repost" href="javascript:void(0);"><span class="ds-icon ds-icon-share"></span>转发</a><a class="ds-post-report" href="javascript:void(0);"><span class="ds-icon ds-icon-report"></span>举报</a></div></div></div></li></ul><div style="display: none;" class="ds-paginator"><div class="ds-border"></div><a data-page="1" href="javascript:void(0);" class="ds-current">1</a></div><a name="respond"></a><div class="ds-login-buttons"><p>社交帐号登录:</p><div class="ds-social-links"><ul class="ds-service-list"><li><a href="http://ijobui.duoshuo.com/login/weixin/" rel="nofollow" class="ds-service-link ds-weixin">微信</a></li><li><a href="http://ijobui.duoshuo.com/login/weibo/" rel="nofollow" class="ds-service-link ds-weibo">微博</a></li><li><a href="http://ijobui.duoshuo.com/login/qq/" rel="nofollow" class="ds-service-link ds-qq">QQ</a></li><li><a href="http://ijobui.duoshuo.com/login/renren/" rel="nofollow" class="ds-service-link ds-renren">人人</a></li><li><a class="ds-more-services" href="javascript:void(0)">更多»</a></li></ul><ul class="ds-service-list ds-additional-services"><li><a href="http://ijobui.duoshuo.com/login/douban/" rel="nofollow" class="ds-service-link ds-douban">豆瓣</a></li><li><a href="http://ijobui.duoshuo.com/login/kaixin/" rel="nofollow" class="ds-service-link ds-kaixin">开心</a></li><li><a href="http://ijobui.duoshuo.com/login/baidu/" rel="nofollow" class="ds-service-link ds-baidu">百度</a></li><li><a href="http://ijobui.duoshuo.com/login/google/" rel="nofollow" class="ds-service-link ds-google">谷歌</a></li></ul></div></div><div class="ds-replybox"><a class="ds-avatar" href="javascript:void(0);" onclick="return false"><img src="%E5%8F%B2%E4%B8%8A%E6%9C%80%E5%85%A8%E5%89%8D%E7%AB%AF%E9%9D%A2%E8%AF%95%E9%A2%98%28%E5%90%AB%E7%AD%94%E6%A1%88%29%20-%20Web%E5%BC%80%E5%8F%91%E9%9D%A2%E8%AF%95%E9%A2%98%20-%20%E8%81%8C%E5%8F%8B%E9%9B%86%28%E5%8F%91%E7%8E%B0%E4%B8%AD%E5%9B%BD%E5%A5%BD%E5%85%AC%E5%8F%B8%29_files/noavatar_default.png" alt=""></a><form method="post"><input name="thread_id" value="1220892213924334394" type="hidden">
+<input name="parent_id" value="" type="hidden">
+<input name="nonce" value="55cd63622d99e" type="hidden"><div class="ds-textarea-wrapper ds-rounded-top"><textarea name="message" title="Ctrl+Enter快捷提交" placeholder="说点什么吧…"></textarea><pre class="ds-hidden-text"></pre></div><div class="ds-post-toolbar"><div class="ds-post-options ds-gradient-bg"><span class="ds-sync"></span></div><button class="ds-post-button" type="submit">发布</button><div class="ds-toolbar-buttons"><a class="ds-toolbar-button ds-add-emote" title="插入表情"></a></div></div></form></div><p class="ds-powered-by"><a href="http://duoshuo.com/" target="_blank" rel="nofollow">职友集正在使用多说</a></p></div></div>
+        
+	    </div>
+		<p class="box">
+			您想查看更多的信息：
+			<a href="http://www.jobui.com/mianshiti/">面试题</a>
+		</p>
+	</div>
+</div>
+<div class="aright">
+	
+	<div class="fab" style="margin-top: 60px;">
+		<h2 class="fabh">
+			<span class="fabhm-aa maxw215">Web开发面试题目推荐</span>
+		</h2>
+		<ul class="fabc">
+			<li>
+				<a onclick="uiClickLog(event,'site_mianshiti_info-articleList-articleName','');" title="前端开发工程师面试题" href="http://www.jobui.com/mianshiti/it/web/5088/">前端开发工程师面试题</a>
+			</li>
+			<li>
+				<a onclick="uiClickLog(event,'site_mianshiti_info-articleList-articleName','');" title="web前端开发笔试题收集" href="http://www.jobui.com/mianshiti/it/web/5117/">web前端开发笔试题收集</a>
+			</li>
+			<li>
+				<a onclick="uiClickLog(event,'site_mianshiti_info-articleList-articleName','');" title="史上最全前端面试题(含答案)" href="http://www.jobui.com/mianshiti/it/web/5066/">史上最全前端面试题(含答案)</a>
+			</li>
+			<li>
+				<a onclick="uiClickLog(event,'site_mianshiti_info-articleList-articleName','');" title="一个网站制作完成之后，在发布之前，我们会对页面进行测试，测试..." href="http://www.jobui.com/mianshiti/it/web/5173/">一个网站制作完成之后，在发布之前，我们会对页面进行测试，测试...</a>
+			</li>
+			<li>
+				<a onclick="uiClickLog(event,'site_mianshiti_info-articleList-articleName','');" title="网页设计笔试试卷及答案" href="http://www.jobui.com/mianshiti/it/web/5082/">网页设计笔试试卷及答案</a>
+			</li>
+		</ul>
+		<p class="fabm-tr" onclick="uiClickLog(event,'site_mianshiti_info-articleList-more','');"><a class="fabm-more" href="http://www.jobui.com/mianshiti/it/web/" title="更多Web开发面试题">更多»</a></p>
+	</div>
+	
+	<div class="sbox" id="pageGG-right-1" data-ggid="920480">
+		<script type="text/javascript">BAIDU_CLB_fillSlot("920480");</script><div id="BAIDU_DUP_wrapper_920480_0"></div><script charset="utf-8" src="%E5%8F%B2%E4%B8%8A%E6%9C%80%E5%85%A8%E5%89%8D%E7%AB%AF%E9%9D%A2%E8%AF%95%E9%A2%98%28%E5%90%AB%E7%AD%94%E6%A1%88%29%20-%20Web%E5%BC%80%E5%8F%91%E9%9D%A2%E8%AF%95%E9%A2%98%20-%20%E8%81%8C%E5%8F%8B%E9%9B%86%28%E5%8F%91%E7%8E%B0%E4%B8%AD%E5%9B%BD%E5%A5%BD%E5%85%AC%E5%8F%B8%29_files/ecom"></script><script type="text/javascript"><!--
+		google_ad_client = "ca-pub-3380553030912683";
+		/* 面试题首页-300x600 */
+		google_ad_slot = "8023990775";
+		google_ad_width = 300;
+		google_ad_height = 600;
+		//-->
+		</script>
+		<script type="text/javascript" src="%E5%8F%B2%E4%B8%8A%E6%9C%80%E5%85%A8%E5%89%8D%E7%AB%AF%E9%9D%A2%E8%AF%95%E9%A2%98%28%E5%90%AB%E7%AD%94%E6%A1%88%29%20-%20Web%E5%BC%80%E5%8F%91%E9%9D%A2%E8%AF%95%E9%A2%98%20-%20%E8%81%8C%E5%8F%8B%E9%9B%86%28%E5%8F%91%E7%8E%B0%E4%B8%AD%E5%9B%BD%E5%A5%BD%E5%85%AC%E5%8F%B8%29_files/show_ads.js"></script><ins id="aswift_1_expand" style="display:inline-table;border:none;height:600px;margin:0;padding:0;position:relative;visibility:visible;width:300px;background-color:transparent"><ins id="aswift_1_anchor" style="display:block;border:none;height:600px;margin:0;padding:0;position:relative;visibility:visible;width:300px;background-color:transparent"><iframe marginwidth="0" marginheight="0" vspace="0" hspace="0" allowtransparency="true" scrolling="no" allowfullscreen="true" onload="var i=this.id,s=window.google_iframe_oncopy,H=s&amp;&amp;s.handlers,h=H&amp;&amp;H[i],w=this.contentWindow,d;try{d=w.document}catch(e){}if(h&amp;&amp;d&amp;&amp;(!d.body||!d.body.firstChild)){if(h.call){setTimeout(h,0)}else if(h.match){try{h=s.upd(h,i)}catch(e){}w.location.replace(h)}}" id="aswift_1" name="aswift_1" style="left:0;position:absolute;top:0;" frameborder="0" height="600" width="300"></iframe></ins></ins>
+	</div>
+</div>
+
+
+	    </div>
+	
+	
+		
+	<div class="first-footer-box">
+		<div class="first-footer cfix">
+			<div class="first-footer-list fl">
+				<dl>
+					<dt>关于</dt>
+					<dd><a href="http://about.jobui.com/" target="_blank">关于我们</a></dd>
+					<dd><a rel="nofollow" href="http://about.jobui.com/?type=contact_jobui" target="_blank">联系我们</a></dd>
+					<dd><a href="http://www.jobui.com/company/109916/jobs/" target="_blank">加入我们</a></dd>
+					<dd><a rel="nofollow" href="http://about.jobui.com/?type=open" target="_blank">开放收录</a></dd>
+					<dd><a href="http://www.jobui.com/group/feedback/" target="_blank">用户反馈</a></dd>
+					<dd><a href="http://www.jobui.com/s/joinin/" target="_blank">企业入驻</a></dd>
+				</dl>
+				<dl>
+					<dt>选公司</dt>
+					<dd><a href="http://www.jobui.com/cmp" target="_blank">公司搜索</a></dd>
+					<dd><a href="http://www.jobui.com/rank/company/" target="_blank">公司排行榜</a></dd> 
+					<dd><a href="http://www.jobui.com/industry/" target="_blank">行业招聘</a></dd>
+					<dd><a href="http://www.jobui.com/foreign/" target="_blank">外企招聘</a></dd>
+					<dd><a href="http://www.jobui.com/s/500qiang/2014/" target="_blank">500强招聘</a></dd>
+					<dd><a href="http://www.jobui.com/cmp/album/" target="_blank">酷公司</a></dd>
+				</dl>
+				<dl>
+					<dt>找工作</dt>
+					<dd><a href="http://www.jobui.com/jobs" target="_blank">搜索职位</a></dd>
+					<dd><a href="http://www.jobui.com/yingjiesheng/" target="_blank">应届生招聘</a></dd>
+					<dd><a href="http://www.jobui.com/rank/jobs/advanced/" target="_blank">中高级职位招聘</a></dd>
+					<dd><a href="http://www.jobui.com/jianzhi/" target="_blank">兼职招聘</a></dd>
+					<dd><a href="http://www.jobui.com/shixisheng/" target="_blank">实习生招聘</a></dd>
+				</dl>
+				<dl>
+					<dt>查工资</dt>
+					<dd class="box"><a href="http://www.jobui.com/salary/" target="_blank">薪酬搜索</a></dd>
+					<dt>看趋势</dt>
+					<dd><a href="http://www.jobui.com/trends/" target="_blank">趋势搜索</a></dd>
+					<dd><a href="http://www.jobui.com/trends/yjs/" target="_blank">大学生就业形势分析</a></dd>
+				</dl>
+				<dl>
+					<dt>职业指导/交流</dt>
+					<dd><a href="http://www.jobui.com/group/" target="_blank">小组</a></dd>
+					<dd><a href="http://blog.jobui.com/?refer=analyse" target="_blank">职场分析师</a></dd>
+					<dd><a href="http://www.jobui.com/s/zhichangfalv/" target="_blank">职场法规</a></dd>
+					<dd><a href="http://www.jobui.com/s/anquanqiuzhi/" target="_blank">安全求职</a></dd>
+					<dd><a href="http://www.jobui.com/s/hr/" target="_blank">HR助手</a></dd>
+				</dl>
+				<dl style="width:25%;">
+					<dt>网友交流QQ群</dt>
+					<dd>HR 交流群①：220540653（已满）</dd>
+					<dd>HR 交流群②：294966483</dd>
+					<dd><a target="_blank" href="http://www.miitbeian.gov.cn/" rel="nofollow">粤ICP备05102490号-1</a></dd>
+					<dd>
+						<span class="cooperation-qq">
+							<span class="cooperation-qq-logo common-icon"></span>
+							<a style="color:#36c;" href="http://wpa.qq.com/msgrd?v=3&amp;uin=359148643&amp;site=qq&amp;menu=yes" target="_blank">在线客服</a>
+						</span>
+					</dd>
+				</dl>
+			</div>
+			<div class="footer-box">
+				<div class="wx-box" style="margin-right: 10px;">
+					<div><span class="qrcode-icon footer-box-wx"></span></div>
+					<div class="gray6">微信公众号</div>
+				</div>
+				<div class="mobile-box">
+					<div><span class="qrcode-icon footer-box-andriod"></span></div>
+					<div class="gray6">安卓 APP</div>
+				</div>
+			</div>                 
+		</div>
+		
+	</div>
+    
+	
+	
+		
+			<script>var topBarQQLoginURL = '';var topBarSinaLoginURL = '';</script>
+		
+		<script type="text/javascript" charset="utf-8" src="%E5%8F%B2%E4%B8%8A%E6%9C%80%E5%85%A8%E5%89%8D%E7%AB%AF%E9%9D%A2%E8%AF%95%E9%A2%98%28%E5%90%AB%E7%AD%94%E6%A1%88%29%20-%20Web%E5%BC%80%E5%8F%91%E9%9D%A2%E8%AF%95%E9%A2%98%20-%20%E8%81%8C%E5%8F%8B%E9%9B%86%28%E5%8F%91%E7%8E%B0%E4%B8%AD%E5%9B%BD%E5%A5%BD%E5%85%AC%E5%8F%B8%29_files/topbarStatus.js"></script><div style="position: fixed; z-index: 10; top: 208px; left: 1284.5px;" class="j-module-box"><div class="j-bdshare share-module-info" data-bdshare-type="small"><div data-bd-bind="1447577220996" class="bdsharebuttonbox baidu-share-button bdshare-button-style0-16" data-tag="bdSizeTag_16"><a href="javascript:;" class="bds_more j-bds-more" data-cmd="more" title="分享到更多的网站"></a></div></div><a href="http://www.jobui.com/group/feedback/" class="small-module-box " target="_blank"><span class="user-feedback common-icon small-module-info"></span><span class="common-hover-con">用户反馈</span></a><a href="javascript:;" class="top small-module-box j-module-top"><span class="user-gototop common-icon small-module-info"></span><span class="common-hover-con">回到顶部</span></a><div class=" small-module-box"><span class="attend-weixin common-icon small-module-info"></span><span class="common-hover-con">关注微信</span><div class="jobuiwx-box j-jobuiwx-box"><div class="in"><p>扫描二维码</p><p>微信轻松<span style="color:#009999;">查公司，找工作</span></p><span class="qrcode-icon" style="width: 135px;height: 135px;background-position: 0 5px;"></span><p>微信ID：<span style="color:#009999;">jobuihr</span></p></div></div></div></div>
+			<script type="text/javascript" charset="utf-8" src="%E5%8F%B2%E4%B8%8A%E6%9C%80%E5%85%A8%E5%89%8D%E7%AB%AF%E9%9D%A2%E8%AF%95%E9%A2%98%28%E5%90%AB%E7%AD%94%E6%A1%88%29%20-%20Web%E5%BC%80%E5%8F%91%E9%9D%A2%E8%AF%95%E9%A2%98%20-%20%E8%81%8C%E5%8F%8B%E9%9B%86%28%E5%8F%91%E7%8E%B0%E4%B8%AD%E5%9B%BD%E5%A5%BD%E5%85%AC%E5%8F%B8%29_files/template_1___js___plugin___favorite.js"></script>
+		
+<script type="text/javascript">
+	var duoshuoQuery = {short_name:"ijobui"};
+	(function() {
+		var ds = document.createElement('script');
+		ds.type = 'text/javascript';ds.async = true;
+		ds.src = 'http://static.duoshuo.com/embed.js';
+		ds.charset = 'UTF-8';
+		(document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(ds);
+	})();
+</script>
+<script type="text/javascript">
+	/*职友集页面统计start*/
+	var uiNowSite = "site_mianshiti_info";
+	/*职友集页面统计end*/
+</script>
+
+<script type="text/javascript">
+/*收藏夹--开始*/
+	jQuery("#favorite").click(function(){
+		$(this).favorite();
+	}); 
+/*收藏夹--结束*/
+</script>
+
+
+	
+	 
+		<div class="dn">
+    
+	<script src="%E5%8F%B2%E4%B8%8A%E6%9C%80%E5%85%A8%E5%89%8D%E7%AB%AF%E9%9D%A2%E8%AF%95%E9%A2%98%28%E5%90%AB%E7%AD%94%E6%A1%88%29%20-%20Web%E5%BC%80%E5%8F%91%E9%9D%A2%E8%AF%95%E9%A2%98%20-%20%E8%81%8C%E5%8F%8B%E9%9B%86%28%E5%8F%91%E7%8E%B0%E4%B8%AD%E5%9B%BD%E5%A5%BD%E5%85%AC%E5%8F%B8%29_files/UIClickLog_v2.js" type="text/javascript" charset="UTF-8"></script>
+    <script type="text/javascript">
+        var URI = window.location.pathname;
+        var myDate = new Date();
+        var nowTime = myDate.getTime();
+        var curTime = nowTime.toString(10);
+        curTime = curTime.substr(3, 13);
+       	var tnSession = "" ;
+		var sessionKey = "" ;
+        var pageKey = hex_md5(URI + nowTime + tnSession) + curTime;
+        /*职友集统计start*/
+        UIWebLogV2();
+        /*职友集统计end*/
+         /*var _gaq = _gaq || [];
+        _gaq.push(['_setAccount', 'UA-7406834-1']);
+        _gaq.push(['_addOrganic', 'soso', 'w']);
+        _gaq.push(['_addOrganic', 'youdao', 'q']);
+        _gaq.push(['_addOrganic', 'sogou', 'query']);
+        _gaq.push(['_trackPageview']);
+        (function(){
+            var ga = document.createElement('script');
+            ga.type = 'text/javascript';
+            ga.async = true;
+            ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+            var s = document.getElementsByTagName('script')[0];
+            s.parentNode.insertBefore(ga, s);
+        })();*/
+    </script>
+</div>
+	
+
+<div style="display: none;" id="ui-v2-pop" class="ui-v2-popUpBox"><div id="ui-v2-pop-coverLayer" class="ui-v2-PUB-bg"></div><div class="tac"><div class="ui-v2-PUB-cntBox"><div style="width: 380px; height: auto;" id="ui-v2-pop-content" class="ui-v2-PUB-cnt"><div class="tac advertising" target="_blank" style="display: block; padding: 20px 0px; box-shadow: 0px 10px 20px rgb(153, 153, 153);"><div style="display: block; padding: 20px 0px 0px;" target="_blank" class="tac"><h3 style="color:#f60;font-size:22px;font-weight:bold;margin-bottom:25px;">查公司点评，就上职友集</h3><div style="color:#333;font-size:18px;margin-bottom:10px;">把我收进口袋，公司概况一目了然</div><div><span class="pop-btn mr5" style="background-color:#0cc;">概况</span><span class="pop-btn mr5" style="background-color:#0cc;">产品</span><span class="pop-btn mr5" style="background-color:#0cc;">环境</span><span class="pop-btn mr5" style="background-color:#0cc;">薪酬</span><span class="pop-btn mr5" style="background-color:#0cc;">评论</span><span class="pop-btn mr5" style="background-color:#0cc;">新闻</span></div></div><div style="background:url(http://cdnhtm4.jobui.com/template_1/styles/www/images/zweixin.jpg);width:180px;height:180px;margin:0 auto;"><img style="width:180px;" hignt180px;="" src="%E5%8F%B2%E4%B8%8A%E6%9C%80%E5%85%A8%E5%89%8D%E7%AB%AF%E9%9D%A2%E8%AF%95%E9%A2%98%28%E5%90%AB%E7%AD%94%E6%A1%88%29%20-%20Web%E5%BC%80%E5%8F%91%E9%9D%A2%E8%AF%95%E9%A2%98%20-%20%E8%81%8C%E5%8F%8B%E9%9B%86%28%E5%8F%91%E7%8E%B0%E4%B8%AD%E5%9B%BD%E5%A5%BD%E5%85%AC%E5%8F%B8%29_files/a_002.htm" alt=""></div><div class="gray9">打开微信扫一扫</div></div></div><p class="ui-v2-PUB-closeBox"><a id="ui-v2-pop-close" href="javascript:;" class="ui-v2-PUB-close j-uiPopCloseV2 j-jobui-close">X</a></p></div></div></div></body></html>

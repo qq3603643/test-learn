@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+<style>
+    div{position: relative;margin-left:auto;margin-right: auto; margin-top: 50px;width: 500px;height: 300px;border: 5px solid black;border-radius: 10px;overflow: hidden;} 
+    p{position: absolute;margin: 0px; bottom: -80px;width: 500px;height: 80px;background: black;alpha(opacity=30); opacity: 0.3;color: white;text-align: center;line-height: 50px;z-index: 1;}
+    img{position: absolute;width: 1500px;height: 300px;top: 0px;left: 0px;}
+</style>
+<script src="mine.js"></script>
+<script>
+window.onload = function(){
+    var oImg = document.getElementsByTagName('img')[0];
+    var oP   = document.getElementsByTagName('p')[0];
+    
+    var timer = null;
+    var aText = ['青菜','青椒','花菜']
+    var m =0;
+    //初始化
+    oImg.style.left = 0 + 'px';
+    oP.style.bottom = 0 + 'px';
+    oP.innerHTML = aText[m];
+    setInterval(function(){
+        oP.style.bottom = -80 + 'px';
+       
+        if(m==0){
+       doMove(oImg,'left',20,-500,function(){
+           
+           m++;
+           m=m%3;doMove(oP,'bottom',10,0);oP.innerHTML = aText[m];
+           
+           }
+       );}
+        if(m==1){
+       doMove(oImg,'left',20,-1000,function(){
+    
+           m++;
+           m=m%3;doMove(oP,'bottom',10,0);oP.innerHTML = aText[m];
+           }
+       );}
+      if(m==2){
+          
+          m++; 
+          m=m%3;doMove(oP,'bottom',10,0);oImg.style.left = 0 + 'px';
+          oP.innerHTML = aText[m];
+      }
+       
+        
+   } ,2000);
+    
+}   
+    </script>
+</head>
+<body>
+    <div>
+       <img src="img/0.jpg">
+        <p></p>
+    </div>
+</body>
+</html>

@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+<script src="mine.js"></script>
+<script>
+window.onload = function(){
+    var oText = document.getElementsByTagName('textarea')[0];
+    getTime(oText)
+    setInterval( function(){getTime(oText)},1000)
+}    
+    
+</script>
+</head>
+<body>
+   <textarea rows="10" cols="20" style="font-size:20px;">这里写内容</textarea>
+   //一个10行20列的文本域
+</body>
+</html>

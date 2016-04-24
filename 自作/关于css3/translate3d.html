@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style>
+        body {
+            perspective: 14600px;
+            transform-style: preserve-3d;
+        }
+        
+        .box {
+            width: 140px;
+            height: 140px;
+            background: black;
+            position: absolute;
+            left: 200px;
+            top: 100px;
+            transform: skewY(45deg);
+            transition: 2s;
+        }
+
+    </style>
+    <script>
+        window.onload = function() {
+
+            document.onclick = function() {
+                document.getElementById('box').style.transform = 'translate3d(220px, 320px, 200px)';
+            }
+        }
+
+    </script>
+</head>
+
+<body>
+    <div class="box" id="box"> </div>
+</body>
+
+</html>

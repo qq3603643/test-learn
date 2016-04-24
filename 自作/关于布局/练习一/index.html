@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style>
+        ul,
+        li,
+        dl,
+        dd,
+        dt,
+        p {
+            margin: 0px;
+            padding: 0px;
+        }
+        
+        .wrap {
+            width: 470px;
+            height: 175px;
+            margin: 100px auto;
+            background: url(bg.jpg) no-repeat 225px 0px;
+            border: 2px solid gray;
+        }
+        
+        .wrap .left {
+            float: left;
+            width: 225px;
+            height: 100%;
+        }
+        
+        .wrap .left_top {
+            width: 100%;
+            height: 110px;
+        }
+        
+        .clear:after {
+            content: '';
+            display: block;
+            clear: both;
+        }
+        
+        .wrap .left_top .pic {
+            float: left;
+            width: 140px;
+            height: 93px;
+            padding-top: 14px;
+            background: url(top_bg.jpg) no-repeat 130px 0px;
+        }
+        
+        .wrap .left_top .pic a {
+            width: 115px;
+            height: 86px;
+            margin-left: 10px;
+            display: block;
+            border: 1px solid gray;
+            padding: 3px;
+            background: white;
+        }
+        
+        .wrap .left_top .info {
+            float: left;
+            width: 85px;
+            height: 94px;
+            font: 14px/20px '';
+            padding-top: 16px;
+        }
+        
+        .left_bottom {
+            height: 53px;
+            width: auto;
+            padding: 12px 0px 0px 20px;
+            font: 12px/16px '';
+        }
+        
+        .right {
+            float: right;
+            width: 239px;
+            height: 175px;
+            padding-left: 6px;
+        }
+        
+        .right ul li {
+            list-style: none;
+            width: 112px;
+            height: 100%;
+            float: left;
+            padding-top: 14px;
+        }
+        
+        .right ul li a {
+            display: block;
+            padding: 3px;
+            border: 1px solid #c3cfd9;
+            width: 92px;
+            height: 118px;
+            margin-left: 16px;
+        }
+        
+        .right ul li span {
+            display: block;
+            text-align: center;
+            font: 12px/35px '';
+        }
+
+    </style>
+</head>
+
+<body>
+    <div class="wrap clear">
+        <div class="left">
+            <div class="left_top clear">
+                <div class="pic">
+                    <a>
+                        <img src="left_top.jpg">
+                    </a>
+                </div>
+                <div class="info">
+                    <dl>
+                        <dt>潜伏</dt>
+                        <dd>导演：姜维</dd>
+                        <dd>主演：姚晨 孙红雷
+                        </dd>
+                    </dl>
+                </div>
+            </div>
+            <ul class="left_bottom">
+                <li>海清张嘉译演绎房奴生活《蜗居》</li>
+                <li><a>琼瑶经典言情剧锦集</a><a>梦露电影知多少</a></li>
+            </ul>
+        </div>
+        <div class="right">
+            <ul class="clear">
+                <li>
+                    <a>
+                        <img src="right.jpg">
+                    </a>
+                    <span>将爱情进行到底</span>
+                </li>
+                <li>
+                    <a>
+                        <img src="right.jpg">
+                    </a>
+                    <span>将爱情进行到底</span>
+                </li>
+            </ul>
+        </div>
+    </div>
+</body>
+
+</html>

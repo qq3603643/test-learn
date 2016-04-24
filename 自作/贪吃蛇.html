@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+<style>
+    #wrap{width: 800px;height: 600px;border: 2px solid black;margin: 10px auto;position: relative;} 
+    p{margin: 0px;width: 38px;height: 38px;background:black;position: absolute;top: 0px;border: 1px solid white;font: 25px/38px '';color: azure;text-align: center;}
+    #start{position: absolute;width: 90px;height: 40px;font: 15px/30px '微软雅黑';text-align: center;left:40px;top: 50px;background: black;color: white;border: 1px solid blue;cursor: pointer;}
+    #hold{position: absolute;width: 90px;height: 40px;font: 15px/30px '微软雅黑';text-align: center;left:40px;top: 100px;background: black;color: white;border: 1px solid blue;cursor: pointer;}
+    #ispeed{position: absolute;width: 90px;height: 40px;font: 15px/30px '微软雅黑';text-align: center;left:40px;top: 150px;background: black;color: white;border: 1px solid blue;cursor: pointer;}
+    .ispeed{position: absolute;width: 60px;height: 30px;font: 10px/20px '微软雅黑';text-align: center;left:40px;top: 200px;background: blue;color: white;border: 1px solid black;cursor: pointer;display: none;}
+    #easy{top: 200px;}
+    #normal{top:235px;background: gray;}
+    #difficult{top:270px;background: red;}
+</style>
+<script>
+window.onload = function(){
+    
+   var oDiv = document.getElementById('wrap');
+   var aP = oDiv.getElementsByTagName('p');
+   var iSpeed = 500; 
+   var attr = 39; //记录上次运动的方向
+    function creatOp(){
+    var oP = document.createElement('p');
+    oDiv.appendChild(oP);}   //增加蛇的长度
+    function creatFoot(){
+   var m = Math.round(Math.random()*19) ;
+   var n = Math.round(Math.random()*14) ;
+   var oFood = document.createElement('div');
+    
+    oFood.style.cssText = "width:40px;height:40px;background:red;position:absolute";
+    oFood.style.left = m*40 + 'px';
+    oFood.style.top = n*40 + 'px';
+    oDiv.appendChild(oFood);} //随机产生食物
+    creatFoot(); //产生食物
+    for(var i=0;i<aP.length;i++){
+        aP[i].style.left = i*40 + 'px';
+    }
+    var aPi = [];
+    for(var i=0;i<aP.length;i++){
+        aPi.push({l:aP[i].offsetLeft,t:aP[i].offsetTop })
+    } //开始布局
+
+   var timer = null; 
+   var oStart = document.getElementsByTagName('input')[0];
+    oStart.onclick = function(){
+       if(attr == 39){domove(40,0);}
+       if(attr == 40){domove(0,40);}
+       if(attr == 37){domove(-40,0);}
+       if(attr == 38){domove(0,-40);}
+        
+      }
+    
+    var oHold = document.getElementsByTagName('input')[1];
+    oHold.onclick = function(){
+        clearInterval(timer);
+    }
+    var oSpeed = document.getElementsByTagName('input')[2];
+    var aBtn = document.getElementsByTagName('input');
+    oSpeed.onclick = function(){
+        for(var i = 3;i<aBtn.length;i++){
+            aBtn[i].style.display = 'block';
+        }
+    }
+       for(var i = 3;i<aBtn.length;i++){
+            aBtn[i].index = i;
+            aBtn[i].onclick = function(){
+               iSpeed =  500/(this.index-2);
+                aBtn[2].value = this.value;
+                for(var i = 3;i<aBtn.length;i++){
+                aBtn[i].style.display = 'none';
+        }
+            }
+        }
+   
+     //默认运动
+    
+    function domove(Lspeed,Tspeed){
+
+   timer = setInterval(function(){
+     
+//      var Lspeed =  0;
+//      var Tspeed =  40;
+      var oFood = document.getElementsByTagName('div')[1];
+      var L = aP[aP.length-1].offsetLeft + Lspeed;
+      var T = aP[aP.length-1].offsetTop + Tspeed;
+        if(L<0 || L > oDiv.offsetWidth-aP[0].offsetWidth || T<0 || T>oDiv.offsetHeight-aP[0].offsetHeight){
+            
+            alert('game over - 碰壁了，傻逼' + '\n' + '\n' + '你的分数为：' + aP.length + '\n' + '\n' +'点击重新游戏');
+            clearInterval(timer);
+            window.location.href=window.location.href;
+        }
+        if(L == oFood.offsetLeft&& T == oFood.offsetTop){
+              oFood.parentNode.removeChild(oFood);
+              creatFoot();
+              creatOp();
+              quC();
+            function quC(){
+                   var oFood = document.getElementsByTagName('div')[1];
+                   for(var j=aPi.length - aP.length+1;j<aPi.length;j++){
+                       
+                              if(oFood.offsetLeft == aPi[j].l && oFood.offsetTop == aPi[j].t){
+                                
+                                oFood.parentNode.removeChild(oFood);
+                                creatFoot();
+                                quC();
+                              }
+                                }
+                }  //如果出现在蛇身，则重新产生
+       
+          }
+       
+       for(var j=aPi.length - aP.length+1;j<aPi.length;j++){
+           
+           if(aPi[j].l == L && aPi[j].t == T ){
+               alert('game over - 傻逼，你咬到自己了'+ '\n' + '\n' + '你的分数为：' + aP.length + '\n' + '\n' +'点击重新游戏');
+               clearInterval(timer);
+               window.location.href=window.location.href;
+           }
+       }
+//       alert(oFood.offsetLeft)
+       aPi.push({l:L,t:T})
+       for(var i=1;i<=aP.length;i++){
+       aP[aP.length-i].innerHTML = i;    
+       aP[aP.length-i].style.left = aPi[aPi.length-i].l + 'px';
+       aP[aP.length-i].style.top = aPi[aPi.length-i].t + 'px';
+         
+       }
+       
+       
+       
+   },iSpeed)
+   }  //蛇运动的函数
+    
+      window.onkeydown = function(ev){
+        var ev = ev||window.event;
+        var dir = ev.keyCode;
+          
+          if(dir ==39&& attr !=37 ){clearInterval(timer);
+                                attr = 39;
+                                domove(40,0);
+                                }
+         if(dir ==40&& attr !=38 ){clearInterval(timer);
+                                attr = 40;
+                                domove(0,40);
+                                }
+        if(dir ==37&& attr !=39 ){clearInterval(timer);
+                                attr = 37;
+                                domove(-40,0);
+                                }
+        if(dir ==38&& attr !=40 ){clearInterval(timer);
+                                attr = 38;
+                                domove(0,-40);
+                                }
+          
+//        switch(ev.keyCode){
+//            case 39:
+//                {clearInterval(timer);
+//                
+//                domove(40,0);break;}
+//            case 40:
+//                {clearInterval(timer);
+//                
+//                domove(0,40);break;}
+//            case 37&&attr!=39:
+//                {clearInterval(timer);
+//                
+//                domove(-40,0);break;}
+//            case 38&&attr!=40:
+//                {clearInterval(timer);
+//                
+//                domove(0,-40);break;}
+//        }
+    } //控制蛇的运动方向
+    
+ 
+}    
+</script>
+</head>
+<body>
+   <input id="start" type="button"  value="开始游戏">
+   <input id="hold" type="button"  value="暂停游戏">
+   <input id="ispeed" type="button"  value="游戏难度">
+   <input class = "ispeed" id = "easy" type="button" value="easy">
+   <input class = "ispeed" id = "normal" type="button" value="normal">
+   <input class = "ispeed" id = "difficult" type="button" value="difficult">
+   <div id="wrap">
+   <ul>
+    <p></p>
+    
+   </ul>
+  </div>
+</body>
+</html>

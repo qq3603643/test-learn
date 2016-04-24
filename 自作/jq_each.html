@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <script src="jquery-1.11.3.js"></script>
+    <script>
+        jQuery(document).ready(function($) {
+
+            var arr = ["one", "two", "three", "four"];
+            var json = {
+                    name: 'xjc',
+                    age: 20
+                }
+                //            $.each(arr, function(i, item) {
+                //
+                //                alert(i + ':' + item)
+                //            })
+                //            $.each(json, function(attr, key) {
+                //
+                //                alert(attr + ':' + key)
+                //            })
+            arr.forEach(function(item, i) {
+                alert(item)
+            })
+            var str = 'abc';
+            alert(str.toLocaleUpperCase())
+
+
+            var str = '{"name":"xjc"}';
+            var json = $.parseJSON(str);
+            alert(json.name)
+            var str = JSON.stringify(json);
+            alert(str)
+        });
+
+    </script>
+</head>
+
+<body>
+
+</body>
+
+</html>

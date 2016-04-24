@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <script src="jquery-1.11.3.js"></script>
+    <script>
+        $(function() {
+
+            $('ul').on('click', 'li', function() {
+                    $('ul li').css('background', 'white');
+                    $(this).css('background', 'red')
+
+                }) //事件委托的好处，以后添加的新元素也有之前绑定的事件。
+
+            $('input').click(function() {
+
+                $Li = $('<li>');
+                $Li.html('i love you');
+                $('ul').prepend($Li); //之前
+                //$('ul').append($Li); //之后
+                //$Li.appendTo($('ul'));
+            })
+
+        })
+
+    </script>
+</head>
+
+<body>
+    <input type="button" value="添加">
+    <ul>
+        <li>aaa</li>
+        <li>bbb</li>
+        <li>ccc</li>
+        <li>ddd</li>
+    </ul>
+</body>
+
+</html>

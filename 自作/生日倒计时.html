@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>倒计时</title>
+
+</head>
+
+<body>
+
+    <script>
+        window.onload = function() {
+
+            var now = function() {
+                return new Date();
+            };
+
+            function start(futureTime, name) {
+                var $h3 = document.createElement('h3');
+                document.body.appendChild($h3);
+                setInterval(function() {
+                    var nowTime = now();
+                    var t = Math.round((eval(futureTime) - nowTime) / 1000);
+                    if (t < 0) {
+                        $h3.innerHTML = name + ',请期待下年的生日！'
+                        return;
+                    }
+                    //  var futuretime = new Date(2015,11,30,18,34,00);
+                    $h3.innerHTML = '距离' + name + '的生日还有：' + Math.floor(t / (3600 * 24)) + '天' + Math.floor(t % (3600 * 24) / 3600) + '个小时' + Math.floor((t % (3600 * 24) % 3600) / 60) + '分钟' + Math.floor(t % 60) + '秒';
+                }, 1000)
+            }
+
+            var Data = [{
+                name: '<b style="color:red;">小熊熊</b>',
+                time: 'new Date(2016,06,07,00,00,00)'
+            }, {
+                name: '<b style="color:red;">洋洋</b>',
+                time: 'new Date(2016,03,07,00,00,00)'
+            }, {
+                name: '<b style="color:red;">余鸿</b>',
+                time: 'new Date(2016,05,11,00,00,00)'
+            }, {
+                name: '<b style="color:red;">张利</b>',
+                time: 'new Date(2016,06,23,00,00,00)'
+            }, {
+                name: '<b style="color:red;">小龙龙</b>',
+                time: 'new Date(2016,08,17,00,00,00)'
+            }, {
+                name: '<b style="color:red;">周雪峰</b>',
+                time: 'new Date(2016,09,22,00,00,00)'
+            }, {
+                name: '<b style="color:red;">唐娇</b>',
+                time: 'new Date(2016,10,04,00,00,00)'
+            }, {
+                name: '<b style="color:red;">张明强</b>',
+                time: 'new Date(2016,10,21,00,00,00)'
+            }, {
+                name: '<b style="color:red;">张宏</b>',
+                time: 'new Date(2016,11,01,00,00,00)'
+            }, {
+                name: '<b style="color:red;">李小飞</b>',
+                time: 'new Date(2016,11,03,00,00,00)'
+            }, {
+                name: '<b style="color:red;">婷婷</b>',
+                time: 'new Date(2016,11,14,00,00,00)'
+            }, {
+                name: '<b style="color:red;">蒋燦</b>',
+                time: 'new Date(2016,12,10,00,00,00)'
+            }, {
+                name: '<b style="color:red;">王珊</b>',
+                time: 'new Date(2016,12,09,00,00,00)'
+            }, {
+                name: '<b style="color:red;">张华来</b>',
+                time: 'new Date(2016,12,14,00,00,00)'
+            }, {
+                name: '<b style="color:red;">小兰兰</b>',
+                time: 'new Date(2016,12,23,00,00,00)'
+            }, ];
+
+            Data.forEach(function(item) {
+                start(item.time, item.name);
+            })
+
+        }
+
+    </script>
+</body>
+
+</html>

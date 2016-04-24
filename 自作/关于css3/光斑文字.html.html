@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+<style>
+    .contant{width: 600px;height: 200px;border: 5px solid black;margin: 50px auto;text-align: center;font: 50px/50px '';color: rgba(0,0,0,0.1)}
+    h3{display: block;background:-webkit-linear-gradient(-40deg,rgba(255,255,255,0) 100px,rgba(0,0,0,1) 120px, rgba(255,255,255,1) 140px,rgba(0,0,0,1) 160px,rgba(255,255,255,0) 180px)  no-repeat -200px 0px;-webkit-background-clip:text;}
+    
+</style>
+<script src="mine.js"></script>
+<script>
+window.onload = function(){
+    
+    var oH3 = document.getElementsByTagName('h3')[0];
+    var oTant = document.getElementsByTagName('div')[0];
+    var m = -200;
+     
+          setInterval(function(){
+              
+              m+=20;
+              if(m<600){
+            
+                 oH3.style.backgroundPosition = m + 'px';
+              }else{
+              m = -200;
+              }
+              
+          },100)
+      
+    
+} 
+
+</script>
+</head>
+<body>
+    <div class="contant">
+        <h3>i am a supurman !!</h3>
+<!--
+        <h3>i am a supurman !!</h3>
+        <h3>i am a supurman !!</h3>
+-->
+    </div>
+</body>
+</html>

@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style>
+a{color:#000000;text-decoration:none;font-size:30px;font-weight:900;}
+ul { padding:0; margin:0; }
+li { list-style:none; }
+body { background:#333; }
+#boby { width:300px; height:400px; position:relative; margin:0 auto; background-color: white; }
+#prew,#next{position: absolute;top:180px;width:40px;height: 30px;background-color: white;border: 1px solid black;alpha(opacity:70); opacity:0.7;text-align: center;line-height: 30px;cursor:pointer}
+#sdiv{ right:-110px; width:50px; height:50px; margin-bottom:4px; background:white; position: absolute;display: none;} 
+
+#boby img { position: absolute;top: 0; width:300px; height:400px; }
+#boby span { top:0; margin:0; }
+#boby p { bottom:0; margin:0; }
+#boby p,#boby span{ position:absolute; left:0; width:300px; height:30px; line-height:30px; text-align:center; color:#fff; background:#000;}
+.btn{ left:310px;top:10px; width:20px; height:20px; margin-bottom:4px; background:#666; position: absolute;border-radius: 50%;}
+#prew{left: 5px}
+#next{right:5px}
+#prew:hover, #next:hover{filter:alpha(opacity:90); opacity:0.9;}; 
+    </style>
+<script>
+window.onload =function(){
+    
+    var oBoby =document.getElementById('boby');
+    var arrUrl = [ 'img/1.JPG', 'img/2.JPG', 'img/3.JPG', 'img/4.JPG' ];
+    var aLi = document.getElementsByTagName('li');
+    var oImg = oBoby.getElementsByTagName('img')[0];
+    var aText = ['This is 菜园', 'This is 青菜', 'This is 辣椒', 'This is 花菜'];
+    var oP = oBoby.getElementsByTagName('P')[0];
+    var oSpan = oBoby.getElementsByTagName('span')[0];
+    var oPrew = document.getElementById('prew');
+    var oNext = document.getElementById('next');
+    var m=0;
+    var oSimg = document.getElementById('simg');
+   //初始化
+   abc = function(){oP.innerHTML = aText[m];
+    oSpan.innerHTML =m + 1+' / '+arrUrl.length;
+    oImg.src = arrUrl[m];
+    aLi[m].style.background = 'white';}
+   abc();
+       for( var i=0; i<arrUrl.length; i++ ){ 
+           
+           aLi[i].style.top =  i*42 + 'px';
+       }
+    //缩小图
+    
+    //点击
+    oNext.onclick = function(){
+        m ++;
+        if(m>arrUrl.length-1){
+                    m=0;
+                }
+        for( var i=0; i<aLi.length; i++ ){
+                aLi[i].style.background = '#666';
+            }
+        abc();
+    };
+      oPrew.onclick = function(){
+        m --;
+       if(m<0){
+                m=3;
+                }
+        for( var i=0; i<aLi.length; i++ ){
+                aLi[i].style.background = '#666';
+            }
+        abc();
+    };
+   for( var i=0; i<aLi.length; i++ ){
+        
+		aLi[i].index = i; 
+        aLi[i].onmouseover = function (){
+            sdiv.style.display = 'block';
+            sdiv.style.top = 50*this.index + 'px';
+            oSimg.src=arrUrl[this.index];
+        }
+        aLi[i].onmouseout = function (){
+            sdiv.style.display = 'none';
+        }
+        aLi[i].onclick = function (){
+            
+            for( var i=0; i<aLi.length; i++ ){
+                aLi[i].style.background = '#666';
+            }
+            m = this.index;
+			aLi[this.index].style.background = 'white';
+            oP.innerHTML = aText[this.index];
+            oImg.src = arrUrl[this.index];
+            oSpan.innerHTML = 1+this.index +' / '+arrUrl.length;
+            num=this.index;
+        
+        }
+             
+                
+   
+       
+        } 
+
+
+};
+
+</script>
+</head>
+<body>
+    <div id="boby" >
+    <li class="btn"></li>
+    <li class="btn"></li>
+    <li class="btn"></li>
+    <li class="btn"></li>
+  <img src=""/>
+  <div id= "sdiv">
+      <img id="simg" src="" style="width:50px;height:50px"/>
+  </div>
+  <span>数量正在加载中……</span>
+  <p>文字说明正在加载中……</p>
+    <div href="" id="prew" > < </div>
+    <div href="" id="next" > > </div>
+    </div>
+    
+</body>
+</html>

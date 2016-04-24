@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0px;
+            padding: 0px;
+        }
+        
+        .box {
+            width: 80px;
+            height: 80px;
+            border: 1px solid black;
+            position: absolute;
+            left: 400px;
+            top: 200px;
+            overflow: hidden;
+        }
+        
+        .box ul {
+            position: absolute;
+            left: 0px;
+            top: 0px;
+        }
+        
+        .box ul li {
+            list-style: none;
+            width: 80px;
+            height: 80px;
+            background: red;
+            font: 60px/80px '微软雅黑';
+            text-align: center;
+        }
+
+    </style>
+    <script src="jquery-1.11.3.js"></script>
+    <script>
+        $(function() {
+
+            var ilength = $('.box ul li').length;
+            or();
+            setInterval(function() {
+
+                $('.box ul').animate({
+                    top: -80 + 'px'
+                }, 200, function() {
+
+                    $('.box ul').css('top', '0px');
+                    or();
+
+                });
+
+            }, 1000)
+
+            function or() {
+                var d = new Date();
+                var m = d.getSeconds();
+                for (var i = 0; i < ilength; i++) {
+                    if (m == 59) {
+                        $('.box ul li').eq(0).html(m);
+                        $('.box ul li').eq(1).html('0');
+                    } else {
+                        $('.box ul li').eq(i).html(m + i);
+                    }
+                }
+            }
+
+        })
+
+    </script>
+</head>
+
+<body>
+    <div class="box">
+        <ul>
+            <li></li>
+            <li></li>
+        </ul>
+    </div>
+</body>
+
+</html>

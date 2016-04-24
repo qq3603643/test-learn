@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+<script>
+    
+window.onload = function() {   
+                      
+ document.title = "获取元素方法";  
+ 
+    var btn =document.getElementsByTagName('input')
+     
+    for( var i=0;i<100;i++){
+          //alert(i);
+         document.body.innerHTML += '<input type="button" value="" />';
+         alert('重命名按钮'+ i + '成功' );
+         btn[i].value = '按钮' + i;
+          
+
+        
+   }
+	
+    
+  }  
+    </script>   
+</head>
+<body>
+ 
+</body>
+</html>

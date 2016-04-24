@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+<script>
+window.onload = function(){
+    abc();
+   function abc(){
+      var str = prompt("请问你是煞笔吗，请回答是还是不是 。", "");
+      if (str == ''){alert('傻逼，连输入都忘了吗？');
+                      abc();
+                      } 
+      if (str !== '是'){alert('不要骗自己了，你是！请重新输入');
+                      abc();
+                      } 
+       if (str == '是'){alert('对嘛，做个诚实的人多好');
+                        alert('我要走了');
+                        alert('真是舍不得呢');
+                        
+                        abc();
+                      } 
+   }
+    
+     //confirm(); 
+//    function firm() {  
+//        //利用对话框返回的值 （true 或者 false）  
+//        if (confirm("你确定提交吗？")) {  
+//            alert("点击了确定");  
+//        }  
+//        else {  
+//            alert("点击了取消");  
+//        }  
+//  
+//    }  
+    
+}    
+    
+</script>
+</head>
+<body>
+    
+</body>
+</html>

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        function addEvByTagName(tagName){
+            var $onff = document.getElementsByTagName(tagName).length;
+            
+            $onff && ( this.conS = function(){
+                console.log('tangerine');
+            } ,true) || ( 
+                this.conS = function(){
+                    console.log('apple')
+                }
+            )
+        }
+        var consMy = new addEvByTagName('div');
+        consMy.conS();
+        
+        function CreatePersonBySex(sex){
+            this.$onff = sex == 'man';
+        };
+        CreatePersonBySex.prototype = {
+            showWork: function(){
+                console.log(this.$onff);
+                console.log(this)
+                console.log(CreatePersonBySex.prototype)
+                console.log(CreatePersonBySex)
+            }
+        }
+        var man = new CreatePersonBySex('man');
+        man.showWork();
+    </script>    
+</body>
+</html>

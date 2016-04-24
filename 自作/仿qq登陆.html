@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+<style>
+    li{list-style: none;color: red;height: 30px;border-bottom: 1px solid black;}
+    ul{margin: 0px;padding: 0px}
+    div{width: 172px;border: 1px solid black;display: none;}
+</style>
+<script src="mine.js"></script>
+<script>
+window.onload = function(){
+    
+    var oDiv = document.getElementsByTagName('div')[0];
+    var oBtn = document.getElementsByTagName('input')[1];
+    var aLi = document.getElementsByTagName('li');
+    var onff = 1;
+ 
+       for(var i=0;i<aLi.length;i++){
+          
+           aLi[i].index = i;
+           aLi[i].onmouseover = function(){
+               
+               for(var a=0;a<aLi.length;a++){
+                   aLi[a].style.background = 'white';
+                   this.style.background = 'blue';
+                   
+               }
+               
+  
+               for(var j=0;j<aLi.length;j++){
+                   
+                   if(this.index+j<=aLi.length || this.index-j>=0){
+//                      aLi[this.index+j].style.height = 40 - (j+1)*6 + 'px';
+                         
+                     buffMove(aLi[this.index+j],'height',4,40 - (j+1)*6)
+                       //            aLi[this.index+j].innerHTML = 25 + i*aLi.length - (j+1)*6;
+
+                   }
+                   
+                   for(var k=0;k<aLi.length;k++){
+               if(this.index-k>=0){
+  //                         aLi[this.index-k].style.height = 25 - (k-1)*6 + 'px';
+                 buffMove(aLi[this.index-k],'height',4,25 - (k-1)*6)     
+//                     aLi[this.index-k].innerHTML = 25 - (k-1)*6;
+                   }
+               
+                   }
+               }
+           }
+           
+        }
+    
+    oBtn.onclick = function(){
+       
+        if(onff == 1){  
+        oDiv.style.display = 'block';
+        oBtn.value = '↑';
+        onff = 2;
+        return;
+        }
+        if(onff == 2){
+          oDiv.style.display = 'none'; 
+          onff = 1;
+          oBtn.value = '↓';  
+          return;
+        }
+        
+     
+        
+        
+    }
+}
+</script>
+</head>
+<body>
+    <input type="text" ><input style="color:red;font-weight:700;" type="button" value="↓">
+    <div>
+        <ul>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+        </ul>
+        
+    </div>
+</body>
+</html>

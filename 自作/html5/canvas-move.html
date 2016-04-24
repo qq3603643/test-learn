@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+<style>
+    body{background: black;}
+    canvas{display: block; margin: 20px auto;background: white;}    
+</style>
+<script>
+    window.onload = function(){
+        
+        var oCan = document.getElementById('can1');
+        var oGcan = oCan.getContext('2d');
+        oGcan.fillStyle = 'gray';
+        oGcan.fillRect(0,0,50,50);
+        var m = 0;
+        setInterval(function(){
+            oGcan.clearRect(0,0,oCan.width,oCan.height)
+            m ++;
+            oGcan.fillRect(m,m,50,50);
+            
+        },50)
+    }
+</script>
+</head>
+<body>
+    <canvas id="can1" width="400" height="400">
+        
+    </canvas>
+</body>
+</html>

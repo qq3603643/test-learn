@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style>
+        .wrap {
+            width: 400px;
+            height: 400px;
+            border: 2px solid red;
+            padding: 2px;
+            margin: 40px auto;
+            perspective: 100px;
+        }
+        
+        .wrap .contant {
+            width: 100%;
+            height: 100%;
+            background: yellow;
+            position: relative;
+            transform-style: preserve-3d;
+        }
+        
+        .wrap .contant .cont {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: black;
+            font: 900 100px/400px '';
+            text-align: center;
+            color: white;
+        }
+        
+        .wrap .contant .cont_b {
+            background: black;
+            transform: rotateX(-90deg);
+            transform-origin: top;
+        }
+        
+        .contant:hover {
+            transform-origin: center center -200px;
+            transition: 1s;
+            transform: rotateX(90deg);
+        }
+
+    </style>
+</head>
+
+<body>
+    <div class="wrap">
+        <div class="contant">
+            <div class="cont cont_a">i am a</div>
+            <div class="cont cont_b" style="top:400px">i am a</div>
+        </div>
+    </div>
+</body>
+
+</html>

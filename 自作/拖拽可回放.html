@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+<style>
+    #little{position: absolute;top:100px;left: 100px; width: 40px;height: 40px;border: 1px solid red;background: black;cursor: pointer;}  
+    #big{position:relative;width: 400px;height: 400px;border: 1px solid red;background: white;cursor: pointer;}
+</style>
+<script src="mine.js"></script>
+<script>
+window.onload = function(){
+    var oDiv = document.getElementsByTagName('div')[1];
+    var pos = [];
+    var oBtn = document.getElementsByTagName('input')[0];
+    var onff = true;
+
+     drag(oDiv);
+   
+     function drag(obj){
+    obj.onmousedown = function(ev){
+        onff = true;
+        var ev = ev || window.event ;
+        var x = ev.clientX - this.offsetLeft;
+        var y = ev.clientY - this.offsetTop;
+       if ( obj.setCapture ) {
+			obj.setCapture();
+		}  //全局捕获
+           if(onff){    pos.push({x:obj.offsetLeft,y:obj.offsetTop})}
+         
+      document.onmousemove = function(ev) {
+			var ev = ev || window.event;
+			var L = ev.clientX - x;
+            var T = ev.clientY - y;
+           if(L<50){L=0;} 
+           if(L>300){L=360;} 
+           if(T<50){T=0;}
+           if(T>300){T=360;}
+         
+			obj.style.left =  L + 'px';
+			obj.style.top  =  T + 'px'; 
+      oBtn.value = L +'  ' + T;
+      if(onff){pos.push({x:L,y:T})}
+      }
+//if(onff){pos.push({x:L,y:T})}
+            
+      document.onmouseup = function(){
+             oBtn.value = '点击回放';
+             onff = false;
+          document.onmousemove = document.onmouseup = null;
+          if ( obj.releaseCapture ) {
+				obj.releaseCapture();
+			} //全局释放
+
+      }  
+      oBtn.onclick = function(){
+          j = pos.length;
+          
+          setInterval(function(){
+              oDiv.style.left = pos[j-1].x + 'px';
+              oDiv.style.top = pos[j-1].y + 'px';
+              if(j-1 == 0){ pos = [];};
+            j--;
+          } ,100)
+//         
+      }
+      return false;
+        }  }
+}    
+</script>
+</head>
+<body>
+   <div id= "big" >
+    <div id ="little"></div>
+</div>
+<input type="button" value="点击回放" >
+</body>
+</html>

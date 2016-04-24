@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+<style>
+    #wrap{margin: 100px auto;width: 200px;height: 200px;padding: 100px;border: 2px solid black;perspective:600px;perspective-origin:top;}
+    #box{width: 100px;height: 100px;background: red;margin: 50px 50px;position: relative;transform-style: preserve-3d;transition: 2s;}
+    #box div{position: absolute;width: 100px;height: 100px;text-align: center;font: 60px/100px '微软雅黑';color: white;}
+    #div1{background: black;left: 0px;top: -100px;transform-origin: bottom;transform: rotateX(90deg)}
+    #div2{background: red;left: -100px;top: 0px;transform-origin: right;transform: rotateY(-90deg)}
+    #div3{background: blue;right: -100px;top: 0px;transform-origin: left;transform: rotateY(90deg)}
+    #div4{background: yellow;left: 0px;bottom: -100px;transform-origin: top;transform: rotateX(-90deg)}
+    #div5{background:gray;transform: translateZ(-100px);}
+    #div6{background:pink;left: 0px;top: 0px;}
+    #wrap:hover #box{transform: rotateY(360deg)}
+</style>
+</head>
+<body>
+    <div id='wrap'>
+        <div id = "box">
+            <div id="div1">1</div>
+            <div id="div2">2</div>
+            <div id="div3">3</div>
+            <div id="div4">4</div>
+            <div id="div5">5</div>
+            <div id="div6">6</div>
+        </div>
+    </div>
+</body>
+</html>

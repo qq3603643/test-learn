@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+
+<body>
+    <script src="jquery-1.11.3.js"></script>
+    <script>
+        var fn2 = function() {
+            var timer = null;
+            var num = 0;
+            return function(){
+                clearTimeout(timer);
+                timer = setTimeout(function(){
+                    console.log('tangerine' + (++num));
+                },200)
+            }
+        };
+        var fn3 = fn2();
+        $(window).on('resize', function() {
+//                        fn2(200)();//发现并没有起到闭包的作用 可理解为每次都要return ，num每次都将初始化
+            fn3();
+        })
+
+        var argDeal = function(){
+            var args = [];
+            return function(){
+                _arg = [].slice.call(arguments);
+                if(arguments.length){
+                    [].push.apply(args,_arg);
+                }else{
+                    return eval( args.join('+') );
+                }
+            }
+        };
+        var sum = argDeal();
+        sum(4,5)
+        sum(4,5)
+        sum(10)
+        var totle = sum();
+        
+        console.log(totle);
+    </script>
+    <ul>
+        <li>1</li>
+        <li>2</li>
+        <li>3</li>
+    </ul>
+    <script>
+        var len = document.getElementsByTagName('li').length;
+        for(var i = 0;i < len;i += 1){
+            document.getElementsByTagName('li')[i].onclick = function(){
+             var index = [].slice.call(document.getElementsByTagName('li')).indexOf(this);
+            alert(index);
+        }
+        }
+       
+    </script>
+</body>
+
+</html>

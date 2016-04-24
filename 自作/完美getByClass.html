@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+<style>
+    li{list-style: none;width: auto;height: 50px;border: 1px solid rgba(0,0,0,0.5)}    
+</style>
+<script>
+window.onload = function(){
+    
+
+    function getByClass(tagName,Class){
+        var re = new RegExp('\\b' +Class + '\\b','')
+        var aEle = document.getElementsByTagName(tagName);
+        var arr = [];  
+        for(var i=0;i<aEle.length;i++){
+            
+            var oEle = aEle[i].className;
+            if(re.test(oEle)){
+                
+               arr.push(aEle[i]) 
+            }
+        }
+         return arr;
+    }
+   var aLi = getByClass('li','b');
+    for(var a=0;a<aLi.length;a++){
+        aLi[a].style.background = 'red';
+    }
+}    
+</script>
+</head>
+<body>
+    <ul>
+        <li class="a b c"></li>
+        <li class="a c"></li>
+        <li class="a b"></li>
+        <li class="a b c"></li>
+        <li class="a d"></li>
+        <li class="a"></li>
+        <li class="b"></li>
+        <li class="a c"></li>
+        <li class="b"></li>
+        <li class="c"></li>
+    </ul>
+</body>
+</html>

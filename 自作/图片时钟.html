@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+<style>
+    div{position: relative;width: 80px;height: 100px;border: 2px solid black;margin-left: 40px;margin-top: 200px;float:left;overflow: hidden;} 
+    li{list-style: none;position: absolute;top: 0px;left: 0px; width: 80px;height: 100px;background: red;color: white;}
+    img{width: 80px;height: 100px;position: absolute;top: 0px;left: 0px;}
+</style>
+<script src="mine.js"></script>
+<script>
+window.onload = function(){
+      var aLi = document.getElementsByTagName('li');
+      var aDiv = document.getElementsByTagName('div');
+      var timer = null;
+      var m = 0;
+      var n = 0;
+      var oP = document.getElementById('time');
+    var oldtime = new Date();;
+    var oldhour = oldtime.getHours();
+    var oldmin = oldtime.getMinutes();
+    var oldsecond = oldtime.getSeconds();
+    var Time = document.getElementById('time');
+    var oLi = Time.getElementsByTagName('li');
+    var strOLd = toTwo(oldhour) +  toTwo(oldmin)  + toTwo(oldsecond); 
+      
+      setInterval(function(){
+          fntime (oP);
+      },1000);
+	  fntime (oP);
+    	function fntime (obj) {
+	
+		var myTime = new Date();
+		var iHours = myTime.getHours();
+		var iMin = myTime.getMinutes();
+		var iSec = myTime.getSeconds();
+		var str = toTwo(iHours)+toTwo(iMin)+toTwo(iSec);
+		
+		obj.innerHTML = str;  
+           if(Number(Number(str.charAt(5)) - 1) == -1){
+                aLi[10].innerHTML = '<img src="images/9.gif">';
+           }
+            else {
+            aLi[10].innerHTML = '<img src="images/' + Number(Number(str.charAt(5)) - 1) + '.gif">';  }
+            aLi[11].innerHTML = '<img src="images/' + str.charAt(5) + '.gif">'; 
+            aLi[0].innerHTML = '<img src="images/' + str.charAt(0) + '.gif">'; 
+            aLi[2].innerHTML = '<img src="images/' + str.charAt(1) + '.gif">'; 
+            aLi[4].innerHTML = '<img src="images/' + str.charAt(2) + '.gif">'; 
+            aLi[6].innerHTML = '<img src="images/' + str.charAt(3) + '.gif">'; 
+            aLi[8].innerHTML = '<img src="images/' + str.charAt(4) + '.gif">';
+            if(Number(Number(str.charAt(4)) - 1) == -1){
+                aLi[9].innerHTML = '<img src="images/9.gif">';
+           } else{
+            aLi[9].innerHTML = '<img src="images/' + Number(Number(str.charAt(4))-1) + '.gif">';  }
+           if(Number(str.charAt(5)) == 0){
+               if(n==0){
+             aLi[9].style.top = 0 +'px';
+             aLi[8].style.top = -100 +'px';
+               doMove(aLi[9],'top',20,100);
+                n++;n=n%2 }
+               if(n == 1){  
+             doMove(aLi[8],'top',20,0); 
+            n++;n=n%2}
+       }
+            
+//            
+//            if(Number(Number(str.charAt(3)) - 1) == -1){
+//                aLi[7].innerHTML = '<img src="images/9.gif">';
+//           } else{
+//            aLi[7].innerHTML = '<img src="images/' + Number(Number(str.charAt(3))-1) + '.gif">';  }
+//            
+//           if(Number(str.charAt(3)) != Number(strOLd.charAt(3))){
+//
+//               if(n==0){
+//             aLi[7].style.top = 0 +'px';
+//             aLi[6].style.top = -100 +'px';
+//               doMove(aLi[7],'top',20,100);
+//                n++;n=n%2 }
+//               if(n == 1){  
+//             doMove(aLi[6],'top',20,0); 
+//            n++;n=n%2  } 
+//               Number(strOLd.charAt(3)) =Number(str.charAt(3))；
+//            }
+//           
+            
+            
+            
+            
+            
+            
+            
+            
+            
+                   setInterval(function(){ 
+           if(m == 0){  
+             aLi[10].style.top = 0 +'px';
+             aLi[11].style.top = -100 +'px';
+             doMove(aLi[10],'top',20,100); 
+            m++;m=m%2}
+            if(m == 1){
+             doMove(aLi[11],'top',20,0);
+             
+            m++;m=m%2}     
+       },1000);
+                  
+        }
+        
+      
+      for (var i=0;i<aLi.length;i++){
+          if(i%2 == 0)  
+         { aLi[i].style.top = 0 +'px';}
+          else
+              {aLi[i].style.top = 100 +'px';
+               aLi[i].style.background = 'black';
+              }
+      }   //
+
+              
+      	
+    
+}       
+</script>
+</head>
+<body>
+   <p id="time" style="font-size:60px;"></p>
+
+    <div>
+      <li></li>
+    <li></li>  
+    </div>
+    <div>
+        <li></li>
+    <li></li>
+    </div>
+    <div>
+        <li></li>
+    <li></li>
+    </div>
+    <div>
+       <li></li>
+    <li></li> 
+    </div>
+    <div>
+       <li></li>
+    <li></li> 
+    </div>
+    <div>
+    <li></li>
+    <li></li>
+    </div>
+ 
+   
+</body>
+</html>

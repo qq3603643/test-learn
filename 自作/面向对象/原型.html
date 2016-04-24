@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <script>
+        //给系统的对象添加方法
+        Array.prototype.sum = function() {
+
+            var m = 0;
+            for (var i = 0; i < this.length; i++) {
+
+                m += this[i];
+            }
+            return m;
+        }
+
+        var arr = new Array(1, 2, 3, 4);
+        var arr1 = new Array(45, 45, 23, 4, 87);
+        alert(arr.sum());
+        alert(arr1.sum())
+
+
+        String.prototype.trim = function() {
+
+            return this.replace(/^\s+ | \s+$/, '');
+        }
+
+        var str = '   fdgdg  ';
+        alert(str.trim())
+
+    </script>
+</head>
+
+<body>
+
+</body>
+
+</html>

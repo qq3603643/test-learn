@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<button id="btn">click</button>
+<script>
+    var Obtn = document.getElementById('btn');
+
+    Obtn.onclick = function () {
+
+        var newWin = window.open('https://www.baidu.com', "_blank", "scrollbars=yes,resizable=1,modal=false,alwaysRaised=yes");
+
+        var num = 0;
+        setInterval(function(){
+            num++;
+            newWin.moveTo(num,num);
+        },10)
+    }
+
+</script>
+</body>
+</html>

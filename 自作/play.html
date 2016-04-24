@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>one</title>
+    <style>
+        .box {
+            width: 80px;
+            height: 80px;
+            background: black;
+            border: 1px solid red;
+            position: absolute;
+            left: 40px;
+            top: 40px;
+        }
+
+        @keyframes move {
+            0% {
+                left: 40px;
+                -webkit-transform: scale(0.8);
+                -moz-transform: scale(0.8);
+                -ms-transform: scale(0.8);
+                -o-transform: scale(0.8);
+                transform: scale(0.8);
+            }
+            50% {
+                left: 500px;
+                -webkit-transform: scale(1.4);
+                -moz-transform: scale(1.4);
+                -ms-transform: scale(1.4);
+                -o-transform: scale(1.4);
+                transform: scale(1.4);
+            }
+            100% {
+                left: 40px;
+                -webkit-transform: scale(0.8);
+                -moz-transform: scale(0.8);
+                -ms-transform: scale(0.8);
+                -o-transform: scale(0.8);
+                transform: scale(0.8);
+            }
+        }
+    </style>
+    <script src="jquery-1.11.3.js"></script>
+</head>
+<body>
+<div class="box"></div>
+<script>
+
+    $(function () {
+        var onff = false;
+        $(document).click(function () {
+            onff = !onff;
+            $('.box').stop(true);
+            if (onff) {
+                $('.box').animate({left: 500}, 2000);
+            } else {
+                $('.box').animate({left: 40}, 2000);
+            }
+        });
+    })
+</script>
+</body>
+</html>

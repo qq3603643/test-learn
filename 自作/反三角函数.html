@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+<style>
+    *{margin: 0px;padding: 0px;}
+    .contant{width: 176px;height: 91px;position: absolute;left: 400px;top: 200px;background: url(img/265.png) no-repeat;}
+    .eyes{width: 4px;height: 4px;background: black;position: absolute;border-radius: 50%}
+    .eye_left{left: 113px;top: 43px;}
+    .eye_right{left: 135px;top: 42px;}
+</style>
+<script src="jquery-1.11.3.js"></script>
+<script>
+$(function(){
+    
+        var L = $('#eye_left').offset().left;
+        var T = $('#eye_left').offset().top;
+        var L2 = $('#eye_right').offset().left;
+        var T2 = $('#eye_right').offset().top;
+        var R = 5;
+    $(document).mousemove(function(ev){
+        
+        ev = ev||window.event;
+        var Opsx = ev.pageX;
+        var Opsy = ev.pageY;
+        
+        domove($('#eye_left'),Opsx,Opsy,L,T);
+        domove($('#eye_right'),Opsx,Opsy,L2,T2);
+        function domove(obj,x,y,l,t){
+            
+            var a = x - obj.offset().left;
+            var b = y - obj.offset().top;
+            
+//            var a = Math.abs(x - obj.offset().left);
+//            var b = Math.abs(y - obj.offset().top);
+//            if(x>l&&y>t){
+//            var left = l - $('.contant').offset().left + Math.sin(Math.atan(a/b))*R;
+//            var top = t  - $('.contant').offset().top + Math.cos(Math.atan(a/b))*R;
+//            }else if(x<l&&y>t){
+//            var left = l - $('.contant').offset().left + Math.sin(Math.atan(a/b))*-R;
+//            var top = t  - $('.contant').offset().top + Math.cos(Math.atan(a/b))*R;   
+//            }
+//            else if(x<l&&y<t){
+//            var left = l - $('.contant').offset().left + Math.sin(Math.atan(a/b))*-R;
+//            var top = t  - $('.contant').offset().top + Math.cos(Math.atan(a/b))*-R;    
+//            }else{
+//            var left = l - $('.contant').offset().left + Math.sin(Math.atan(a/b))*R;
+//            var top = t  - $('.contant').offset().top + Math.cos(Math.atan(a/b))*-R;    
+//            }
+            
+            var left = l - $('.contant').offset().left + Math.sin(Math.atan2(a,b))*R;
+            var top = t  - $('.contant').offset().top + Math.cos(Math.atan2(a,b))*R;
+            document.title = left + '||' + top;
+            obj.css({left:left + 'px',top:top + 'px'})
+        }
+    })
+})    
+</script>
+</head>
+<body>
+    <div class="contant">
+        <div id = "eye_left" class="eyes eye_left"></div>
+        <div id = "eye_right" class="eyes eye_right"></div>
+    </div>
+</body>
+</html>

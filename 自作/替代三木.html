@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        var conS = function(len){
+             len && ( console.log("tangerine") ,true) || console.log("apple");
+             var num = len && "tangerine" || "apple";
+             console.log(num);
+       }; 
+        conS(0)
+        //赋值的时候可以直接使用 && || 代替三木 ； 运算的时候需要加上返回值 true；
+        function dayDeal(day){
+            var len = day.toString().split('.').length;
+            return len > 1 && day || day + '.0';
+        }
+        console.log(dayDeal(3))
+        console.log(dayDeal(3.5))
+    </script>
+</body>
+</html>

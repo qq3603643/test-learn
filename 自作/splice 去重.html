@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+
+</head>
+<body>
+    <script>
+       var arr = [1,4,6,1,2,3,4];
+    for(var i = 0;i<arr.length;i++){
+        var n = arr[i];  //取出值 以备搜索
+        arr.splice(i,1,null);  //将arr【i】的值置空
+        
+        if(arr.indexOf(n)  == -1){  //如果在arr 中未找到arr【i】的值，则将其值 还原
+            arr.splice(i,1,n);
+        }else{
+            arr.splice(i,1);  否则删除
+        }
+         
+    }
+      alert(arr)  
+    </script>
+</body>
+</html>

@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+<style>
+    div{margin-left: 50px;width: 100px;height: 40px;background: red;}
+</style>
+<script>
+window.onload = function(){
+    var oDiv = document.getElementsByTagName('div')[0];
+    
+    var timer = null;
+    var timer1 = null;
+    
+    oDiv.onmouseover = function(){
+        
+        clearInterval(timer)
+        var speed = 0;
+        var height = 40; 
+        timer = setInterval(function(){
+         
+            speed+= (200 - height)/5;
+            speed = speed*0.8;
+            height+= speed;
+           
+            if(Math.abs(speed)<1&&Math.abs(200 - height)<1 ){
+                clearInterval(timer);
+                oDiv.style.height = 200 + 'px';
+               
+            }else{
+            oDiv.style.height = height + 'px';
+                }
+        
+        },30)
+    }
+    
+//    oDiv.onmouseout = function(){
+//        clearInterval(timer1)
+//        clearInterval(timer)
+//        
+//        var speed1 = 0;
+//        timer1 = setInterval( function(){
+//            
+//        speed1 = Math.ceil((oDiv.offsetHeight-40)/8);
+//             if(oDiv.offsetHeight==40){
+//                 
+//                 clearInterval(timer1)} 
+//            else{
+//            oDiv.style.height = oDiv.offsetHeight - speed1 + 'px';}
+//        
+//        },30)
+//        
+//    }
+}    
+</script>
+</head>
+<body>
+    <div></div>
+</body>
+</html>

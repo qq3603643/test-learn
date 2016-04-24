@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+<style>
+    div{position: absolute; width: 40px;height: 40px;border: 1px solid red;background: black;cursor: pointer;} 
+    img{position: absolute;width: 100x;height: 100px;top: 250px;left: 600px;}
+</style>
+<script>
+window.onload = function(){
+    var oDiv = document.getElementsByTagName('div')[0];
+    var oImg = document.getElementsByTagName('img')[0];
+    
+    drag(oDiv);
+     function drag(obj){
+    obj.onmousedown = function(ev){
+        var ev = ev || window.event ;
+        var x = ev.clientX - this.offsetLeft;
+        var y = ev.clientY - this.offsetTop;
+       if ( obj.setCapture ) {
+			obj.setCapture();
+		}  //全局捕获
+
+      document.onmousemove = function(ev) {
+			var ev = ev || window.event;
+			    var L = ev.clientX - x;
+				var T = ev.clientY - y;
+				
+				var L1 = L;
+				var R1 = L + obj.offsetWidth;
+				var T1 = T;
+				var B1 = T + obj.offsetHeight;
+				
+				var L2 = oImg.offsetLeft;
+				var R2 = L2 + oImg.offsetWidth;
+				var T2 = oImg.offsetTop;
+				var B2 = T2 + oImg.offsetHeight;
+				
+				if ( R1 < L2 || L1 > R2 || B1 < T2 || T1 > B2 ) {
+					oImg.src = 'img/13.jpg';
+				} else {
+					oImg.src = 'img/11.jpg';
+				}
+
+         
+          
+			obj.style.left = L + 'px';
+			obj.style.top = T + 'px';
+		}
+      document.onmouseup = function(){
+          document.onmousemove = document.onmouseup = null;
+          if ( obj.releaseCapture ) {
+				obj.releaseCapture();
+			} //全局释放
+
+      }
+      return false;
+        }  }
+}    
+</script>
+</head>
+<body>
+    <div></div>
+    <img src="img/13.jpg">
+</body>
+</html>

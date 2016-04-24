@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+<style>
+    div{width:400px;height: 200px;border: 2px solid black;}  
+    #xt{width:396px;height:194px;line-height:194px;line-height: 194px;}
+</style>
+<script>
+window.onload = function(){ 
+    
+    var oText = document.getElementsByTagName('input')[0];
+    var oBtn = document.getElementsByTagName('input')[1];
+    var n = 0;
+    var timer = null;
+    var oLi = document.getElementsByTagName('li')[0];
+    
+    
+    oBtn.onclick = function(){
+         var aStr = oText.value.split('');
+        
+        timer = setInterval(function(){
+             if(aStr[0]==undefined){
+                clearInterval(timer);alert('请输入内容吧！！');                               }
+       else{
+    oLi.innerHTML += aStr[n];
+    oText.value = aStr.join('');
+    aStr[n] = ''; 
+    n++;
+        if(n==aStr.length){
+            clearInterval(timer);
+            n = 0;
+            oText.value = '';
+        }   }
+   } ,200);
+        
+    }
+   
+   
+    
+}    
+</script>
+</head>
+<body>
+   
+    <div>
+        <input id="xt" type="text" > 
+    </div>
+    <input type="button" value="复制吧">
+    <li></li>
+</body>
+</html>

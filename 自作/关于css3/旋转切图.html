@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+<style>
+    .wrap{width: 350px;height: 500px;border: 2px solid gray;margin: 100px auto;position: relative;transform-style: preserve-3d;perspective: 800px;}
+    .wrap img{position: absolute; width: 350px;height: 500px;transform-origin: center;transition:1s;}
+    .wrap input{display: block;position: absolute;top: -30px;background: black;color: white;}
+    input[value=">"]{left: 60px;}
+    .hide{transform: rotateY(360deg);opacity: 0;}
+    .show{transform: rotateY(0deg);opacity: 1;}
+</style>
+<script>
+window.onload = function(){
+    
+    var oDiv = document.getElementsByTagName('div')[0];
+    var aImg = document.getElementsByTagName('img');
+    var aBtn = document.getElementsByTagName('input');
+    var m = 0;
+    aBtn[1].onclick = function(){
+        
+        
+        
+        aImg[m].className = 'hide';
+        m++;
+        if(m == aImg.length){m = 0;}
+        aImg[m].className = 'show';
+        
+        
+    }
+        aBtn[0].onclick = function(){
+        
+         
+        aImg[m].className = 'hide';
+        m--;
+        if(m == -1){m = aImg.length-1;}
+        aImg[m].className = 'show';
+        
+        
+    }
+}    
+</script>
+</head>
+<body>
+    <div class="wrap">
+        
+        <input type="button" value="<">
+        <input type="button" value=">">
+        
+            <img src="img/6.jpg" >
+            <img src="img/7.jpg" class="hide">
+            <img src="img/8.jpg" class="hide">
+            <img src="img/9.jpg" class="hide">
+            <img src="img/10.jpg" class="hide">
+        
+    </div> 
+</body>
+</html>

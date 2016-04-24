@@ -1,0 +1,94 @@
+@charset "utf-8";
+/* CSS Document */
+
+/* reset */
+html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, font, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, b, u, i, center, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td {margin: 0; padding: 0; border: 0; outline: 0; font-size: 100%; vertical-align: baseline; background: transparent;}
+body {line-height: 1;}
+ol, ul {list-style: none;}
+blockquote, q {quotes: none;}
+blockquote:before, blockquote:after, q:before, q:after {content: ''; content: none;}
+/* remember to define focus styles! */
+:focus {outline: 0;}
+/* remember to highlight inserts somehow! */
+ins {text-decoration: none;}
+del {text-decoration: line-through;}
+/* tables still need 'cellspacing="0"' in the markup */
+table {border-collapse: collapse; border-spacing: 0;}
+/* end reset */
+
+body{background:#211D1E;}
+#header{width:100%;height: 160px;}
+#link_header{width: 960px;height: 39px;margin: 0px auto;background:#000000;}
+#pic_header{width: 100%;height: 58px;margin: 0px auto;background: #B9B9B9;}
+#pic_header .img1{float: left; display: block; height: 58px;margin-left: 219px;}
+#link_header .img2{display: block; width: 120px; height: 29px;float:right;margin-top: 6px;}
+#link_header ul li{float: left;height: 39px;border-left: 1px solid #92A28D;text-align: center;font: 12px/39px '微软雅黑';}
+.right_bor{border-right: 1px solid #92A28D;}
+#link_header ul li a{display: block;height: 39px;margin: 0px 15px;color: #A2A2A2;text-decoration: none;}
+#link_header ul li a:hover{color: white;text-decoration: underline;}
+
+#nav_header{width: 960px;height: 68px;margin: 0px auto; background: linear-gradient(#231F20,#393737);position: relative;}
+#nav_header #img{position: absolute;background: url(img/logo_pic.png) no-repeat;;background-position: 0px -20px;width: 140px;height: 130px;left: 16px;z-index: 23;}
+#nav_header #img:hover{background-position: 0px 0px;}
+#nav_header .word_list{position: relative; margin-left: 164px;top:35px;left: 4px; }
+#nav_header .word_list .word{float: left;border-left: 1px solid #515050;border-bottom: 2px solid gray;margin-left: 4px;}
+#nav_header .word_list .word a{display: block;text-decoration: none;color: #EEEEEE;margin: 10px 0px 10px 10px;font-size: 17px;line-height: 30px; margin: 0px 10px;font-family: "微软雅黑"}
+#nav_header .word_list .word:hover{background: linear-gradient(#2C2929,#4E4D4D);}
+.list_nav{position: absolute;top: 34px;width: 210px;background: #4E4D4D;z-index: 999;overflow: hidden;display: none;}
+.list_nav ul li{height: 35px;color: #DEDEDE;}
+#nav_header .word_list .word .list_nav a{display: block;font-size: 12px;border-bottom: 1px solid gray;font-weight: 600;margin: 0 10px;height: 100%;text-indent: 2em;border-radius: 2px;}
+#nav_header .word_list .word .list_nav a:hover{background: #3F3F3F;}
+.border_radius{border-bottom-left-radius:4px;
+border-bottom-right-radius:4px;
+}
+.none{height: 0px;width: 0px;}
+
+#contant{width: 960px;margin: 0px auto;}
+#pic_ppt{height: 340px;width: 960px;position: relative;margin: 10px 0px;}
+#pic_ppt img{height: 340px;width: 960px;position: absolute;z-index: 3;opacity: 0;}
+#pic_ppt .list_pic{position: absolute;right:5px;bottom: 5px;z-index: 40;}
+#pic_ppt span{display: block;color: #85898B;background:#272323;height: 24px;width: 24px;text-align: center;font:900 20px/24px '';border-radius: 4px;float: left;margin-left: 2px;}
+#pic_ppt span:hover{cursor: pointer;background:#8C9091;color: #FFFFFB;}
+
+#pic_move{width: 920px; height: 114px;background: #161616;border-radius: 4px;padding: 20px;position: relative;}
+#pic_move span{display: block;height: 50px;width: 30px;background: black;color: #F26822;font: 30px/50px '';text-align: center;cursor: pointer;position: absolute;border: 2px solid #595959;border-radius: 4px;}
+#pic_move #left{left: -30px;top: 52px;}
+#pic_move span:hover{background:#F26822;color: white; }
+#pic_move #right{right: -30px;top: 52px;}
+#pic_move ul{width: 920px;height: 114px;overflow: hidden;position: relative; }
+#pic_move li{height: 114px;width: 230px;position: absolute;}
+#pic_move li img{height: 110px;width: 220px;display: block;margin: 0px auto;border: 2px solid #161616;}
+#pic_move li img:hover{cursor: pointer;border: 2px solid #F26822;}
+
+
+#word_list{height: 148px;margin-top: 14px;}
+#word_list li{background:#161616;width: 319px;height: 148px; float: left;border-radius: 4px; }
+.left_border{border-right:1px dashed #DEDEDE;}
+#word_list li:hover{background:#000000;cursor: pointer;}
+#word_list li:hover span{color: #F06618;}
+#word_list li:hover h1{color: white;}
+#word_list li a{text-decoration: none;}
+#word_list li h1{color: #F06618;margin: 15px 30px;font: 20px/40px '';}
+#word_list li p{color: #DEDEDE;margin: 15px 25px;font: 15px/20px '';}
+#word_list li span{color: white;font: 18px/20px '';display: block;margin-left: 180px;}
+
+#foot{width: 100%;background: #2D292A;}
+#up_foot{height: 345px;width: 960px;margin: 0px auto;position: relative;}
+#up_foot h2{position: absolute; font-size: 22px;color: white;top: 40px;left: 0px;}
+#up_foot ul{position: absolute; left: 0px;top: 80px;}
+#up_foot ul li{width: 590px; height: 40px; border-bottom: 1px solid gray;line-height: 40px;font-family: 'Tahoma';font-size: 14px;}
+#up_foot ul li em{float: right;font-family: serif;}
+#up_foot ul li a{color: #B3B3B3;text-decoration: none;}
+#up_foot ul li:hover{background: #231F20;text-decoration: underline;}
+#up_foot span{color: white;font-weight: 600;font-family: 'Tahoma';font-size: 15px;position: absolute;bottom: -30px;right: 0px;}
+#up_foot span:hover{color: #F2681B;cursor: pointer;}
+#up_foot img{display: block;position: absolute;border: 3px solid #2D292A;}
+.img_up{right: 0px;top: 0px;}
+.img_down{right: 0px;top: 130px;}
+#up_foot img:hover{border: 3px solid #F26822;}
+
+#down_foot{width: 100%;background:#000000;height: 60px; }
+#down_foot div{ width: 960px;margin: 0px auto;position: relative;}
+#down_foot div img{height: 60px;}
+
+#top_return{position: fixed;left: 90%;bottom: 10%;width: 40px;height: 60px;background: black;text-decoration: none;color:#F26822;text-align: center;font: 20px/30px '';display: none; }

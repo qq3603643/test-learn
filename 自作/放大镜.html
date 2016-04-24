@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+<style>
+    #container{position: relative;width: 180px;float: left;margin-right: 10px;}
+    #container img{width: 180px;height: 220px;}
+    #img2{border: 2px solid blue;float: left;display: none;overflow: hidden;}
+    #img2 img{position: relative;left:0px;right: 0px;}
+    #small{width: 60px;height: 60px;background: white;filter: alpha(opacity(40));opacity: 0.4;position: absolute;left: 0px;top: 0px;border:1px solid black;display: none;}
+</style>
+<script>
+window.onload = function(){
+    
+    var osDiv = document.getElementById('small');
+    var obDiv = document.getElementById('container');
+    var oImg = document.getElementById('img');
+    var oImg2 = document.getElementById('img2');
+    var oImg22 = document.getElementById('img22');
+   
+    obDiv.onmouseover = function(ev){
+    
+        var  ev = ev||window.event;
+        var  l = ev.clientX - 20;
+        var  t = ev.clientY - 20;
+        if(l>120){
+            l = 120;
+        }
+        if(t>160){
+            t = 160;}
+        if(l<0){
+            l = 0;}
+        if(t<0){
+            t = 0;}
+        
+        osDiv.style.left = l + 'px';
+        osDiv.style.top = t + 'px';
+        osDiv.style.display = 'block'; 
+        oImg2.style.display = 'block';
+        var  x = ev.clientX - osDiv.offsetLeft;
+        var y = ev.clientY - osDiv.offsetTop;
+        
+    obDiv.onmousemove = function(ev){
+        clearTimeout(osDiv.timer)
+        var  ev = ev||window.event;
+        oImg.onmouseover = null;
+        
+        var L = ev.clientX - x;
+        var T = ev.clientY - y;
+        
+        if(L>118){
+            L = 118; 
+        }
+        if(T>158){
+            T = 158;}
+        if(L<0){
+            L = 0;}
+        if(T<0){
+            T = 0;}
+        osDiv.style.left = L + 'px';
+        osDiv.style.top = T  + 'px';
+
+        document.title = T/220;
+        oImg22.style.left = -(L/180)*640  + 'px';
+        oImg22.style.top = -(T/220)*840 + 'px';
+        oImg2.style.width = (osDiv.offsetWidth/oImg.offsetWidth) * 640 + 'PX';
+        oImg2.style.height = (osDiv.offsetHeight/oImg.offsetHeight) * 840 + 'PX';
+        }
+    
+        obDiv.onmouseout = function(){
+            
+        osDiv.timer = setTimeout(function(){
+            
+            osDiv.style.display = 'none';
+            oImg2.style.display = 'none';
+                                           },100)
+            
+        }
+    
+     return false;
+    }
+   
+    }   
+</script>
+</head>
+<body>
+    <div id="container">
+        
+        <img id="img" src= "img/10.jpg">
+        
+        <div id="small"></div>
+    </div>
+    <div id="img2">
+        <img id="img22"  src="img/10.jpg">
+    </div>
+</body>
+</html>

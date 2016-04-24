@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+<style>
+   
+</style>
+    
+</head>
+<body>
+<!--
+display:inline; 内联元素，简单来说就是在同一行显示。
+display:block; 块级元素，简单来说就是就是有换行，会换到第二行。
+display:inline-block; 就是在同一行内的块级元素。
+
+说概念太模糊，来个真实案例吧。
+-->
+
+<a href="#" style="display:inline;width:100px;height:100px;background:#ccc;">链接一</a><a href="#" style="display:inline;width:100px;height:100px;background:#ccc;">链接一</a>
+   
+<!--A默认就是一行，所以inline用在这里是废的。宽高度设置也是费的。-->
+
+<a href="#" style="display:block;width:100px;height:100px;background:#ccc;">链接一</a><a href="#" style="display:block;width:100px;height:100px;background:#ccc;">链接一</a>
+
+<!--块状，这里高宽度就生效了，但是因为是块状，前后有换行符，所以这是两行了。-->
+
+<a href="#" style="display:inline-block;width:100px;height:100px;background:#ccc;">链接一</a><a href="#" style="display:inline-block;width:100px;height:100px;background:#ccc;">链接一</a>
+
+<!--这样就是同时达到块状，而且在同一行显示。-->
+    
+</body>
+</html>

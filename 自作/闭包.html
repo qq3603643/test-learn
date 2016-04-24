@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <script src="jquery-1.11.3.js"></script>
+    <script>
+        $(function() {
+            //
+            //            function a() {
+            //
+            //                var a = 5;
+            //
+            //                function b() {
+            //                    alert(a);
+            //                }
+            //                return b;
+            //            }
+            //
+            //            var c = a();
+            //            c();
+
+            //            var c = (function() {
+            //
+            //                var a = 3;
+            //                return function() {
+            //
+            //                    a++;
+            //                    alert(a);
+            //                }
+            //            })();
+            //
+            //            c();
+            //            c();
+
+            var c = (function() {
+
+                var a = 2;
+
+                function aaa() {
+
+                    a++;
+                    alert(a);
+                }
+
+                function bbb() {
+
+                    a++;
+                    alert(a);
+                }
+
+                return {
+                    a: aaa,
+                    b: bbb,
+                }
+            })()
+
+            c.a();
+            c.b();
+
+        })
+
+    </script>
+</head>
+
+<body>
+
+</body>
+
+</html>

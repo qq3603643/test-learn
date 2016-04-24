@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+
+<body>
+    <input type="button" data-hash="black" value="black">
+    <input type="button" data-hash="red" value="red">
+
+    <script>
+        var aBtn = document.getElementsByTagName('input');
+
+        for (var i = 0; i < aBtn.length; i++) {
+            aBtn[i].onclick = function() {
+
+                window.location.hash = this.dataset.hash;
+            }
+        }
+
+        window.onhashchange = function() {
+            var m = window.location.hash.length - 1;
+            var str = window.location.hash.substr(1, m);
+            switch (str) {
+                case 'black':
+                    document.body.style.background = 'black';
+                    break;
+                case 'red':
+                    document.body.style.background = 'red';
+                    break;
+                case '':
+                    document.body.style.background = 'white';
+                    break;
+
+            }
+        }
+
+    </script>
+</body>
+
+</html>

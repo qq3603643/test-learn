@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+<style>
+    .left_nav{position: absolute;left: 20px;top: 100px;width: 100px;height: 300px;border: 2px solid black}
+    .container{position: absolute;left: 140px;top: 100px;width: 400px;height: 2300px;border: 2px solid black}
+</style>
+<script>
+window.onload = function(){
+    var oBdiv = document.getElementsByTagName('div')[1];
+    var oSdiv = document.getElementsByTagName('div')[0];
+     
+    window.onscroll = function(){
+        var iHeight = document.body.scrollTop - oBdiv.offsetTop;
+        var speed = 0;
+        clearInterval(oSdiv.timer)
+        if(iHeight>0 || parseInt(getStyle(oSdiv,'top'))>100){
+             
+          oSdiv.timer =   setInterval(function(){
+                
+               speed = (100 + iHeight - oSdiv.offsetTop)/9;
+               speed = Math.ceil(speed);
+       
+              if(oSdiv.offsetTop < 100){
+                  oSdiv.style.top = 100+'px';
+                  clearInterval(oSdiv.timer);
+              }else{
+                  oSdiv.style.top = oSdiv.offsetTop + speed + 'px';
+              }
+            },20)
+        
+        
+        }
+      }
+     
+function getStyle ( obj, attr ) { return obj.currentStyle?obj.currentStyle[attr] : getComputedStyle( obj )[attr]; }
+}    
+</script>
+</head>
+<body>
+    <div class="left_nav"></div>
+    <div class="container"></div>
+</body>
+</html>

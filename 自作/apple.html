@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+<style>
+    #wrap{width: 600px;height: 200px;border: 2px solid black;position: relative;margin: 50px auto;overflow: hidden;}
+    #contant{width: 600px;}
+    #contant ul{margin: 0px;padding: 0px;}
+    #contant ul li{list-style: none;width: 50px;height: 50px;background: red;position: absolute;box-shadow: 2px 2px 3px gray;}
+    #desk{width: 540px;height: 4px;background: black;left: 30px;bottom: 20px;position: absolute}
+</style>
+<script src="jquery-1.11.3.js"></script>
+<script>
+$(function(){
+    
+    $('li').css('top','100px');
+    for(var i =0;i<$('li').length;i++){
+        
+        $('li').eq(i).css('left',(i+1)*90 +'px');
+    }
+  
+   $('#black').click(function(ev){
+         var m =0;
+         ev.timer = setInterval(function(){
+           $('li').eq(m).animate({left:'-100px'},500)
+           m++;
+            if(m==$('li').length){
+                clearInterval(ev.timer);
+            }
+         },200)
+   })  
+    
+})    
+</script>
+</head>
+<body>
+   <div id="wrap">
+   <input type="button" id="red" value="red">
+   <input type="button"  id="black" value="black">
+   <div id="contant">
+       <ul>
+           <li></li>
+           <li></li>
+           <li></li>
+           <li></li>
+           <li></li>
+       </ul>
+   </div>
+    <div id="desk"></div>
+    </div>
+</body>
+</html>

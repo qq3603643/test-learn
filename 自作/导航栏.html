@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+<style>
+    *{margin: 0px;padding: 0px;}
+    a{text-decoration: none;color: white;}
+    #abc{margin-left: auto;margin-right: auto;margin-top: 20px;height: 40px;width:200px; background: black; }
+    .def{list-style: none;width: 49px;height: 40px;margin-right: 1px;background: red;float: left;text-align: center;line-height: 40px;cursor: pointer;}
+    .ghi{list-style: none;background: black;color: azure;margin-top: 1px;height: 40px;}
+    
+</style>
+<script src="mine.js"></script>
+<script>
+window.onload = function(){
+    oAbc = document.getElementById('abc');
+    aUl = oAbc.getElementsByTagName('ul');
+    aLi = oAbc.getElementsByClassName('def');
+    
+    aLi[0].style.background = 'black';
+    for(var i=0;i<aUl.length;i++){
+        aUl[i].style.display = 'none';
+        
+    }
+    
+    for(var i=0;i<aLi.length;i++){
+        aLi[i].index = i;
+        aLi[i].onmouseover = function(){
+            for(var i=0;i<aLi.length;i++){
+                aLi[i].style.background = 'red';
+            }
+            this.style.background = 'black';
+            aUl[this.index].style.display = 'block';
+            
+        }
+          aLi[i].onmouseout = function(){
+            
+            aUl[this.index].style.display = 'none';
+        }
+        
+    }
+}    
+</script>
+</head>
+<body>
+    <ul id ="abc">
+        <li class="def"><a href="#">a</a>
+            <ul>
+                <li class="ghi">1</li>
+                <li class="ghi">2</li>
+                <li class="ghi">3</li>
+                <li class="ghi">4</li>
+            </ul>
+        
+        </li>
+        <li class="def"><a href="#">b</a>
+         <ul>
+                <li class="ghi">1</li>
+                <li class="ghi">2</li>
+                <li class="ghi">3</li>
+                <li class="ghi">4</li>
+            </ul>
+        </li>
+        <li class="def"><a href="#">c</a>
+        <ul>
+                <li class="ghi">1</li>
+                <li class="ghi">2</li>
+                <li class="ghi">3</li>
+                <li class="ghi">4</li>
+            </ul>
+        
+        </li>
+        <li class="def"><a href="#">d</a>
+        
+        <ul>
+                <li class="ghi">1</li>
+                <li class="ghi">2</li>
+                <li class="ghi">3</li>
+                <li class="ghi">4</li>
+            </ul>
+        </li>
+    </ul>
+</body>
+</html>

@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style>
+        .box {
+            margin: 20px 0px 0px 100px;
+            width: 40px;
+            height: 40px;
+            background: black;
+        }
+        
+        .move {
+            animation: domove 1s;
+        }
+        
+        @keyframes domove {
+            0% {
+                opacity: 1;
+                width: 40px;
+                height: 40px;
+            }
+            70% {
+                opacity: 0.1;
+                width: 100px;
+                height: 100px;
+                background: red;
+                margin-left: 70px;
+                margin-top: 0px;
+            }
+            100% {
+                opacity: 1;
+                width: 40px;
+                height: 40px;
+            }
+        }
+
+    </style>
+</head>
+
+<body>
+    <div class="box"></div>
+    <script src="jquery-1.11.3.js"></script>
+    <script>
+        $('.box').on('mouseover', function() {
+            $(this).removeClass('move');
+
+            var _this = $(this);
+            setTimeout(function() {
+                _this.addClass('move');
+
+            }, 200)
+
+        })
+
+    </script>
+</body>
+
+</html>

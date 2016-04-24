@@ -1,0 +1,226 @@
+@charset "gb2312";
+/* CSS Document */
+
+a{ text-decoration:none; color:#666;}
+.page{ width:1000px; margin:0 auto; background:#fff;font-family:Œ¢»Ì—≈∫⁄;font-size:16px;}
+.lists{ width:970px; margin:0 auto; overflow:hidden; padding-top:17px; padding-bottom:17px;}
+.linav{ width:190px; border:1px solid #ccc; float:left; background:#f5f5f5;}
+.linbox{ width:190px;}
+.linbox h6{ width:190px; height:34px; background:#c5c8c6; line-height:34px;}
+.linbox h6 a{ width:150px; height:34px; display:block; cursor:pointer; background: 20px 12px no-repeat; color:#fff; font-size:14px; padding-left:40px;}
+.linbox ul li{ width:190px; height:30px; line-height:30px; background:url(../images/list/lnline.jpg) bottom no-repeat; font-size:12px;}
+.linbox ul li a{  42px 10px no-repeat; width:130px; height:30px; padding-left:60px; display:block;}
+.linbox ul li a:hover{ color:#F00; text-decoration:underline;}
+
+.limain{ width:758px; border:1px solid #ccc; float:right;}
+.limtit{ width:758px; height:33px; border-bottom:1px solid #ccc; background:#f5f5f5; }
+.limtit p{background:url(../images/list/lloca.jpg) left no-repeat; font-size:12px; margin-left:15px; padding-left:15px; padding-top:3px; line-height:30px; color:#666;}
+.limtit p a:hover{ text-decoration:underline; color:#F00;}
+.limjs{ width:708px; border:1px solid #ccc; height:157px; margin:0 auto; margin-top:24px; background:url(../images/list/lxmjs.jpg) left no-repeat #f5f5f5;}
+.limjs h4{ width:565px; padding-left:120px; font-size:14px; color:#22ac38; height:30px; line-height:30px; margin-top:12px;}
+.limjs p{ width:565px; padding-left:120px; font-size:12px; color:#666; line-height:26px;}
+.limm{ width:690px; margin:0 auto; padding-top:15px;}
+.limbox{ width:690px; border-bottom:1px solid #ddd; margin-top:10px;}
+.limbox h5{ font-size:14px; font-weight:normal; color:#333; background:url(../images/base/ldot.jpg) left no-repeat; padding-left:10px; width:670px; height:30px; line-height:30px;}
+.limbox h5 span{float:right; margin-right:30px; color:#999;font-size:14px; }
+.limbox h5 a{ color:#333;}
+.limbox h5 a:hover{ color:#F00; text-decoration:underline;}
+.limbox p{ font-size:12px; color:#666; line-height:24px; width:670px; padding-left:10px;}
+.limbox p a{ color:#01881a;}
+.limbox p a:hover{ color:#F00; text-decoration:underline;}
+.limbtn{ width:670px; margin-left:10px; overflow:hidden; height:20px;}
+.limbkey{ width:400px; float:left; font-size:12px; line-height:24px; color:#666;}
+.limbkey a{ color:#01881a;}
+.limbkey a:hover{ color:#F00; text-decoration:underline;}
+.limbb{ width:180px; float:right; overflow:hidden; padding-top:3px;}
+.limbb a{ width:68px; height:15px; display:block; margin-left:2px; _margin-left:1px; float:left; font-size:12px; padding-top:5px; padding-left:20px; text-align:center; color:#fff;}
+.lonline{ background:url(../images/list/lonline.jpg) no-repeat;}
+.lqq{background:url(../images/list/lqq.jpg) no-repeat;} 
+
+.limbox01{ width:690px; border-bottom:1px solid #ddd; margin-top:20px; padding-bottom:10px;}
+.limbox01 h5{ font-size:14px; font-weight:normal; color:#22ac38; background:url(../images/base/ldot.jpg) left no-repeat; padding-left:10px; width:670px; height:30px; line-height:30px;}
+.limbox01 h5 a{ color:#666;}
+.limbox01 h5 a:hover{ color:#F00; text-decoration:underline;}
+.libottom01{ width:690px; height:97px;}
+.liimg01{ float:left; width:160px; height:80px; border:1px solid #ccc; margin:7px 0px 0px 10px;}
+.limbox01 p{ float:right; font-size:12px; color:#666; line-height:24px; width:500px;}
+.limbox01 p a{ color:#22ac38;}
+.limbox01 p a:hover{ color:#F00; text-decoration:underline;}
+.limbtn01{ float:right; width:500px; margin-left:10px; overflow:hidden; height:25px; _margin-top:-20px;}
+.limbkey01{ width:300px; float:left; font-size:12px; line-height:25px; color:#666;}
+.limbkey01 a{ color:#22ac38;}
+.limbkey01 a:hover{ color:#F00; text-decoration:underline;}
+.limbb01{ width:180px; float:right; overflow:hidden; padding-top:3px;}
+.limbb01 a{ width:68px; height:15px; display:block; margin-left:2px; _margin-left:1px; float:left; font-size:12px; padding-top:5px; padding-left:20px; text-align:center; color:#fff;}
+
+.pagination {
+	height: 34px;
+	text-align: center;
+	margin-top:40px;
+}
+.pagination p {
+	display: inline-block;
+	height: 34px;
+	margin-right: 5px;
+}
+
+.pagination p span{
+  color: #FFF;
+  background: #171616;
+   float: left;
+	display: block;
+	-webkit-transition: all 0.3s ease-out;
+	height: 32px;
+	line-height: 32px;
+	padding: 0 12px;
+	font-size: 12px;
+	border: 1px solid #f1f1f1;
+	text-decoration: none;
+}
+.pagination p a {
+	float: left;
+	display: block;
+	-webkit-transition: all 0.3s ease-out;
+	height: 32px;
+	line-height: 32px;
+	padding: 0 12px;
+	font-size: 12px;
+	border: 1px solid #f1f1f1;
+	background:#fff;
+	color: #666;
+	text-decoration: none;
+}
+.pagination p a:hover {
+	background:#111;
+	color:#fff;
+}
+.pagination p.al {
+	background: #111;
+	color: #fff;
+}
+.pagination p.al a, .pagination p.al a:hover {
+	background: transparent;
+	border-color: #111;
+	color: #fff;
+	cursor: default;
+}
+.pagination p a.al {
+	display: table;
+	margin-top: 6px;
+}
+/*.liscot{ width:670px; padding-top:30px; *+padding-top:20px; margin-bottom:46px; *+margin-bottom:42px; padding-bottom:10px; font-size:12px;}
+.liscot p{ text-align:center;}
+.liscot p span{ padding-left:5px;padding-right:5px;padding-top:3px; padding-bottom:3px; color:#FFF; background:#038a3b;}
+.liscot p a{ text-decoration:none; height:50px;  border:1px solid  #CCC; color:#038a3b;padding-left:5px;padding-right:5px;padding-top:3px; padding-bottom:3px;}
+.liscot p a:hover{ text-decoration:none; color:#F00; background:#038a3b; padding-left:5px;padding-right:5px;padding-top:3px; padding-bottom:3px;}*/
+#scotnow{ background:#22ac38; border:1px solid #1a802b; color:#fff;}
+
+/*content*/
+.cmain{ width:700px; border:1px solid #ccc; float:left; font-size:14px;font-family:Œ¢»Ì—≈∫⁄; line-height:30px; word-spacing:2px;}
+.cmtit{ width:700px; height:33px; border-bottom:1px solid #ccc; background:#f5f5f5; }
+.cmtit p{background:url(../images/list/lloca.jpg) left no-repeat; font-size:14px; margin-left:15px; padding-left:15px; padding-top:3px; line-height:30px; color:#666;}
+.cmtit p a:hover{ text-decoration:underline; color:#F00;}
+.cmm{ width:660px; margin:0 auto; padding-top:30px;}
+.cmm h1{ text-align:center; font-size:18px; font-family:Œ¢»Ì—≈∫⁄;  line-height:34px; color:#333;}
+.cmmsm{ width:660px; height:30px; line-height:30px; text-align:center; font-size:14px; color:#666; margin-top:5px; padding-bottom:12px;}
+.cmmsm span{  padding:2px 5px 0px 5px; }
+.cmmsm span a{ color:#fff;}
+.cmmadv{ width:575px; height:84px; margin:0 auto; background:#f0eef1; margin-bottom:20px;}
+.cmm p{ line-height:24px; color:#222; margin-top:10px; font-size:14px;}
+.cmkey{ width:660px; background:url(../images/list/cline.jpg) top no-repeat; height:50px; font-size:12px; line-height:50px; margin:0 auto; margin-top:20px;}
+.cmkey a{ color:#01881a;}
+.cmkey a:hover{ text-decoration:underline;color:#F00;}
+.cmzz{font-family:Œ¢»Ì—≈∫⁄;font-size:14px;margin-bottom:10px;padding-left:20px;line-height:24px; color:#000;}
+.cmzz a:hover{color:#000;}
+.cmtj{ width:660px; margin:0 auto; border-top:1px dashed #e3e3e3; border-bottom:1px dashed #e3e3e3; font-size:14px; color:#666; height:80px;}
+.cmtj ul{ width:660px; height:40px; line-height:40px;}
+.cmtj ul li{ width:500px; float:left;margin-right:5px;}
+.cmtj ul li a{ color:#555}
+.cmtj ul li a:hover{ text-decoration:underline; color:#F00;}
+.cmtips{ width:641px; height:204px; margin:0 auto; background:url(../images/list/cwxts.jpg) no-repeat; margin-top:20px;}
+.cmtspan{ width:630px; height:36px; line-height:36px;  padding-top:4px; text-align:right; font-size:12px;}
+.cmtspan a{ color:#fff;}
+.cmtspan a:hover{ text-decoration:underline;}
+.cmtips p{ font-size:12px; line-height:24px; color:#333; margin-left:106px; width:513px; margin-top:14px; height:61px;}
+.cmtbtn{ width:635px; overflow:hidden; padding-left:5px;}
+.cmtbtn a{ width:197px; height:77px; display:block; text-indent:-999px; float:left; margin-left:10px; _margin-left:5px;}
+.cmwz{ width:641px; margin:0 auto; padding-top:20px; overflow:hidden;}
+.cmabout{ width:305px;}
+.cmabout h6{ color:#333; font-size:14px; background:url(../images/list/cdot01.jpg) 6px 7px no-repeat; border-bottom:1px solid #ccc; width:291px; padding-left:14px; height:30px; line-height:30px;}
+.cmabout ul{ width:290px; overflow:hidden; padding-left:15px;  padding-top:15px;}
+.cmabout ul li{ width:290px; font-size:12px; line-height:28px; background:url(../images/base/ldot.jpg) left no-repeat; overflow:hidden; height:28px;}
+.cmabout ul li p{ float:left; width:190px; overflow:hidden; padding-left:12px;}
+.cmabout ul li p a:hover{ color:#F00; text-decoration:underline;}
+.cmabout ul li span{ float:right; color:#999; width:80px;}
+.cmzt{ width:641px; margin:0 auto; margin-top:12px;}
+.cmzttit{ width:641px; border-bottom:1px solid #ccc; height:30px; line-height:30px; overflow:hidden;}
+.cmzttit h6{color:#333; font-size:14px; background:url(../images/list/cdot01.jpg) 4px 7px no-repeat; width:500px; padding-left:14px; float:left;}
+.cmzttit span{ width:80px; font-size:14px; color:#22ac38; float:right; text-align:right; padding-right:5px;}
+.cmzttit span a{ color:#22ac38;}
+.cmzttit span a:hover{ color:#F00; text-decoration:underline;}
+.cmzt ul{ width:641px; overflow:hidden; padding-top:14px; padding-bottom:10px;}
+.cmzt ul li{ width:182px; float:left; margin-left:24px; display:inline;}
+.cmzt ul li img{ width:180px; height:123px; border:1px solid #ccc;}
+.cmzt ul li p{ width:180px; text-align:center; font-size:12px; color:#666; line-height:30px;} 
+.cmzt ul li p a:hover{ color:#F00; text-decoration:underline;}
+
+.cright{ width:252px; float:right;}
+.ccare{ width:250px; border:1px solid #ccc;}
+.fixed{position:fixed;top:8px;_position:absolute; _top:expression(offsetParent.scrollTop+8);background:#fff}
+.ctit{ width:250px; height:33px; border-bottom:1px solid #ccc; line-height:33px; overflow:hidden; background:#f5f5f5;}
+.ctit h5{ float:left; background:url(../images/list/cdot01.jpg) left no-repeat; font-size:14px; color:#333; padding-left:12px; margin-left:10px;}
+.ctit span{ font-size:12px; float:right; padding-right:10px; display:inline;}
+.ctit span a{ color:#22ac38;}
+.ctit span a:hover{ text-decoration:underline; color:#F00;}
+.ccare ul{ width:220px; margin:0 auto; margin-top:14px; margin-bottom:10px;}
+.ccare ul li{ width:210px; height:26px; line-height:30px; background:url(../images/list/cdot02.jpg) left no-repeat; padding-left:10px; overflow:hidden; font-size:14px;}
+.ccare ul li a:hover{ color:#F00; text-decoration:underline;}
+.cexpert{ width:250px; border:1px solid #ccc; margin-top:14px;}
+.cexp{ width:232px; height:257px; margin:0 auto; margin-top:12px;}
+.cexpbtn{ width:232px; height:22px; margin:0 auto; overflow:hidden; padding-top:10px; padding-bottom:10px;}
+.cexpbtn a{ text-align:center; width:114px; height:20px; display:block; font-size:12px; line-height:20px; color:#fff;}
+.orange{background:#fe8200;}
+.lvse{ background:#22ac38;}
+
+.corder{ width:250px; border:1px solid #ccc; margin-top:1px; overflow:hidden;  padding-bottom:1px;}
+
+.ceffect{ width:250px; border:1px solid #ccc; margin-top:4px;}
+.ceffect ul{ width:250px; margin-top:10px; margin-bottom:10px;}
+.ceffect ul li{ width:232px; height:111px; background:url(../images/list/casebg.jpg) no-repeat; padding-left:18px; padding-top:12px;}
+.ceffect ul li img{ width:214px; height:100px;}
+.cjishu{ width:250px; border:1px solid #ccc; margin-top:14px;}
+.cjishu ul{ width:232px; margin:0 auto; margin-top:12px; padding-bottom:6px;}
+.cjishu ul li{ width:232px; height:44px; margin-bottom:7px;} 
+
+.order{width:250px; border:1px solid #ccc;margin-top:4px; height:250px;}
+.orderp{width:600px; border:1px solid #ccc;margin-top:4px; height:375px;}
+.orderp ul{padding:10px;}
+
+/* ‘À––°¢∏¥÷∆ ¥˙¬Î*/
+.code_Effects_btn1 { float: left; height: 30px; width: 380px; margin-top:10px;}
+.code_Effects_btn02 { border: 0; line-height: 160%; background: #5CB85C; height: 24px; width: 70px; color: #fff; font-size: 12px; cursor: pointer; margin-right: 5px;}
+.code_Effects_btn02:hover { background: #D9534F; }
+.code_Effects_span { font-size: 12px;  height: 30px; float: left; line-height: 30px; margin-top:8px;}
+.code_down_content textarea { font-size: 12px; }
+
+/*œ¬‘ÿ */
+.download{ margin:0 auto; width:100%; border:0px #FFFFFF solid;text-align: center; margin-top:10px;}
+.download span{ margin:0 auto;}
+.single_add_to_cart_button {
+    background: url("../images/base/aseoe_download.gif") no-repeat scroll 0 0 transparent;
+    border: medium none;
+    color: transparent;
+    cursor: pointer;
+    display: inline-block;
+    height: 60px;
+    width: 180px;
+}
+.single_add_to_cart_button:hover,.single_add_to_cart_button2:hover {background-position: 0 -58px;}
+.single_add_to_cart_button2 {
+    background: url("../images/base/aseoe_show.gif") no-repeat scroll 0 0 transparent;
+    border: medium none;
+    color: transparent;
+    cursor: pointer;
+    display: inline-block;
+    height: 60px;
+    width: 180px;

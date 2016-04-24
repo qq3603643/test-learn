@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style>
+        #box {
+            width: 100px;
+            height: 100px;
+            background: black;
+            position: absolute;
+        }
+        
+        #box2 {
+            width: 100px;
+            height: 100px;
+            background: red;
+            position: absolute;
+            left: 100px;
+            top: 200px;
+        }
+
+    </style>
+    <script src="jquery-1.11.3.js"></script>
+    <script src="trag.js"></script>
+    <script src="traglimit.js"></script>
+    <script>
+        $(function() {
+
+            new trag('#box');
+            new limitTrag('#box2');
+        })
+
+    </script>
+</head>
+
+<body>
+    <div id="box"></div>
+    <div id="box2"></div>
+</body>
+
+</html>

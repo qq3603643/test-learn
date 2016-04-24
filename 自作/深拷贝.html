@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        var a = {
+
+            a: 10,
+            b: {
+                name: 'liu',
+                sex: 'felman'
+            }
+        }
+
+        //var b = JSON.parse(JSON.stringify(a));
+        var b = deepCopy(a);
+
+        function deepCopy(obj) {
+
+            var newObj = {};
+
+            if (typeof obj != 'object') {
+
+                return obj;
+            }
+
+            for (var attr in obj) {
+
+                newObj[attr] = deepCopy(obj[attr]);
+            }
+            return newObj;
+        }
+        b.b.name = 'xjc';
+        alert(a.b.name)
+
+    </script>
+</body>
+
+</html>

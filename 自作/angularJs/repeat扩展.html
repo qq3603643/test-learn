@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="app">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style>
+        .active1 {
+            background: red;
+        }
+        
+        .active2 {
+            background: black;
+        }
+
+    </style>
+    <script src="angular.min.js"></script>
+    <script>
+        var x = angular.module('app', []);
+        x.controller('ac', function($scope) {
+
+            $scope.name = [34, 65, 2, 57, 23];
+        })
+
+    </script>
+</head>
+
+<body ng-controller="ac">
+    <p class="{{$even ? 'active2' : 'active1'}}" ng-repeat="i in name">{{i}}</p>
+</body>
+
+</html>

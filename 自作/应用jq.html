@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<style>
+    .contant{width: 300px;height: 200px;float: left;margin-right: 30px;margin-bottom: 30px;background: gray;}
+    #wrap{width: 300px;height: 200px;position: absolute;left: 338px;top: 238px;transform-style: preserve-3d;perspective: 390px;} 
+    #wrap .box{width: 150px;height: 200px;float: left;background: white;transition: 1s;}
+    .Rmove{transform: rotateY(90deg);transform-origin: right;opacity: 0;}
+    .Lmove{transform: rotateY(-90deg);transform-origin: left;opacity: 0;}
+    .remove{transform: rotate(0deg);}
+</style>
+<script src="jquery-1.11.3.js"></script>
+<script>
+   $(function(){
+       
+      $('#wrap').hover(function(){
+    
+      },function(){
+          
+          $('.box').eq(0).removeClass('remove').addClass('Rmove');
+          $('.box').eq(1).removeClass('remove').addClass('Lmove');
+          
+//          $('.box').css('display','none');
+      })
+      
+      $('.contant').hover(function(){
+        var oTan = $('.box').get(0);  
+         if(getStyle(oTan,'opacity') == 0){
+             var L = $(this).position().left;
+             var T = $(this).position().top;
+             document.title = L + '||' + T;
+             $('#wrap').css({'left':L + 'px','top':T + 'px'});
+             
+             $('.box').eq(0).removeClass('Rmove').addClass('remove');
+             $('.box').eq(1).removeClass('Lmove').addClass('remove');
+             
+         }
+      },function(){})
+      
+      
+        function getStyle(Object,style){
+         return Object.currentStyle ? Object.currentStyle[style] :getComputedStyle(Object)[style]
+     }
+   })
+</script>
+<body style="background:black">
+   <div id="wrap">
+       <div class="box "></div>  
+       <div class="box "></div>
+       
+   </div>
+   <div class="contant"></div>
+   <div class="contant"></div>
+   <div class="contant"></div>
+   <div class="contant"></div>
+   <div class="contant"></div>
+   <div class="contant"></div>
+   <div class="contant"></div>
+   <div class="contant"></div>
+   <div class="contant"></div>
+   <div class="contant"></div>
+   <div class="contant"></div>
+   <div class="contant"></div>
+</body>
+</html>

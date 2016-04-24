@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style>
+        body {
+            height: 100%;
+            overflow: hidden;
+            background: #E97D5A;
+        }
+        
+        .wrap {
+            padding: 0px;
+            list-style: none;
+            width: 690px;
+            height: 350px;
+            margin: 100px auto;
+            position: relative;
+        }
+        
+        .wrap li {
+            border: 7px solid white;
+            border-radius: 7px;
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            left: 0px;
+            top: 0px;
+            opacity: 0;
+        }
+        
+        .wrap li img {
+            width: 100%;
+            height: 100%;
+        }
+        
+        .wrap span {
+            transition: 0.5s;
+            position: absolute;
+            top: 145px;
+            height: 40px;
+            width: 60px;
+            border: 1px solid black;
+            font: 900 40px/40px '';
+            background: white;
+            text-align: center;
+            opacity: 0;
+            z-index: 100000000000000000000;
+        }
+        
+        .wrap:hover span {
+            opacity: 0.5;
+        }
+        
+        .wrap span:hover {
+            opacity: 1;
+            cursor: pointer;
+        }
+        
+        .wrap .prew {
+            left: -20px;
+        }
+        
+        .wrap .next {
+            right: -30px;
+        }
+
+    </style>
+    <script src="jquery-1.11.3.js"></script>
+    <script>
+        $(function() {
+
+            var aSrc = ['Simg/1.jpeg', 'Simg/2.jpeg', 'Simg/3.jpeg', 'Simg/4.jpeg'];
+            var iLenght = aSrc.length;
+            var zIndex = iLenght;
+            var iNow = 0;
+            creat();
+
+            function creat() {
+                var str = '';
+                $.each(aSrc, function(i, item) {
+
+                    str += '<li><img src="' + item + '"></li>';
+                });
+                str += ' <span class="prew"> < </span><span class="next"> > </span>';
+                $('.wrap').html(str);
+                $.each($('.wrap li'), function(i, item) {
+
+                    item.style.zIndex = aSrc.length - i;
+                    var deg = Math.random() * 20;
+                    deg = deg > 10 ? deg : -deg;
+
+                    item.style.transform = "rotate(" + deg + "deg)";
+                    item.style.transform += 'scale(1.5)';
+
+                })
+                setTimeout(function() {
+                    show();
+                }, 200)
+
+            }
+
+            function show() {
+                $.each($('.wrap li'), function(i, item) {
+
+                    item.style.transition = '1.5s ' + 1000 * (iLenght - i) + 'ms';
+                    item.style.opacity = 1;
+                    var deg = Math.random() * 20;
+                    deg = deg > 10 ? deg : -deg;
+                    item.style.transform = 'scale(1) rotate(' + deg + 'deg)';
+                })
+            };
+            $('.prew').click(function() {
+                iNow--;
+                zIndex++;
+                if (iNow < 0) {
+                    iNow = iLenght - 1;
+                }
+                var deg = Math.random() * 20;
+                deg = deg > 10 ? deg : -deg;
+                $('.wrap li').eq(iNow).css({
+                    transition: '0.4s',
+                    left: '-100%',
+                    opacity: 0,
+                    zIndex: zIndex,
+                    transform: 'rotate(' + deg + 'deg)',
+                });
+                setTimeout(function() {
+
+                    $('.wrap li').eq(iNow).animate({
+                        top: 0,
+                        left: 0,
+                        opacity: 1,
+
+                    }, 200, 'swing')
+                }, 600)
+            });
+            $('.next').click(function() {
+                iNow++;
+                zIndex++;
+                if (iNow == iLenght) {
+                    iNow = 0;
+                }
+
+                $('.wrap li').eq(iNow).css({
+                    transition: '0.4s',
+                    left: '100%',
+                    opacity: 0,
+                    zIndex: zIndex,
+                });
+                setTimeout(function() {
+
+                    $('.wrap li').eq(iNow).animate({
+                        top: 0,
+                        left: 0,
+                        opacity: 1,
+
+                    }, 200, 'swing')
+                }, 600)
+            })
+        })
+
+    </script>
+</head>
+
+<body>
+
+    <ul class="wrap">
+        <!--        <span class="prew"> < </span><span class="next"> > </span>-->
+        <!--        <li><img src="Simg/1.jpeg"></li>-->
+    </ul>
+</body>
+
+</html>

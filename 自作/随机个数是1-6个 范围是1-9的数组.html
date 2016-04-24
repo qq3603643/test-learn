@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+    var arr=[1,2,3,4,5,6,7,8,9];
+        arr = arr.sort(function(){return 0.5-Math.random()});
+    var m = Math.round(Math.random()*5) + 1;
+     
+ arr.splice(m,arr.length-m);
+ alert(arr)
+    </script>
+</body>
+</html>

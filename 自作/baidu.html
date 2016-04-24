@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+<style>
+    *{margin: 0px;padding: 0px;}
+    #content{width:374px; position: relative;top: 49px;left:200px; }
+    input{width: 290px;height: 35px;border: 1px solid #3385FF;font-size: 25px;margin-top: 10px;margin-left:200px;padding: 2px;float: left;outline:none;}
+    ul li{list-style: none;padding: 0px;border: 1px solid black; }
+    
+    ul li a{line-height: 30px; text-align:left;display: block;text-decoration: none;color: black;}
+    ul li a:hover{background: #F0F0F0;}
+    span{display:block;height: 41px;width: 80px;text-align: center;background: #3385FF;margin-top: 10px;line-height: 41px;float: left;color: white;font-size: 12px;cursor: pointer;}
+    span:hover{background:#317EF3 }
+</style> 
+
+<script>
+function xjc(data){
+     if(data.s.length){
+    for(var i=0;i<data.s.length;i++){
+       
+        var oUl = document.getElementsByTagName('ul')[0];
+        var oLi = document.createElement('li');
+        oLi.innerHTML = '<a href="https://www.baidu.com/s?wd=' + data.s[i]  +'">' +  data.s[i]  + '</a>';
+        oUl.appendChild(oLi);
+        
+    }
+         }
+    var oSpan = document.getElementById('span');
+    oSpan.style.cssText = 'text-decoration: none;color:white';
+    oSpan.href = 'https://www.baidu.com/s?wd=' + data.s[0] ;
+}    
+</script>
+<script>
+
+window.onload =  function(){
+    var oText = document.getElementsByTagName('input')[0];
+    var oUl = document.getElementsByTagName('ul')[0];
+    oText.onkeyup = function(){
+        
+        if(this.value != ''){
+        oUl.style.display = 'block';
+        oUl.innerHTML = '';
+        var oScript = document.createElement('script');
+            oScript.src = 'https://sp0.baidu.com/5a1Fazu8AA54nxGko9WTAnF6hhy/su?wd='  + this.value + '&p=3&cb=xjc' ;
+            document.body.appendChild(oScript);
+       
+          
+        }else{
+            oUl.style.display = 'none';
+        }
+        
+    }
+}   
+</script> 
+</head>
+<body>
+   <div>
+    <input type="text"><span><a id="span">百度一下</a></span>
+    </div>
+    <div id="content">
+    <ul >
+<!--
+        <li><a href="">1</a></li>
+        <li><a href="">2</a></li>
+        <li><a href="">3</a></li>
+        <li><a href="">4</a></li>
+-->
+    </ul>
+    </div>
+</body>
+</html>

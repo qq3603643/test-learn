@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+<style>
+    li{list-style: none}
+    ul{margin: 0}
+    p{margin: 0}
+    
+    #boby{position: relative;width: 800px;height: 300px;margin-top: 20px;margin-left: auto;margin-right: auto;border: 5px solid black;border-radius: 5px;}
+    #boby li{width: 150px;height:99px;background-color: black;margin-bottom: 1px;color: aqua; text-align: center;line-height: 99px;}
+    
+    #r_boby{position:absolute;width: 650px;height: 300px;top: 0px;left: 150px; background-color:white;}
+    img{ width: 650px;height: 250px}
+    #r_boby p{width: 650px;height: 45px;background:white;}
+    #r_boby p span{ position:absolute; bottom: 1px; height: 44px; background-color: black;color: white;margin: 0px;text-align: center;line-height: 44px;cursor: pointer;}
+ #boby li:hover{background-color: cadetblue;};       
+</style>
+<script>
+    window.onload = function(){
+     var aLi = document.getElementsByTagName('li');
+        //初始化
+   abc(['菜园','青菜','辣椒','花菜',],[ 'img/1.jpg', 'img/2.jpg', 'img/3.jpg', 'img/4.jpg' ]); 
+        //鼠标移动
+     aLi[0].onmouseover = function (){
+       abc(['菜园','青菜','辣椒','花菜',],[ 'img/1.jpg', 'img/2.jpg', 'img/3.jpg', 'img/4.jpg' ]);  
+    }
+    aLi[1].onmouseover = function (){
+      
+       abc(['你','不知道','我','为什么','离开你'],[ 'img/6.jpg', 'img/7.jpg', 'img/8.jpg', 'img/9.jpg', 'img/10.jpg']);  
+    }
+         aLi[2].onmouseover = function (){
+      
+       abc(['I','LOVE','YOU',],[ 'img/11.jpg', 'img/12.jpg', 'img/13.jpg',]);  
+    } 
+
+       
+        function abc(aTxet, aSrc) {  
+  var oRdiv = document.getElementById('r_boby');
+  var oP    =  oRdiv.getElementsByTagName('p')[0];
+  var aSpan =  oP.getElementsByTagName('span');
+  var num   = 0;
+  var oImg  = oRdiv.getElementsByTagName('img')[0];
+
+     //初始化 
+           oP.innerHTML = '';  
+        for (var i=0;i<aTxet.length;i++){
+            
+            oP.innerHTML +=  '<span>' + aTxet[i]  + '</span>';    
+            aSpan[i].style.left = 1 + i*(parseInt(650/aTxet.length)+1) + 'px'; 
+            aSpan[i].style.width = parseInt(650/aTxet.length) + 'px';
+        }
+             oImg.src = aSrc[num] ;
+   //程序开始
+         for (var i=0;i<aTxet.length;i++){
+             aSpan[i].index = i; 
+             aSpan[i].onclick = function(){
+                 oImg.src = aSrc[this.index] ;
+                
+             }
+         }
+          
+        
+
+ }    
+     
+}
+    
+</script>
+</head>
+<body>
+    <div id="boby" >
+   
+        <li>a套餐</li>
+        <li>b套餐</li>
+        <li>c套餐</li>
+        
+
+    <div id="r_boby">
+        <img src="">
+        <p></p>
+    </div>
+    </div>
+</body>
+</html>

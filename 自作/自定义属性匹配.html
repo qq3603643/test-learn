@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+<style>
+div{width:50px;height: 50px;margin-left: 50px;margin-top: 50px;background-color:aquamarine;float: left;list-style: none;border:2px solid green;line-height: 50px;text-align: center;color:black;display: none;}
+    input{margin-left: 30px; width: 50px;height: 25px;};
+</head>
+</style>
+<script>
+    window.onload = function (){
+       var aBtn = document.getElementsByTagName('input'); 
+       var aDiv = document.getElementsByTagName('div'); 
+       var aColor = ['yellow','red','green']; 
+       var aTxet = ['黄色','红色','绿色']; 
+       
+        
+        
+       for( var i=0; i<aBtn.length; i++ ){
+		
+		aBtn[i].num = 0;
+	    aBtn[i].index = i;
+		aBtn[i].onclick = function (){
+			// alert( arr[ this.num ] );
+            
+			this.value = aColor[ this.num ];
+            this.style.backgroundColor = aColor[ this.num ];
+            aDiv[this.index].style.display = 'block';
+			aDiv[this.index].innerHTML = aTxet[ this.num ];
+            aDiv[this.index].style.backgroundColor = aColor[ this.num ];
+			this.num++;
+          
+			if( this.num == aBtn.length ){
+				this.num = 0;
+			}
+		}
+	}
+
+    }
+    
+    </script>
+<body>
+   <input type="button" value='btn1'>
+   <input type="button" value='btn2'>
+   <input type="button" value='btn3'> 
+   <div></div>
+   <div></div>
+   <div></div>
+</body>
+</html>

@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+
+<body>
+    <input type="checkbox" checked index="1">
+    <input type="checkbox" index="2">
+    <input type="checkbox" index="3">
+    <input type="button" value="onclick">
+    <script src="jquery-1.11.3.js"></script>
+    <script>
+        var aInput = document.getElementsByTagName('input');
+        for (var i = 0; i < aInput.length - 1; i++) {
+            aInput[i].index = aInput.length - 1 - i;
+            aInput[i].setAttribute['index'];
+            aInput[i].onclick = function() {
+                alert(this.attributes['index'].nodeValue);
+                alert(this.index);
+            }
+        };
+
+        //js中的自定义属性 和 html中的自定义属性不一样，读取的方式也不一样；前者直接读取，后者要通过方法。
+
+    </script>
+</body>
+
+</html>

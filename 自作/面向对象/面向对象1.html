@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        //工厂模式
+        function creatperson(name, sex) {
+            //1.原料。新建对象
+            var obj = new Object();
+            //2.加工。添加属性
+            obj.name = name;
+            obj.sex = sex;
+            obj.showName = function() {
+
+                alert('i\'m  ' + this.name);
+            }
+            obj.showSex = function() {
+
+                    alert('i\'m  ' + this.sex);
+                }
+                //3。出厂，返回加工好的对象
+            return obj;
+        }
+        var person = creatperson('liu', 'felman');
+
+        person.showName();
+        person.showSex();
+
+    </script>
+</body>
+
+</html>

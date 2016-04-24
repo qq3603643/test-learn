@@ -1,0 +1,37 @@
+
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>无标题文档</title>
+<style>
+div {padding: 40px 50px;}
+#div1 {background: red;position: relative;}
+#div2 {background: green; position: relative;}
+#div3 {background: orange; position: relative;}
+</style>
+<script src="mine.js"></script>
+<script>
+window.onload = function() {
+	
+	var oDiv3 = document.getElementById('div3');
+
+	var p = getPos( oDiv3 );
+	
+	alert( p.top );
+    alert( p.left );
+	
+
+	
+}
+</script>
+</head>
+
+<body id="body1">
+	<div id="div1">
+    	<div id="div2">
+        	<div id="div3"></div>
+        </div>
+    </div>
+</body>
+</html>

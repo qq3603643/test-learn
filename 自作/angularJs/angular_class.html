@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="app">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style>
+        .red {
+            background: red;
+            color: white;
+        }
+        
+        .black {
+            background: black;
+            color: red;
+        }
+
+    </style>
+    <script src="angular.min.js"></script>
+    <script>
+        var x = angular.module('app', []);
+        x.controller('ac', function($scope) {
+
+            $scope.name = 'iu';
+            $scope.style = "{color:'yellow',background:'black'}";
+            $scope.link = 'https://www.baidu.com/';
+            $scope.arr = [1, 2, 3, 4];
+        })
+
+    </script>
+</head>
+
+<body ng-controller="ac">
+    <p ng-class="{red:true}" ng-bind="name"></p>
+    <p ng-style="{color:'yellow',background:'black'}" ng-bind="name"></p>
+    <p ng-style="{{style}}" ng-bind="name"></p>
+    <a ng-attr-href="{{link}}" ng-attr-title="{{name}}">baidu</a>
+    <li ng-repeat="j in arr" ng-class="{red:$first}">{{j}}</li>
+    <li ng-repeat="j in arr" ng-class="{red:$first}" ng-style="{display:$first?'block':'none'}">{{j}}</li>
+</body>
+
+</html>

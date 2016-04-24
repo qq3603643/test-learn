@@ -1,0 +1,51 @@
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>无标题文档</title>
+<script>
+window.onload = function(){
+    var oDiv = document.getElementById('div1');
+    var iheight = parseInt(getstyle(oDiv,'top'));
+    window.onscroll = function(){
+        var ScrollTop = getScrollTop() + iheight;
+        
+        move(oDiv,ScrollTop);
+    }
+    
+     function move(obj,target){
+         clearInterval(obj.timer)
+         obj.timer = setInterval(function(){
+            var itop = parseInt(getstyle(obj,'top'));
+            var speed = (target-itop)/8;
+                speed = speed>0 ? Math.ceil(speed) : Math.floor(speed);
+             if(itop == target){
+                clearInterval(obj.timer); 
+             }else{
+             obj.style.top = itop + speed + 'px';
+             }
+         },20)
+     }
+}   
+
+function getScrollTop()
+{
+    var scrollTop=0;
+    if(document.documentElement&&document.documentElement.scrollTop)
+    {
+        scrollTop=document.documentElement.scrollTop;
+    }
+    else if(document.body)
+    {
+        scrollTop=document.body.scrollTop;
+    }
+    return scrollTop;
+}
+  function getstyle(obj,attr){
+        return obj.currentStyle ? obj.currentStyle[attr] : getComputedStyle(obj)[attr];
+    }
+</script>
+</head>
+<body style="height:2000px">
+<div id="div1" style="width:120px; height:200px; background-color:#ccc; border:3px solid orange; position:absolute; right:0px; top:150px;">这是一个悬浮框！</div>
+</body>
+</html>

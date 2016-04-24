@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="app">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style>
+        span {
+            cursor: pointer;
+            display: inline-block;
+            width: 80px;
+            height: 30px;
+            border: 1px solid red;
+            font: 10px/30px '微软雅黑';
+            text-align: center;
+        }
+        
+        .head {
+            background: black;
+            color: white;
+            width: 80px;
+            height: 50px;
+            font: 20px/50px '微软雅黑';
+        }
+
+    </style>
+    <script src="angular.min.js"></script>
+    <script>
+        var x = angular.module('app', []);
+
+        x.controller('ac', ['$scope', '$filter', function($scope, $filter) {
+
+            $scope.olddata = [
+
+                {
+                    name: 'xjc',
+                    age: 22
+                }, {
+                    name: 'mhq',
+                    age: 23
+                }, {
+                    name: 'zrw',
+                    age: 20
+                }, {
+                    name: 'qkc',
+                    age: 34
+                }
+            ];
+            $scope.data = $scope.olddata;
+
+            $scope.sousou = function() {
+
+
+                $scope.data = $filter('filter')($scope.olddata, $scope.value);
+
+            }
+            $scope.onff = true;
+            $scope.sort = function(attr) {
+                $scope.onff = !$scope.onff;
+                $scope.data = $filter('orderBy')($scope.data, attr, $scope.onff);
+            }
+        }])
+
+    </script>
+</head>
+
+<body ng-controller="ac">
+    <input type="text" ng-model="value">
+    <input type="button" value="soso" ng-click="sousou()">
+    <br>
+    <br>
+    <span class="head" ng-click="sort('name')">name</span>
+    <span class="head" ng-click="sort('age')">age</span>
+    <p ng-repeat="attr in data">
+
+        <span>{{attr.name}}</span>
+        <span>{{attr.age}}</span>
+    </p>
+</body>
+
+</html>

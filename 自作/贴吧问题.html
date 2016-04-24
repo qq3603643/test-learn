@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+
+</head>
+<body>
+    <div style="position:relative;width:400px;height:400px;border:2px solid black;margin:40px auto;"></div>
+    <script>
+    var oDiv = document.getElementsByTagName('div')[0];
+        
+        oDiv.onclick = function(ev){
+            
+            var ev = ev||window.event;
+            var osDiv = document.createElement('div');
+                osDiv.style.cssText = "width:2px;height:2px;background:black;position:absolute;";  
+            //这里可以设置成背景图片（或者直接在css中设置）
+            var x = ev.clientX - oDiv.offsetLeft;  //此处应该减去osdiv宽度的一半
+            var y = ev.clientY - oDiv.offsetTop;   //同上
+            document.title = x + '||' + y;
+            osDiv.style.left = x + 'px';
+            osDiv.style.top = y + 'px';
+            oDiv.appendChild(osDiv);
+        }
+    </script>
+</body>
+</html>

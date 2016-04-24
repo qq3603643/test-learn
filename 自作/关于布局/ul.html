@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+<style>
+    
+/*    ul中的padding去掉后连同li的list-style一起去掉 也说明list的序号是在padding里面  ol同理*/
+   
+    ul{background-color: aqua;width: 20%;margin: 0px;height: 100px;padding: 0px;}   
+    li{background: red;position: absolute;left: 30px;top: 30px;width: 20%;list-style: none} 绝对定位后 父级为body 所以此时的20% 是body的宽度的20%
+   
+</style>
+</head>
+<body>
+    <ul >
+       abcd
+        <li >a</li>
+         <li>b</li>
+         <li>c</li>
+        <li >d</li>
+    </ul>
+  
+</body>
+</html>

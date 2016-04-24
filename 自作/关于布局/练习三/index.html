@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style>
+        body,
+        h1,
+        ul {
+            padding: 0px;
+            margin: 0px;
+        }
+        
+        li {
+            list-style: none;
+        }
+        
+        a {
+            text-decoration: none;
+            color: black;
+        }
+        
+        .clear:after {
+            content: '';
+            display: block;
+            clear: both;
+        }
+        
+        .wrap {
+            width: 367px;
+            height: 242px;
+            padding-top: 12px;
+            padding-left: 9px;
+            margin: 30px auto;
+            background: #F4FAFB;
+        }
+        
+        .wrap .head {
+            width: 367px;
+            height: 27px;
+            background: url(head_bg.jpg) repeat-x;
+        }
+        
+        .head h1 {
+            font: 800 12px/27px '';
+            text-indent: 25px;
+            background: url(title_bg.jpg) no-repeat 1px 7px;
+            color: #294852;
+        }
+        
+        .contant ul li {
+            float: left;
+            width: 108px;
+            height: 135px;
+            padding-top: 15px;
+            margin-right: 17px;
+            background: url(pic_bg.jpg) no-repeat right 0px;
+        }
+        
+        .contant ul li a {
+            display: block;
+            width: 85px;
+            height: 102px;
+            padding: 2px;
+            border: 1px solid gray;
+        }
+        
+        .contant ul li strong {
+            display: block;
+            padding-top: 5px;
+            font: 12px/22px '';
+            width: 92px;
+            text-align: center;
+        }
+        
+        .foot li {
+            font: 12px/22px '';
+            text-indent: 33px;
+            background: url(li_bg.jpg) no-repeat 20px 10px;
+        }
+
+    </style>
+</head>
+
+<body>
+    <div class="wrap">
+        <div class="head">
+            <h1>华语谍报</h1>
+        </div>
+        <div class="contant">
+            <ul class="clear">
+                <li>
+                    <a href="#"><img src="pic.jpg"></a>
+                    <strong>大叔</strong>
+                </li>
+                <li>
+                    <a href="#"><img src="pic.jpg"></a>
+                    <strong>大叔</strong>
+                </li>
+                <li style="margin:0px;">
+                    <a href="#"><img src="pic.jpg"></a>
+                    <strong>大叔</strong>
+                </li>
+            </ul>
+        </div>
+        <div class="foot">
+            <ul>
+                <li><a href="#">化妆，还是伪装？港三区美亚版《最强喜事》</a></li>
+                <li><a href="#">化妆，还是伪装？港三区美亚版《最强喜事》</a></li>
+                <li><a href="#">化妆，还是伪装？港三区美亚版《最强喜事》</a></li>
+            </ul>
+        </div>
+    </div>
+</body>
+
+</html>

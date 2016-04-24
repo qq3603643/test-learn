@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        var arr = [56, 768, 76, 35, 5, 87, '768', 35, 64, 86, 5];
+        var newArr = [];
+        var indexOf = function(arr, item) {
+
+            for (var i = 0; i < arr.length; i++) {
+
+                if (arr[i] === item) {
+                    return i;
+                }
+
+            }
+
+        }
+        for (var i = 0; i < arr.length; i++) {
+
+            if (indexOf(arr, arr[i]) == i) newArr.push(arr[i]);
+
+        }
+        alert(newArr);
+
+
+        var filterRe = function(arr) {
+
+            return arr.filter(function(item, i) {
+
+                return arr.indexOf(item) == i;
+
+            })
+
+        }
+        console.log(filterRe(arr));
+
+    </script>
+</body>
+
+</html>

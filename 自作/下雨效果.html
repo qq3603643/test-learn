@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+<style>
+    div{width: 40px;height: 40px;margin-top: 10px;margin-left: 20px;background-color: black;float: left;text-align: center;line-height: 40px;color: white;font-size: 25px;}
+    
+</style>
+<script src="mine.js"></script>
+<script>
+window.onload = function(){
+    var aDiv = document.getElementsByTagName('div');
+    var m =0;
+    var n = 19;
+    var timer = null;
+    var timer1 = null;
+    for(var i=0;i<20;i++){
+        document.body.innerHTML += '<div></div>'; 
+      }
+    abc();
+    function abc(){
+                 
+    timer =  setInterval(function(){
+     doMove(aDiv[m],'marginTop',50,500,function(){
+        if(m == 20){
+            clearInterval(timer);
+            clearInterval(timer1);
+            timer1=setInterval(function(){
+          doMove(aDiv[m-1],'marginTop',50,0,function(){
+             if(m==0){
+                 clearInterval(timer);
+                 clearInterval(timer1);
+                 abc();}
+              
+          })
+          aDiv[m-1].style.background = 'black';
+                aDiv[m-1].innerHTML =19-( m-1 );
+          m--;
+       },200)
+        }
+         
+     })
+      aDiv[m].style.background = 'red';
+      aDiv[m].innerHTML = m;
+      m++;
+      if(m==20){clearInterval(timer);}
+      },200   )  }
+//                         , function(){
+////          timer1 = setInterval( function(){
+////          doMove(aDiv[m-1],'marginTop',50,0)
+////          m--;
+////       },200   )  
+//       alert();
+//          
+//      }
+                     
+   
+}    
+</script>
+</head>
+<body>
+   
+</body>
+</html>

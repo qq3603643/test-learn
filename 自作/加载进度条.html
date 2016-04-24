@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style>
+        .wrap {
+            width: 200px;
+            height: 200px;
+            margin: 200px auto;
+            border: 1px solid black;
+            padding: 10px;
+            position: relative;
+            border-radius: 50%;
+        }
+        
+        .downup {
+            animation: downup 2s infinite linear;
+        }
+        
+        @keyframes downup {
+            0% {
+                transform: translateY(0px);
+            }
+            50% {
+                transform: translateY(40px);
+            }
+            100% {
+                transform: translateY(0px);
+            }
+        }
+        
+        .wrap .swrap {
+            width: 200px;
+            height: 200px;
+            border: 1px solid black;
+            border-radius: 50%;
+        }
+        
+        .wrap .boll {
+            width: 10px;
+            height: 10px;
+            background: black;
+            position: absolute;
+            left: 105px;
+            top: 0px;
+            transform-origin: center 110px;
+            transform: rotate(0deg);
+        }
+        
+        .move {
+            animation: move 2s linear infinite;
+        }
+        
+        @keyframes move {
+            0% {
+                transform: rotate(0deg);
+            }
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+        
+        .wrap .text {
+            display: block;
+            width: 60px;
+            height: 40px;
+            margin: 80px auto;
+            text-align: center;
+            font: 900 30px/40px '';
+        }
+        
+        .contant img {
+            display: block;
+            float: left;
+            margin: 120px 40px;
+            padding: 3px;
+            border: 1px solid gray;
+            width: 100px;
+            height: 100px;
+            transform: rotate(-25deg);
+            box-shadow: 10px 10px 15px;
+            transition: 1s;
+        }
+        
+        .start {
+            transform: scale(2) !important;
+            transform: rotate(0deg);
+            box-shadow: 0px 0px 0px !important;
+        }
+        /*     @keyframes start {
+            0% {
+                transform: rotate(-25deg);
+            }
+            100% {
+                transform: rotate(0deg);
+                transform: scale(2);
+            }
+        } */
+
+    </style>
+</head>
+
+<body>
+    <div class="wrap downup">
+        <div class="boll move"></div>
+        <div class="swrap">
+            <span class="text">12%</span>
+        </div>
+    </div>
+    <div class="contant" style="display:none;">
+
+    </div>
+    <script src="jquery-1.11.3.js"></script>
+    <script>
+        var Asrc = ['http://img.blog.163.com/photo/gpKYU7EJ6axNfUo00YAYJw==/3109172592746115835.jpg', 'http://pic27.nipic.com/20130308/8378836_190918621310_2.jpg', 'http://119.img.pp.sohu.com/images/2007/10/21/20/16/1165dd82d7a.jpg', 'http://img2.3lian.com/2014/f6/170/d/102.jpg', 'http://pic9.nipic.com/20100811/3901134_132749001113_2.jpg', 'http://pic2.ooopic.com/10/46/94/71b1OOOPICb4.jpg', 'http://img3.redocn.com/tupian/20141226/daziranbeijingsucai_3758392.jpg', 'http://s10.album.sina.com.cn/pic/47153aeb0200046x', 'http://pic16.nipic.com/20110908/6021049_205309375000_2.jpg', 'http://pic.nipic.com/2008-01-18/200811814409106_2.jpg', 'http://pic.nipic.com/2008-01-18/200811814409106_2.jpg'];
+        var m = 0;
+        for (var i = 0; i < Asrc.length; i++) {
+            var $img = $('<img>');
+            $img.attr('src', Asrc[i]);
+            $img.load(function() {
+                m++;
+                $(' .wrap .text').html(Math.round(m / Asrc.length * 100) + '%');
+                if (m == Asrc.length) {
+                    alert('加载完成');
+                    $('.wrap').removeClass('downup');
+                    $('.boll').removeClass('move');
+                    $('.wrap').remove();
+                    $('.contant').css('display', 'block')
+                }
+            })
+            $('.contant').append($img);
+        }
+        $('img').hover(function() {
+            $(this).addClass('start');
+        }, function() {
+            $(this).removeClass('start');
+        })
+
+    </script>
+</body>
+
+</html>

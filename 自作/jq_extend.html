@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <script src="jquery-1.11.3.js"></script>
+    <script>
+        $.fn.extend({
+
+            showID: function() {
+                $(this).on('click', function() {
+                    alert($(this).prop('id'));
+                })
+            }
+        });
+
+        $.extend({
+
+            showClass: function(obj) {
+                alert(obj.prop('class'))
+            }
+
+        })
+
+        $(function() {
+            $('#v1').showID();
+            $.showClass($('#v1'));
+
+        })
+
+    </script>
+</head>
+
+<body>
+    <div id="v1" class="box">123</div>
+</body>
+
+</html>

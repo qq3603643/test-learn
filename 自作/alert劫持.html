@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        var _alert = alert;
+        window.alert = function(V) {
+            if (confirm('是否要弹出内容', '')) {
+                _alert(V);
+            }
+        };
+
+        alert('abc');
+
+    </script>
+</body>
+
+</html>

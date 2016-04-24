@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style>
+        #box {
+            width: 100px;
+            height: 100px;
+            background: black;
+            position: absolute;
+        }
+        
+        #box2 {
+            width: 100px;
+            height: 100px;
+            background: red;
+            position: absolute;
+            left: 100px;
+            top: 200px;
+        }
+
+    </style>
+    <script src="jquery-1.11.3.js"></script>
+    <script>
+        $(function() {
+
+            function person(name, sex) {
+
+                this.name = name;
+                this.sex = sex;
+            };
+
+            person.prototype.showName = function() {
+
+                alert(this.name);
+            };
+
+            person.prototype.showSex = function() {
+
+                alert(this.sex);
+            };
+            // var p1 = new person('liu', 'felman'); // p1.showName();
+
+            function work(name, sex, job) {
+                //调用父级构造函数
+                //call的作用。改变this指向。这里的this为 work里面的obj = new object（）；
+                person.call(this, name, sex);
+                this.job = job;
+            }
+            //继承父级方法
+            //work.prototype = person.prototype; //引用的方法
+            for (var i in person.prototype) {
+                work.prototype[i] = person.prototype[i];
+            }
+            //自定义自身方法
+            work.prototype.showJob = function() {
+
+                alert('my job is:' + this.job);
+            }
+
+            var w1 = new work('xjc', 'man', 'js');
+            w1.showName();
+            w1.showJob();
+        })
+
+    </script>
+</head>
+
+<body>
+    <div>
+        我们都是一家人
+    </div>
+</body>
+
+</html>

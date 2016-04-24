@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        var arr = ['z', 'x', 's'];
+        arr.forEach(function(item, i) {
+            document.body.innerHTML += item;
+            console.log(i);
+        });
+
+    </script>
+    <script src="jquery-1.11.3.js"></script>
+    <script>
+        var arr2 = [1, 2, 3];
+        $.each(arr2, function(i, item) {
+            document.body.innerHTML += item;
+            console.log(i);
+        })
+
+    </script>
+</body>
+
+</html>

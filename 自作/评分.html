@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+<style>
+    #input{width: 60px;height: 45px;text-align: center; margin-left:300px;margin-top: 2px;border-radius: 50%;display:none;}
+    div{width: 40px;height: 40px;background-color:white;border: 2px solid black;margin-left: 3px;float: left;}; 
+    span{position: absolute;left: 500px; width: 40px;height: 40px;background-color:red;border: 2px solid black;margin-left: 3px;float: left;border-radius: 50%};
+
+</style>
+<script>
+   window.onload = function (){
+    var aDiv = document.getElementsByTagName('div');  
+    var oText= document.getElementsByTagName('input')[0];
+      for(var i=0;i<aDiv.length;i++){
+          aDiv[i].index = i ;
+    
+          
+          aDiv[i].onmouseover = function(){
+              
+             if(this.index==0){
+                 for(var i=0;i<aDiv.length;i++){
+                    aDiv[i].style.backgroundColor = 'white';     
+                 }
+                 aDiv[this.index].style.backgroundColor = 'darkgray';
+                  oText.value ='不满意！！';
+                 oText.style.backgroundColor = 'darkgray';
+                 oText.style.color = 'red';
+                 oText.style.display = 'block';
+             } 
+              if(this.index>=1&&this.index<=3){
+                  for(var i=0;i<aDiv.length;i++){
+                    aDiv[i].style.backgroundColor = 'white';
+                 }
+                 
+                  for(var i=0;i<this.index+1;i++){
+                    aDiv[i].style.backgroundColor = 'green';
+                 }
+                  oText.value ='较满意';
+                  oText.style.backgroundColor = 'green';
+                  oText.style.color = 'white'; 
+                  oText.style.display = 'block';
+              }
+
+              if(this.index>3){
+                  for(var i=0;i<aDiv.length;i++){
+                    aDiv[i].style.backgroundColor = 'white';
+                 }
+                 
+                  for(var i=0;i<this.index+1;i++){
+                    aDiv[i].style.backgroundColor = 'red';
+                 }
+                  oText.value ='非常满意';
+                  oText.style.backgroundColor = 'red';
+                  oText.style.color = 'black';
+                  oText.style.display = 'block';
+              }
+              
+              
+              
+          }
+      }
+   }
+</script>
+</head>
+<body>
+    <div></div> 
+    <div></div>
+    <div></div>
+    <div></div> 
+    <div></div>
+    <div></div>   
+    <input id="input" type="button"  value="">
+</body>
+</html>

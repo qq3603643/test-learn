@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="app">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+
+    <script src="angular.min.js"></script>
+    <script>
+        var x = angular.module('app', []);
+        x.controller('ac', function($scope) {
+
+            $scope.name = 'xjc';
+            $scope.text = 'hello';
+            $scope.colors = [{
+                name: 'red'
+            }, {
+                name: 'black'
+            }, {
+                name: 'white'
+            }]
+
+        })
+
+    </script>
+</head>
+
+<body>
+
+    <div ng-controller="ac">
+        <form novalidate name="myform">
+            <input type="email" name="mytext" ng-model="text">
+            <p>{{myform.mytext.$valid}}</p> //有效为真
+            <p>{{myform.mytext.$invalid}}</p> //无效为真
+            <p>{{myform.mytext.$pristine}}</p> //没修改为真
+            <p>{{myform.mytext.$dirty}}</p> //修改为真
+        </form>
+    </div>
+
+</body>
+
+</html>

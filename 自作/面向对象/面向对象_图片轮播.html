@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style>
+        #v1 {
+            position: relative;
+            margin: 100px auto;
+            width: 600px;
+            height: 250px;
+            border: 2px solid black;
+        }
+        
+        #v1 img {
+            width: 600px;
+            height: 250px;
+        }
+        
+        #v1 span {
+            display: block;
+            position: absolute;
+            height: 60px;
+            width: 35px;
+            font: 50px/60px '';
+            text-align: center;
+            font-weight: 900;
+            border: 2px solid black;
+            top: 100px;
+            background: rgba(255, 255, 255, 0.5);
+        }
+        
+        #v1 span:hover {
+            background: rgba(255, 255, 255, 1);
+            cursor: pointer;
+        }
+
+    </style>
+    <script src="jquery-1.11.3.js"></script>
+    <script>
+        $(function() {
+
+            var box = new play('#v1', ['img/10.jpg', 'img/11.jpg', 'img/12.jpg']);
+            $('#v1 span').eq(1).css('left', '560px');
+            //box.atuoplay();
+
+            function play(id, arr) {
+
+                var _this = this;
+                this.id = id;
+                this.arr = arr;
+                this.m = 0;
+
+                $(id).find('img').attr('src', arr[this.m]);
+
+                $(id).find('span').eq(0).click(function() {
+
+                    _this.timer = null;
+                    _this.prew();
+                })
+
+                $(id).find('span').eq(1).click(function() {
+
+                    _this.next();
+                })
+
+            }
+
+            play.prototype.prew = function() {
+
+                this.m -= 1;
+                this.m = this.m % (this.arr.length);
+                if (this.m == -1) {
+                    this.m = this.arr.length - 1;
+                }
+
+                $(this.id).find('img').attr('src', this.arr[this.m]);
+
+            }
+
+            play.prototype.next = function() {
+
+                this.m += 1;
+                this.m = this.m % (this.arr.length);
+                if (this.m == this.arr.length) {
+                    this.m = 0;
+                }
+
+                $(this.id).find('img').attr('src', this.arr[this.m]);
+
+            }
+        })
+
+    </script>
+</head>
+
+<body>
+    <div id="v1">
+        <img src="">
+        <span><</span>
+        <span>></span>
+    </div>
+
+    <div id="v2">
+        <img src="">
+        <span><</span>
+        <span>></span>
+    </div>
+</body>
+
+</html>

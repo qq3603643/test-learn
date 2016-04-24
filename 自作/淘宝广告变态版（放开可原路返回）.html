@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+<style>
+    img{width:300px;height: 408px;position: absolute;top: 0px;left: 150px;}
+    div{margin-left: auto;margin-right: auto;margin-top: 100px; width: 600px;height:408px;position: relative;border: 4px solid black;border-radius: 15px;}
+    p{margin: 0px; top: opx;position: absolute;width: 150px;height: 80px; background-color: bisque;}
+</style>
+<script>
+window.onload = function(){
+    var aP = document.getElementsByTagName('p');
+    var oImg = document.getElementsByTagName('img')[0];
+    var aUrl = ['img/1.jpg', 'img/2.jpg', 'img/3.jpg', 'img/4.jpg','img/11.jpg', 'img/6.jpg', 'img/7.jpg', 'img/8.jpg','img/9.jpg', 'img/10.jpg', ]
+    var m = 0;
+    var k = 0;
+    var timer = null;
+    var timer1 = null;
+    var timer2 = null;
+    var aMber = ['0','1','2','3','4','9','8','7','6','5',]
+    //初始化
+    for(var i=0;i<aP.length/2;i++){
+        aP[i].style.top = i*82 + 'px';   
+    }
+    for(var i=aP.length/2;i<aP.length;i++){
+         aP[i].style.top = (i-aP.length/2)*82 + 'px'; 
+         aP[i].style.right = 0 + 'px';
+        
+    }
+    oImg.src = aUrl[m];
+    aP[m].style.backgroundColor = 'black';
+   timer = setInterval(function(){
+           for(var i=0;i<aUrl.length;i++){
+               aP[i].style.backgroundColor = 'bisque';
+           }
+           aP[aMber[m]].style.backgroundColor = 'black';
+           oImg.src = aUrl[m];
+           m++;
+           m=m%10;
+           
+   },1000);  //开始时的跑马灯效果
+    for (var i=0;i<aUrl.length;i++){
+        aP[i].abc = i;
+        aP[i].onmouseover = function(){
+            clearInterval(timer);
+            clearInterval(timer1);
+            clearInterval(timer2);
+            for(var i=0;i<aUrl.length;i++){
+               aP[i].style.backgroundColor = 'bisque';
+           }
+           oImg.src = aUrl[this.abc];
+           aP[this.abc].style.backgroundColor = 'black';
+        }   //移动至选项上此时的变化
+         }
+    for(var i=0;i<aUrl.length;i++){
+        
+        aP[i].onmouseout = function(){
+               clearInterval(timer);
+               for(var i=0;i<aMber.length;i++){
+                   if (this.abc == aMber[i])
+                    k = i;
+               };
+
+            
+            timer1 = setInterval(function(){
+                clearInterval(timer);
+               
+                for(var i=0;i<aUrl.length;i++){
+               aP[i].style.backgroundColor = 'bisque';
+           }  
+                aP[aMber[k]].style.backgroundColor = 'black';
+                oImg.src = aUrl[k];
+                k --;
+                k=k%10;
+                if(k == -1){
+                    var m =0;
+                    
+        timer2 = setInterval(function(){
+           for(var i=0;i<aUrl.length;i++){
+               aP[i].style.backgroundColor = 'bisque';
+           }
+           aP[aMber[m]].style.backgroundColor = 'black';
+           oImg.src = aUrl[m];
+           m++;
+           m=m%10;
+           
+   },1000);  
+                }
+            },1000);
+            
+        }
+        
+    }
+    
+    
+}    
+    
+    
+    </script>
+</head>
+<body>
+    <div>
+        <p index="0"></p>
+        <p index="1"></p>
+        <p index="2"></p>
+        <p index="3"></p>
+        <p index="4"></p>
+        <p index="9"></p>
+        <p index="8"></p>
+        <p index="7"></p>
+        <p index="6"></p>
+        <p index="5"></p>
+        <img src="" >
+    </div>
+</body>
+</html>

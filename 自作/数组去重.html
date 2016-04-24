@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    
+<script>
+window.onload = function(){
+    var ar = ['1','4','3','3','2','1',]
+    
+      alert(abc(ar))
+      
+  function abc(arr){
+      var aNew = [arr[0]];
+    for(var j=0;j<arr.length;j++){
+           var onff = true;
+      for(var i=0;i<aNew.length;i++){
+          if(ar[j] == aNew[i]){
+              onff = false;
+              break;
+          } 
+      }
+        if(onff){
+              aNew.push(arr[j])
+              
+          }
+        
+    } 
+    return aNew;}  
+   
+}    
+</script>
+</head>
+<body>
+
+</body>
+</html>

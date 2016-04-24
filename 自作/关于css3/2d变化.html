@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+<style>
+    div{width: 100px;height: 40px;background: gray;margin: 100px auto;position: relative;-webkit-transform:skewX(30deg);text-align: center;font: 30px/40px '';}
+    span{width: 1px;height: 1px;background: red;position: absolute;left: 0px;right: 0px;transition: 1s;left: 50px;top: 20px;background:gray }
+    em{position: absolute;z-index: 333;left: 25px;transition: 2s;transform: skewX(-30deg);font:20px/40px '';color:white;}
+    div:hover span{-webkit-transform:scale(100,40);background: red}
+    div:hover em{color: black;font: 30px/40px '';left: 15px;}
+</style>
+</head>
+<body>
+    <div>
+        <em>miaov</em>
+        <span></span>
+    </div>
+</body>
+</html>

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+<style>
+    div{width: 150px;height: 300px;border: 2px solid red;position: absolute;display: none;cursor: pointer;}
+    p{margin: 0px; position: absolute; width: 150px;background: black;margin-bottom: 1px;}
+</style>
+<script>
+window.onload = function(){
+    
+    var oDiv = document.getElementsByTagName('div')[0];
+    var aP = document.getElementsByTagName('p');
+    for(var i=0;i<aP.length;i++){
+        aP[i].style.height = Math.floor(300/7) + 'px';
+        aP[i].style.top = i*Math.ceil(300/7) + 'px';
+    }
+    
+    document.oncontextmenu = function(ev){
+        ev = ev || window.envent
+        oDiv.style.display = 'block';
+        oDiv.style.left = ev.clientX + 'px';
+        oDiv.style.top = ev.clientY + 'px';   //忽略了滚动条的高度
+        
+        return false;
+    }
+    document.onclick = function(){
+        
+        oDiv.style.display = 'none';
+    }
+}    
+</script>
+</head>
+<body>
+    <div>
+        <p></p>
+        <p></p>
+        <p></p>
+        <p></p>
+        <p></p>
+        <p></p>
+        <p></p>
+    </div>
+</body>
+</html>

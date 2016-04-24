@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <link href="bootstrapcss/bootstrap.css" type="text/css" rel="stylesheet">
+    <script src="bootstrapjs/jquery-1.11.3.js"></script>
+    <script src="bootstrapjs/bootstrap.js"></script>
+    <style>
+        .container {
+            margin: 100px auto;
+        }
+        
+        .container .row .col-lg-6 {
+            padding: 20px;
+        }
+        
+        .top {
+            margin-top: 0px;
+        }
+
+    </style>
+
+    <body>
+
+        <div class="container">
+            <div class="jumbotron">
+                <h1>Hello, world!</h1>
+                <p>...</p>
+                <p><a class="btn btn-primary btn-lg" href="#" role="button">Learn more</a></p>
+            </div>
+            <nav class="navbar navbar-default ">
+                <ul class="pagination">
+                    <li class="disabled">
+                        <span>
+        <span >&laquo;</span>
+                        </span>
+                    </li>
+                    <li class="active">
+                        <span>1</span>
+                    </li>
+                    <li>
+                        <span>2</span>
+                    </li>
+                    <li>
+                        <span>3</span>
+                    </li>
+                    <li>
+                        <span>4</span>
+                    </li>
+                    <li>
+                        <span>5</span>
+                    </li>
+                </ul>
+            </nav>
+            <div class="row">
+                <div class="col-lg-6 col-md-8 bg-info bg-warning">
+                    <ul class="nav nav-tabs">
+                        <li class="active"><a>1</a></li>
+                        <li><a>2</a></li>
+                        <li><a>3</a></li>
+                    </ul>
+                </div>
+            </div>
+            <br>
+            <div class="row">
+                <div class="col-lg-6 bg-info bg-danger">
+                    <ul class="nav nav-pills">
+                        <li class="active"><a>1</a></li>
+                        <li><a>2</a></li>
+                        <li><a>3</a></li>
+                    </ul>
+                </div>
+            </div>
+            <br>
+            <div class="row">
+                <div class="col-lg-6 bg-info bg-danger">
+                    <ul class="nav nav-pills nav-justified">
+                        <li class="active"><a>1</a></li>
+                        <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown">
+                    
+                    2
+                    <span class="caret"></span>
+                    </a>
+                            <ul class="dropdown-menu">
+                                <li>123</li>
+                                <li>123</li>
+                                <li>123</li>
+                            </ul>
+                        </li>
+                        <li><a>3</a></li>
+                    </ul>
+                </div>
+            </div>
+            <br>
+            <div class="row">
+                <div class="col-lg-6 bg-info bg-danger">
+                    <form class="navbar-form navbar-left" role="search">
+                        <div class="form-group">
+                            <input type="text" class="form-control" placeholder="Search">
+                        </div>
+                        <button type="submit" class="btn btn-default">Submit</button>
+                    </form>
+                </div>
+            </div>
+            <br>
+            <div class="row">
+                <div class="col-xs-6 col-md-3 col-lg-3 bg-success">
+                    <a href="#" class="thumbnail">
+                        <img src="img/12.jpg" alt="...">
+                    </a>
+                    <div class="caption">
+                        <h3>Thumbnail label</h3>
+                        <p>...</p>
+                        <p><a href="#" class="btn btn-primary" role="button">Button</a> <a href="#" class="btn btn-default" role="button">Button</a></p>
+                    </div>
+
+                </div>
+
+            </div>
+            <!-- <div class="row">
+            <div class="col-lg-6 bg-info bg-danger">
+        
+                <nav class="navbar navbar-fixed-top bg-primary">
+                    <div class="container top">
+                        <button class="btn btn-success navbar-btn">123</button>
+                        <p class="navbar-text">看看摸牌摸吧vykj率</p>
+                        <p class="navbar-text navbar-right">Signed in as <a href="#" class="navbar-link">Mark Otto</a></p>
+                    </div>
+                </nav>
+            </div>
+        </div> -->
+        </div>
+    </body>
+    <script>
+        $('li').hover(function() {
+
+            $(this).addClass('active');
+        }, function() {
+            $(this).removeClass('active');
+        })
+
+    </script>
+
+</html>

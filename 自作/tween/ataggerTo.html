@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style>
+        .box {
+            width: 80px;
+            height: 0px;
+            background: black;
+            margin: 2px 0px;
+            transform-origin: center;
+            transform-style: preserve-3d;
+        }
+
+    </style>
+    <script src="jquery-1.11.3.js"></script>
+    <script src="TweenMax.js"></script>
+    <script>
+        $(function() {
+
+            var x = new TimelineMax;
+
+            x.staggerTo($('.box'), 1, {
+                rotationY: 180,
+                height: 40,
+            }, 0.2)
+
+            alert(x.totalDuration()) //获取动画总时间包括延迟时间
+                //x.getLabelTime('state')  到state状态的时间
+                // x.currentLabel() 获取当前状态
+        })
+
+    </script>
+</head>
+
+<body>
+    <div class="box"></div>
+    <div class="box"></div>
+    <div class="box"></div>
+    <div class="box"></div>
+    <div class="box"></div>
+
+</body>
+
+</html>

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="app">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <script src="angular.min.js"></script>
+    <script>
+        var x = angular.module('app', []);
+        x.filter('firstUpper', function() {
+
+            return function(str) {
+                return str.charAt(0).toUpperCase() + str.substr(1, str.length - 1);
+            }
+        })
+        x.controller('ac', ['$scope', '$filter', function($scope, $filter) {
+            $scope.name = 'xuxiaojie';
+            $scope.name = $filter('uppercase')($scope.name);
+            $scope.sex = 'fillman';
+            $scope.num = 24354.4657;
+            $scope.num = $filter('number')($scope.num, 2);
+            $scope.data = 4654756845543;
+            $scope.data = $filter('date')($scope.data);
+        }])
+
+    </script>
+</head>
+
+<body ng-controller="ac">
+    <p>{{name}}</p>
+    <p>{{sex | firstUpper}}</p>
+    <p>{{num}}</p>
+    <p>{{data}}</p>
+</body>
+
+</html>

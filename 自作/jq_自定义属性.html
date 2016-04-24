@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+
+<body>
+    <label>全选
+        <input type="checkbox" checked>
+    </label>
+    <input type="checkbox" checked>
+    <input type="checkbox">
+    <input type="checkbox">
+    <input type="checkbox">
+    <script src="jquery-1.11.3.js"></script>
+    <script>
+        $('input').eq(0).on('change', function() {
+
+            $('input').prop('checked', $(this).prop('checked'));
+
+        });
+
+    </script>
+</body>
+
+</html>

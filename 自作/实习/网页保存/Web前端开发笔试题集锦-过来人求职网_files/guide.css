@@ -1,0 +1,80 @@
+/*guide
+================================*/
+.guide {width:978px;margin-top:15px;padding-bottom:20px;}
+.guide .mainpart {width:685px;}
+.guide .sidebar {width:250px;margin:20px 15px 0 0;}
+.gnav {position:relative;height:40px;line-height:40px;padding:0 15px;text-align:right;font-size:14px;}
+.gnav .headline {display:block;position:absolute;width:276px;height:47px;left:0;top:-10px;background:url(../images/guidetit1.png) no-repeat;overflow:hidden;text-indent:999em;}
+.gnav-list {border-bottom:1px solid #C8D0DA;}
+.gnav .list-title {float:left;height:40px;line-height:40px;font-size:20px;font-weight:700;}
+#mianshi-tit {background-position:0 0;}
+#jianli-tit {background-position:0 -235px;}
+#bishi-tit {background-position:0 -47px;}
+#wangshen-tit {background-position:0 -94px;}
+#zixun-tit {background-position:0 -282px;}
+#xiaoyuanzhaopin-tit {background-position:0 -329px;}
+
+#topline {width:255px;margin:20px 0 0 15px;}
+#topline dt {height:30px;line-height:30px;overflow:hidden;font-size:16px;font-weight:700;}
+#topline dd {height:30px;line-height:30px;overflow:hidden;font-size:14px;border-bottom:1px dotted #C8D0DA;margin-bottom:10px;color:#777;}
+
+.gslide {position:relative;margin:20px 0 0 15px;}
+.gslide .imgcontainer {width:400px;height:175px;overflow:hidden;}
+.gslide .imgcaption {position:absolute;top:145px;width:380px;height:30px;line-height:30px;padding:0 10px;background:rgba(0, 0, 0, 0.4);filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#66000000', endColorstr='#66000000',GradientType=0);}
+.gslide .imgdesc {height:25px;line-height:25px;padding:0 10px;background-color:#B3B2B2;margin-top:1px;}
+
+#msjq-title .title2 {background-position:0 -210px;}
+#zwjs-title .title2 {background-position:0 -252px;}
+#mst-title .title2 {background-position:0 -294px;}
+#bsjy-title .title2 {background-position:0 -462px;}
+#bst-title .title2 {background-position:0 -504px;}
+#shl-title .title2 {background-position:0 -546px;}
+#jlzz-title .title2 {background-position:0 -336px;}
+#jlmb-title .title2 {background-position:0 -378px;}
+#qzx-title .title2 {background-position:0 -420px;}
+#jy-title .title2 {background-position:0 -588px;}
+#kspx-title .title2 {background-position:0 -630px;}
+#xycg-title .title2 {background-position:0 -672px;}
+
+.gbox {margin-top:20px;}
+.gbox .headline {position:relative;border-bottom:1px solid #868686;}
+.gbox .headline .more {position:absolute;line-height:42px;right:0;top:0;font-size:12px;}
+.gbox .headline .more {color:#436092;}
+.gbox .headline .more:hover {color:#f90;}
+
+.gbox .itemlists {width:325px;margin:10px 0 0 15px;border-bottom:1px dotted #C8D0DA;}
+.gbox .itemlists dt {height:25px;line-height:25px;overflow:hidden;font-size:14px;font-weight:400;}
+.gbox .itemlists dd {height:25px;line-height:25px;overflow:hidden;color:#777;}
+.gbox .itemlists dt a {color:#436092;}
+.gbox .itemlists dt a:hover {color:#f90;}
+.gbox .itemlists .time{float:right;font-size:12px;line-height:25px;}
+
+.list-rank {margin:10px 0;font-size:14px;background:url(../images/rank_num.gif) no-repeat 0 12px;}
+.list-rank li {height:36px;line-height:36px;overflow:hidden;padding-left:20px;border-bottom:1px dotted #C8D0DA;}
+.lastest {margin-top:31px;}
+.lastest .list-lastest{margin-top:10px;}
+.list-lastest dt {font-size:14px;height:35px;line-height:35px;overflow:hidden;border-bottom:1px dotted #C8D0DA;}
+.list-lastest dd {height:25px;line-height:25px;overflow:hidden;color:#777;border-bottom:1px dotted #C8D0DA;}
+
+.list-cat {padding-bottom:10px;}
+.list-cat a {display:block;float:left;height:23px;line-height:23px;border:1px solid #E4E4E4;width:106px;margin:10px 0 0 10px;text-align:center;}
+.list-cat a:hover {background-color:#EDF3FA;border:1px solid #ddd;text-decoration:none;}
+
+/*applydl
+================================*/
+.mtable {width:685px;margin:0 0 0 12px;}
+.mtable-head {margin-top:18px;}
+.mtable th {padding:6px;border:3px solid #fff;text-align:left;background-color:#EDF3FA;font-weight:700;}
+.mtable td {padding:6px;background-color:#F7FCF6;border:3px solid #fff;}
+.mtable tr.odd td {background-color:#EFFAED;}
+.mtable a {color:#436092;}
+.mtable a:hover {color:#f90;}
+.mdata {padding:10px 0;}
+.mdata li {width:325px;display:inline;float:left;margin-right:20px;height:22px;line-height:22px;border-bottom:1px solid #eee;}
+.mnotice {border:1px solid #92C623;padding:8px;line-height:22px;margin:0 15px 10px;background-color:#EFFAED;}
+.mdate-list {color:#92C624;margin:10px 15px 0;font-weight:700;font-size:14px;border-bottom:1px solid #C8D0DA;}
+
+/*xuanjianghui
+================================*/
+.xjhcontent a{color:blue;}
+.xjhcontent a:hover{color:#f90;}

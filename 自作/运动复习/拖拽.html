@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+<style>
+.move_div{position: absolute;top: 40px;left: 10px;margin: 0px;width: 40px;height: 40px;border: 1px solid red;} 
+    .osDiv{position: absolute;top: 0px;left: 0px; width: 2px;height: 2px;background: black;}
+</style>
+<script>
+    window.onload = function(){
+        var oDiv = document.getElementsByTagName('div')[0];
+        var oBtn = document.getElementsByTagName('input')[0];
+        var json = [];
+        var oBody = document.getElementsByTagName('body')[0];
+        oDiv.onmousedown = function(ev){
+            var ev = ev||window.envent;
+            var x = ev.clientX - oDiv.offsetLeft;
+            var y = ev.clientY - oDiv.offsetTop;
+            
+           
+            document.onmousemove = function(ev){       
+                var ev = ev||window.envent;
+                var l = ev.clientX - x;
+                var t = ev.clientY - y;
+                var osDiv = document.createElement('div');
+                
+                osDiv.className = 'osDiv';
+                osDiv.style.left = l + 'px';
+                osDiv.style.top = t + 'px';
+                oBody.appendChild(osDiv);
+                    
+                oDiv.style.left = l + 'px';
+                oDiv.style.top = t + 'px';
+                document.title = l + '||'  + t;
+                json.push({disX:l,disY:t})
+            }
+            document.onmouseup = function(){
+                oDiv.onmouseup = document.onmousemove = null;
+                
+            }
+            return false;
+        }
+        oBtn.onclick = function(){
+              var m = json.length;
+              var sDiv = document.getElementsByClassName('osDiv');
+            oDiv.timer = setInterval(function(){
+                oBody.removeChild(sDiv[sDiv.length-1]);
+                oDiv.style.left = json[m-1].disX + 'px';
+                oDiv.style.top = json[m-1].disY + 'px';
+                m--;
+                if(m == 0){clearInterval(oDiv.timer);
+                          json = []; 
+                           }
+            },50)
+        
+        }
+        
+    }
+</script>
+</head>
+<body>
+    <div class="move_div"></div>
+    <input type="button" value="点击回放">
+</body>
+</html>

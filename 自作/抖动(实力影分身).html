@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+<style>
+    div{position: absolute; top:100px;width: 40px;height: 40px;background-color: aqua;text-align: center;line-height: 40px;display: none;}    
+</style>
+<script src="mine.js"></script>
+<script>
+  window.onload = function(){
+      var aDiv = document.getElementsByTagName('div');
+      var arr = [];
+      var m = 0 ;
+      var timer =null;
+      var pos = parseInt(getStyle(aDiv[1],'margin-left'));
+      for(var i=0;i<aDiv.length;i++){
+          aDiv[i].style.left = 200 + 100*i + 'px';
+      }
+      aDiv[1].style.display = 'block';
+      
+     for(var i=2;i<=100;i +=2){
+           
+           arr.push(i,-i);
+       }  
+//      for(var i=100;i>0;i -= 2){
+//          arr.push(i,-i);
+//      }
+       
+      alert(arr);
+      timer = setInterval(
+          
+         function(){
+             aDiv[1].style.marginLeft = pos + arr[m] + 'px';
+             m++;
+             if (m==arr.length){
+                clearInterval(timer);
+                 aDiv[0].style.display = 'block';
+                 aDiv[2].style.display = 'block';
+                 aDiv[1].style.display = 'none';
+             }
+         }
+      
+      ,40)
+      
+  }  
+    
+</script>
+</head>
+<body>
+    <div>得瑟1</div>
+    <div>得瑟1</div>
+    <div>得瑟2</div>
+</body>
+</html>

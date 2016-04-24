@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        window.onload = function() {
+            //实现字符串的重复
+            var str = 'abc';
+            var Newstr = new Array(3).join(str);
+
+            console.log(Newstr);
+
+            //判断是否存在
+            var arr = [1, 2, 3, 4, 's'];
+            var result = !!~arr.indexOf(3); //~表示按照二进制取反 ~56 = -57； 即~-1 = 0；
+            if (result) {
+                console.log('存在');
+            } else {
+                console.log('不存在');
+            };
+
+            //返回key值
+            function keys(obj) {
+                var a = [];
+                for (a[a.length] in obj);
+                return a;
+            };
+
+            var json = {
+                name: 'xjc',
+                age: 90
+            };
+            console.log(keys(json));
+
+            //自执行函数
+            (function(number) {
+                console.log(number);
+            })(10)
+
+            //只有前面的条件为真才会执行后面的函数
+            5 < 8 && (function() {
+                console.log('start to action')
+            })();
+
+            console.log(new Date());
+            //字符转转数字,下面结果一样
+            console.log(new Date().getTime());
+            console.log(Date.now()); //此方法应该有兼容问题
+            console.log(+new Date());
+
+            //取整(向下取整)
+            console.log(~~(9 / 2));
+
+            console.log((!(~+[]) + {})[--[~+""][+[]] * [~+[]] + ~~!+[]] + ({} + [])[[~!+[]] * ~+[]]);
+        }
+
+    </script>
+</body>
+
+</html>

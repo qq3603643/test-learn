@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style>
+        li{width:100px;height: 100px;margin-left: 50px;margin-top: 50px;background-color: aquamarine;float: left;list-style: none;border:2px solid green;};
+    </style>
+    <script>
+ window.onload = function (){
+     var aLi =document.getElementsByTagName('li');  
+     for( var i=0; i<aLi.length; i++ ){
+
+         aLi[i].onff = true ; 
+         aLi[i].onmouseover = function (){
+			
+            if (this.onff){
+                
+                this.style.cssText = 'width:50px;height: 50px;background-color:pink;border:2px solid red;border-radius:50%;';
+                this.onff = false;
+            } else{
+                
+                this.style.cssText = 'width:100px;height: 100px;';
+                this.onff = true;
+            }
+            
+        }
+     }
+     
+ }
+    </script>
+</head>
+<body>
+<li></li>
+<li></li>
+<li></li>
+<li></li>
+<li></li>
+<li></li>
+</body>
+</html>

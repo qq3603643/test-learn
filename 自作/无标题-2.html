@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+   
+ var str = 'dfgdfh229gf978sd7g98456sduh96gf9mhm';
+      str = str.replace(/\d/g,'A');  //需要用等于，返回值为需要的数组
+        
+        alert(str)
+        
+        var arr = [1,5,57,3,6,0]
+        arr.shift();     //不需要用等于
+        var re = /[2-4]{1}/g;
+        
+        alert(arr.join('').replace(re,'a'))  //只有字符串才有replace
+    </script>
+</body>
+</html>

@@ -1,0 +1,227 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>无标题文档</title>
+<style>
+*{margin:0 auto;}
+h3{width:704px;height:30px;text-align:left;background:#bdafa3;border-top:2px solid #624024;margin-top:50px;}
+hr{ margin-top:20px;margin-bottom:20px;width:700px; height:1px;border:none;border-top:2px dotted #83796f;}
+caption{text-align:left;}
+form{width:700px;border:2px solid #624024;background:#dbd5cf;margin-bottom:50px;}
+p{width:700px;text-align:right;}
+p input{border:none;background:#83613c;}
+strong{font-weight:normal;}
+</style>
+<script>
+window.onload = function(){
+	var oBtn1 = document.getElementById('pass');
+	var oBtn2 = document.getElementById('pass2');
+	var oTable = document.getElementById('table');
+	var aBtn = oTable.getElementsByTagName('input');
+	var aS = oTable.getElementsByTagName('strong');
+	var aSpan = oTable.getElementsByTagName('span');
+
+    oBtn2.onkeyup = function(){
+              if(oBtn1.value.length == oBtn2.value.length) {
+			  if(oBtn1.value==oBtn2.value){
+                 alert('报告队长炸弹设置完毕');
+              }
+              else {
+                alert('两次密码不一样啊亲');
+              }
+          }
+	
+       }
+	 for(var i=0;i<aBtn.length;i++){
+		  aBtn[i].index = i;
+		  fn(aBtn[i]);
+		 }
+	 function fn(oBtn){
+		  
+		 oBtn.onchange = function(){
+			var s=parseFloat(aS[this.index].innerHTML);
+            var b= parseFloat(oBtn.value);
+			var sb =s*b;
+             if(sb){sb = Math.round(sb*100)/100;	
+                  aSpan[this.index].innerHTML = sb;
+                  };
+            if(sb==0){
+                 aSpan[this.index].innerHTML = '0.00';
+            };
+            
+				
+			
+			var sb2 = 0;
+		    for(var i=0;i<aBtn.length;i++){
+			
+			 var s2=parseFloat(aS[i].innerHTML);
+			 var b2=parseFloat(aBtn[i].value); 
+		     sb2 += s2*b2;
+ 
+		    }
+           if(sb2){
+		    sb2 = Math.round(sb2*100)/100
+			
+			aSpan[3].innerHTML = sb2; }
+//             else{}  可自定义
+
+			 }
+
+		 }
+
+	}
+
+
+</script>
+</head>
+
+<body>
+<h3 >Order Form</h3>
+ <form action="" method="get" >
+			     <table width="700" cellspacing="0" cellpadding="8"  >
+                 <caption><b>Contact Details</b></caption>
+				        <tr>
+						 <td>FULL Name</td>
+                         <td><input type="text" required /></td>
+                         <td>Email Address</td>
+                         <td><input type="email" required/></td>
+							
+						</tr>
+                        <tr>
+						 <td>Postal Address</td>
+                         <td><input type="text" placeholder="Address Line 1" required/></td>
+                         <td>Home Phone No.</td>
+                         <td><input type="text" required/></td>
+							
+						</tr>
+                        <tr>
+						 <td></td>
+                         <td><input type="text" placeholder="Address Line 2" required/></td>
+                         <td>Cell Phone No.</td>
+                         <td><input type="text" required /></td>
+							
+						</tr>
+                         <tr>
+						 <td></td>
+                         <td>
+                            <table style="margin-left:-3px">
+                               <tr >
+                                <td ><input type="text"  placeholder="Town/City" size="5" required/></td>
+                                <td ><input type="text" placeholder="State" size="2"  required/></td>
+                                <td ><input type="text" placeholder="Zip Code" size="4" required /></td> 
+                               </tr>
+                                
+                            </table>
+                         </td>
+                         <td>Skype Name</td>
+                         <td><input type="text"  required/></td>
+							
+						</tr>
+                        <tr>
+						 <td></td>
+                         <td>
+                         <select>
+                            <option>Country</option>
+                            <option>Country2</option>
+                            <option>Country3</option>
+                            <option>Country4</option>
+                          </select>
+                         
+                         </td>
+                         <td >Twitter</td>
+                         <td>@<input type="text" size="17" required/></td>
+							
+						</tr>
+
+				  </table>  
+			
+       <hr />
+            
+             <table width="700" cellspacing="0" cellpadding="8"  >
+                   <caption><b>Login Details</b></caption>
+               <tr>
+               <td>Password</td>
+               <td><input id="pass" type="password" required /></td>
+               <td>Confirm Password</td>
+               <td><input id="pass2" type="password" required /></td>
+               </tr>
+               
+			 </table>
+          
+       <hr />        
+               <table id="table" width="700" cellspacing="1" cellpadding="8"  bgcolor="#624024" >
+                   <caption><b>Order Details</b></caption>
+               <tr >
+                  <th>Product Code</th>
+                  <th>Description</th>
+                  <th>Qity</th>
+                  <th>Price</th>
+                  <th>Total</th>
+               
+               </tr>
+               <tr bgcolor="#dbd5cf" >
+               <td>COMP001</td>
+               <td>The Ultimate Smartphone</td>
+               <td><input type="number" min="0"  value="0" required/> </td>
+               <td>$<strong>399.99</strong></td>
+               <td>$<span>0.00</span></td>
+               
+               </tr>
+               <tr bgcolor="#dbd5cf">
+                <td>COMP002</td>
+               <td>The Ultimate Tablet</td>
+               <td><input type="number" min="0" value="0" required/></td>
+               <td>$<strong>499.99</strong></td>
+               <td>$<span>0.00</span></td></tr>
+               <tr bgcolor="#dbd5cf">
+                <td >COMP003</td>
+               <td>The Ultimate Netbook</td>
+               <td><input type="number" min="0"  value="0" required /></td>
+               <td>$<strong>299.99</strong></td>
+               <td>$<span>0.00</span></td></tr>
+               
+               <tr bgcolor="#dbd5cf">
+              
+               <td colspan="4"  style="text-align:right;">Oeder Total</td>
+               <td>$<span>0.00</span></td>
+               </tr>
+				  
+			   </table>    
+                  
+                
+      <hr />        
+                
+              <table width="700" cellspacing="0" cellpadding="8" >
+                 <caption><b>Payment Detail</b></caption>
+				        <tr>
+						 <td>Name on Card</td>
+                         <td><input type="text" required/></td>
+                         <td>Credit Card No.</td>
+                         <td><input type="text" required/></td>
+							
+						</tr>
+                        <tr>
+	
+                         <td>Expiry Date</td>
+                         <td><input type="text" placeholder="2015-06" required/></td>
+                     	 <td>CVV2 No.</td>
+                         <td style="font-size:10px" ><input type="text"  size="3" required/>(Three digit code at back of card)</td>
+							
+						</tr>
+                        
+
+				</table>
+      <hr />          
+               <p> 
+               <input type="submit" value="Submit Order" required/>     
+               <input type="button" value="Save Order" required/> 
+               </p>    
+            
+			</form>
+
+            
+             
+
+</body>
+</html>

@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style>
+        .box {
+            background: black;
+            width: 80px;
+            height: 80px;
+            position: absolute;
+            left: 200px;
+            top: 50px;
+        }
+
+    </style>
+    <script src="jquery-1.11.3.js"></script>
+    <script src="TweenMax.js"></script>
+    <script>
+        $(function() {
+
+            var t = new TimelineMax;
+
+            t.add('state1') //添加状态（记录）
+            t.to('.box', 1, {
+                left: 400
+            }, 2);
+
+            t.add('state2')
+            t.to('.box', 1, {
+                scale: 2,
+                skewY: 45,
+                rotationY: 145,
+            });
+            t.add(function() {
+                $('.box').css('background', 'red')
+            }); //相当于前一个动画的回调函数
+            t.to('.box', 1, {
+                top: 400
+            });
+            t.add('state3')
+                //t.tweenTo(2) //运动多少时间：2s;
+                //t.tweenTo('state3'); //运动"至"哪个状态（state1不动）
+            setTimeout(function() {
+                alert(t.time()) //动画已执行时间，包括延迟时间
+            }, 3000)
+        })
+
+    </script>
+</head>
+
+<body>
+    <input id="play" type="button" value="play">
+    <input id="stop" type="button" value="stop">
+    <input id="reverse" type="button" value="reverse">
+    <div id="box" class="box"></div>
+</body>
+
+</html>

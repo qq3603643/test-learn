@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+<style>
+.move_div{position: absolute;top: 375px;left: 200px;margin: 0px;width: 40px;height: 40px;border: 1px solid red;} 
+.osDiv{position: absolute;top: 0px;left: 0px; width: 2px;height: 2px;background: black;}    
+</style>
+<script>
+window.onload = function(){
+    
+    var oDiv = document.getElementsByTagName('div')[0];
+    var a = 5;
+    var oBody = document.getElementsByTagName('body')[0];
+    var sDiv = document.createElement('div');
+    sDiv.className = 'osDiv';
+    
+setInterval(function(){
+    
+    var sDiv = document.createElement('div');
+    sDiv.className = 'osDiv';
+    oBody.appendChild(sDiv);
+    sDiv.style.left = 40*a + 'px';
+    sDiv.style.top = 400 - a*a + 'px';
+    
+    oDiv.style.left = 40*a + 'px';
+    oDiv.style.top = 400 - a*a + 'px';
+    a+=1;
+    
+    
+},1000)
+}    
+</script>
+</head>
+<body>
+    <div class = "move_div"></div>
+</body>
+</html>

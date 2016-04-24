@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+<style>
+    div{width: 50px;height: 50px;background: url(img/11.jpg) no-repeat;background-size: 100% 100%;margin: 100px auto;border: 5px solid rgba(0,0,0,0.1);transition: 1s;}    
+</style>
+<script>
+window.onload = function(){
+    
+    var oDiv = document.getElementsByTagName('div')[0];
+    oDiv.onclick = function(){
+        
+        setTimeout(function(){
+            oDiv.style.transform = 'scale(1)';
+            oDiv.style.opacity = 1;
+        },800)
+        oDiv.style.transform = 'scale(2)';
+        oDiv.style.opacity = 0.1;
+    }
+}    
+</script>
+</head>
+<body>
+    <div></div>
+</body>
+</html>

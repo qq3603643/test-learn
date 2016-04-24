@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <script src="jquery-1.11.3.js"></script>
+    <script>
+        $(function() {
+            $('.v1').on('click', function() {
+                $(this).css({
+                    transform: 'scale(2)',
+                    transition: '2s',
+                })
+            })
+
+            $('.v1').on('webkitTransitionEnd', function() {
+                alert(2); //结束事件绑定
+            })
+        })
+
+    </script>
+</head>
+
+<body>
+    <div class="v1" style="background:black;width:40px;height:40px;margin:40px auto;"></div>
+</body>
+
+</html>

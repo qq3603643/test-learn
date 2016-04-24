@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="app">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <script src="angular.min.js"></script>
+    <script>
+        var x = angular.module('app', []);
+        x.directive('hello', function() {
+
+            return {
+
+                restrict: 'E', //标签指令
+                template: '<p>hello</P>', //定义标签模板
+            }
+        })
+
+        x.directive('hello', function() {
+
+            return {
+
+                restrict: 'A', //属性指令
+                template: '<p>hello</P>', //定义标签模板
+            }
+        })
+
+        x.directive('hello', function() {
+
+            return {
+
+                restrict: 'AE', //组合指令
+                template: '<p>hello</P>', //定义标签模板
+            }
+        })
+        
+            x.directive('hello', function() {
+
+            return {
+
+                restrict: 'C', //class指令
+                template: '<p>hello</P>', //定义标签模板
+            }
+        })
+
+        x.controller('ac', ['$scope', function($scope) {
+
+            $scope.name = 'liuxueni';
+        }])
+
+    </script>
+</head>
+
+<body ng-controller="ac">
+    <hello></hello>
+    <p hello></p>
+    <p class="hello"></p>
+</body>
+
+</html>

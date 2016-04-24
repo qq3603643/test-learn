@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="app">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <script src="angular.min.js"></script>
+    <script>
+        var x = angular.module('app', []);
+        x.controller('ab', function($scope, $timeout) {
+
+            $scope.name = 'Mr.xu';
+            //            setTimeout(function() {
+            //                $scope.$apply(function() {
+            //
+            //                    $scope.name = 'Ms.liu';
+            //                })
+            //
+            //
+            //            }, 500)
+            $timeout(function() {
+
+                $scope.name = 'Ms.liu';
+            }, 500)
+            $scope.$watch($scope.name, function() {
+
+                if ($scope.name == '123') {
+                    $scope.name = '456';
+                }
+            })
+        })
+        x.controller('ac', function($scope, $interval) {
+
+            $scope.age = 22;
+
+            //            setTimeout(function() {
+            //                $scope.$apply(function() {
+            //
+            //                    $scope.age += 1;
+            //                })
+            //
+            //            }, 500)
+            $scope.onff = true;
+            var timer = $interval(function() {
+
+                $scope.age += 1;
+                if ($scope.age == 30) {
+
+                    $interval.cancel(timer);
+                    $scope.onff = false;
+                }
+            }, 500)
+
+
+            $scope.up = function() {
+
+                $scope.age += 1;
+            }
+
+        })
+
+    </script>
+</head>
+
+<body ng-controller="ab">
+    姓名：
+    <input type="text" ng-model="name">
+    <p style="display:none">{{name}}</p>
+    年龄：
+    <input ng-disabled="onff" type="text" ng-model="age" ng-controller="ac" ng-click="up()">
+    <input ng-disabled="onff" type="text" value="{{age}}" ng-controller="ac" ng-click="up()">
+    <input ng-disabled="onff" type="text" ng-value=age ng-controller="ac" ng-click="up()">
+</body>
+
+
+</html>

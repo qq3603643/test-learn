@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+<style>
+    *{margin: 0px;padding: 0px;}
+    img{width: 150px;height: 150px;}
+    div{width: 100%; position: absolute;bottom: 50px;text-align: center;}
+</style>
+<script src="jquery-1.11.3.js"></script>
+<script>
+   $(function(){
+        $(document).mousemove(function(ev){
+            
+              for(var i=0;i<$('img').length;i++){
+           
+           var x = $('img').eq(i).offset().left + $('img').eq(i).outerWidth()/2;
+           var y = $('img').eq(i).offset().top + $('img').eq(i).outerHeight()/2;
+           var a = ev.pageX - x;
+           var b = ev.pageY - y;
+           var c = Math.sqrt(Math.pow(a,2) + Math.pow(b,2))
+           var scale = (1 - c/300);
+                  if(scale<0.5){scale=0.5;}
+           $('img').eq(i).css({width:scale*150,height:scale*150})    
+           $('p').eq(i).html(c);
+           
+           
+       }
+        })
+     
+   }) 
+      
+</script>
+</head>
+<body>
+  <p></p>
+  <p></p>
+  <p></p>
+  <p></p>
+  <p></p>
+   <div>
+       <img src="img/1.png">
+       <img src="img/2.png">
+       <img src="img/3.png">
+       <img src="img/4.png">
+       <img src="img/5.png">
+   </div>  
+</body>
+</html>

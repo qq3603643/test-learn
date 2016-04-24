@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style>
+        #box {
+            position: absolute;
+            left: 200px;
+            top: 50px;
+            width: 80px;
+            height: 80px;
+            background: black;
+        }
+        
+        #v1 {
+            position: absolute;
+            left: 580px;
+            width: 2px;
+            height: 1000px;
+            background: red;
+        }
+        
+        #v2 {
+            position: absolute;
+            left: 200px;
+            width: 2px;
+            height: 1000px;
+            background: red;
+        }
+        
+        .move {
+            left: 500px !important;
+            animation: move 4s ease-in-out;
+        }
+        
+        @keyframes move {
+            0% {
+                transform: rotateY(0deg);
+                left: 200px;
+            }
+            100% {
+                transform: rotateY(720deg);
+                left: 500px;
+                background: red;
+            }
+        }
+
+    </style>
+    <script src="jquery-1.11.3.js"></script>
+    <script src="TweenMax.js"></script>
+    <script src="jq.move_extend.js"></script>
+    <script>
+        $(function() {
+            //            var x = new TimelineMax();
+            //            x.to('#box', 4, {
+            //                left: 600,
+            //                ease: Bounce.easeInOut, // Back.easeIn/Back.easeOut (back/elastic/bounce)
+            //                rotationY: 720,
+            //            })
+
+            // $('#box').addClass('move');
+            $('#box').animate({
+                left: 500,
+
+            }, 4, 'elasticBoth')
+        })
+
+    </script>
+</head>
+
+<body>
+    <div id="box"></div>
+    <div id="v1"></div>
+    <div id="v2"></div>
+</body>
+
+</html>

@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <link href="bootstrapcss/bootstrap.css" rel="stylesheet">
+    <style>
+        body {
+            height: 100%;
+            overflow-x: hidden;
+        }
+        
+        .container .h2:after {
+            display: block;
+            content: '';
+            width: 90px;
+            height: 3px;
+            background: blue;
+            position: absolute;
+            left: 15px;
+            top: 62px;
+        }
+
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-4 text-right">
+                email
+            </div>
+            <div class="col-lg-4">
+                3603643@qq.com
+            </div>
+        </div>
+    </div>
+    <div class="container">
+        <table class="table">
+            <tr>
+                <td class="text-right">email</td>
+                <td>3603643@qq.com</td>
+            </tr>
+        </table>
+    </div>
+    <div class="container ">
+        <form class="form-horizontal">
+
+            <label class="col-md-2 control-label ">email</label>
+            <div class="col-md-8">
+                <p class="form-control-static">3603643@qq.com</p>
+            </div>
+        </form>
+    </div>
+    <div class="container">
+        <div class="form-group">
+            <label>登录</label>
+            <div class="input-group">
+
+                <div class="input-group-addon">
+                    <span class="glyphicon glyphicon-flag"></span>
+                </div>
+                <input type="email" class="form-control">
+
+            </div>
+            <div class="input-group col-md-5">
+
+                <input type="email" class="form-control">
+                <div class="input-group-addon">
+                    <span class="glyphicon glyphicon-search"></span>
+                    <strong>百度一下</strong>
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+    <div class="container bg-danger ">
+        <div class="row">
+            <div class="col-lg-4">
+                <h1>123</h1>
+                <h1>123</h1> 123
+            </div>
+            <h1>123</h1>
+            <div class="col-lg-4">
+                <h1>123</h1> 123
+            </div>
+            <div class="col-lg-4">
+                123
+            </div>
+        </div>
+    </div>
+    <div class="container" style="width:600px">
+        <table class="table table-bordered table-hover">
+
+            <tr class="active">
+                <td style="width:300px">12</td>
+                <td style="width:200px">12</td>
+                <td style="width:100px">12</td>
+            </tr>
+            <tr class="success">
+                <td>34</td>
+            </tr>
+            <tr class="bg-info">
+                <td>56</td>
+            </tr>
+        </table>
+    </div>
+
+    <div class="container" style="width:400px">
+        <div class="panel panel-success">
+            <div class="panel-heading">
+                123
+            </div>
+            <div class="panel-body">
+                <div class="form-group">
+                    <label>123
+                        <input type="text" id="123">
+                    </label>
+                    <label>456
+                        <input type="text" id="456">
+                    </label>
+                </div>
+                <div class="alert alert-info">
+                    i am a boby!
+                </div>
+
+                <div class="form-group col-md-10 form-inline" style="font-size:0px">
+                    <input type="text" class="form-control" style="text-align: center;border-radius:0px">
+                    <button style="border-radius:0px" class="btn  col-xs-pull-8"><span class="glyphicon glyphicon-search"></span></button>
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+    <ul class="list-unstyled list-inline">
+
+        <li>
+            <div class="form-group">
+                <label>
+                    <input type="checkbox">123
+                </label>
+            </div>
+        </li>
+
+        <li>
+            <div class="form-group">
+                <label>
+                    <input type="checkbox">123
+                </label>
+            </div>
+        </li>
+    </ul>
+    <dl>
+        <dt>xjc</dt>
+        <dd>xiongjianchuan</dd>
+    </dl>
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-4 bg-success">
+                <div class="center-block">
+                    <h2 class="h2">123</h2>
+                    <ul class="list-unstyled" style="border-top:1px solid black;">
+                        <li style="border-bottom:1px dashed gray;padding:5px;">aaa</li>
+                        <li style="border-bottom:1px dashed gray;padding:5px;">aaa</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="col-xs-4 bg-success">
+                <div class="center-block">
+                    <h2 class="h2">123</h2>
+                    <ul class="list-unstyled" style="border-top:1px solid black;">
+                        <li style="border-bottom:1px dashed gray;padding:5px;">aaa</li>
+                        <li style="border-bottom:1px dashed gray;padding:5px;">aaa</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="col-xs-4 bg-success">
+                <div class="center-block" style="width:100%;">
+                    <h2 class="h2">123</h2>
+                    <ul class="list-unstyled" style="border-top:1px solid black;">
+                        <li style="border-bottom:1px dashed gray;padding:5px;">aaa</li>
+                        <li style="border-bottom:1px dashed gray;padding:5px;">aaa</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <img src="img/12.jpg" class="img-thumbnail img-circle center-block" style="padding:5px;box-shadow:2px 2px 15px black;">
+    <div class="col-lg-4 bg-primary" style="padding:10px;">
+        <div class="container-fluid bg-info">124</div>
+        <!--container-fluid : 不固定了大小，填充为父级-->
+        <div class="container bg-warning">124</div>
+        <!--container : 固定了大小-->
+    </div>
+    <div class="container">
+        <div class="form-group form-inline" style="font-size:0px">
+            <input type="text" class="form-control">
+            <button class="btn">
+                <span class="glyphicon glyphicon-search"></span>
+            </button>
+        </div>
+    </div>
+</body>
+
+</html>

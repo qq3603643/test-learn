@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+<script src="jquery-1.11.3.js"></script>
+<script>
+    $(document).ready(function(){
+         var arr =[{l:$('div').offset().left,t:$('div').offset().top}];
+         var timer;
+        $('div').mousedown(function(ev){
+            var ev = ev||window.event;
+            var x = ev.pageX - $('div').offset().left ;
+            var y = ev.pageY - $('div').offset().top ;
+            //document.title = x + '||' + y;
+            
+         $(document).mousemove(function(ev){
+             var ev = ev||window.event;
+             var osDiv = document.createElement('div');
+             osDiv.style.cssText = 'width:2px;height:2px;background:black;position:absolute;'
+             osDiv.style.left = (ev.pageX-x) + 'px';
+             osDiv.style.top = (ev.pageY-y) + 'px';
+             $(document.body).append(osDiv);
+             arr.push({'l':ev.pageX-x,'t':ev.pageY-y});
+             $('div').first().css({left:(ev.pageX-x) + 'px',top:(ev.pageY-y) + 'px'});
+         })
+         
+         $(document).mouseup(function(){
+             $(document).off();
+         })
+         return false;
+        })
+        
+        $('input').click(function(){
+            
+            timer =  setInterval(function(){
+                        
+               var L = arr[arr.length-1].l;  
+               var T = arr[arr.length-1].t; 
+             if($('div').length>1){
+             $('div').last().remove(); 
+             $('div').first().css({left:L + 'px',top:T + 'px'});
+             arr.pop();}else{
+                 clearInterval(timer);
+             }
+               
+                        },50)
+            
+        })
+    })
+</script>
+</head>
+<body>
+   <input type="button" value="点击回放">
+    <div style="width:40px;height:40px;background:red;position:absolute;left:100px;top:100px"></div>
+</body>
+</html>

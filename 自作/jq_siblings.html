@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0px;
+            padding: 0px
+        }
+        
+        li {
+            float: left;
+            height: 30px;
+            width: 50px;
+            text-align: center;
+            list-style: none;
+        }
+
+    </style>
+    <script src="jquery-1.11.3.js"></script>
+    <script>
+        $(function() {
+
+
+            $('li').mouseover(function() {
+
+                $('li').siblings('li').css({ //siblings()除自己以外的所有兄弟节点 可以在里面筛选
+                    background: 'white',
+                    color: 'black'
+                }).eq($(this).index()).css({
+                    background: 'black',
+                    color: 'white'
+                });
+            })
+
+        })
+
+    </script>
+</head>
+
+<body>
+    <ul>
+        <li class="abc">aaaaa</li>
+        <li>bbbbb</li>
+        <li>ccccc</li>
+        <li>ddddd</li>
+        <li>eeeee</li>
+        <h3>ddd</h3>
+    </ul>
+
+</body>
+
+</html>

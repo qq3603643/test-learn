@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+<style>
+    div{position: absolute;top: 200px;left: 400px;height: 80px;width:80px;background: black;};    
+</style>
+<script>
+window.onload = function(){
+    var oDiv = document.getElementsByTagName('div')[0];
+    
+    oDiv.onmousedown = function(ev){
+        this.style.cursor = 'pointer';
+        ev = ev || window.event ;
+        var x = ev.clientX;
+        var divW = oDiv.offsetWidth;
+        var divL = oDiv.offsetLeft;
+        
+        var b ='';
+        if ( x > divL + divW - 10 ) {
+			b = 'right';
+		}
+		if ( x < divL + 10 ) {
+			b = 'left';
+		}
+
+        document.onmousemove = function(ev){
+             ev = ev || window.event ;
+         switch( b ) {
+				
+				case 'left':
+					oDiv.style.width = divW - ( ev.clientX - x ) + 'px';
+					oDiv.style.left = divL + ( ev.clientX -x ) + 'px';
+					break;
+					
+				case 'right':
+					oDiv.style.width = divW + ( ev.clientX - x ) + 'px';
+					break;
+				
+			}
+  }
+            
+       
+        document.onmouseup = function(){
+            document.onmousemove = document.onmouseup = null;
+        }
+        return false;
+    }
+}    
+</script>
+</head>
+<body>
+    <div></div>
+</body>
+</html>

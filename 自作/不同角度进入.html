@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+<style>
+    .wrap{overflow: hidden;width: 612px;height: 262px;margin: 100px auto;border: 2px solid red;}
+    img{display: block;border: 2px solid black;padding: 4px;width: 600px;height: 250px;}
+    #black{padding: 4px;width: 602px;height: 252px;position: absolute;background: rgba(0,0,0,0.4);display: none;}
+    p{text-indent: 60px;color: white;font: 20px/50px '微软雅黑';margin-left: 20px;}
+</style>
+<script src="jquery-1.11.3.js"></script>
+<script>
+$(function(){
+    
+  $(window).resize(function(){
+
+        
+     $('div').css({left:$('img').offset().left + 2 +'px',top:$('img').offset().top + 2 +'px'}); 
+  })
+    $('div').css({left:$('img').offset().left + 2 +'px',top:$('img').offset().top + 2 +'px'});
+   
+     
+    $('img').mouseover(function(ev){
+       
+      var ev = ev||window.event;
+      var x = $('img').offset().left + parseInt($('img').outerWidth())/2;
+      var y = $('img').offset().top + parseInt($('img').outerHeight())/2;
+        
+      var a = Math.abs(ev.pageY - y);
+      var b = Math.abs(ev.pageX - x);
+      var c = a/b;
+      var d = parseInt($('img').outerHeight())/parseInt($('img').outerWidth());
+      document.title = c + '||' + d;
+        if(ev.pageX > x){
+           if(ev.pageY < y){
+               
+               if(c<d){
+                   $('div').css({left:$('img').offset().left + parseInt($('img').outerWidth()) + 'px',top:$('img').offset().top + 'px',display:'block'});
+                   $('div').stop(true,true).animate({left:$('img').offset().left + 2 +'px',opacity:'1'},1000)
+                   
+               }else{
+                   $('div').css({left:$('img').offset().left + 'px',top:$('img').offset().top - $('img').outerHeight() + 'px',display:'block'});
+                   $('div').stop(true,true).animate({top:$('img').offset().top + 2 +'px',opacity:'1'},1000)
+               }
+           }else{
+               
+               if(c<d){
+                   $('div').css({left:$('img').offset().left + parseInt($('img').outerWidth()) + 'px',top:$('img').offset().top + 'px',display:'block'});
+                   $('div').stop(true,true).animate({left:$('img').offset().left + 2 +'px',opacity:'1'},1000)
+               }else{
+                   
+                   $('div').css({left:$('img').offset().left + 'px',top:$('img').offset().top + $('img').outerHeight() + 'px',display:'block'});
+                   $('div').stop(true,true).animate({top:$('img').offset().top + 2 +'px',opacity:'1'},1000)
+               }
+           }
+        }else{
+            
+           if(ev.pageY < y){
+               
+               if(c>d){
+                   
+                   $('div').css({left:$('img').offset().left + 'px',top:$('img').offset().top - $('img').outerHeight() + 'px',display:'block'});
+                   $('div').stop(true,true).animate({top:$('img').offset().top + 2 +'px',opacity:'1'},1000)
+               }else{
+                   $('div').css({left:$('img').offset().left - $('img').outerWidth() + 'px',top:$('img').offset().top + 'px',display:'block'});
+                   $('div').stop(true,true).animate({left:$('img').offset().left + 2 +'px',opacity:'1'},1000)
+               }
+           }else{
+               
+               if(c>d){
+                    $('div').css({left:$('img').offset().left + 'px',top:$('img').offset().top + $('img').outerHeight() + 'px',display:'block'});
+                   $('div').stop(true,true).animate({top:$('img').offset().top + 2 +'px',opacity:'1'},1000)
+               }else{
+                   
+                   $('div').css({left:$('img').offset().left - $('img').outerWidth() + 'px',top:$('img').offset().top + 'px',display:'block'});
+                   $('div').stop(true,true).animate({left:$('img').offset().left + 2 +'px',opacity:'1'},1000)
+               }
+           }
+            
+            
+            
+        }
+    })
+        var timer = null;
+        $('#black').mouseout(function(){
+            timer = setTimeout(function(){
+                
+                $('#black').css('display','none');
+                $('#black').css('opacity','0');
+                
+            },200)
+        
+    }) 
+        $('#black').mouseover(function(){
+            
+            clearTimeout(timer);
+        })
+        
+})    
+</script>
+</head>
+<body>
+
+    <div class="wrap">
+        <div id="black">
+        <h3>This is a picture.</h3>
+        <p>阿里巴巴为您找到134条cdsb产品的详细参数,实时报价,价格行情,优质批发/供应等信息。... 阿里巴巴为您找到134条cdsb产品的详细参数,实时报价,价格行情,优质批发/供应...</p>
+    </div>
+    <img src="img/1.jpg">
+    </div>
+</body>
+</html>

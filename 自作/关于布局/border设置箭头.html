@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+<style>
+    .div1{position: absolute;width: 200px;height: 400px;left:100px;top: 40px;background: black;} 
+    .div2{position: absolute;width: 0px;height: 0px;top: 5px; left: 100%;background: red;border-width:15px 40px;border-color:  white white white black;border-style: solid;} 
+</style>
+<script>
+window.onload = function(){
+    var oDiv = document.getElementById('div1');
+     oDiv.onclick = function(){
+         clearInterval(oDiv.timer);
+         var json = {height:100,width:100}
+         var speed = 0;
+         var stop = false;
+         oDiv.timer = setInterval(function(){
+             for(var attr in json){
+               
+               speed = (json[attr] - parseInt(getStyle(oDiv,attr)))/8;
+               speed = speed>0 ? Math.ceil(speed):Math.floor(speed);
+                
+                 if(parseInt(getStyle(oDiv,attr)) == json[attr]){
+                     stop = true; 
+                 }
+                 
+                 if(stop){
+                     clearInterval(oDiv.timer);alert();
+                 }else{
+                 oDiv.style[attr] =  parseInt(getStyle(oDiv,attr)) + speed +'px'}
+          
+          }
+         },50)
+          
+     }
+     
+}
+
+function getStyle ( obj, attr ) { return obj.currentStyle?obj.currentStyle[attr] : getComputedStyle( obj )[attr]; }
+</script>
+</head>
+<body>
+    <div id= "div1" class="div1">
+        <div class="div2"></div>
+    </div>
+    
+</body>
+</html>

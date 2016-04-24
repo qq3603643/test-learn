@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style>
+        .box {
+            width: 60px;
+            height: 100px;
+            position: absolute;
+            right: 0px;
+            top: 20px;
+            border: 1px solid red;
+        }
+
+    </style>
+    <script src="jquery-1.11.3.js"></script>
+    <script>
+        $(document).ready(function() {
+
+            $(window).scroll(function() {
+                var itop = $(window).scrollTop() + 20;
+                $('.box').stop(true);
+                $('.box').animate({
+                    'top': itop
+                }, 500);
+            })
+
+        })
+
+    </script>
+</head>
+
+<body style="height:2000px">
+
+    <div class="box"></div>
+
+</body>
+
+</html>

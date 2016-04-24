@@ -1,0 +1,271 @@
+<!doctype html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>CRM</title>
+    <base href="http://192.168.0.246:8888" />
+
+    <link rel="stylesheet" type="text/css" href="/crm/static/css/bootstrap.css" />
+    <link rel="stylesheet" type="text/css" href="/crm/static/css/style.css" />
+    <link rel="stylesheet" type="text/css" href="/crm/static/css/select2.css" />
+    <link rel="stylesheet" type="text/css" href="/crm/static/css/validationEngine.jquery.css" />
+    <link rel="stylesheet" type="text/css" href="http://127.0.0.1/first/css/area.css">
+
+</head>
+
+
+<body>
+    <div id="mask" class="hide"></div>
+    <div class="pop hide" id="newTask" style="z-index: 4;position:absolute;">
+
+        <div class="title">
+            <span>区域编辑</span>
+        </div>
+
+        <div class="title2">
+            <h3>请选择市区:</h3>
+        </div>
+
+        <ul class="list">
+
+            <!--            <li>
+
+
+                <div class="toggle">
+                    成都市
+                    <span class="jt jt_bottom"></span>
+                </div>
+
+
+                <ul class="list_ear show">
+                    <li>
+                        <label>
+                            <input type="checkbox"> 成华区
+                        </label>
+                    </li>
+                    <li>
+                        <label>
+                            <input type="checkbox"> 高新区
+                        </label>
+                    </li>
+                    <li>
+                        <label>
+                            <input type="checkbox"> 双流区
+                        </label>
+                    </li>
+                    <li>
+                        <label>
+                            <input type="checkbox">金牛区
+                        </label>
+                    </li>
+                    <li>
+                        <label>
+                            <input type="checkbox"> 双牛区
+                        </label>
+                    </li>
+                </ul>
+
+
+            </li>
+-->
+
+        </ul>
+
+        <div class="line pleft0  txt_c bottom10">
+            <a href="javascript:;" class="send mright15 save">保存</a>
+            <a href="javascript:;" class="send cancel">取消</a>
+        </div>
+
+    </div>
+
+    <div class="dt_top">
+        <div class="contain">
+            <div class="logobox"><img src="/crm/static/images/logo.png">易纪元CRM-地推宝</div>
+            <p>您好，四川推广部-李娜！</p>
+        </div>
+    </div>
+
+    <div class="contain">
+        <div class="nav mtop20">
+            <a href="/crm/console/task/index.html#on1" class="nav1 on1"><i class="down"></i></a>
+            <a href="/crm/console/department/index.html#on2" class="nav2"><i class="down"></i></a>
+            <a href="/crm/console/store/index.html#on3" class="nav3"><i class="down"></i></a>
+            <a href="javascript:;" class="addbtn"><i></i>新建门店</a>
+            <a class="mybtn btn btn-md btn-default" href="" target="_blank">区域负责人</a>
+        </div>
+    </div>
+
+    <div class="contain mtop20 overflow">
+        <div class="taskbox ptop15 pbottom10 overflow mbottom20 mbottom50" style="width:1000px">
+
+            <h2>管理区域负责人</h2>
+
+            <table class="table table-hover mtop20 mbottom0 table-bordered">
+                <tr>
+                    <th style="width:80px;">户主姓名</th>
+                    <th style="text-align: left;padding-left:100px;">门户地址</th>
+                    <th style="width:100px;">操作</th>
+                </tr>
+
+                <tr>
+                    <td>何丽</td>
+                    <td class="txt_l  text_indent">（成华区、乐山市、德阳市）</td>
+                    <td>
+                        <input type="button" class="btn btn-success" value="编辑区域">
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>陈章思倩</td>
+                    <td class="txt_l text_indent">（郫县、都江堰、甘孜自治州、九寨沟、黄龙）</td>
+                    <td>
+                        <input type="button" class="btn btn-success" value="编辑区域">
+                    </td>
+                </tr>
+
+            </table>
+
+        </div>
+    </div>
+
+    <div class="foot">
+        版权所有@药品终端网
+    </div>
+</body>
+
+
+<script type="text/javascript" src="/crm/static/js/jquery.js"></script>
+<script>
+    $(document).ready(function() {
+
+        //初始化遮罩层
+        var mask = function() {
+            var documnetH = $(document).height();
+            $("#mask").css({
+                "height": documnetH,
+                'zIndex': '1',
+            });
+        };
+
+        //隐藏遮罩层
+        var hide = function() {
+            $('#newTask').addClass('hide');
+            $('#mask').addClass('hide');
+        };
+
+        //ajax获取城市区
+        var getFoin = function() {
+
+            $.ajax({
+
+                method: "GET",
+                url: 'http://127.0.0.1/first/data/area.json',
+                //contentType: "application/json;charset=UTF-8",
+                dataType: 'json',
+                async: false,
+                error: function(request) {
+                    alert("Connection error");
+                },
+                success: function(data) {
+
+                    if (data.length) {
+
+                        $.each(data, function(i, item) {
+
+                            var str_div = '';
+                            var str_ul = '';
+                            var type = '';
+                            //                            var typeNum = '';
+                            $oLi = $('<li>');
+
+                            $oDiv = $('<div>');
+                            $oDiv.addClass('toggle');
+                            str_div = item.city + '<span class="jt jt_right"></span>';
+                            $oDiv.html(str_div);
+
+                            $oUl = $('<ul>');
+                            $oUl.addClass('list_ear');
+                            for (var j = 0; j < data[i].region.length; j++) {
+                                //                                typeNum = data[i].region[j];
+                                switch (data[i].region[j].type) {
+                                    case 0:
+                                        type = 'checked ';
+                                        break;
+                                    case 1:
+                                        type = ' ';
+                                        break;
+                                    case 2:
+                                        type = 'checked disabled ';
+                                        break;
+                                }
+                                str_ul += '<li><label><input ' + type + ' type="checkbox">' + data[i].region[j].name + '</label></li>';
+                            };
+                            $oUl.html(str_ul);
+
+
+                            $oLi.append($oDiv);
+                            $oLi.append($oUl);
+                            $('.list').append($oLi);
+                            $('.list li').first().addClass('top_border');
+                        });
+
+                    }
+
+                },
+
+            });
+
+        };
+
+
+        //点击保存按钮触发事件
+        $('.save').click(function() {
+            hide();
+
+        })
+
+        //点击编辑按钮
+        $('.contain .btn-success').click(function() {
+            $('.list').html('');
+            getFoin();
+            $('#newTask').removeClass('hide');
+            $('#mask').removeClass('hide');
+            mask();
+        });
+
+        //城市选择点击事件
+        $('.list').on('click', '.toggle', function() {
+
+            var index = $(this).parent().index();
+            $.each($('.toggle'), function(i, item) {
+                if (i != index) {
+                    $('.list_ear').eq(i).removeClass('show');
+                    $('.jt').eq(i).removeClass('jt_bottom').addClass('jt_right');
+                }
+            })
+            $('.list_ear').eq(index).toggleClass('show');
+
+            var classStr = $(this).find('span').get(0).className;
+            var re = /bottom/g;
+            if (re.test(classStr)) {
+                $(this).find('span').removeClass('jt_bottom').addClass('jt_right');
+            } else {
+                $(this).find('span').removeClass('jt_right').addClass('jt_bottom');
+            }
+        });
+
+        //取消按钮事件
+        $('.cancel').click(function() {
+            hide();
+        });
+
+
+    })
+
+</script>
+<iframe src="" id="addTaskFrame" style="width: 550px;
+  height: 620px;
+  border: 0px;" class="pop hide"></iframe>
+
+</html>

@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+<script>
+    
+window.onload = function() {   
+                      
+ document.title = "获取元素方法";  
+ 
+    var btn =document.getElementsByTagName('input')
+     
+    for( var i=0;i<100000;i++){
+        
+         document.body.innerHTML += '<input type="button" value="" />';
+         alert('你是傻逼' );
+         btn[i].value = '傻逼' + i;    
+        
+   }
+	
+    
+  }  
+    </script>   
+</head>
+<body>
+ 
+</body>
+</html>

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+<style>
+    div{position: relative;width:300px;height:480px;margin: 0px auto;background-color: beige;} 
+    p{margin: 0px; position: absolute;width: 40px;height: 40px;background: red;top: 0px;filter: opacity(30);opacity: 0.3}
+</style>
+<script src="mine.js"></script>
+<script>
+window.onload= function(){
+    
+    var oDiv = document.getElementsByTagName('div')[0];
+    
+    for(var i=0;i<40;i++){
+        oDiv.innerHTML += ' <p></p> ';
+    }
+    var aP = oDiv.getElementsByTagName('p');
+    for(var i=0;i<aP.length;i++){
+        var k=i%5;
+        if(k==0){ 
+            for(var j=0;j<5;j++){
+         aP[i+j].style.top =10 +(i/5)*60 +'px';
+         aP[i+j].style.left =10+ j*60 +'px';}        
+        }
+    }
+ for(var i=0;i<aP.length;i++){
+     aP[i].onmouseover = function(){
+         buffMove2(this,6,{width:60,height:60,marginLeft:10,marginTop:10,opacity:100})
+       
+     }
+      aP[i].onmouseout = function(){
+         buffMove2(this,6,{width:40,height:40,marginLeft:0,marginTop:0,opacity:30})
+     }
+ }
+    
+}    
+</script>
+</head>
+<body>
+    <div>
+       
+    </div>
+</body>
+</html>

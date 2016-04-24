@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+
+<body>
+    <input type="text" id="text">
+
+    <script>
+        setTimeout(function() {
+            self.close(); //自动关闭该窗口
+        }, 2000)
+
+    </script>
+    <script>
+        var Oinput = document.getElementById('text');
+        Oinput.onblur = function() {
+            alert('blur');
+        }
+
+        Oinput.onfocus = function() {
+            alert('focus');
+        }
+
+        Oinput.onchange = function() {
+            alert('change');
+        }
+
+        Oinput.onselect = function() {
+            alert('select');
+        }
+
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+
+    <script src="angular.min.js"></script>
+    <script>
+        var x = angular.module('app', []);
+        x.controller('ac', function($scope) {
+
+            $scope.name = 'xjc';
+            $scope.colors = [{
+                name: 'red'
+            }, {
+                name: 'black'
+            }, {
+                name: 'white'
+            }]
+
+        })
+
+    </script>
+</head>
+
+<body>
+
+    <div ng-app="app" ng-controller="ac">
+        <a href="">{{mycolor.name}}</a> 点击无默认事件
+        <select ng-model="mycolor" ng-options="color.name for color in colors"></select>
+        <form>
+            <input type="email">
+        </form>
+    </div>
+
+
+    <div>
+        <a href="">bbb</a> 点击默认刷新页面
+        
+    </div>
+</body>
+
+</html>

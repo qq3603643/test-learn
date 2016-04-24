@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+<script>
+window.onload = function(){
+    var oDiv = document.getElementsByTagName('div')[0];
+    document.onclick = function(ev){
+        var ev = ev||event;
+        var scrollTop = document.documentElement.scrollTop||document.body.scrollTop;
+        
+        oDiv.style.marginLeft = ev.clientX + 'px';
+        oDiv.style.marginTop = ev.clientY + 'px';
+    }
+}    
+</script>
+</head>
+<body>
+    <div style="width:40px;height:40px;border:1px solid red"></div>
+</body>
+</html>

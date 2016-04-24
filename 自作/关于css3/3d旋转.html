@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style>
+        .wrap {
+            width: 800px;
+            height: 600px;
+            margin: 20px auto;
+            border: 1px solid black;
+            position: relative;
+            perspective: 500px;
+            transform-style: preserve-3d;
+            perspective-origin: center center;
+        }
+        
+        .wrap img {
+            position: absolute;
+        }
+        
+        .wrap img:nth-of-type(1) {
+            width: 150px;
+            height: 250px;
+            left: 60px;
+            top: 20px;
+            transform: translateZ(-50px);
+        }
+        
+        .wrap img:nth-of-type(2) {
+            width: 180px;
+            height: 280px;
+            left: 250px;
+            top: 120px;
+            transform: translateZ(-100px);
+        }
+        
+        .wrap img:nth-of-type(3) {
+            width: 150px;
+            height: 250px;
+            left: 450px;
+            top: 20px;
+            transform: translateZ(-150px);
+        }
+        
+        .wrap img:nth-of-type(4) {
+            width: 140px;
+            height: 220px;
+            left: 580px;
+            top: 320px;
+            transform: translateZ(-200px);
+        }
+        
+        .wrap img:nth-of-type(5) {
+            width: 100px;
+            height: 200px;
+            left: 150px;
+            top: 420px;
+            transform: translateZ(-250px);
+        }
+
+    </style>
+    <script src="jquery-1.11.3.js"></script>
+    <script>
+        $(function() {
+            $('.wrap').mousemove(function(ev) {
+                var iOrigin = parseInt(getStyle($('.wrap').get(0), 'perspective-origin'));
+                var iX = ev.pageX - $('.wrap').offset().left;
+                var a = Math.abs(iX - iOrigin);
+                document.title = a;
+                if (a > 60) {
+                    $('.wrap').css('transition', a + 'ms');
+                }
+
+                $('.wrap').css('perspective-origin', iX + 'px center');
+
+
+            })
+        })
+
+        function getStyle(obj, attr) {
+            return obj.currentStyle ? obj.currentStyle[attr] : getComputedStyle(obj)[attr];
+        }
+
+    </script>
+</head>
+
+<body>
+    <div class="wrap">
+        <img src="img/10.jpg">
+        <img src="img/9.jpg">
+        <img src="img/8.jpg">
+        <img src="img/7.jpg">
+        <img src="img/6.jpg">
+
+    </div>
+</body>
+
+</html>

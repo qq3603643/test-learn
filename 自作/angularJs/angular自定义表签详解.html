@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="app">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0px;
+            padding: 0px;
+        }
+        
+        .wrap {
+            margin: 100px 200px;
+        }
+        
+        .wrap2 {
+            margin: 100px;
+        }
+        
+        ul {
+            height: 42px;
+        }
+        
+        ul li {
+            height: 40px;
+            width: 60px;
+            border: 1px solid black;
+            float: left;
+            list-style: none;
+            font: 20px/40px '微软雅黑';
+            text-align: center;
+        }
+        
+        ul li:hover {
+            background: black;
+            color: white;
+            cursor: pointer;
+        }
+        
+        .contant {
+            width: 200px;
+            height: 100px;
+            background: gray;
+        }
+        
+        .hide {
+            display: none;
+        }
+
+    </style>
+    <script src="angular.min.js"></script>
+    <script>
+        var x = angular.module('app', []);
+        x.directive('fnTab', function() {
+
+            return {
+
+                restrict: 'E',
+                replace: true,
+                //scope: true, //独立作用域 使两个自定义标签的自定不受影响
+                scope: {
+                    myclass: '@',
+                    myFn1: '&', //函数传导
+                    myFn2: '&',
+                    onff1: '=',
+                    onff2: '=',
+                    contant1: '=',
+                    contant2: '=',
+                }, //隔离作用域 使自定义标签内的表达式只受标签内控制器影响
+                controller: ['$scope', function($scope) {
+                    $scope.name1 = 'liu';
+                    $scope.name2 = 'xjc';
+
+                }],
+                template: '<div class="{{myclass}}">\
+        <ul>\
+            <li ng-mouseover="myFn1()">选项一</li>\
+            <li ng-mouseover="myFn2()">选项二</li>\
+        </ul><div id = "contant1" class = "contant" ng-show="onff1"> {{"contant1"}} </div><div id = "contant2"class = "contant" ng-show="onff2"> {{"contant2"}} </div></div > ',
+            }
+        })
+        x.controller('ac', ['$scope', function($scope) {
+
+            $scope.name = 'hello';
+            $scope.contant1 = '大家好 我是橘子';
+            $scope.contant1 = '大家好 我是苹果';
+            $scope.onff1 = true;
+            $scope.onff2 = false;
+
+            $scope.toggle1 = function() {
+                alert(1)
+                $scope.onff1 = true;
+                $scope.onff2 = false;
+            }
+
+            $scope.toggle2 = function() {
+                alert(2)
+                $scope.onff1 = false;
+                $scope.onff2 = true;
+            }
+        }])
+
+    </script>
+</head>
+
+<body ng-controller="ac">
+    <fn-tab myclass="wrap" my-fn1="toggle1()" my-fn2="toggle2()" onff1="onff1" onff2="onff2"></fn-tab>
+    <fn-tab myclass="wrap2" my-fn="toggle()"></fn-tab>
+</body>
+
+</html>

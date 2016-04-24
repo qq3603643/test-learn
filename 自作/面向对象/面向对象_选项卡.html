@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style>
+        @keyframes move {
+            0% {
+                opacity: 0
+            }
+            100% {
+                opacity: 1
+            }
+        }
+        
+        * {
+            margin: 0px;
+            padding: 0px;
+        }
+        
+        #wrap {
+            margin: 100px auto;
+            width: 400px;
+            height: 250px;
+            position: relative;
+        }
+        
+        #wrap ul {
+            display: block;
+        }
+        
+        #wrap ul li {
+            list-style: none;
+            width: 60px;
+            height: 25px;
+            border-right: 1px solid black;
+            float: left;
+            font: 15px/25px '微软雅黑';
+            text-align: center;
+        }
+        
+        #wrap ul li:hover {
+            background: black;
+            color: white;
+            cursor: pointer;
+        }
+        
+        #wrap div {
+            width: 400px;
+            height: 220px;
+            border: 1px solid red;
+            position: absolute;
+            top: 28px;
+            display: none;
+            animation: move 1s;
+        }
+        
+        .active {
+            display: block;
+        }
+
+    </style>
+    <script src="jquery-1.11.3.js"></script>
+    <script>
+        $(function() {
+
+            var tab1 = new tab('wrap');
+
+            function tab(id) {
+
+                var oDiv = document.getElementById(id);
+                this.aLi = oDiv.getElementsByTagName('li');
+                this.aDiv = oDiv.getElementsByTagName('div');
+                var _this = this;
+
+
+                for (var i = 0; i < this.aLi.length; i++) {
+
+                    this.aLi[i].index = i;
+                    this.aLi[i].onmouseover = function() {
+
+                        _this.change(this);
+                    }
+                }
+
+            }
+
+            tab.prototype.change = function(oLi) {
+
+                for (var j = 0; j < this.aLi.length; j++) {
+                    this.aDiv[j].style.display = 'none';
+                };
+                this.aDiv[oLi.index].style.display = 'block';
+
+            }
+
+
+        })
+
+    </script>
+</head>
+
+<body>
+    <div id="wrap">
+
+        <ul>
+            <li>111</li>
+            <li>222</li>
+            <li>333</li>
+        </ul>
+
+        <div style="display:block">111</div>
+        <div>222</div>
+        <div>333</div>
+    </div>
+
+</body>
+
+</html>

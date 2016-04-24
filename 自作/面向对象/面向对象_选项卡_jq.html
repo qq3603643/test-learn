@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style>
+        @keyframes move {
+            0% {
+                opacity: 0
+            }
+            100% {
+                opacity: 1
+            }
+        }
+        
+        * {
+            margin: 0px;
+            padding: 0px;
+        }
+        
+        #wrap {
+            margin: 100px auto;
+            width: 400px;
+            height: 250px;
+            position: relative;
+        }
+        
+        #wrap2 {
+            margin: 100px 50px;
+            width: 250px;
+            height: 400px;
+            position: relative;
+            top: -400px;
+        }
+        
+        #wrap ul {
+            display: block;
+        }
+        
+        #wrap ul li {
+            list-style: none;
+            width: 60px;
+            height: 25px;
+            border-right: 1px solid black;
+            float: left;
+            font: 15px/25px '微软雅黑';
+            text-align: center;
+            cursor: pointer;
+        }
+        
+        #wrap2 ul li {
+            list-style: none;
+            width: 26px;
+            height: 60px;
+            border-top: 1px solid black;
+            font: 15px/60px '微软雅黑';
+            text-align: center;
+            cursor: pointer;
+        }
+        
+        #wrap div {
+            width: 400px;
+            height: 220px;
+            border: 1px solid red;
+            position: absolute;
+            top: 28px;
+            display: none;
+            animation: move 1s;
+        }
+        
+        #wrap2 div {
+            width: 250px;
+            height: 400px;
+            border: 1px solid red;
+            position: absolute;
+            top: 0px;
+            left: 30px;
+            display: none;
+            animation: move 1s;
+        }
+        
+        .active {
+            background: black;
+            color: white;
+        }
+
+    </style>
+    <script src="jquery-1.11.3.js"></script>
+    <script>
+        $(function() {
+
+            new tab('#wrap');
+            new tab('#wrap2');
+
+            function tab(id) {
+
+                this.id = id;
+                var _this = this;
+                $(id).find('li').eq(0).addClass('active');
+                $(id).find('div').eq(0).css('display', 'block');
+
+                $(id).find('li').mouseover(function() {
+
+                    _this.change($(this));
+                })
+
+
+
+            }
+
+            tab.prototype.change = function(oLi) {
+
+                $(this.id).find('div').css('display', 'none');
+                $(this.id).find('li').removeClass('active');
+
+                $(this.id).find('li').eq(oLi.index()).addClass('active');
+                $(this.id).find('div').eq(oLi.index()).css('display', 'block');
+
+            }
+
+
+        })
+
+    </script>
+</head>
+
+<body>
+    <div id="wrap">
+
+        <ul>
+            <li>111</li>
+            <li>222</li>
+            <li>333</li>
+        </ul>
+
+        <div style="display:block">111</div>
+        <div>222</div>
+        <div>333</div>
+    </div>
+    <div id="wrap2">
+
+        <ul>
+            <li>111</li>
+            <li>222</li>
+            <li>333</li>
+        </ul>
+
+        <div>111</div>
+        <div>222</div>
+        <div>333</div>
+    </div>
+</body>
+
+</html>

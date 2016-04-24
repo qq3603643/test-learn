@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+<style>
+    #up{margin: 0px; position: absolute;left: 300px;top: 198px;width: 800px;height: 2px;background: black;}
+    #down{margin: 0px; position: absolute;left: 300px;top: 400px;width: 800px;height: 2px;background: black;} 
+    div{position: absolute;left: 305px;top: 360px;width: 40px;height: 40px;background: red;}
+</style> 
+<script src ="mine.js"></script>
+<script>
+window.onload = function(){
+    var aDiv = document.getElementsByTagName('div');
+    
+    for(var i=0;i<aDiv.length;i++){
+        aDiv[i].style.left = 320 + i*45 + 'px';
+    }
+    shakeMove(aDiv,'top',360,200);
+ 
+}    
+</script>  
+</head>
+<body>
+    <p id="up"></p>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    
+    <p id="down"></p>
+</body>
+</html>

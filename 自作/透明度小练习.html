@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+<style>
+    div{position: absolute;left:100px;top: 100px;width: 40px;height: 40px;background-color: aqua;border: 1px solid black;}  
+</style>
+<script src="mine.js"></script>
+<script>
+window.onload = function(){
+    var aDiv = document.getElementsByTagName('div');
+    var m =0;
+    for(var i=0;i<20;i++){ 
+    document.body.innerHTML += '<div></div>';
+        aDiv[i].style.left  = 100 + i*50 +'px';
+         }
+    aDiv[m].onclick = function(){    
+   setInterval(function(){
+           doMove(aDiv[m],'top',20,400);
+           m++;
+       
+   },200);  }
+       
+  
+     function doMove ( obj, attr, dir, target, endFn ) {
+	
+	dir = parseInt(getStyle( obj, attr )) < target ? dir : -dir;
+	
+	clearInterval( obj.timer );
+	
+	obj.timer = setInterval(function () {
+		
+		var speed = parseInt(getStyle( obj, attr )) + dir;			// 步长
+		
+		if ( speed > target && dir > 0 ||  speed < target && dir < 0  ) {
+			speed = target;
+		}
+		
+		obj.style[attr] = speed + 'px';
+//		if ( speed > target/2 ){
+//           touming(obj,0.2,0.5); }
+//        if ( speed == target/2 ){
+//           touming(obj,0); 
+            
+//        }
+		if ( speed == target ) {
+			clearInterval( obj.timer );
+            touming(obj,0.2,0); 
+			
+			/*
+			if ( endFn ) {
+				endFn();
+			}
+			*/
+			endFn && endFn();
+			
+		}
+		
+	}, 30);
+}
+    
+    
+ }   
+    
+    
+</script>
+</head>
+<body>
+    
+</body>
+</html>

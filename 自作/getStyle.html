@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+<style>
+    #boby{width: 40px;height: 50px;background: red;}    
+</style>
+<script src ="mine.js"></script>
+<script >
+    window.onload = function(){
+        alert();
+        var oDiv = document.getElementById('boby');
+        
+            alert(getStyle(oDiv,'width'));
+//            function getStyle(Object,style){     
+//      return Object.currentStyle ? Object.currentStyle[style] :getComputedStyle(Object)[style]
+////          if( Object.currentStyle ){
+////			return( Object.currentStyle[style]);
+////		} else {
+////			return( getComputedStyle(Object)[style] );
+////			
+////		} // if的方法
+//      }  //获取元素属性的一个方法
+        
+    }
+</script>
+</head>
+<body>
+    <div id="boby"></div>
+</body>
+</html>

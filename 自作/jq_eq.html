@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style>
+        *{margin: 0px;padding: 0px;list-style: none}
+        ul{margin-left: 200px; height: 40px;}
+        li{width: 100px;height: 40px;border-left: 2px solid white;background: black;float: left;}
+    </style>
+    <script src="jquery-1.11.3.js"></script>
+    <script>
+    
+        $(document).ready(function(){
+            $('li').hover(function(){
+              $(this).css('background','red');  
+//                $('li').css('background','red').eq($(this).index()).css('background','black')
+                
+            },function(){
+            $(this).css('background','black');  
+            })
+        })
+       
+    
+    </script>
+</head>
+<body>
+    <ul>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+    </ul>
+</body>
+</html>

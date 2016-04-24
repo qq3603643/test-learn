@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+<style>
+    a{text-decoration: none;color: red;}
+    table{width: 600px;border: 1px solid black;text-align: center;}
+</style>
+<script>
+window.onload = function(){
+    var oTable = document.getElementsByTagName('table')[0];
+//    tHead: 表格头
+//    tBodies: 正文
+//    tFood: 表格尾
+//     rows: 行
+//     cells: 列
+    var oTbody = oTable.tBodies[0]; 
+    var date = [
+        {one:'how',two:'are',three:'you'},
+        {one:'something',two:'you',three:'noknow'},
+   ] 
+    
+ // 表格的添加
+    for(var i=0;i<date.length;i++){
+        var oTr = document.createElement('tr');
+        var oTd = document.createElement('td');
+        oTd.innerHTML = date[i].one
+        oTr.appendChild (oTd);
+        oTbody.appendChild (oTr);
+        
+        oTd = document.createElement('td');
+        oTd.innerHTML = date[i].two;
+        oTr.appendChild (oTd);
+       
+        
+        oTd = document.createElement('td');
+        oTd.innerHTML = date[i].three;
+        oTr.appendChild (oTd);
+
+        
+        oTd = document.createElement('td');
+        oTd.innerHTML = '<a href="javascript:;">delete</a>';
+        oTr.appendChild (oTd);
+
+         
+    }
+    function abc(){
+     for(var i=0;i<oTable.rows.length;i++){
+        if(i%2 == 1){
+        oTable.rows[i].style.background = 'gray'; }
+    } }
+    abc();
+    var aA = document.getElementsByTagName('a');
+    for(var i=0;i<oTbody.rows.length;i++){
+     aA[i].onclick = function(){
+        oTbody.removeChild(this.parentNode.parentNode);
+            for(var i=0;i<oTable.rows.length;i++){
+       
+        oTable.rows[i].style.background = 'white';  }
+    
+          abc();
+     }
+    }
+}    
+</script>
+</head>
+<body>
+    <table border="1">
+       <thead>
+           <tr>
+               <td>1</td>
+               <td>2</td>
+               <td>3</td>
+               <td>操作</td>
+           </tr>
+           
+       </thead>
+        <tbody>
+        <tr>
+            <td>i</td>
+            <td>love</td>
+            <td>you</td>
+            <td><a href="javascript:;">delete</a></td>
+            
+        </tr>
+        <tr>
+            <td>why</td>
+            <td>you</td>
+            <td>leave</td>
+            <td><a href="javascript:;">delete</a></td>
+        </tr>
+        </tbody>
+    </table>
+</body>
+</html>

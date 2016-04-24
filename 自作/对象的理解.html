@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style>
+        #tag {
+            position: absolute;
+            left: 100px;
+            top: 100px;
+            width: 100px;
+            height: 30px;
+            border: 1px dashed gray;
+        }
+
+    </style>
+</head>
+
+<body>
+    <button id="addTag">add</button>
+    <button id="delTag">del</button>
+    <button id="moveUpTag">up</button>
+    <button id="moveDownTag">down</button>
+    <div id="tag"></div>
+    <script src="jquery-1.11.3.js"></script>
+    <script>
+        ~ function() {
+            function CreateTagById(id) {
+                var ele = '#' + id;
+                var $Tag = this;
+                $Tag.add = function() {
+                    var $onff = $(ele).size();
+                    var creatN = function() {
+                        var $newTag = $('<div>');
+                        $newTag.attr('id', 'tag');
+                        $('body').append($newTag);
+                    };
+                    $onff && (alert('已将有一个可操作的标签了..'), true) || (
+                        creatN()
+                    )
+                };
+                $Tag.del = function() {
+                    var $onff = $(ele).size();
+                    $onff && ($(ele).remove(), true) || (alert('没有可删除标签，请添加'));
+                };
+                $Tag.up = function() {
+                    var targetNum = $(ele).offset().top - 40;
+                    targetNum = targetNum < 100 && 100 || targetNum;
+                    $(ele).stop().animate({
+                        'top': targetNum
+                    }, 500)
+                }
+                $Tag.down = function() {
+                    var targetNum = $(ele).offset().top + 40;
+                    $(ele).stop().animate({
+                        'top': targetNum
+                    }, 500)
+                }
+            };
+
+            tag = new CreateTagById('tag');
+            for(var attr in tag){
+//                console.log(attr + ':' + tag[attr])
+            }
+            $('#addTag').on('click', tag.add)
+            $('#delTag').on('click', function() {
+                tag.del()
+            })
+            $('#moveUpTag').on('click', function() {
+                tag.up()
+            })
+            $('#moveDownTag').on('click', function() {
+                tag.down()
+            })
+        }();
+        
+        var consoleN = function(){
+            console.log(this);
+        }
+        consoleN();
+        
+        $(document).click(function(){consoleN.call(this)})
+        
+        function creatT(str){
+            var strId = '#' + str;
+            function add(){
+                console.log('add...' + strId)
+            }
+            function moveUp(){
+                console.log('moveup' + strId)
+            }
+            function moveDown(){
+                var $self = $(this);
+                console.log(this)
+            }
+            return {
+                add: add,
+                moveUp: moveUp,
+                moveDown: moveDown
+            }
+        }
+        var t = creatT('tangerine');
+        $('#addTag').click(t.add);
+        $('#moveUpTag').click(t.moveUp);
+        $('#moveDownTag').click(function(){
+            t.moveDown.call(this);
+        });
+    </script>
+</body>
+
+</html>

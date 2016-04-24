@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+<style>
+  
+</style>
+<script>
+window.onload = function(){
+    var aBtn = document.getElementsByTagName('input');
+    var onff = true;
+    
+    aBtn[1].onclick = function(){
+        if(onff ){
+        aBtn[0].disabled = '';
+        aBtn[1].value = '确定';
+        onff = false;alert();
+        }
+        else{
+            aBtn[0].disabled = 'disabled';
+            aBtn[1].value = '点击修改文字';
+            onff = true;
+        }
+    }
+};    
+</script>
+</head>
+<body>
+
+    <input type="text" disabled="disabled" size="60"  name="j01" value="我们都一样">
+    <input type="button" value="点击修改文字内容">
+    
+</body>
+</html>

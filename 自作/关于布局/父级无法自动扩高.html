@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+<style>
+    #v1{width:10%; padding: 10px;background: red;margin-left: auto;margin-right: auto;}    
+    #v2{ width: 100px;height: 200px;background: black;float: left;}
+    .clear:after{clear: both;content: '';display: block;height: 0px;}
+    .clear{zoom:1;}
+</style>
+<script src="mine.js"></script>
+<script>
+window.onload = function(){
+    var sDiv = document.getElementById('v2');
+    var oDiv = document.getElementById('v1');
+    
+    sDiv.onmousedown = function(ev){
+        ev = ev || window.event;
+        var x = ev.clientX - parseFloat(getStyle(sDiv,'marginLeft'));
+        var y = ev.clientY - parseFloat(getStyle(sDiv,'marginTop')) ;
+        document.title = x + '|' + y;
+        document.onmousemove =  function(oev){
+             oev = oev || window.event;
+            var l = oev.clientX - x;
+            var t = oev.clientY - y;
+            sDiv.style.marginLeft = l +'px';
+            sDiv.style.marginTop= t + 'px';
+            oDiv.style.width = l +100 + 'px';
+        }
+        document.onmouseup = function(){
+            document.onmousemove =  document.onmouseup = null;
+        }
+        return false;
+        
+    }
+}    
+</script>
+</head>
+<body>
+    <div id="v1" class="clear">
+        <div id="v2"></div>
+    </div>
+</body>
+</html>

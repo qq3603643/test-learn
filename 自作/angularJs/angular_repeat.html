@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="app">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <script src="angular.min.js"></script>
+    <script>
+        var x = angular.module('app', []);
+
+        x.controller('ac', ['$scope', function($scope) {
+
+            $scope.data = [33, 55, 77, 22, 99];
+
+        }])
+
+    </script>
+</head>
+
+<body ng-controller="ac">
+    <p ng-repeat="j in data">{{j}}</p>
+</body>
+
+</html>

@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style>
+        body,
+        ul {
+            margin: 0px;
+            padding: 0px;
+        }
+        
+        li {
+            list-style: none;
+        }
+        
+        .nav {
+            width: 60%;
+            height: 60px;
+            border: 1px solid black;
+            margin: 0px auto;
+        }
+        
+        .nav ul {
+            height: 100%;
+            width: 100%;
+            position: relative;
+        }
+        
+        .nav li {
+            width: 25%;
+            height: 100%;
+            background: red;
+            float: left;
+            text-align: center;
+            font: 900 20px/60px '';
+        }
+        
+        .nav li:hover {
+            cursor: pointer;
+        }
+        
+        .nav span {
+            position: absolute;
+            display: block;
+            width: 9%;
+            height: 2px;
+            top: 90%;
+            left: 8%;
+            background: gray;
+        }
+        
+        .i,
+        .love {
+            position: relative;
+            width: 80%;
+            height: 600px;
+            left: 10%;
+        }
+        
+        .i a {
+            display: block;
+            padding: 3px;
+            border: 1px solid gray;
+            border-radius: 50%;
+            position: absolute;
+            opacity: 0;
+            transform-origin: center;
+            transform: rotateY(0deg);
+            text-align: center;
+        }
+        
+        .rotateY {
+            transition: 1s;
+            transform: rotateY(180deg);
+        }
+        
+        .love .pic {
+            width: 200px;
+            height: 200px;
+            position: absolute;
+            top: -20px;
+            left: 40%;
+            border-radius: 50%;
+            padding: 2px;
+            border: 1px solid gray;
+        }
+        
+        .love .pic img {
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+        }
+
+    </style>
+    <script src="jquery-1.11.3.js"></script>
+    <script src="jq.move_extend.js"></script>
+    <script src="TweenMax.js"></script>
+    <script>
+        $(function() {
+            window.location.hash = '#i';
+            $('.nav li').mouseenter(function() {
+                var ileft = $(this).offset().left - $('.nav').offset().left + parseInt($('.nav').outerWidth()) * (8 / 100);
+                $('.nav span').animate({
+                    opacity: '1',
+                    'left': ileft
+                }, 500, 'elasticOut');
+            });
+
+            $('.nav li').click(function() {
+                var now_hash = window.location.hash.substr(1, window.location.hash.length - 1);
+                var _this = $(this).get(0);
+
+                switch (now_hash) {
+                    case 'i':
+                        Iout();
+                        break;
+                    case 'love':
+                        LoveOut();
+                        break;
+                    case 'you':
+                        alert(3);
+                        break;
+                    case 'appke':
+                        alert(4);
+                        break;
+                }
+                setTimeout(function() {
+                    var Str_hash = _this.dataset.hash;
+                    window.location.hash = Str_hash;
+                }, 1000)
+            })
+
+            $('.nav').mouseleave(function() {
+                $('.nav span').animate({
+                    opacity: '0'
+                }, 200)
+            });
+
+            window.onhashchange = function() {
+                var now_hash = window.location.hash.substr(1, window.location.hash.length - 1);
+                switch (now_hash) {
+                    case 'i':
+                        Iin();
+                        break;
+                    case 'love':
+
+                        LoveIn();
+                        break;
+                    case 'you':
+                    case 'apple':
+                }
+            }
+
+            function Iin() {
+                var I = new TimelineMax;
+
+                $('.i').css('display', 'block');
+                I.staggerTo($('.i a'), 2, {
+                    opacity: '1',
+                    scale: '10',
+                    ease: Elastic.easeOut,
+                }, 0.2);
+                $('.i a').mouseenter(function() {
+                    I.to($(this), 0.5, {
+                        rotationY: 180,
+                    })
+                })
+                $('.i a').mouseleave(function() {
+                    I.to($(this), 0.5, {
+                        rotationY: 0,
+                    })
+                })
+            }
+
+            function Iout() {
+                var I = new TimelineMax;
+                I.staggerTo($('.i a'), 1, {
+                    opacity: '0',
+                    scale: '1/10',
+                    scale: '1/10',
+                    onComplete: function() {
+                        $('.i').css('display', 'none');
+                    }
+                }, 0.2)
+
+            }
+
+            function LoveIn() {
+                var L = new TimelineMax;
+                $('.love').css('display', 'block');
+
+                L.to($('.love .pic'), 2, {
+                    top: '100px',
+                    ease: Elastic.easeOut,
+                });
+
+            }
+
+            function LoveOut() {
+                var L = new TimelineMax;
+
+                L.to($('.love .pic'), 1, {
+                    top: '-20px',
+                    ease: Back.easeIn,
+                    onComplete: function() {
+                        $('.love').css('display', 'none');
+                    }
+                });
+            }
+        })
+
+    </script>
+</head>
+
+<body>
+    <div class="nav">
+        <ul>
+            <li data-hash="i">I</li>
+            <li data-hash="love">LOVE</li>
+            <li data-hash="you">YOU</li>
+            <li data-hash="apple">APPLE</li>
+            <span></span>
+        </ul>
+    </div>
+
+    <div class="i" data-hash="i">
+        <a style="width:10px;height:10px;left:500px;top:120px;"></a>
+        <a style="width:5px;height:5px;left:800px;top:180px;"></a>
+        <a style="width:8px;height:8px;left:500px;top:300px;"></a>
+        <a style="width:12px;height:12px;left:300px;top:320px;"></a>
+        <a style="width:10px;height:10px;left:700px;top:400px;"></a>
+    </div>
+    <div class="love" style="display:none" data-hash="love">
+        <div class="pic">
+            <img src="img/10.jpg">
+        </div>
+    </div>
+    <div class="you" data-hash="you"></div>
+    <div class="apple" data-hash="apple"></div>
+</body>
+
+</html>

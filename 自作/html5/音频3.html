@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+<style>
+    #wrap{width: 800px;margin: 0px auto;position: relative;overflow: hidden;background: black;}
+    video{width: 800px;height: 600px;border: 2px solid black;}
+    #wrap #contant{width: 100%;height: 60px;background:black;position: absolute;left: 0px;top:603px; }
+    input{background: black;color: white;font: 20px/50px '微软雅黑';outline: none;border-left: 1px solid gray;border-top-style: none;border-left-style: none;border-bottom: none;cursor: pointer;margin-top: 2px;display: block;float: left;}
+    .right{float: right;margin-right: 5%;border-style: none;}
+    #speed{position: absolute;left: 0px;top: 0px;height: 4px;width: 100%;background: gray;cursor: pointer;}
+    #speed_list{height: 4px;background: blue;width: 0px;float: left;}
+    #vioce{position: absolute;left: 120px;top: 30px;height: 4px;width: 200px;background: gray;cursor: pointer;}
+    #vioce_list{height: 4px;background: yellow;width:0px;float: left;width: 100px;}
+</style>
+<script>
+window.onload = function(){
+    
+    var oWrap = document.getElementById('wrap');
+    var oV = document.getElementById('v2');
+    var oContant = document.getElementById('contant');
+    var oSpeed = document.getElementById('speed');
+    var oSpeedlist = document.getElementById('speed_list');
+    var oVioce = document.getElementById('vioce');
+    var oViocelist = document.getElementById('vioce_list');
+    var aBtn = document.getElementsByTagName('input');
+    var onff = 1;
+    var onff2 = 1;
+    var onff3 = 1;
+    oSpeed.onclick = function(ev){
+        
+        var ev = ev||window.event;
+        var l = ev.clientX - oWrap.offsetLeft;
+        
+        var scale = l/oSpeed.offsetWidth;
+        oV.currentTime = scale * oV.duration;
+        oSpeedlist.style.width = l + 'px';
+        
+    }
+   oVioce.onclick = function(ev){
+        
+        var ev = ev||window.event;
+        var l = ev.clientX - oWrap.offsetLeft - oVioce.offsetLeft;
+        var scale = l/oVioce.offsetWidth;
+        oV.volume = scale;
+        oViocelist.style.width = l + 'px'; 
+    }
+   
+    aBtn[0].onclick = function(){
+          if(onff){
+              oV.play();
+              this.value = '暂停';
+              nowtime();
+              setInterval(nowtime,1000);
+              onff = 0;
+          }else{
+             oV.pause(); 
+             this.value = '播放';
+             onff = 1;
+          }
+    }
+       aBtn[1].onclick = function(){
+          if(onff2){
+              oV.volume = 0;
+              this.value = '开启';
+              onff2 = 0;
+          }else{
+             var scale = oViocelist.offsetWidth/oVioce.offsetWidth;
+             oV.volume = scale;
+             this.value = '静音';
+             onff2 = 1;
+          }
+       }
+       aBtn[2].onclick = function(){
+              if(onff3){
+           oWrap.style.width = window.innerWidth-50 + 'px';
+           oWrap.style.height = window.innerHeight-50 + 'px';
+           oV.style.width = window.innerWidth-50 + 'px';
+           oV.style.height = window.innerHeight-50 + 'px';
+           this.value = 'ESC';
+           onff3 = 0;
+                  }else{
+           oWrap.style.width = 800 + 'px';
+           oWrap.style.height = 600 + 'px';
+           oV.style.width = 800 + 'px';
+           oV.style.height = 600 + 'px';
+           this.value = '全屏';
+           onff3 = 1;
+                  }
+
+       }
+       
+       function nowtime(){
+           var scale = oV.currentTime/oV.duration;
+           oSpeedlist.style.width = oSpeed.offsetWidth*scale + 'px';
+       }
+     oWrap.onmouseover = function(){
+         var m = oWrap.offsetHeight - oContant.offsetHeight;
+        domove(oContant,m)
+    }
+     oWrap.onmouseout = function(){
+         var m = oWrap.offsetHeight - 3;
+        domove(oContant,m)
+    }
+     function domove(obj,target){
+         clearInterval(obj.timer);
+         obj.timer = setInterval(function(){
+           var itop = parseInt( getstyle(oContant,'top')  );
+           var speed = (target - itop) / 6;
+           var speed = speed>0 ? Math.ceil(speed) : Math.floor(speed);
+             
+             if(itop == target){
+                 
+                 clearInterval(obj.timer);
+             }else{
+                 obj.style.top = itop + speed + 'px';
+             }
+         },50
+         )
+         
+         
+     }
+     function getstyle(obj,attr){
+        return obj.currentStyle ? obj.currentStyle[attr] : getComputedStyle(obj)[attr];
+    }
+}    
+</script>
+</head>
+<body>
+     <div id="wrap">
+    <video id="v2" src="Intermission-Walk-in_512kb.mp4"></video>
+     <div id="contant">
+        <div id="speed">
+            <div id="speed_list"></div>
+        </div>
+        <input type="button" value="播放">
+        <input type="button" value="静音">
+         <div id="vioce">
+            
+            <div id="vioce_list"></div>
+        </div>
+        <input class="right" type="button" value="全屏">
+         
+     </div>
+     </div>
+</body>
+</html>

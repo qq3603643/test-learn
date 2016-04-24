@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style>
+        .v1,
+        .v2 {
+            position: relative;
+            width: 100px;
+            height: 100px;
+            border: 1px solid red;
+            margin: 50px auto;
+            background: linear-gradient( to top, white 35%, gray 40%, black 50%, gray 55%, white 60%) no-repeat;
+            background-position: 0px 100px;
+            animation: move 2s ease-in-out infinite;
+        }
+        /*        left:小左靠大左 right:小右靠大右  top:小上靠大上 bottom:小底靠大底*/
+        
+        @keyframes move {
+            0% {
+                background-position: 0px 100px;
+            }
+            100% {
+                background-position: 0px -100px;
+            }
+        }
+        
+        .sv {
+            width: 50px;
+            height: 50px;
+            background: black;
+            text-align: center;
+            font: 800 20px/50px '';
+            color: white;
+            position: absolute;
+            left: -50px;
+        }
+
+    </style>
+</head>
+
+<body>
+    <div class="v1">
+        <div class="sv">123</div>
+    </div>
+    <div class="v2"></div>
+</body>
+
+</html>

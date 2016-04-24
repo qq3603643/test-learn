@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="app">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style>
+        input.ng-valid {
+            border: 2px solid green;
+        }
+        
+        input.ng-invalid {
+            border: 1px solid red;
+        }
+
+    </style>
+    <script src="angular.min.js"></script>
+    <script>
+        var x = angular.module('app', []);
+        x.controller('ac', function($scope) {
+
+            $scope.text = 'xjcliu';
+
+        })
+
+    </script>
+</head>
+
+<body>
+
+    <div ng-controller="ac">
+        <form novalidate name="myform">
+            <input name="mytext" type="text" required ng-minlength="5" ng-model="text" ng-pattern="/^[1-9]+$/">
+
+            <!-- 
+            ng-minlength/maxlength  限制长度
+            ng-pattern 正则表达式
+              -->
+
+
+            <p>{{myform.mytext.$valid}}</p>
+            <p>{{myform.mytext.$invalid}}</p>
+            <p>{{myform.mytext.$pristine}}</p>
+            <p>{{myform.mytext.$dirty}}</p>
+            <p>{{myform.mytext.$error}}</p>
+        </form>
+    </div>
+
+</body>
+
+</html>

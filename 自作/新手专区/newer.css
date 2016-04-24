@@ -1,0 +1,377 @@
+.wrap {
+    width: 1190px;
+    margin: 0px auto;
+}
+
+.top_pic {
+    width: 1200px;
+    height: 300px;
+    background: url(pics/top_pic.jpg) no-repeat;
+    background-size: 100% 100%;
+}
+
+.topWord {
+    height: 73px;
+    padding-top: 27px;
+    background: #F8F8F8;
+}
+
+.topWord h1 {
+    display: inline-block;
+    padding: 20px 0px;
+    font: 600 33px/33px '';
+}
+
+.topWord span {
+    color: #666666;
+    font-size: 15px;
+}
+
+.sellerShow {
+    width: 1188px;
+    border: 1px solid #E5E5E5;
+    padding-bottom: 40px;
+}
+
+.sellerShow .show_head {
+    width: 100%;
+    height: 98px;
+    border-bottom: 1px solid #E5E5E5;
+}
+
+.sellerShow .show_head h2 {
+    text-indent: 110px;
+    font: 600 24px/98px '';
+    display: inline-block;
+}
+
+.sellerShow .show_head span {
+    display: inline-block;
+    color: #9A9A9A;
+    text-indent: 8px;
+    font-size: 12px;
+}
+
+.sellerShow .show_head span em {
+    color: #FE0002;
+    display: inline-block;
+    position: relative;
+    top: -2px;
+}
+
+.sellerShow .show_head a {
+    color: #7F7F7F;
+    display: inline-block;
+    float: right;
+    font: 20px/98px '';
+    margin-right: 14px;
+}
+
+.sellerShow .show_head a:hover,
+.module2 .topInfo a:hover {
+    color: black;
+    cursor: pointer;
+}
+
+.sellerShow .show_list .show_video {
+    width: 475px;
+    height: 360px;
+    float: left;
+    overflow: hidden;
+}
+
+.sellerShow .show_list .show_video:hover img {
+    width: 120%;
+    height: 120%;
+    top: -10%;
+    left: -10%;
+    cursor: pointer;
+}
+
+.sellerShow .show_list .show_video img {
+    transition: .4s;
+    width: 100%;
+    height: 100%;
+    position: relative;
+    top: 0;
+    left: 0;
+}
+
+.sellerShow .show_list ul {
+    overflow: hidden;
+    border: 1px solid #E5E5E5;
+    border-bottom: none;
+}
+
+.sellerShow .show_list li {
+    padding: 12px;
+    width: 212px;
+    height: 335px;
+    float: left;
+    border-right: 1px solid #E5E5E5;
+    border-bottom: 1px solid #E5E5E5;
+}
+
+.sellerShow .show_list li .img_wrap {
+    display: inline-block;
+    width: 212px;
+    height: 210px;
+    display: table-cell;
+    vertical-align: middle;
+    text-align: center;
+}
+
+.sellerShow .show_list li .img_wrap img {
+    max-height: 210px;
+    max-width: 212px;
+}
+
+.sellerShow .show_list li .name {
+    display: block;
+    padding: 4px 14px;
+    height: 35px;
+    font-size: 15px;
+    color: #6F6F6F;
+}
+
+.sellerShow .show_list li em {
+    display: block;
+    height: 25px;
+    font: 700 17px/23px '';
+    text-indent: 14px;
+    color: #E20202;
+}
+
+.sellerShow .show_list li span {
+    display: block;
+    height: 22px;
+    color: #808080;
+    font: 12px/22px '';
+    text-indent: 13px;
+}
+
+.sellerShow .show_list li .cart {
+    font-size: 0px;
+    padding: 8px 0px 0px 5px;
+}
+
+.sellerShow .show_list li .cart .cart_btn {
+    display: inline-block;
+    width: 22px;
+    height: 21px;
+    background: #F3F3F3;
+    text-align: center;
+    border: 1px solid gray;
+}
+
+.sellerShow .show_list li .cart input {
+    display: inline-block;
+    padding: 2px 0px;
+    height: 15px;
+    border: 1px solid gray;
+    font: 14px/14px '';
+    text-align: center;
+    width: 25px;
+}
+
+.sellerShow .show_list li strong {
+    display: inline-block;
+    font-size: 11px;
+    padding: 0px 8px 0px 5px;
+}
+
+.sellerShow .show_list li .cart .cart_jion {
+    width: 106px;
+    height: 28px;
+    border: 1px solid gray;
+    background: #77C552;
+    color: white;
+}
+
+.module2 {
+    background: #E8EFEE;
+}
+
+.module2 .topInfo {
+    height: 90px;
+    padding-top: 30px;
+}
+
+.module2 .topInfo h1 {
+    display: inline-block;
+    padding: 30px 0px;
+    font: 600 30px/30px '';
+}
+
+.module2 .topInfo span {
+    font-size: 15px;
+    color: #666666;
+}
+
+.module2 .topInfo a {
+    display: inline-block;
+    float: right;
+    font: 19px;
+    padding-top: 40px;
+    color: #666666;
+}
+
+.module2 .giftShow {
+    padding-bottom: 20px;
+}
+
+.giftShow ul {
+    overflow: hidden;
+}
+
+.giftShow li {
+    float: left;
+    margin-right: 25px;
+    text-align: center;
+    padding: 20px;
+    background: #FFFFFF;
+    width: 340px;
+}
+
+.giftShow .marginNone {
+    margin-right: 0px !important;
+}
+
+.giftShow li a img {
+    width: 340px;
+    height: 140px;
+}
+
+.giftShow li span {
+    display: block;
+    padding: 20px;
+    color: #666666;
+    font-size: 18px;
+}
+
+.giftShow li em {
+    display: block;
+    color: #999999;
+    font-size: 12px;
+}
+
+.module3 {
+    padding: 50px 0px;
+    width: 100%;
+}
+
+.module3 .topTitle h1 {
+    display: inline-block;
+    font: 600 36px/36px '';
+}
+
+.module3 .topTitle span {
+    font-size: 15px;
+    color: #ADADAD;
+}
+
+.module3 .content {
+    background: url(pics/pic3.png) no-repeat;
+}
+
+.module3 .content .Info {
+    width: 540px;
+    height: 328px;
+    position: relative;
+    left: 528px;
+    padding-top: 130px;
+}
+
+.module3 .content .Info h2 {
+    font: 800 28px/28px '';
+    color: #F84202;
+}
+
+.module3 .content .Info p {
+    padding: 13px 0px 27px 0px;
+    font: 15px/29px '';
+    color: #666666;
+}
+
+.module3 .content .Info a {
+    font: 16px/16px '';
+    color: #F84202;
+    display: block;
+    float: right;
+}
+
+.module3 .flow {
+    height: 185px;
+    border: 1px solid #E5E5E5;
+    position: relative;
+}
+
+.module3 .flow:after {
+    display: block;
+    content: '采购流程';
+    width: 102px;
+    height: 40px;
+    color: #333333;
+    font: 18px/40px '';
+    position: absolute;
+    top: -20px;
+    left: 543px;
+    background: white;
+    text-align: center;
+}
+
+.module3 .flow img {
+    width: 100%;
+    height: 100%;
+}
+
+#clickTo {
+    position: absolute;
+    top: 60%;
+    right: 0px;
+    width: 118px;
+    border: 1px solid #E5E5E5;
+    border-bottom: none;
+}
+
+#clickTo li {
+    height: 39px;
+    border-bottom: 1px solid #E5E5E5;
+    text-align: center;
+    font: 12px/39px '';
+}
+
+#clickTo li:hover,
+#clickTo #title2 {
+    cursor: pointer;
+}
+
+#clickTo .active {
+    color: #77C552;
+}
+
+#clickTo #title1 {
+    background: #77C552;
+    color: white;
+    text-align: center;
+    font: 12px/39px '';
+}
+
+#clickTo #title2 {
+    text-decoration: none;
+    width: 100%;
+    display: inline-block;
+    background: #F6CF1A;
+    color: white;
+    text-align: center;
+    font: 12px/39px '';
+}
+
+#clickTo .active_del {
+    position: absolute;
+    width: 5px;
+    height: 30px;
+    background: #77C552;
+    top: 85px;
+    left: 0px;
+}

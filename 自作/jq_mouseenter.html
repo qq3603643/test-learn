@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0px;
+            padding: 0px;
+            list-style: none;
+        }
+        
+        #list {
+            position: relative;
+            left: 400px;
+            top: 100px
+        }
+        
+        #list #aaa {
+            height: 40px;
+            width: 70px;
+            border: 2px solid black;
+            text-align: center;
+        }
+        
+        #list #aaa #Slist {
+            position: absolute;
+            top: 42px;
+            left: 0px;
+        }
+        
+        #list #aaa #Slist li {
+            width: 72px;
+            height: 25px;
+            border-bottom: 1px solid red;
+            transform: rotateY(90deg);
+        }
+
+    </style>
+    <script src="jquery-1.11.3.js"></script>
+    <script src="TweenMax.js"></script>
+    <script>
+        $(function() {
+            $('#list #aaa').mouseenter(function() {
+
+                $('#list #aaa #Slist').css('display', 'block');
+                var x = new TimelineMax();
+                x.staggerTo('#Slist li', 0.5, {
+                    rotationY: 0,
+
+                }, 0.2)
+            })
+            $('#list #aaa').mouseleave(function() {
+                $('#list #aaa #Slist li').css('transform', 'rotateY(90deg)');
+                $('#list #aaa #Slist').css('display', 'none');
+
+
+            })
+
+
+        })
+
+    </script>
+</head>
+
+<body>
+    <ul id="list">
+        <li id="aaa">
+            <h1>aaa</h1>
+            <ul id="Slist">
+                <li>1</li>
+                <li>2</li>
+                <li>3</li>
+                <li>4</li>
+            </ul>
+        </li>
+    </ul>
+</body>
+
+</html>

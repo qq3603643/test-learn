@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        var str = '77.5÷4+67-31-7+5*2÷7' ;
+        alert(math('76.4*65'))
+        function math(str){
+    
+    var re = /[0-9]+|\./g;
+    var re1 = /[\+|\-|\*|\÷]/g;
+    
+        var avalue = str.split(re)
+        var aNumber = str.split(re1)
+        avalue = avalue.join('').split('');
+        var a = parseFloat(aNumber[0]);
+        
+      for(var j=0;j<aNumber.length-1;j++){
+          switch(avalue[j]){
+              case "+": 
+           
+           a +=  parseFloat(aNumber[j+1]) ;
+           
+           break;
+           
+              case "-":
+           
+           a -= parseFloat(aNumber[j+1]);
+          
+           break;
+              case "*":
+           
+           a *= parseFloat(aNumber[j+1]);
+           
+           break;
+             case "÷": 
+           a = a/parseFloat(aNumber[j+1]);
+           
+           break;
+          }
+             
+      }  
+            return a;
+        }
+       
+    </script>
+</body>
+</html>

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>regexp</title>
+</head>
+
+<body>
+    <script>
+        var str = 'wannnankiohaljopa';
+        var re = /a/g;
+        var m = 0;
+        var n = 0;
+
+
+        //        while (str.length) {
+        //
+        //            if (str.search(re) > 0) {
+        //                m++;
+        //                n = str.search(re) + 1;
+        //                str = str.substr(n, str.length - n);
+        //            };
+        //
+        //        };
+        //        alert(m);
+
+        alert(str.match(re).length);
+
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style>
+        .box {
+            background: black;
+            width: 80px;
+            height: 80px;
+            position: absolute;
+            left: 200px;
+            top: 50px;
+        }
+
+    </style>
+    <script src="jquery-1.11.3.js"></script>
+    <script src="TweenMax.js"></script>
+    <script>
+        $(function() {
+
+            var t = new TimelineMax();
+            //1. 创建实例
+            t.to('.box', 2, {
+                left: 500,
+                width: 200,
+                onComplete: function() {
+                    alert(0) //相当于回掉函数 正向完成
+                },
+                onReverseComplete: function() {
+                    alert(1) //相当于回掉函数 反向完成
+                }
+
+            }, 2); //2.添加动画，  x.to(选择器元素，动画时间，动画效果，延迟时间(settimeout))
+            t.to('.box', 1, {
+                height: 200
+            }, '+=2'); //'+='  表示在前面所有动画时间后加  '-=同理'
+            t.to('.box', 1, {
+                rotationZ: 180 //180度
+            }, '+=2');
+
+            t.stop();
+
+            $('#play').click(function() {
+                t.play(); //在当前位置开始动画
+            })
+
+            $('#stop').click(function() {
+                t.stop(); //在当前位置暂停动画
+            })
+
+            $('#reverse').click(function() {
+                t.reverse(); //在当前位置反向动画
+            })
+        })
+
+    </script>
+</head>
+
+<body>
+    <input id="play" type="button" value="play">
+    <input id="stop" type="button" value="stop">
+    <input id="reverse" type="button" value="reverse">
+    <div id="box" class="box"></div>
+</body>
+
+</html>

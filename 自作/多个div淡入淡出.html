@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+<style>
+    div{position: absolute;left: 0px;top: 0px;width: 40px;height: 40px;background: red;filter: alpha(opacity=30); opacity: 0.3;} 
+    p{margin: 0px; position: absolute;height: 500px;width: 1px;top: 0px;left: 500px;background: black;}
+</style>
+<script src="mine.js"></script>
+<script>
+window.onload = function(){
+   var aDiv = document.getElementsByTagName('div');
+    for(var i=0;i<aDiv.length;i++){
+        aDiv[i].style.top = 40 +50*i + 'px';
+    }
+    
+
+   for(var i=0;i<aDiv.length;i++){
+       aDiv[i].alpha = 30;
+       aDiv[i].onmouseover = function(){
+           buffMove(this,'width',8,400)
+       }
+       aDiv[i].onmouseout = function(){
+           buffMove(this,'width',8,30)
+       }
+   }
+    
+
+
+    
+}    
+</script>
+</head>
+<body>
+   <div></div>
+   <div></div>
+   <div></div>
+   <div></div>
+   <div></div>
+   <div></div>
+    <p></p>
+</body>
+</html>

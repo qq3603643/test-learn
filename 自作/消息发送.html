@@ -1,0 +1,53 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
+<title>无标题文档</title>
+<style>
+#boby{width:250px;height:300px;background-color:#CCCCCC;margin-top:50px;border:4px solid #F00;padding:10px}
+#other{width:150px;height:20px;background-color:#CCFF00;margin-left;140px;}
+</style>
+
+
+<script>
+
+window.onload = function(){
+var div = document.getElementById('boby');
+var role = document.getElementById('role');
+var text = document.getElementById('text');
+var btn = document.getElementById('btn');
+
+btn.onclick = function(){
+if( text.value == ''){
+alert('请输入点内容吧')
+}
+else if(role.value == '熊建川') {
+div.innerHTML +=   '<p >' + role.value +  ':'   + text.value + '<br/>' ; 
+text.value = '' ; 
+}
+
+else {
+div.innerHTML +=  '<p  align="right" >'   + text.value   + ':'  +  role.value  ; 
+text.value = '' ; 
+}
+}
+}
+
+</script>
+</head>
+<body>
+
+<div id="boby"></div>
+<select id="role" >
+
+<option value ="熊建川">熊建川</option>
+<option value ="麦浩球">麦浩球</option>
+<option value ="赵林">赵林</option>
+<option value ="仇科成">仇科成</option>
+
+</select>
+
+<input id="text" type="text" />
+<input id="btn" type="button" value="发送" />
+</body>
+</html>

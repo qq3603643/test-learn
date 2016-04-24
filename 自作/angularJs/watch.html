@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="app">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style>
+
+
+    </style>
+    <script src="angular.min.js"></script>
+    <script>
+        var x = angular.module('app', []);
+
+        x.controller('ac', ['$scope', function($scope, $filter) {
+
+            $scope.text = '';
+            $scope.numer = 100;
+            $scope.clear = function() {
+
+                $scope.text = '';
+            }
+            $scope.save = function() {
+                if ($scope.text) {
+                    alert('saved');
+                }
+            }
+            $scope.left = function() {
+
+                return $scope.numer - $scope.text.length;
+            }
+        }])
+
+    </script>
+</head>
+
+<body ng-controller="ac">
+
+    <textarea rows="20" cols="30" ng-model="text"></textarea>
+    <input type="button" value="save" ng-click="save()">
+    <input type="button" value="clear" ng-click="clear()">
+    <p>text lefted:<span ng-bind="left()">{{numer}}</span></p>
+</body>
+
+</html>

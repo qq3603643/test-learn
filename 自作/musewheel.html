@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style>
+        body {
+            height: 1500px;
+        }
+
+    </style>
+    <script src="jquery-1.11.3.js"></script>
+    <script src="jquery.mousewheel.js"></script>
+    <script>
+        $(function() {
+            $(document).mousewheel(function(ev) {
+                var ev = ev || window.event;
+                alert(ev.wheelDelta)
+            })
+        })
+
+    </script>
+</head>
+
+<body>
+
+</body>
+
+</html>

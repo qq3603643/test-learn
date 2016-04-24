@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <link href="bootstrapcss/bootstrap.css" type="text/css" rel="stylesheet">
+    <script src="bootstrapjs/jquery-1.11.3.js"></script>
+    <script src="bootstrapjs/bootstrap.js"></script>
+    <style>
+        .container {
+            margin: 100px auto;
+        }
+        
+        .btn-group {
+            margin-left: 30%;
+        }
+        
+        .dropdown-menu li {
+            height: 30px;
+            font: 15px/30px '微软雅黑';
+            font-weight: 700;
+        }
+        
+        .dropdown-menu {
+            animation: move .5s;
+        }
+        
+        @keyframes move {
+            0% {
+                opacity: 0;
+                transform: translateY(-20px)
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0px)
+            }
+        }
+        
+        .container .btn-default {
+            border-style: none;
+        }
+
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="btn-group btn-group-lg">
+            <input type="button" class="btn btn-default" value="按钮1">
+            <input type="button" class="btn btn-default" value="按钮2">
+            <input type="button" class="btn btn-default" value="按钮3">
+            <input type="button" class="btn btn-default" value="按钮4">
+            <div class="btn-group">
+                <button class="btn btn-default dropdown-toggle btn-lg" data-toggle="dropdown">按钮5 <span class="caret"></span></button>
+                <ul class="dropdown-menu">
+                    <li class="dropdown-header disabled">第一组</li>
+                    <li class="divider"></li>
+                    <li><a>a</a></li>
+                    <li><a>b</a></li>
+                    <li class="dropdown-header">第二组</li>
+                    <li class="divider"></li>
+                    <li><a>c</a></li>
+                    <li><a>d</a></li>
+                    <li><a>e</a></li>
+                </ul>
+            </div>
+
+            <input type="button" class="btn btn-default" value="按钮6">
+        </div>
+    </div>
+</body>
+<script>
+
+
+</script>
+
+</html>

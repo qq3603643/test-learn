@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+    var nowtime = new Date();
+    var futuretime = new Date();  
+        //  var futuretime = new Date(2015,11,30,18,34,00);  
+        futuretime.setFullYear(2015);
+        futuretime.setMonth(11);
+        futuretime.setDate(30);
+        futuretime.setHours(18);
+        futuretime.setMinutes(34);
+        futuretime.setSeconds(00);
+        
+    var t = Math.floor((futuretime - nowtime)/1000);
+      
+        document.body.innerHTML = '距离预设时间还有：' + Math.floor(t/(3600*24)) + '天' + Math.floor(t%(3600*24)/3600)  + '个小时' + Math.floor((t%(3600*24)%3600)/60) + '分钟' + Math.floor(t%60) + '秒';
+        
+        setInterval(function(){
+            document.body.innerHTML = '';
+            var nowtime = new Date();    
+            var futuretime = new Date(2015,11,30,18,34,00);
+            var t = Math.floor((futuretime - nowtime)/1000);
+            document.body.innerHTML = '距离预设时间还有：' + Math.floor(t/(3600*24)) + '天' + Math.floor(t%(3600*24)/3600)  + '个小时' + Math.floor((t%(3600*24)%3600)/60) + '分钟' + Math.floor(t%60) + '秒';
+        },1000)
+        
+    </script>
+</body>
+</html>

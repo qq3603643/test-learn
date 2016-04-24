@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+<script src="mine.js"></script>
+<script>
+window.onload = function(){
+    var oDiv = document.getElementsByTagName('div')[0];
+    var m=2;
+    var onff = true;
+    var timer = null;
+    
+    //特殊的功能键 ctrlkey / shitkey / altkey 
+    document.onkeydown = function(ev){
+        var ev = ev|| window.event;
+        if(ev.keyCode == 39){
+            if(onff){
+               onff = false;
+          timer =  setInterval(function(){
+                
+               oDiv.style.marginLeft = m + 'px';
+                m += 2;
+            },30) }
+        }
+    }
+       document.onkeyup = function(ev){
+        var ev = ev|| window.event;
+        if(ev.keyCode == 39){
+            clearInterval(timer);
+            onff = true;
+        }
+    }
+    
+    
+}    
+</script>
+</head>
+<body>
+    <div style="width:40px;height:40px;border:1px solid black;"></div>
+</body>
+</html>

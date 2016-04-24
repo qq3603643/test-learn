@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+    <input type="button" value="前进">
+    <div style="width:40px;height:40px;background:red;position:absolute;top:50px;"> </div>
+    <script src="jquery-1.11.3.js"></script>
+    <script>
+        var onff = 1;
+    $('input').click(function(){
+         clearInterval(timer);       
+         var target = $('div').offset().left + 200; 
+         var speed = 0;
+         var left = $('div').offset().left;
+         var timer;
+         
+         if(onff == 2) return;
+         timer = setInterval(function(){
+             onff = 2;
+             var ileft = $('div').offset().left;
+              speed += (target-ileft)/8;
+              speed = speed *0.8;
+              left += speed;
+             if(Math.abs(speed)<1 && Math.abs(target-ileft)<1){
+                 $('div').css('left',target + 'px');
+                 clearInterval(timer);
+                 onff = 1;
+             }else{
+              $('div').css('left',left + 'px');}
+         },50)
+    })
+    </script>
+</body>
+</html>

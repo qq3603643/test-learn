@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+<style>
+    div{position:relative;margin-left: auto;margin-right: auto;margin-top: 50px;width: 600px;height: 80px;border: 1px solid black;background: black;overflow: hidden;}
+    li{margin: 0px;}
+    ul{margin: 0px;padding: 0px;}
+    ul{position: absolute;top: 0px;left: opx;height: 80px;}
+    li{list-style: none;height: 80px;width: 150px;background: gray;float: left;margin-left: 1px;}
+    li img{height: 80px;width: 150px;}
+</style>
+<script src="mine.js"></script>
+<script>
+window.onload = function(){
+    var oDiv = document.getElementsByTagName('div')[0];
+    var oUl = oDiv.getElementsByTagName('ul')[0];
+    var aLi = oUl.getElementsByTagName('li');
+    for(var i=0;i<aLi.length;i++){
+       aLi[i].innerHTML = '<img src="images/' + (i+1) + '.gif">';
+    }
+    oUl.innerHTML += oUl.innerHTML;
+    oUl.style.width =(aLi[0].offsetWidth + 2) * aLi.length + 'px';
+    abc();
+    function abc(){
+        var timer = null;
+        timer = setInterval(function(){
+            if(oUl.offsetLeft<-oUl.offsetWidth/2){
+                oUl.style.left = 0 +'px';
+            }
+            
+        oUl.style.left = oUl.offsetLeft - 10 +'px';
+       },50 )
+    }
+}    
+</script>
+</head>
+<body>
+    <div>
+        <ul>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        </ul>
+    </div>
+</body>
+</html>

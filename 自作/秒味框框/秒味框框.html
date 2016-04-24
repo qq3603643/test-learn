@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style>
+        ul,
+        p,
+        body,
+        h3,
+        em {
+            margin: 0px;
+            padding: 0px;
+        }
+        
+        a {
+            text-decoration: none;
+        }
+        
+        li {
+            list-style: none;
+        }
+        
+        .wrap {
+            width: 380px;
+            height: 48px;
+            /*            230px*/
+            margin: 150px auto;
+            padding-left: 20px;
+            box-shadow: 10px 10px 15px #D9C5BE;
+            overflow: hidden;
+        }
+        
+        .wrap .head {
+            width: 100%;
+            height: 48px;
+            color: #F88A71;
+            font: 15px/48px '';
+            background: url(img/head_bg.jpg) no-repeat 0px 13px;
+            text-indent: 31px;
+        }
+        
+        .wrap ul {
+            width: 100%;
+            background: #FFF8F6;
+            position: relative;
+            top: 100px;
+            perspective: 600px;
+        }
+        
+        .wrap ul li {
+            height: 40px;
+            width: 100%;
+            background: url(img/li_bg.jpg) no-repeat right 0px;
+            transform: rotateX(-90deg);
+            opacity: 0;
+            transition: 0.5s;
+        }
+        
+        .wrap ul li:hover em {
+            box-shadow: 10px 10px 15px #D9C5BE;
+            background: #FFDE00;
+        }
+        
+        .wrap ul li em {
+            display: inline-block;
+            width: 84px;
+            height: 24px;
+            font-style: normal;
+            font: 600 12px/24px '';
+            background: #F4264D;
+            color: white;
+            text-align: center;
+            transition: 1s;
+        }
+        
+        .wrap ul li a {
+            color: #F4264D;
+            font: 12px/40px '';
+        }
+        
+        .wrap ul li span {
+            display: block;
+            float: right;
+            color: #F4264D;
+            font: 12px/40px '';
+            margin-right: 52px;
+        }
+        
+        .wrap .foin {
+            width: 100%;
+            margin-top: 8px;
+            display: none;
+            opacity: 0;
+        }
+        
+        .wrap .foin .foin1 {
+            width: 362px;
+            height: 37px;
+            background: #FFE8E4;
+            font: 16px/37px '';
+            text-align: center;
+        }
+        
+        .wrap .foin .foin2 {
+            width: 362px;
+            height: 60px;
+            background: #FBA792;
+            margin: 5px 0px 20px 0px;
+        }
+        
+        .wrap .foin .foin2 h3,
+        .wrap .foin .foin2 p {
+            height: 30px;
+            width: 100%;
+            font: 800 16px/30px '';
+            text-align: center;
+            color: white;
+        }
+        
+        .wrap .foin button {
+            display: block;
+            width: 138px;
+            height: 33px;
+            background: #F0B017;
+            color: white;
+            font: 600 15px/33px '';
+            text-align: center;
+            border-style: none;
+            margin-left: 112px;
+        }
+
+    </style>
+    <script src="jquery-1.11.3.js"></script>
+    <script src="TweenMax.js"></script>
+    <script>
+        $(function() {
+            setTimeout(function() {
+                apper();
+            }, 500)
+
+            function abc() {
+                $('.wrap ul li').mousemove(function(ev) {
+                    var ev = ev || window.event;
+                    var _this = $(this);
+                    mMove(ev, _this);
+                })
+
+                function mMove(ev, _this) {
+                    var ileft = ev.pageX - _this.offset().left;
+                    var ideg = ileft > _this.get(0).offsetWidth / 2 ? '30deg' : '-30deg';
+                    document.title = ideg;
+                    _this.css({
+                        'transform': 'rotateY(' + ideg + ')',
+                        boxShadow: '4px 1px 4px #DDCBC5',
+                    });
+                }
+                $('.wrap ul li').mouseleave(function() {
+                    $(this).css({
+                        'transform': 'rotateY(0deg)',
+                        boxShadow: '0px 0px 0px #DDCBC5',
+                    });
+                })
+                $('.wrap ul li').click(function(ev) {
+                    $('.wrap ul li').off();
+                    var ev = ev || window.event;
+                    var ileft = ev.pageX - $(this).offset().left;
+                    var ideg = ileft > $(this).get(0).offsetWidth / 2 ? '170deg' : '-170deg';
+
+                    var C = new TimelineMax;
+                    C.staggerTo($('.wrap ul li'), 0.5, {
+                        rotationY: ideg,
+                        opacity: 0,
+                        ease: Elastic.easeIn,
+                    }, 0.1)
+                    C.to($('.wrap .foin'), 1, {
+                        display: 'block',
+                        opacity: '1',
+                    }, 1.2)
+                })
+            }
+            abc();
+            $('.wrap .foin button').click(function() {
+                var m = 0;
+                $('.wrap .foin').animate({
+                    opacity: '0'
+                }, 500, function() {
+                    $('.wrap .foin').css('display', 'none');
+                    var O = new TimelineMax;
+                    O.staggerTo($('.wrap ul li'), 0.5, {
+                        rotationY: 0,
+                        opacity: 1,
+
+                        onComplete: function() {
+                            m++;
+                            if (m == 4) {
+                                abc();
+                            }
+                        }
+                    }, 0.1)
+                })
+            })
+
+            function apper() {
+                var M = new TimelineMax;
+
+                M.staggerTo($('.wrap ul li'), 0.5, {
+                    opacity: 1,
+                    rotationX: 0,
+                }, 0.3)
+                M.to($('.wrap'), 1, {
+                    height: '230px',
+                    ease: Cubic.easeOut,
+                }, 0)
+
+                M.to($('.wrap ul'), 1, {
+                    top: '0px',
+                }, 0.2)
+            }
+
+        })
+
+    </script>
+</head>
+
+<body>
+    <div class="wrap">
+        <div class="head">秒味公告</div>
+        <div class="foin">
+            <div class="foin1">报名\试听\咨询：小美</div>
+            <div class="foin2">
+                <h3>QQ:3603643</h3>
+                <p>tell:13458685175</p>
+            </div>
+            <button class="back">返回开班信息</button>
+        </div>
+
+        <ul class="list">
+            <li><em>全日制</em>
+                <a>零基础PC+移动端+相应式</a><span>2-29</span></li>
+            <li><em>全日制</em>
+                <a>零基础PC+移动端+相应式</a><span>2-29</span></li>
+            <li><em>Vip</em>
+                <a>零基础PC+移动端+相应式</a><span>2-29</span></li>
+            <li><em>远程班</em>
+                <a>零基础PC+移动端+相应式</a><span>2-29</span></li>
+        </ul>
+    </div>
+</body>
+
+</html>

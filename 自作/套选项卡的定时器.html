@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+<style>
+    li{list-style: none;position: absolute;width: 80px;height: 25px;background-color: white;top:0px;right:0px;text-align: center;line-height: 25px;font-size: 12px; }
+    img{position: absolute;width: 160px;height:77px;left: 0px;left:0px; }
+    #foot{position: relative;width: 240px;height: 77px;background-color: azure;margin-top: 2px;border: 1px solid black}
+    p{width: 60px;height: 28px;background-color: aquamarine;margin: 1px;float: left;text-align: center;line-height: 28px;font-size: 12px;} 
+    #head{position: relative;height: 30px;width: 124px;background: black;}
+</style>
+<script>
+window.onload = function(){
+    
+    var aP = document.getElementsByTagName('p');
+    var oImg = document.getElementsByTagName('img')[0];
+    var aLi = document.getElementsByTagName('li');
+    var n = 0;
+    var m = 0;
+    var k = 0;
+    var timer0 = null;
+    var timer1 = null;
+    var aUrl = [ 'img/2.JPG', 'img/3.JPG', 'img/4.JPG',];
+    var aUrl2 = [ 'img/6.JPG', 'img/7.JPG', 'img/8.JPG',];
+    var aName2 = ['I','LOVE','YOU',];
+    var aName = ['青菜','辣椒','花菜',];
+    //初始化
+    for(var i=0;i<aLi.length;i++){
+        aLi[i].style.top = i*26 + 'px';
+        aLi[i].innerHTML = aName[i];
+    }
+    oImg.src = aUrl[m];
+    aP[m].style.backgroundColor = 'black';
+    aP[m].style.color = 'white';
+    aLi[n].style.backgroundColor = 'blue';
+    aLi[n].style.color = 'white';
+    //循环
+     setInterval(function(){
+         for(var i=0;i<aP.length;i++){
+          aP[i].style.backgroundColor = 'aquamarine';
+          aP[i].style.color = 'black';
+         }  
+         aP[m].style.backgroundColor = 'black';
+         aP[m].style.color = 'white';
+         
+         m ++;
+         m = m%2;
+         if(m == 1  ){
+        timer0 =  setInterval(function(){
+        for(var i=0;i<aLi.length;i++){
+          aLi[i].style.backgroundColor = 'white';
+          aLi[i].style.color = 'black';
+          aLi[i].innerHTML = aName[i];
+         }   
+          aLi[n].style.backgroundColor = 'blue'; 
+          aLi[n].style.color = 'white';
+            oImg.src = aUrl[n];
+            n++;
+            if (n == aLi.length){
+                n = 0 ;
+               clearInterval(timer0); 
+            }
+        },800) }  // 套餐一的循环
+         
+      else {
+         timer1 =  setInterval(function(){
+         for(var i=0;i<aLi.length;i++){
+         aLi[i].style.backgroundColor = 'white';
+         aLi[i].style.color = 'black';
+         aLi[i].innerHTML = aName2[i];
+         }   
+         aLi[k].style.backgroundColor = 'blue'; 
+         aLi[k].style.color = 'white';
+           oImg.src = aUrl2[k];
+             
+            k++;
+            if (k == aLi.length){
+               clearInterval(timer1); 
+                 k=0;
+            }
+             },800) }   //套餐二的循环
+             
+  
+     },3000);
+}
+  
+    </script>
+</head>
+<body>
+   <div id="head">
+    <p>套餐一</p>
+    <p>套餐二</p>
+    </div>
+     <div id ="foot">
+      <img src="">  
+      <li></li>
+      <li></li>
+      <li></li>
+    </div>
+</body>
+</html>

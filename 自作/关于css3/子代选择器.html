@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+
+    <style>
+        .list h3:nth-child(1) {
+            /*            第1个元素 且类型为h3的元素，如果类型不匹配则不产生作用*/
+            color: green;
+        }
+        
+        .list li:nth-of-type(1) {
+            /*            按类型li匹配，再看第n个*/
+            color: red;
+        }
+
+    </style>
+</head>
+
+<body>
+    <ul class="list">
+        <h3>1</h3>
+        <li>a</li>
+        <li>b</li>
+        <li>c</li>
+        <li>d</li>
+    </ul>
+</body>
+
+</html>

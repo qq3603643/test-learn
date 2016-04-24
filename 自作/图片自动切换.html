@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+<style>
+    div{position: relative;margin-left:auto;margin-right: auto; margin-top: 50px;width: 500px;height: 300px;border: 5px solid black;border-radius: 10px;overflow: hidden;} 
+    p{position: absolute;margin: 0px; bottom: -80px;width: 500px;height: 80px;background: black;alpha(opacity=30); opacity: 0.3;color: red;text-align: center;line-height: 50px;}
+    img{position: absolute;width: 500px;height: 300px;top: 0px;left: 0px;}
+</style>
+<script src="mine.js"></script>
+<script>
+window.onload = function(){
+    var oImg = document.getElementsByTagName('img')[0];
+    var oP   = document.getElementsByTagName('p')[0];
+    var aUrl = ['img/2.jpg','img/3.jpg','img/4.jpg'];
+    var timer = null;
+    var aText = ['青菜','青椒','花菜']
+    var m =0;
+    //初始化
+    oImg.src = aUrl[m];
+    oP.style.bottom = 0 + 'px';
+    oP.innerHTML = aText[m];
+    timer = setInterval(function(){
+       oP.style.bottom = -80 + 'px';
+       oImg.src = aUrl[m];
+          
+              oP.innerHTML = aText[m];
+              buffMove(oP,'bottom',8,0);
+         
+       m++;
+       m = m%3;
+    },1000);
+    
+}   
+    </script>
+</head>
+<body>
+    <div>
+       <img src="">
+        <p></p>
+    </div>
+</body>
+</html>

@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style>
+        .list {
+            width: 400px;
+            margin: 30px auto;
+            padding: 10px 2px 3px 12px;
+            border: 1px solid black;
+        }
+        
+        .list li {
+            font: 12px/46px '';
+            text-align: left;
+            list-style: none;
+            height: 46px;
+            border-bottom: 1px solid #DBC8BF;
+            background: #DBD0CE;
+            position: relative;
+        }
+
+    </style>
+    <script src="jquery-1.11.3.js"></script>
+    <script src="TweenMax.js"></script>
+    <script>
+        $(function() {
+            for (var i = 0; i < $('.list li').length; i++) {
+                var str = $('.list li').eq(i).html();
+                var Nstr = '';
+                $('.list li').eq(i).html('');
+                for (var j = 0; j < str.length; j++) {
+                    Nstr += '<span>' + str[j] + '</span>';
+                }
+                $('.list li').eq(i).html(Nstr);
+                var $aSpan = $('.list li').eq(i).find('span');
+                for (var j = 0; j < str.length; j++) {
+
+                    var ileft = $aSpan.eq(j).position().left;
+                    var itop = $aSpan.eq(j).position().top;
+                    $aSpan.eq(j).css({
+                        left: ileft,
+                        top: itop,
+                    });
+                }
+                for (var j = 0; j < $aSpan.length; j++) {
+
+                    $aSpan.eq(j).css({
+                        'position': 'absolute',
+                        height: '12px',
+                        font: '12px/12px "" ',
+                    });
+                }
+            }
+            $('.list li').on('mouseenter', 'span', function(ev) {
+                var max = $('.list li').eq(0).get(0).offsetHeight - $(this).get(0).offsetHeight;
+                var y = ev.pageY;
+                var old_top = $(this).position().top;
+
+                $(this).mousemove(function(ev) {
+                    var scale = 0;
+                    var itop = Math.abs(ev.pageY - y);
+                    if (ev.pageY - y > 0) {
+                        scale = 1;
+                    } else {
+                        scale = -1;
+                    }
+
+                    var $aSpan = $(this).parent().find('span');
+                    if (old_top + itop > 0 && old_top + itop < max) {
+
+                        var index = $(this).index();
+
+                        for (var i = 0; i < $aSpan.length; i++) {
+                            var top = itop - Math.abs(i - index);
+
+                            top = scale * top;
+                            if (Math.abs(i - index) < Math.abs(itop)) {
+                                $aSpan.eq(i).css('top', old_top + top)
+                            }
+                        }
+
+                    }
+                })
+                $(this).mouseleave(function() {
+                    var $aSpan = $(this).parent().find('span');
+                    $aSpan.css('top', old_top)
+                })
+            })
+        })
+
+    </script>
+</head>
+
+<body>
+    <ul class="list">
+        <li>妙味课堂是一支独具特色的IT培训团队,妙味反对传统IT枯燥乏味</li>
+        <li>妙味课堂是一支独具特色的IT培训团队,妙味反对I教育枯燥乏味</li>
+        <li>妙味课堂是一支独具特色的IT培训团队,妙味反对传统IT教枯燥乏味</li>
+        <li>妙味课堂是一支独具特色的IT培训团队,妙味反对传统IT教育枯燥乏味</li>
+        <li>妙味课堂是一支独具特色的IT培训团队,妙味反育枯燥乏味</li>
+    </ul>
+</body>
+
+</html>

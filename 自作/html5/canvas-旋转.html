@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+<style>
+    body{background: black;}
+    canvas{display: block; margin: 20px auto;background: white;}    
+</style>
+<script>
+    window.onload = function(){
+        
+        var oCan = document.getElementById('can1');
+        var oGcan = oCan.getContext('2d');
+        var m = 1;
+        
+        oGcan.translate(200,200);
+       
+        setInterval(function(){
+              
+       
+        oGcan.clearRect(0,0,oCan.width,oCan.height);
+//        oGcan.transform()
+        oGcan.rotate(m*Math.PI/180);
+        oGcan.fillRect(0,0,100,100);  
+        
+        },50)
+           
+         
+    }
+</script>
+</head>
+<body>
+    <canvas id="can1" width="400" height="300">
+        
+    </canvas>
+</body>
+</html>

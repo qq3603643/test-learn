@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+
+<body>
+
+    <script>
+        
+         my_pass = true,
+         my_future = undefined;
+
+         function timersFly(times){
+             
+         timers_dir =  times ? Math.ceil(Math.random()) * 1.1
+                             : Math.floor(Math.random() * 1.1);
+             
+             while(timers_dir) {
+                 return (timers_dir == 1.1) ? 'timespass' 
+                                            : 'timescome';
+             }
+                
+             return '';
+         }
+         console.log(timersFly(my_pass));      // 过去过得去
+         console.log(timersFly(my_future));    // 未来却不好来
+                                                         // ---by tangerine
+         
+
+    </script>
+
+</body>
+
+</html>

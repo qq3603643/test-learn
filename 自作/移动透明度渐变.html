@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+<style>
+    div{width: 40px;height: 40px;border: 1px solid red;background: black;margin-left: 20px;}    
+    </style>
+<script src="mine.js"></script>
+ <script>
+ window.onload = function(){
+        var oDiv = document.getElementsByTagName('div')[0];
+    
+   
+     abc();
+    function abc() {
+            doMove(oDiv,'marginLeft',5,500,function(){
+              
+             if(parseInt(getStyle(oDiv,'marginLeft')) == 500){
+             doMove(oDiv,'marginTop',5,500,function(){
+                 if(parseInt(getStyle(oDiv,'marginTop')) == 500){
+                    doMove(oDiv,'marginLeft',5,0,function(){
+                      if(parseInt(getStyle(oDiv,'marginLeft')) == 0)  {
+                          doMove(oDiv,'marginTop',5,0,function(){
+                              abc();
+                          })
+                                 }
+                        
+                    })      
+                 }
+                 
+             })
+     }
+            });  }
+            
+            
+   }
+     
+    
+    
+     
+     
+    
+ 
+ </script>
+</head>
+<body>
+    <div></div>
+</body>
+</html>

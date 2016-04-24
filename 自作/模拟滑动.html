@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+<style>
+    #big{position: absolute;top: 50px; width: 10px;height: 600px;border: 1px solid black;} 
+    #small{position: absolute;top: 0px;left: 0px;width: 10px;height: 50px;background: gray;cursor: pointer;}
+    #contant{position: absolute;left:20px;width: 300px;background-color: aqua;}
+</style>
+<script>
+window.onload = function(){
+    var oDiv = document.getElementById('big');
+    var sDiv = document.getElementById('small');
+    var lDiv = document.getElementById('contant');
+    
+    sDiv.onmousedown = function(ev){
+        ev = ev || window.event;
+        var y = ev.clientY - sDiv.offsetTop;
+        
+        document.onmousemove = function(ev){
+            ev = ev || window.event;
+            var a = ev.clientY - y;
+            var b = oDiv.clientHeight-sDiv.offsetHeight;
+            if(a<0){a=0;}
+            if(a>oDiv.clientHeight-sDiv.offsetHeight){
+                a=b;
+            }
+            sDiv.style.top = a + 'px';
+           
+            lDiv.style.height = (a/b)*oDiv.offsetHeight + 'px';
+        }
+        document.onmouseup = function(){
+            
+            document.onmousemove = document.onmouseup = null;
+        }
+        return false;
+    }
+}    
+</script>
+</head>
+<body>
+    <div id="big">
+        <div id="small"></div>
+        <div id="contant"></div>
+    </div>
+</body>
+</html>

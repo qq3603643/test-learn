@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+<style>
+    *{margin: 0px;padding: 0px;}
+    ul{display: block; height: 37px;margin:100px 350px; border: 1px solid red;padding: 2px;width: 582px;;}
+    li{position: relative; list-style: none;width: 80px;height: 35px;float: left;border: 1px solid black;background: white;margin-left: 1px;line-height: 35px;text-align: center;cursor: pointer; background-size: 100% 100%;background-position: 0px 35px;background-repeat: no-repeat;}
+    
+</style>
+<script>
+window.onload = function(){
+    
+    var aLi = document.getElementsByTagName('li');
+    var oA = document.getElementById('a1');
+    var aColor = ['#00ff00','#00ffff','#4a86e8','#9900ff','#ff00ff','#980000','#b6d7a8'];
+    var arr = ['a','b','c','d','e','f','g'];
+    
+    for(var i = 0;i<aLi.length;i++){
+     aLi[i].style.backgroundImage = 'url(images/'+ (i+1) +'.gif)';  
+    }
+    
+    
+    for(var i = 0;i<aLi.length;i++){
+        aLi[i].index = i;
+        aLi[i].onmouseover = function(){
+   
+                domove(aLi[this.index],0,10);
+                oA.src = 'http://s8.qhimg.com/share/audio/piano1/'+arr[this.index]+'4.mp3';
+			    oA.play();
+
+        }
+           aLi[i].onmouseout = function(){
+               
+          domove(aLi[this.index],35,30);
+        
+        }
+        
+
+    }
+    
+    function domove(obj,dir,time){
+            clearInterval(obj.timer)
+        obj.timer = setInterval(function(){
+            
+            var itop = parseInt(getstyle(obj,'background-position').split('px')[1]);
+            var speed = (dir - itop)/6;
+            speed = speed>0 ? Math.ceil(speed) : Math.floor(speed);
+            var m = itop+speed;
+            if(itop == dir){
+                clearInterval(obj.timer);
+            }else{
+                obj.style.backgroundPosition = '0px' + ' ' + m + 'px';
+            }
+            
+        },time)
+    
+    }
+    
+    function getstyle(obj,attr){
+        return obj.currentStyle ? obj.currentStyle[attr] : getComputedStyle(obj)[attr];
+    }
+}    
+</script>
+</head>
+<body>
+    <ul>
+        <li>a
+        
+        </li>
+        <li>b
+        
+        </li>
+        <li>c
+        
+        </li>
+        <li>d
+        
+        </li>
+        <li>e
+        
+        </li>
+        <li>f
+        
+        </li>
+        <li>g
+        
+        </li>
+    </ul>
+    <audio id="a1"></audio>
+
+</body>
+</html>

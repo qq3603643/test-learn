@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style>
+        .wrap {
+            width: 600px;
+            height: 300px;
+            position: relative;
+            margin: 10px auto;
+            perspective: 600px;
+        }
+        
+        .box {
+            width: 600px;
+            height: 300px;
+            position: absolute;
+            transform-style: preserve-3d;
+            font: 200px/300px '微软雅黑';
+            text-align: center;
+            color: white;
+        }
+        
+        .v1 {
+            background: red;
+            top: 0px;
+            left: 0px;
+            transform-origin: bottom;
+            transform: rotateX(0deg);
+            z-index: 1;
+        }
+        
+        .v2 {
+            background: black;
+            top: 300px;
+            left: 0px;
+            transform: rotateX(-90deg);
+            transform-origin: top;
+            z-index: 0;
+        }
+
+    </style>
+    <script src="jquery-1.11.3.js"></script>
+    <script src="TweenMax.js"></script>
+    <script>
+        $(function() {
+
+            $('.wrap').mouseenter(function() {
+
+                var X = new TimelineMax();
+                X.to('.v1', .5, {
+                    top: -300,
+                    rotationX: 78,
+
+                    zIndex: 0,
+                }, 0)
+                X.to('.v2', .5, {
+                    top: 0,
+                    rotationX: 0,
+
+                    zIndex: 1,
+                }, 0)
+            })
+
+            $('.wrap').mouseleave(function() {
+
+                var Y = new TimelineMax();
+                Y.to('.v1', .5, {
+                    top: 0,
+                    rotationX: 0,
+                    ease: Elastic.easeInOut,
+                    zIndex: 1,
+                }, 0)
+                Y.to('.v2', .5, {
+                    top: 302,
+                    rotationX: -90,
+                    ease: Elastic.easeInOut,
+                    zIndex: 0,
+                }, 0)
+            })
+
+        })
+
+    </script>
+</head>
+
+<body>
+    <div class="wrap">
+        <div class="box v1">123</div>
+        <div class="box v2">123</div>
+    </div>
+</body>
+
+</html>

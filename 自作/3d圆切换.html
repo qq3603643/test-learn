@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style>
+        body {
+            background: #E9562A;
+        }
+        
+        .list {
+            width: 580px;
+            position: relative;
+            margin: 50px auto;
+            padding: 10px;
+        }
+        
+        .list li {
+            list-style: none;
+            width: 250px;
+            height: 250px;
+            padding: 4px;
+            background: white;
+            border: 2px solid gray;
+            border-radius: 50%;
+            overflow: hidden;
+            float: left;
+            position: absolute;
+            transition: 0.6s;
+        }
+        
+        .list li span {
+            position: absolute;
+            left: 0px;
+            top: 0px;
+            display: block;
+            height: 100%;
+            width: 100%;
+            background: black;
+            transition: 0.6s;
+        }
+        
+        .list li:nth-of-type(1) {
+            left: 0px;
+            top: 0px;
+            transform: scale(0.7);
+            z-index: 1;
+        }
+        
+        .list li:nth-of-type(1) span {
+            opacity: 0.5;
+        }
+        
+        .list li:nth-of-type(2) {
+            left: calc(50% - 127px);
+            top: 0px;
+            transform: scale(1);
+            z-index: 2;
+        }
+        
+        .list li:nth-of-type(2) span {
+            opacity: 0;
+        }
+        
+        .list li:nth-of-type(3) {
+            left: calc(100% - 254px);
+            top: 0px;
+            transform: scale(1);
+            transform: scale(0.7);
+            z-index: 1;
+        }
+        
+        .list li:nth-of-type(3) span {
+            opacity: 0.5;
+        }
+        
+        .btn {
+            position: absolute;
+            width: 18px;
+            height: 29px;
+            z-index: 3;
+        }
+        
+        .list div:nth-of-type(1) {
+            background: url(images/iWorksPrev.png) no-repeat;
+            left: 100px;
+            top: 120px;
+        }
+        
+        .list .btn span {
+            width: 100%;
+            height: 100%;
+            display: block;
+            position: absolute;
+            left: 0px;
+            top: 0px;
+            background: inherit;
+        }
+        
+        .list .btn:hover span:nth-of-type(1) {
+            cursor: pointer;
+            animation: move 2s infinite;
+        }
+        
+        .list .btn:hover span:nth-of-type(2) {
+            cursor: pointer;
+            animation: move 2s 1s infinite;
+        }
+        
+        .list div:nth-of-type(2) {
+            background: url(images/iWorksNext.png) no-repeat;
+            right: 100px;
+            top: 120px;
+        }
+        
+        @keyframes move {
+            0% {
+                opacity: 1;
+                transform: scale(1);
+            }
+            100% {
+                opacity: 0;
+                transform: scale(3);
+            }
+        }
+
+    </style>
+    <script src="jquery-1.11.3.js"></script>
+    <script>
+        $(function() {
+            var arr = [];
+            for (var i = 0; i < $('.list li').length; i++) {
+
+                arr[i] = {
+                    left: $('.list li').eq(i).css('left'),
+                    top: $('.list li').eq(i).css('top'),
+                    zIndex: $('.list li').eq(i).css('zIndex'),
+                    transform: $('.list li').eq(i).css('transform'),
+                    opacity: $('.list li').eq(i).find('span').css('opacity'),
+                }
+            }
+
+            $('.next').click(function() {
+                arr.unshift(arr.pop());
+                $.each(arr, function(i, item) {
+                    $('.list li').eq(i).css({
+                        left: item.left,
+                        top: item.top,
+                        zIndex: item.zIndex,
+                        transform: item.transform,
+                    });
+                    $('.list li').eq(i).find('span').css('opacity', item.opacity)
+                })
+            });
+            $('.prew').click(function() {
+                arr.push(arr.shift());
+                $.each(arr, function(i, item) {
+                    $('.list li').eq(i).css({
+                        left: item.left,
+                        top: item.top,
+                        zIndex: item.zIndex,
+                        transform: item.transform,
+                    });
+                    $('.list li').eq(i).find('span').css('opacity', item.opacity)
+                })
+            });
+        })
+
+    </script>
+</head>
+
+<body>
+    <ul class="list">
+        <li><img src="images/1.jpg">
+            <span></span>
+        </li>
+        <li><img src="images/2.jpg">
+            <span></span>
+        </li>
+        <li><img src="images/3.jpg">
+            <span></span>
+        </li>
+        <div class="btn prew">
+            <span></span>
+            <span></span>
+        </div>
+        <div class="btn next">
+            <span></span>
+            <span></span>
+        </div>
+    </ul>
+</body>
+
+</html>

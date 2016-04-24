@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style>
+        #div {
+            width: 40px;
+            height: 40px;
+            background: black;
+            position: absolute;
+            left: 800px;
+            top: 300px;
+        }
+        
+        .heart {
+            width: 2px;
+            height: 2px;
+            background: red;
+            position: absolute;
+        }
+
+    </style>
+    <script>
+        window.onload = function() {
+
+            var x = 700;
+            var y = 300;
+            var m = 0;
+            var oDiv = document.getElementById('div');
+            setInterval(function() {
+                m++;
+                var a = Math.sin(m * Math.PI / 180) * 100;
+                var b = Math.cos(m * Math.PI / 180) * 100;
+                document.title = a + '||' + b;
+
+                oDiv.style.left = x + b - 20 + 'px';
+                oDiv.style.top = y + a - 20 + 'px';
+
+                var sDiv = document.createElement('div');
+                sDiv.className = 'heart';
+                sDiv.style.left = x + b + 'px';
+                sDiv.style.top = y + a + 'px';
+                document.body.appendChild(sDiv);
+            }, 10)
+
+        }
+
+    </script>
+</head>
+
+<body>
+
+    <div id="div"></div>
+</body>
+
+</html>

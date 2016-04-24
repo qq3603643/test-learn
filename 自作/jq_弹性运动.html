@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style>
+        .box {
+            position: absolute;
+            left: 40px;
+            top: 40px;
+            width: 80px;
+            height: 80px;
+            background: red;
+        }
+
+    </style>
+    <script src="jquery-1.11.3.js"></script>
+    <script>
+        $(document).ready(function() {
+
+            var timer = null;
+
+            var move = function(id, attr, itarget) {
+                var startAtter = $(id).offset()[attr];
+                var speed = 0;
+
+                clearInterval(timer);
+                timer = setInterval(function() {
+                    var nowAtter = $(id).offset()[attr];
+
+                    speed += (itarget - nowAtter) / 8;
+                    speed *= 0.8;
+                    startAtter += speed;
+                    if (Math.abs(speed) < 1 && Math.abs((itarget - nowAtter)) < 1) {
+                        clearInterval(timer);
+                        $(id).css(attr, itarget);
+
+                    } else {
+                        $(id).css(attr, startAtter);
+                    }
+                }, 50)
+            };
+
+            move('.box', 'top', 600);
+
+        })
+
+    </script>
+</head>
+
+<body>
+    <div class="box"></div>
+</body>
+
+</html>

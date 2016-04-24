@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="app">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <script src="angular.min.js"></script>
+    <script>
+        var x = angular.module('app', []);
+        x.controller('ac', function($scope) {
+
+            $scope.name = 'iu';
+
+
+        })
+
+    </script>
+</head>
+
+<body ng-controller="ac">
+    <input type="text" ng-disabled="onff">
+    <input type="checkbox" ng-model="onff">
+    <p ng-bind="name"></p> //只能一个
+    <p ng-bind-template="{{name}},{{name}}"></p> //可以多个
+    <p ng-cloak>{{name}}</p> //表达式解析完毕才显示
+    <p ng-non-bindable>{{name}}</p> //不解析
+</body>
+
+</html>

@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="app">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <script src="angular.min.js"></script>
+    <script>
+        var x = angular.module('app', []);
+        x.run(['$rootScope', function($rootScope) {
+
+            $rootScope.name = 'Mr.xu';
+        }])
+
+    </script>
+</head>
+
+<body>
+    <div>
+        <p>{{name}}</p>
+    </div>
+</body>
+
+</html>

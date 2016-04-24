@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+<style>
+    *{margin: 0px;padding: 0px;}
+    .ruler_div{position:absolute;left: 0px;top: 0px;height: 3000px;width: 2px;background: black;} 
+    a{position: fixed;left: 90%;bottom: 10%;width: 40px;height: 80px;background: black;display: none;}
+</style>
+<script>
+window.onload = function(){
+    var oTop = document.getElementsByTagName('a')[0];
+    
+    oTop.onclick = function(){
+        
+        var speed = 0;
+      oTop.timer =  setInterval(function(){
+            var iHeight = document.body.scrollTop;
+            speed =( 0 - iHeight)/8;
+            speed = Math.ceil(speed);
+            if(speed==0){
+                clearInterval(oTop.timer);
+                document.body.scrollTop = 0;
+            }else{
+            document.body.scrollTop = iHeight + speed ;
+            }
+        },50)
+    }
+    window.onscroll = function(){
+        
+        if(document.body.scrollTop > document.documentElement.clientHeight){
+            oTop.style.display = 'block';
+            
+        }else{
+            oTop.style.display = 'none';
+        }
+    }
+}    
+</script>
+</head>
+<body>
+    <div class="ruler_div"></div>
+    <a href="javascript:;" >top</a>
+</body>
+</html>

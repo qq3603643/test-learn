@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+<style>
+    #div{width: 60px;height: 60px;background: red;position: absolute;left: 10px;top: 300px;}
+    .box{border: 2px solid black;position: absolute;}
+</style>
+<script src="jquery-1.11.3.js"></script>
+<script>
+$(function(){
+    
+    var L = $('#div').offset().left;
+    var T = $('#div').offset().top;
+    var m = 0;
+    var timer;
+    
+    timer = setInterval(function(){
+        
+        m++;
+        var left = L + (m*Math.PI/180)*50;
+        var top = T - (Math.sin(m*Math.PI/180)*50);
+        
+        if(left>$(window).width()-10){
+            clearInterval(timer);
+            $('#div').remove();
+            
+                abc(0);
+            setTimeout(function(){
+                abc(1);
+            },200)
+            setTimeout(function(){
+                abc(2);
+            },400)
+            setTimeout(function(){
+                abc(3);
+            },600)
+            setTimeout(function(){
+                abc(4);
+            },800)
+            setTimeout(function(){
+                abc(5);
+            },1000)
+            setTimeout(function(){
+                abc(6);
+            },1200)
+            setTimeout(function(){
+                abc(7);
+            },1400)
+            setTimeout(function(){
+                abc(8);
+            },1600)
+            setTimeout(function(){
+                abc(9);
+            },1800)
+            setTimeout(function(){
+                abc(10);
+            },2000)
+            setTimeout(function(){
+                abc(11);
+            },2200)
+            setTimeout(function(){
+                abc(12);
+            },2400)
+            setTimeout(function(){
+                abc(13);
+            },2600)
+            setTimeout(function(){
+                abc(14);
+            },2800)
+            setTimeout(function(){
+                abc(15);
+            },3000)
+                function abc(n){
+                var Ti = $('.box').eq(n).offset().top;
+                downup($('.box').eq(n),Ti);
+                n++;
+                }
+           
+
+        }else{
+        $('#div').css({left:left + 'px',top:top + 'px'});
+        var oSdiv = document.createElement('div');
+        oSdiv.className = 'box';
+        oSdiv.style.left = left + 'px';
+        oSdiv.style.top = top + 'px';
+        document.body.appendChild(oSdiv);}
+    })
+    
+    
+    function downup(obj,t){
+        
+       obj.timer =  setInterval(function(){
+            
+        if(obj.offset().top == t ){
+            speed = 5;
+            
+        } 
+        if(obj.offset().top == t + 100){
+           speed = -5;
+            
+        }
+            var top = obj.offset().top + speed;
+            obj.css('top',top + 'px');
+            document.title = top;
+      },50)
+        
+        
+    }
+})    
+</script>
+</head>
+<body>
+   <div id="div"></div>
+</body>
+</html>

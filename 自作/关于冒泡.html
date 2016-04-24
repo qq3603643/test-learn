@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style>
+        #v1 {
+            width: 200px;
+            height: 200px;
+            background: red;
+        }
+        
+        #v2 {
+            width: 100px;
+            height: 100px;
+            background: black;
+            color: white;
+            margin: 50px;
+        }
+
+    </style>
+    <script src="jquery-1.11.3.js"></script>
+    <script>
+        $(function() {
+
+            $('#v1').click(function() {
+                alert(1);
+            })
+
+            $('#v2').click(function() {
+                alert(2);
+            })
+
+            $('#v1').mouseout(function() {
+                alert('out');
+            })
+
+            $('#v1').mouseover(function() {
+                alert('over');
+            })
+        })
+
+    </script>
+</head>
+
+<body>
+    <div id="v1">111
+        <div id="v2"> 222</div>
+    </div>
+</body>
+
+</html>

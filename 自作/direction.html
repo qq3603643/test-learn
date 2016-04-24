@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style>
+        ul {
+            margin: 40px auto;
+            /*            height: 30px;*/
+            width: 80%;
+            padding: 0px;
+            list-style: none;
+            text-align: justify;
+            direction: rtl;
+/*            使用此属性使每排的内联元素倒叙，感觉十分方便，不知道什么时候能用到*/
+        }
+        
+        ul:after {
+            display: inline-block;
+            content: '';
+            height: 0px;
+            width: 100%;
+            overflow: hidden;
+        }
+        
+        ul li {
+            width: 300px;
+            height: inherit;
+            margin-bottom: 10px;
+            display: inline-block;
+            text-align: center;
+            font: 20px/30px 'Microsofo YaHei';
+            border: 1px dashed gray;
+        }
+        /*
+        ul li.first~li{
+            border-left: 1px dashed gray;
+        }
+*/
+
+    </style>
+</head>
+
+<body>
+    <ul>
+        <li class="first">1</li>
+        <li>2</li>
+        <li>3</li>
+        <li>4</li>
+        <li>5</li>
+        <li>6</li>
+    </ul>
+</body>
+
+</html>

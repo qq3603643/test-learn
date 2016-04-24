@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <script src="jquery-1.11.3.js"></script>
+    <script>
+        $(function() {
+
+            //            for (var i = 0; i < $('li').length; i++) {
+            //                (function(i) {
+            //
+            //                    $('li').eq(i).click(function() {
+            //
+            //                        alert(i);
+            //                    })
+            //                })(i)
+            //            }
+
+            for (var i = 0; i < $('li').length; i++) {
+
+                $('li').eq(i).click((function(i) {
+                    var m = i;
+                    return function() {
+
+                        alert(m);
+                    }
+
+                })(i))
+            }
+        })
+
+    </script>
+</head>
+
+<body>
+    <ul>
+        <li>aaa</li>
+        <li>bbb</li>
+        <li>ccc</li>
+        <li>ddd</li>
+    </ul>
+</body>
+
+</html>

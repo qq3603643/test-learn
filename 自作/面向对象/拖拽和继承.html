@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <script src="jquery-1.11.3.js"></script>
+    <script>
+        $(function() {
+
+            var person = { //注意：实质是json
+
+                name: 'liu',
+                sex: 'felman',
+                showName: function() {
+
+                    alert('i\'m' + this.name)
+                }
+            }
+            person.showName()
+        })
+
+    </script>
+</head>
+
+<body>
+
+</body>
+
+</html>

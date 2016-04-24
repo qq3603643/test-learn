@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="app">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style>
+        .box {
+            height: 100px;
+            width: 100px;
+            background: black;
+            left: 20px;
+            top: 20px;
+            position: absolute;
+        }
+
+    </style>
+    <script src="jquery-1.11.3.js"></script>
+    <script src="angular.min.js"></script>
+    <script>
+        var x = angular.module('app', []);
+        x.directive('myTrag', function() {
+
+            return {
+
+                restrict: 'A',
+                link: function(scope, element, attr) {
+                    if (attr.myTrag == 'false') return;
+                    var x = 0;
+                    var y = 0;
+                    var left = 0;
+                    var top = 0;
+                    element.mousedown(function(ev) {
+                        var _this = this;
+                        ev = ev || window.event;
+                        x = ev.pageX - $(_this).offset().left;
+                        y = ev.pageY - $(_this).offset().top;
+
+                        $(document).mousemove(function(ev) {
+                            ev = ev || window.event;
+                            left = ev.pageX - x;
+                            top = ev.pageY - y;
+                            document.title = left;
+                            $(_this).css({
+                                'left': left + 'px',
+                                'top': top + 'px',
+
+                            })
+                        })
+                        $(document).mouseup(function() {
+                            $(document).off();
+                        })
+                    })
+                }
+            }
+        })
+        x.controller('ac', ['$scope', function($scope) {
+
+
+        }])
+
+    </script>
+</head>
+
+<body>
+    <div class="box" my-trag></div>
+</body>
+
+</html>

@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+<script>
+window.onload = function() {   
+  var oUl = document.getElementById('ul');   
+  var aNews = [
+      '中国电信再次被曝重大漏洞 可查上亿用户信息',
+      '世卫组织再发警告：中式咸鱼等115种物质也致癌',
+      '党报刊文:卢浮宫黄石公园等门票之和不够上黄山',];  
+var n=1;
+ document.getElementById('btn1').onclick = function() {;
+	
+        if(n == 1){
+            for( var i=0; i<aNews.length; i++ ){
+                oUl.style.display = 'block';
+				oUl.innerHTML += '<li>' + aNews[i] + '</li>';}
+               //S this.style.display = 'none';
+            n++;
+            n=n%2
+                 
+           return;
+			} 
+         if(n==0){
+              oUl.style.display = 'none';
+             oUl.innerHTML = '';
+             
+             n++;
+             n=n%2
+             
+             return;
+         }
+//        
+//           document.getElementById('btn1').onclick = function(){
+//               
+//               if(n == 1){
+//               oUl.style.display = 'none';}
+//           }; 
+                                           }
+  }  
+    
+    </script>  
+    
+</head>
+<body>
+<input id="btn1" type="button" value="点击生成新闻" >
+<ul id="ul" style="width:400px;height:60px;border:1px solid black;border-radius:10px 30px;display:none"></ul>
+</body>
+</html>

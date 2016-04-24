@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+<style>
+    #div{position: absolute;height: 400px;width: 2px;background: black;left: 400px;top: 0px;}    
+</style>
+<script src="mine.js"></script>
+<script>
+    window.onload = function(){
+        var oDiv = document.getElementsByTagName('div')[0];
+        var oBtn = document.getElementsByTagName('input')[0];
+        var oTar = document.getElementsByTagName('div')[1];
+        
+        oBtn.onclick = function(){ 
+                 tanMove(oDiv,400);
+            
+    }
+        function tanMove(obj,target){  
+            var speed = 0;
+            var left = 0;
+            clearInterval(obj.timer);
+            obj.timer = setInterval( function(){
+            speed += (target - obj.offsetLeft)/5;
+            speed = speed*0.7;
+            left  += speed;
+                if(Math.abs(speed) <1 && Math.abs(left-target)<1)                                               {
+                        clearInterval(obj.timer)
+                        obj.style.left =target + 'px';                                                               }
+                else{
+            obj.style.left =left + 'px'; }
+           
+        },30)
+        }
+    }
+</script>
+</head>
+<body>
+    <input type="button" value="start move">
+    <div style="position: absolute;left:0px;top:20px;width:50px;height:50px;background:black;margin-top:10px;"></div>
+    <div id="div"></div>
+</body>
+</html>

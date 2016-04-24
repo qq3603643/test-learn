@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+<style>
+    body{background: black;}
+    canvas{display: block; margin: 20px auto;background: white;}    
+</style>
+<script>
+    window.onload = function(){
+        
+        var oCan = document.getElementById('can1');
+        var oGcan = oCan.getContext('2d');
+        
+        oCan.onmousedown = function(ev){
+            var ev = ev||window.event;
+            
+            oGcan.moveTo(ev.clientX - oCan.offsetLeft,ev.clientY - oCan.offsetTop);
+        document.onmousemove = function(ev){
+            document.title = ev.clientX + '||' + oCan.offsetLeft;
+            var ev = ev||window.event;
+            oGcan.lineTo(ev.clientX - oCan.offsetLeft,ev.clientY - oCan.offsetTop);
+            oGcan.stroke();
+        }
+         document.onmouseup = function(){
+            document.onmousemove = document.onmouseup = null;
+        }
+        }
+       
+    }
+</script>
+</head>
+<body>
+    <canvas id="can1" width="400" height="300">
+        
+    </canvas>
+</body>
+</html>

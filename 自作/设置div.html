@@ -1,0 +1,110 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+
+<style>]
+a{color:#000000;text-decoration:none;}
+#left a,#right a{width:50px;height;40px;border:2px solid #000000;background-color:#FF0000;text-decoration:none;font-size:15px;color:#FFFFFF;}
+#btn1{background-color:#FF0000}
+#btn2{width:40px;background-color:#FF0000;}
+#btn3{width:40px;background-color:#FFFF00;}
+#btn4{width:40px;background-color:#00FF00;}
+#btn5{width:40px;background-color:#0000FF;}
+#boby{width:80px;height:80px;background-color:#666666;margin-top:100px;margin-left:50px;}
+#pop{width:300px;height:188px;background-color:#999999;margin-top:20px;margin-left:auto;margin-right:auto;display:none}
+#color{width:300px;height:50px;background-color:#999999;line-height:50px;text-indent;}
+.height{width:300px;height:50px;background-color:#999999;line-height:50px;margin-top:4px;}
+#head{width:300px;height:158px;background-color:#CCCCCC;}
+#left{width:148px;height:30px;background-color:#CCCCCC;margin-right:1px;float:left;text-align:center;line-height:30px}
+#right{width:151px;height:30px;background-color:#CCCCCC;float:left;text-align:center;line-height:30px}
+</style>
+
+<script>
+window.onload = function(){
+
+var btn1 = document.getElementById('btn1');
+var btn2 = document.getElementById('btn2');
+var btn3 = document.getElementById('btn3');
+var btn4 = document.getElementById('btn4');
+var btn5 = document.getElementById('btn5');
+var pop1 = document.getElementById('pop');
+var link1 = document.getElementById('link1');
+var link2 = document.getElementById('link2');
+var boby1 = document.getElementById('boby');
+
+btn1.onclick = function(){
+
+ pop1.style.display = 'block';
+
+};
+
+btn2.onclick = function(){
+
+ boby1.style.background = '#FF0000';
+
+};
+btn3.onclick = function(){
+
+ boby1.style.background = '#FFFF00';
+
+};
+
+btn4.onclick = function(){
+
+ boby1.style.background = '#00FF00';
+
+};
+
+btn5.onclick = function(){
+
+ boby1.style.background = '#0000FF';
+
+};
+link1.onclick = function(){
+
+ pop1.style.display = 'none';
+}
+
+link2.onclick = function(){
+
+ pop1.style.display = 'none';
+ 
+ 
+}
+
+};
+
+
+
+</script>
+
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
+<title>无标题文档</title>
+</head>
+
+<body>
+<li>
+点击按钮为下面的div设置样式
+<input id="btn1" type="button" value="设置" />
+</li>
+<div id="boby"></div>
+<div id="pop">
+<div id="head">
+<div id="color">&nbsp颜色：
+<input id="btn2" type="button" />
+<input id="btn3" type="button" />
+<input id="btn4" type="button" />
+<input id="btn5" type="button" />
+</div>
+<div class="height">&nbsp宽度：</div>
+<div class="height">&nbsp高度：</div>
+
+</div>
+<div id="food">
+<div id="left"><a id="link1"  href="">确定</a></div>
+<div id="right"><a id="link2"  href="">取消</a></div>
+</div>
+</div>
+
+</body>
+</html>

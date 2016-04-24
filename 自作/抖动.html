@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+<style>
+    div{margin-top:100px;margin-left:400px;width: 40px;height: 40px;background-color: aqua;text-align: center;line-height: 40px;}    
+</style>
+<script src="mine.js"></script>
+<script>
+  window.onload = function(){
+      var oDiv = document.getElementsByTagName('div')[0];
+      var arr = [];
+      var m = 0 ;
+      var timer =null;
+      var pos = parseInt(getStyle(oDiv,'margin-left'));
+     for(var i=2;i<=100;i +=2){
+           
+           arr.push(i,-i);
+       }  
+      for(var i=100;i>0;i -= 2){
+          arr.push(i,-i);
+      }
+       
+      alert(arr);
+      timer = setInterval(
+        
+         function(){
+             oDiv.style.marginLeft = pos + arr[m] + 'px';
+             m++;
+             if (m==arr.length){
+                m = 0;  
+             }
+         }
+      
+      ,100)
+      
+  }  
+    
+</script>
+</head>
+<body>
+    <div>得瑟</div>
+</body>
+</html>

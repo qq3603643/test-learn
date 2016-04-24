@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    
+<style>
+    div{width: 40px;height: 40px;margin-top: 10px;margin-left: 10px;background-color: aqua;float: left;}
+</style>
+<script src="mine.js"></script>
+<script>
+    window.onload = function(){
+      var aDiv = document.getElementsByTagName('div');
+      var timer = null;
+      var timer1 = null;
+      var timer2 = null;
+      var num = 0;
+      for(var i=0;i<20;i++){
+        document.body.innerHTML += '<div></div>'; 
+      }
+       setTimeout(
+       function(){
+          
+            clearInterval(timer); 
+            timer =  setInterval(function(){    
+            doMove(aDiv[num],'margin-top',20,500);     
+                 num++;
+                if(num==20){
+                   clearInterval(timer);  
+                    
+                    setTimeout( 
+                    function(){
+                   
+             timer1 = setInterval( function(){  
+                doMove(aDiv[num-1],'margin-top',20,10);     
+                 num--;
+                 if(num == 0){ 
+                   clearInterval(timer1);
+                   setTimeout( function(){
+                   timer2 =  setInterval(function(){    
+            doMove(aDiv[num],'margin-top',20,500);     
+                 num++;
+                if(num==20){
+                   clearInterval(timer); }},200)
+                   }
+                   ,2000);
+                 
+                 }
+                       },200 );
+                    },2000)
+                    
+                    
+                }
+          }  ,200);
+           
+    }  ,2000 ); 
+    
+    }
+</script>
+</head>
+<body>
+    
+</body>
+</html>

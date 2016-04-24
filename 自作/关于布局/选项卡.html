@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+<style>
+    *{margin: 0px;padding: 0px;}
+    .clear:after{content: '';display: block;clear: both;}
+    #container{width: 210px;margin: 10px auto;padding-bottom: 10px;}
+    .li{position: relative;top: 1px; list-style: none;width: 102px;height: 25px;border: 1px solid gray;border-bottom: none;border-radius: 6px 6px 0 0;background: white;}
+    .fleft{float: left;}
+    .fright{float: right;}
+    ul{height: 25px;}
+    #tant{width: 208px;height: 150px;border: 1px solid gray;background: gray;}
+    .active {position:relative;top: 1px; height:26px;background: gray;}
+</style>
+</head>
+<body>
+    <div id = "container" class="clear">
+        <ul >
+            <li class="li fleft active"></li>
+            <li class="li fright "></li>
+        </ul>
+        <div id = "tant" class="fleft"></div>
+    </div>
+<script>
+  var aLi = document.getElementsByTagName('li');
+    for(var i=0;i<aLi.length;i++){
+        
+        aLi[i].onmouseover = function(){
+            
+            for(var j=0;j<aLi.length;j++){
+                
+                var strr =  aLi[j].className ; 
+                aLi[j].className = strr.replace('active','')
+                
+            }
+            
+            var str = this.className;
+            var aClass = str.split(' ');
+            aClass.push('active');
+            var classN = aClass.join(' ');
+            this.className = classN;
+        }
+    }
+</script>
+</body>
+</html>

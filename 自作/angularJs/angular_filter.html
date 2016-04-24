@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="app">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <script src="angular.min.js"></script>
+    <script>
+        var x = angular.module('app', []);
+
+        x.controller('ac', function($scope) {
+            $scope.name = 'xu';
+            $scope.hello = 'holle';
+            $scope.data = 35346457576;
+            $scope.arr = [{
+                name: 'ab',
+                age: 1
+            }, {
+                name: 'c',
+                age: 7
+            }, {
+                name: 'a',
+                age: 3
+            }, {
+                name: 'ac',
+                age: 9
+            }, {
+                name: 'i',
+                age: 3
+            }, ]
+            $scope.info = {
+                name: 'liu',
+                age: '20'
+            }
+            $scope.apple = {
+
+                price: 3999,
+                num: 2467.45656,
+
+            }
+        })
+
+    </script>
+</head>
+
+<body ng-controller="ac">
+    <p>{{apple.price | currency:'￥'}}</p>
+    <p>{{apple.num | number:2}}</p>
+    <p>{{apple.num | number:1}}</p>
+    <p>{{name | uppercase}}</p>
+    <p>{{hello | limitTo:3}}</p>
+    <p>{{hello | limitTo:3 | uppercase}}</p>//过滤器组合使用
+    <p>{{data | date:'short'}}</p>
+    <p>{{arr | orderBy:'age'}}</p>
+    <p>{{arr | orderBy:'age':true}}</p> //加上true倒序
+    <p>{{arr | filter:'a'}}</p> //只要有就行
+    <p>{{arr | filter:'a':true}}</p> //加上true完全匹配
+    <p>{{arr | filter:'3'}}</p>
+    <br>
+    <br>
+    <pre>
+        {{info | json}}
+    </pre>
+</body>
+
+</html>

@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style>
+        li{margin-left: 30px; width: 120px;height: 80px;border: 1px solid red;line-height: 40px;background-color: aqua;list-style: none;}
+        div{width:40px;height: 40px;margin-left: 100px;margin-top: 40px;background-color: aqua;background-image:url(img/beffer1.jpg)}
+        
+    </style>
+<script src="mine.js"></script>
+<script>
+window.onload = function(){
+    var oDiv = document.getElementsByTagName('div')[0];
+    var m = 0;
+    var n = 0;
+    var oLi = document.getElementsByTagName('li')[0];
+    alert('点击掉下来的表情，点中得一分,小心速度会越来越快额！！');
+    
+    oLi.innerHTML = 'your score:' + m + '<br/>' +  'losed score:' + n;
+     abc();
+          function abc(){
+    
+    if( parseInt(getStyle(oDiv,'marginTop') ) == 40){ 
+        doMove(oDiv,'marginTop',15,550
+               ,function(){
+            oDiv.style.marginLeft =Math.round( Math.random()*800 + 100 ) + 'px';
+            oDiv.style.marginTop = 40 + 'px';
+            abc();
+            n++;
+            shake(oLi,'marginLeft');
+            oLi.innerHTML = 'your score:' + m + '<br/>' +  'losed score:' + n;
+        }
+              )
+    }
+         }
+          function bcd(){
+    
+  if( parseInt(getStyle(oDiv,'marginTop') ) == 40){ 
+        doMove(oDiv,'marginTop',20,550
+               ,function(){
+            oDiv.style.marginLeft =Math.round( Math.random()*800 + 100 ) + 'px';
+            oDiv.style.marginTop = 40 + 'px';
+            bcd();
+            n++;shake(oLi,'marginLeft');
+            oLi.innerHTML = 'your score:' + m + '<br/>' +  'losed score:' + n;
+        }
+              )
+    }
+         }
+          function cde(){
+    
+    if( parseInt(getStyle(oDiv,'marginTop') ) == 40){ 
+        doMove(oDiv,'marginTop',22,550
+               ,function(){
+            oDiv.style.marginLeft =Math.round( Math.random()*800 + 100 ) + 'px';
+            oDiv.style.marginTop = 40 + 'px';
+            cde();
+            n++;shake(oLi,'marginLeft');
+            oLi.innerHTML = 'your score:' + m + '<br/>' +  'losed score:' + n;
+        }
+              )
+    }
+         }
+          function def(){
+    
+    if( parseInt(getStyle(oDiv,'marginTop') ) == 40){ 
+        doMove(oDiv,'marginTop',30,550
+               ,function(){
+            oDiv.style.marginLeft =Math.round( Math.random()*800 + 100 ) + 'px';
+            oDiv.style.marginTop = 40 + 'px';
+            def();
+            n++;shake(oLi,'marginLeft');
+            oLi.innerHTML = 'your score:' + m + '<br/>' +  'losed score:' + n;
+        }
+              )
+    }
+         }
+          function efg(){
+    
+    if( parseInt(getStyle(oDiv,'marginTop') ) == 40){ 
+        doMove(oDiv,'marginTop',40,550
+               ,function(){
+            oDiv.style.marginLeft =Math.round( Math.random()*800 + 100 ) + 'px';
+            oDiv.style.marginTop = 40 + 'px';
+        efg();
+            n++;shake(oLi,'marginLeft');
+            oLi.innerHTML = 'your score:' + m + '<br/>' +  'losed score:' + n;
+        }
+              )
+    }
+         }
+    
+    oDiv.onclick = function(){
+        clearInterval(oDiv.timer);
+        oDiv.style.backgroundImage = 'url(img/after1.jpg)';
+        
+           m ++;
+        
+          oLi.innerHTML = 'your score:' + m + '<br/>' +  'losed score:' + n;
+        shake(oDiv,'marginLeft',function(){
+            oDiv.style.display = 'none';
+            oDiv.style.marginTop = 40 + 'px';
+            oDiv.style.marginLeft =Math.round( Math.random()*1000 + 300 ) + 'px';
+            oDiv.style.display = 'block';
+            oDiv.style.backgroundImage = 'url(img/beffer1.jpg)';
+            if(m<=5){abc()};
+//            if(m=5){bcd();alert('恭喜通过第一关！！')};
+            if(m>5&&m<=10){bcd()};
+//            if(m=10){cde()；alert('恭喜通过第二关！！');};       
+           if(m>10&&m<=20){cde()};
+//            if(m=15){cde()；alert('你已突破天际！！')};       
+           if(m>20&&m<=25){def()};
+           if(m>25){efg()};
+        })
+        
+        
+        
+    }
+    function doMove ( obj, attr, dir, target, endFn ) {
+	
+	dir = parseInt(getStyle( obj, attr )) < target ? dir : -dir;
+	
+	clearInterval( obj.timer );
+	
+	obj.timer = setInterval(function () {
+		
+		var speed = parseInt(getStyle( obj, attr )) + dir;			// 步长
+		
+		if ( speed > target && dir > 0 ||  speed < target && dir < 0  ) {
+			speed = target;
+		}
+		
+		obj.style[attr] = speed + 'px';
+		
+		if ( speed == target ) {
+			clearInterval( obj.timer );
+			
+			/*
+			if ( endFn ) {
+				endFn();
+			}
+			*/
+			endFn && endFn();
+			
+		}
+		
+	}, 50);
+}
+}    
+    
+</script>
+</head>
+<body>
+
+    <li></li>
+    <div></div>
+    
+
+   
+</body>
+</html>

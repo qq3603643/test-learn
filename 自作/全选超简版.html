@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+
+<body>
+    <laber>全选
+        <input name="checkAll" type="checkbox">
+    </laber>
+    </br>
+    <input type="checkbox" name="checkThis" checked>
+    <input type="checkbox" name="checkThis">
+    <input type="checkbox" name="checkThis">
+    <input type="checkbox" name="checkThis" checked>
+    <input type="checkbox" name="checkThis">
+    <script src="jquery-1.11.3.js"></script>
+    <script>
+        $('input[name="checkAll"]').on('change', function() {
+
+            $('input[name="checkThis"]').prop('checked', $('input[name="checkAll"]').prop('checked'));
+        });
+
+        $('input[name="checkThis"]').on('change', function() {
+
+            $('input[name="checkAll"]').prop('checked', $('input[name="checkThis"]').size() == $('input[name="checkThis"]:checked').size());
+        })
+
+        if (confirm('are you sure', '')) {
+            alert('true');
+        } else {
+            alert('false');
+        }
+
+    </script>
+</body>
+
+</html>
