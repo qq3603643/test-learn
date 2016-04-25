@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style>
+        .page {
+            margin: 40px 400px;
+        }
+        
+        .page:after {
+            display: inline-block;
+            content: 'center';
+            width: 0px;
+            height: 100%;
+            overflow: hidden;
+            vertical-align: middle;
+        }
+        
+        .page a.mark {
+            border: none;
+        }
+        
+        .page a.active {
+            color: red;
+            font-weight: 900;
+        }
+        
+        .page a {
+            cursor: pointer;
+            display: inline-block;
+            vertical-align: middle;
+            width: 20px;
+            height: 20px;
+            border: 1px dashed gray;
+            font: 16px/20px 'Microsoft YaHei';
+            text-align: center;
+        }
+    </style>
+    <script src="jquery-1.11.3.js"></script>
+    <script>
+        $(function () {
+
+            var $front = $('#front'),
+                $behind = $('#behind'),
+                middelArr = $('.middle');
+            var numMid = ~~$('.page a:last').text() / 2;
+            //初始化
+            $.each(middelArr, function (i, item) {
+                $(item).text(~~(numMid + (i - (middelArr.length) / 2)) + 1);
+            });
+            //点击事件
+            $('.page a').on('click', function () {
+
+                var onff = ~~parseInt($(this).text()) && ($(this).html() - $('.page a:last').html()) < -2 && ($(this).html() - $('.page a:first').html()) > 2;
+                if (onff) {
+                    var $onclickNum = +$(this).text();
+                    var $first = 1,
+                        $last = $('.page a:last').text();
+
+                    $(middelArr[~~(middelArr.length / 2)]).addClass('active').siblings().removeClass('active');
+
+                    $.each(middelArr, function (i, item) {
+                        $(item).text(~~($onclickNum + (i - (middelArr.length) / 2)) + 1);
+                        middelArr = $('.middle');
+                        var $disNum = Math.min($(middelArr[0]).text() - $first, $last - $(middelArr[middelArr.length - 1]).text());
+
+                        if ($disNum <= 1) {
+                            if ($onclickNum < $last / 2) {
+                                $('#front').hide();
+                            } else {
+                                $('#behind').hide();
+                            }
+                        } else if ($disNum == 2) {
+                            if ($onclickNum < $last / 2) {
+                                $('#front').html('2');
+                                $('#front').show();
+                                $('#front').css('border', '1px dashed gray');
+                            } else {
+                                $('#behind').html($last - 1);
+                                $('#behind').show();
+                                $('#behind').css('border', '1px dashed gray');
+                            }
+                        } else {
+                            $('#front').show();
+                            $('#front').html('...');
+                            $('#front').css('border', 'none');
+                            $('#behind').show();
+                            $('#behind').html('...');
+                            $('#behind').css('border', 'none');
+                        }
+                    })
+                } else {
+                    ~~parseInt($(this).text()) && ($(this).html()) && $(this).addClass('active').siblings().removeClass('active');
+                    var $index = $(this).text();
+
+                    if ($index == 1) {
+
+                        $('#front').html('2');
+                        $('#front').show();
+                        $('#front').css('border', '1px dashed gray');
+                        $.each(middelArr, function (i, item) {
+                            $(item).html(3 + i);
+                        })
+                    } else if ($index == $('.page a:last').text()) {
+                        $('#behind').html($('.page a:last').text() - 1);
+                        $('#behind').show();
+                        $('#behind').css('border', '1px dashed gray');
+                        $.each(middelArr, function (i, item) {
+                            $(item).html($('.page a:last').text() - (middelArr.length + 1 - i));
+                        })
+                    }
+                }
+                //console.log($('.page a.active').text());
+            })
+        })
+    </script>
+</head>
+
+<body>
+    <div class="page">
+        <a class="active">1</a>
+        <a id="front" class="mark">...</a>
+        <a class="middle"></a>
+        <a class="middle"></a>
+        <a class="middle"></a>
+        <a class="middle"></a>
+        <a class="middle"></a>
+        <a id="behind" class="mark">...</a>
+        <a>24</a>
+    </div>
+</body>
+
+</html>

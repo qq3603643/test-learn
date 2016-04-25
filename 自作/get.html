@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        var I = {
+            name: 'tangerine',
+            get getname(){
+                alert(this.name);
+            }
+        };
+        I.getname;
+        //不兼容ie8..可放弃
+        var You = {
+            name: 'apple',
+            getname: function(){
+                alert(this.name);
+            }
+        };
+        You.getname();
+    </script>
+</body>
+</html>

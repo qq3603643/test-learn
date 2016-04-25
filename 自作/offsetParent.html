@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+
+<body id="body">
+    <div id="box">
+        <lu id="list">
+            <li class="deliver"></li>
+            <li class="deliver"></li>
+            <li class="deliver"></li>
+            <li class="deliver"></li>
+            <li class="deliver"></li>
+        </lu>
+    </div>
+
+    <script>
+        alert(document.getElementsByTagName('li')[0].offsetParent.id);
+        alert(document.getElementsByTagName('li')[4].offsetTop);
+        //offsetParent为最近的定位元素 如果往上都没有则为body
+        //offsetLeft/Top 同理，为到最近定位元素的距离，没有则为到body的距离
+    </script>
+</body>
+
+</html>

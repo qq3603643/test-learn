@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style>
+        .wrap{ width: 860px;margin: 80px auto;border: 4px solid black;}
+        .pic-list{ position: relative;margin: 0;padding: 0;list-style: none;overflow: hidden;height: 344px; }
+        .item{ position: absolute;width: 500px;height: 344px;outline: 1px solid black; }
+    </style>
+    <script src="jquery-1.11.3.js"></script>
+    <script>
+        $(function(){
+        var createPic = function(){
+            var 
+                $picsWrap = $('.pic-list'),
+                baseUrl = 'pic-piano/',
+                frontArr = [],behindArr = [],
+                AmountPic = 10,startIndex = 10;
+            var Img = {
+                'layout': function(){
+                    do{
+                        var $oLi = $('<li>').addClass('item').css({
+                            'zIndex':AmountPic,
+                            'left':(AmountPic-1)*86
+                        });
+                            $oLi.html( '<img src="'+ baseUrl+AmountPic +'.jpg">' )
+                            $picsWrap.prepend($oLi);
+                    }while( AmountPic-=1 )
+                },
+                'basePosArr': function(){
+                    AmountPic = 10;
+                    var iLength = $picsWrap.innerWidth()-$('.item').outerWidth(),value = iLength/9;
+                    do{
+                       frontArr.unshift( (AmountPic-1)*value );
+                       behindArr.unshift( (AmountPic-2)*value+$('.item').outerWidth() );
+                    }while( AmountPic-=1 )
+                },
+                'mouseEnter': function(){
+                    $('.item').stop();
+                    var _this = $(this),
+                        index = _this.index();
+                    $.each( $('.item'),function(indexE,item){
+                        if( indexE<=index ){
+                            $(item).animate({'left':frontArr[indexE]},800,'swing');
+                        }else{
+                        $(item).animate({'left':behindArr[indexE]},800,'swing')
+                        }
+                    } )
+                },
+                'mouseleave': function(){
+                    $.each( $('.item'),function(i,item){
+                        $(item).animate({
+                            'left': i*86
+                        },500)
+                    } )
+                },
+                'running': function(){
+                    this.layout();
+                    this.basePosArr();
+                    $picsWrap.on('mouseenter','.item',function(){
+                        Img.mouseEnter.call(this);
+                    })
+                    $picsWrap.on('mouseleave',Img.mouseleave);
+                }
+            };
+            return Img;
+        }();
+            createPic.running();
+        })
+    </script>
+</head>
+<body>
+    <div class="wrap">
+        <ul class="pic-list">
+            
+        </ul>
+    </div>
+</body>
+</html>

@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        ~~ function () {
+            var _args = [];
+            var add = function () {
+                var len = arguments.length;
+
+                if (len == 0) {
+                    return eval(_args.join('+'));
+                } else {
+                    _args = _args.concat([].slice.call(arguments));
+                }
+
+            };
+            window.add = add;
+        }()
+        add(4);
+        add(4.4);
+        add(4, 5);
+        console.log(add());
+
+        ~~ function () {
+            var cur = 0;
+
+            var add = function () {
+                var len = arguments.length,
+                    self = arguments.callee;
+                if (len) {
+                    cur += arguments[0];
+                    return self;
+                } else {
+                    return cur;
+                }
+            };
+            window.add = add;
+        }();
+        console.log(add(4)(5)());
+    </script>
+</body>
+
+</html>

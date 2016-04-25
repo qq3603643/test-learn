@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style>
+        .box{
+            position: absolute;
+            width: 100px;
+            height: 100px;
+            background: url(img/8.jpg);
+            left: 100px;
+            top: 100px;
+            cursor: pointer;
+            background-clip: content-box;  
+/*            ***-box意为从什么地方开始裁剪，裁剪的部分不包括***。即***保留有背景*/
+            padding: 2px;
+            border: 1px solid red;
+        }
+        .box:after{
+            display: block;
+            position: absolute;
+            content: attr(after);
+/*            可以直接根据位置来确定大小，适合与父级位置关系固定，大小不固定的排版*/
+            left: -10px;top: -10px;
+            right: -10px;bottom: -10px;
+            outline: 2px dashed red;
+            font: 14px 'microsoft yahei';
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="box" after="content"></div>
+</body>
+</html>

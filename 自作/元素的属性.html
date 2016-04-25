@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+    <a id="test"> tangerine </a>
+    <script>
+        var oA = document.querySelector( '#test' );
+        oA.setAttribute( 'a','a' ),console.log( oA.a ),console.log( oA.getAttribute( 'a' ) );
+        oA.a = 'a',console.log( oA.a ),console.log( oA.getAttribute( 'a' ) );
+        oA.className = 'class',console.log( oA.className ),console.log( oA.getAttribute( 'class' ) );  //减一id,class用 . 
+    </script>
+</body>
+</html>

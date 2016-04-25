@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style>
+        .select{
+            width: 130px;
+            height: 20px;
+            padding: 2px;
+            border: 1px solid gray;
+            position: relative;
+        }
+        .sing{
+             width: 134px;
+            height: 20px;
+            border: 1px solid grey;
+        }
+        .wrap{
+            display: none;
+        }
+    </style>
+    <script>
+        window.onload = function(){
+            
+            var $style = document.createElement('style'),
+                html = '';
+            
+            var $select = document.getElementById('select'),
+                $wrap = document.getElementById('wrap');
+            
+            $select.onfocus = function(){
+                
+                $wrap.style.display = 'block';
+                
+            }
+            
+              $select.onblur = function(){
+                
+                $wrap.style.display = 'none';
+                
+            }
+            
+            $select.addEventListener('input',function (){
+                
+                var $val = $select.value.trim().toLowerCase();
+                console.log($val);
+                html = '.sing:not([data*=' + $val + ']){display:none;}';
+                $style.innerHTML = html;
+                document.body.appendChild($style);
+                
+            }) 
+        }
+    
+    </script>
+</head>
+<body>
+    <input id="select" type="text" class="select" placeholder="请输入地区">
+        <div class="wrap" id="wrap">
+        <div class="sing" data="bazhong巴中">巴中</div>
+        <div class="sing" data="chengdu成都">成都</div>
+        <div class="sing" data="dazhou达州">达州</div>
+        <div class="sing" data="deyang德阳">德阳</div>
+        <div class="sing" data="guangan广安">广安</div>
+        <div class="sing" data="guangyuan广元">广元</div>
+        <div class="sing" data="leshan乐山">乐山</div>
+        <div class="sing" data="liangzhou凉州">凉山</div>
+        <div class="sing" data="meishan眉山">眉山</div>
+        <div class="sing" data="mianyang绵阳">绵阳</div>
+        <div class="sing" data="neijiang内江">内江</div>
+        <div class="sing" data="nanchong南充">南充</div>
+        </div>
+</body>
+</html>

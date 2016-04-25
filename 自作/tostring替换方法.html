@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        var tepFunc = ['function *name*(arr){',
+            'return eval( arr.join("#sige#") );',
+        '};'],
+            arr = [1,2,3,4],
+            jonFunc = {   //适用于多个函数只有少量不同之处时使用
+            'sum':'+',
+            'amass':'*',
+            'quotient':'/',
+            'deffe':'-'
+        };
+        for( var name in jonFunc ){
+            eval( tepFunc.join('').replace( /\*.*\*/g,name ).replace( /\#.*\#/g,jonFunc[name] ) );
+        }
+        
+    </script>    
+</body>
+</html>

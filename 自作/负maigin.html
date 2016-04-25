@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style>
+        .wrap {
+            width: 254px;
+            height: 50px;
+            border: 1px dashed gray;
+            background: gray;
+        }
+        ul{
+            height: inherit;
+            padding: 0px;
+            margin: 0px;
+            list-style: none;
+            margin-right: -1px;
+        }
+        ul:after{
+            display: block;
+            content: 'clear';
+            height: 0px;
+            clear: both;
+            overflow: hidden;
+        }
+        ul li{
+            width: 50px;
+            height: inherit;
+            float: left;
+            background-color: aqua;
+            margin-right: 1px;  
+        }
+    </style>
+</head>
+
+<body>
+    <div class="wrap">
+        <ul>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+        </ul>
+    </div>
+</body>
+
+</html>

@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style>
+        .list{
+            padding: 0;
+            margin: 0;
+            list-style: none;
+            font-size: 0;
+        }
+        .item{
+            display: inline-block;
+            width: 40px;
+            height: 40px;
+            border: 1px dashed gray;
+            color: white;
+            font: 16px/40px 'microsoft yahei';
+            text-align: center;
+            cursor: pointer;
+        }
+    </style>
+    <script>
+        window.onload = function(){
+            var scroce = function(){
+                var nowindex,
+                    oul = document.getElementsByTagName( 'ul' )[0],
+                    $LiArr = oul.getElementsByTagName( 'li' ),
+                    $LiArr = [].slice.call( $LiArr ),  //上面定义一些多方法将要用到的一些变量
+                    
+                    scroce = {
+                            addColor: function(index){
+                                var colorStr = (index < 1)&&'gray'||(index < 4)&&'black'||'red',
+                                    wordStr = (index < 1)&&'差'||(index < 4)&&'良'||'优';
+                                for( var i=-1,item;item=$LiArr[i+=1]; ){
+                                    item.style.background = 'white';
+                                    ( i<index+1 )&&(
+                                    item.style.background = colorStr,
+                                    item.innerHTML = wordStr ); 
+                                }
+                            },
+                            running: function(){
+                                for( var i=-1,item;item=$LiArr[i+=1]; ){
+                                    item.onmouseover = function(){
+                                        var _this = this;
+                                        scroce.addColor( $LiArr.indexOf(_this) );
+                                    };
+                                    item.onmousedown = function(){
+                                        var _this = this;
+                                        nowindex = $LiArr.indexOf(_this);
+                                    };
+                                    item.onmouseout = function(){
+                                        typeof nowindex != void(0) && scroce.addColor( nowindex );
+                                    };
+                                }
+                            }
+                    };
+                return scroce;
+            }();
+            scroce.running();
+        };
+    </script>
+</head>
+<body>
+    <ul class="list">
+        <li class="item">差</li>
+        <li class="item">良</li>
+        <li class="item">良</li>
+        <li class="item">良</li>
+        <li class="item">优</li>
+    </ul>
+</body>
+</html>

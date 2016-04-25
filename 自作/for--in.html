@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+    <script>   
+        //for(a[a.length] in Array(11).join(" "));  //此时a的每个值为遍历对象的对应属性(获得属性的方法)
+        function getArr(number){
+            var a = [];
+            for(a[a.length] in Array(number + 1).join('$'));
+            return a;
+        }
+        console.log(getArr(10));
+        //复制数组的方法
+        var arr1 = getArr(10),arr2 = [];
+        //var i = arr1.length;
+        //while(i) arr2[--i] = arr1[i];
+        [].push.apply(arr2,arr1);
+        console.log(arr2);
+        //排序
+        var arr3 = [3,3,7,1,2,0,1],arr4 = Array();
+        while(arr3.length) arr4.push( arr3.splice( arr3.indexOf(Math.max.apply(null,arr3)),1 )*1 );
+        console.log(arr4)
+    
+    </script>    
+</body>
+</html>

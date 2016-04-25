@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style>
+        button {
+            width: 60px;
+            height: 30px;
+            background: blue;
+            color: white;
+            border-style: none;
+            cursor: pointer;
+        }
+        
+        .list {
+            position: absolute;
+            top: 500px;
+            list-style: none;
+        }
+        
+        .list li {
+            text-align: center;
+            font: 40px/250px '';
+            border: 2px solid blue;
+            width: 300px;
+            height: 550px;
+            margin-bottom: 30px;
+        }
+    </style>
+    <script src="jquery-1.11.3.js"></script>
+    <script src="http://192.168.0.244:9090/rap.plugin.js?projectId=2"></script>
+    <script>
+        $(function () {
+
+            var move = function (obj1, obj2) {
+
+                obj1.click(function () {
+                    var iheight = ($(window).height() - obj2.outerHeight()) > 0 ? ($(window).height() - obj2.outerHeight()) / 2 : 0;
+                    var itop = obj2.offset().top - iheight;
+                    $('body,html').animate({
+                        'scrollTop': itop
+                    }, 500, 'swing');
+                })
+
+            };
+
+            (function () {
+
+                var $abtn = $('button'),
+                    $aCont = $('li');
+                $.each($abtn, function (i) {
+                    move($abtn.eq(i), $aCont.eq(i));
+                })
+            })();
+
+        })
+    </script>
+</head>
+
+<body>
+    <button>按钮1</button>
+    <button>按钮2</button>
+    <button>按钮3</button>
+    <button>按钮4</button>
+    <ul class="list">
+        <li id="v1">模块一</li>
+        <li id="v2">模块二</li>
+        <li id="v3">模块三</li>
+        <li id="v4">模块四</li>
+    </ul>
+
+    <div id="article"></div>
+
+    <script>
+        $(function () {
+            $.get("/list/", function (data) {
+                console.log(data)
+
+                var html = ""
+                if (data.code == 1) {
+                    console.log(data);
+                } else {
+                    console.log('nothing to take..')
+                }
+
+            })
+        })
+    </script>
+
+</body>
+
+</html>

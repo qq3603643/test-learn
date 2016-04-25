@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    <title>Document</title>
+    <script src="jquery-1.11.3.js"></script>
+    <style>
+
+    </style>
+</head>
+
+<body>
+    <div id="main" style="height:300px;width:100%;"></div>
+    <script src="echarts-all.js"></script>
+    <script>
+        var data = {
+            lengend: {
+                data: ['注册', '交易']
+            },
+            yAxis: {
+                data: ['纵坐标一', '纵坐标二', '纵坐标三', '纵坐标四', '纵坐标五', '纵坐标六']
+            },
+            series: {
+                nameRe: '注册',
+                dataRe: ['100', '600', '300', '400', '500', '600'],
+                nameTr: '交易',
+                dataReTr: ['100', '600', '300', '400', '500', '600'],
+            }
+        };
+        drawBar($('#main'), data);
+
+        function drawBar($obj, $json) {
+
+            var myChart = echarts.init($obj.get(0));
+
+            myChart.setOption({
+                color: ['gray', 'blue'],
+                tooltip: {
+                    trigger: 'axis'
+                },
+                legend: {
+                    data: $json.lengend.data
+                },
+                calculable: true,
+                xAxis: [
+                    {
+                        type: 'value',
+                        boundaryGap: [0, 0]
+                    }
+                       ],
+                yAxis: [
+                    {
+                        type: 'category',
+                        data: $json.yAxis.data
+                    }
+                       ],
+                series: [
+                    {
+                        name: $json.series.dataRe,
+                        type: 'bar',
+                        data: $json.series.dataRe
+                    },
+                    {
+                        name: $json.series.nameTr,
+                        type: 'bar',
+                        data: $json.series.dataReTr
+                    }
+                       ],
+                grid: {
+                    x: 20,
+                    y: 60,
+                    x2: 10,
+                }
+            });
+            $(window).resize(function () {
+                drawBar($obj, $json);
+            })
+        }
+    </script>
+</body>
+
+</html>

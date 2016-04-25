@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style>
+        #box {
+            padding: 10px;
+            width: 200px;
+            margin: 50px auto;
+            text-align: justify;
+            letter-spacing: -.05em;
+            font: 15px/20px '微软雅黑';
+        }
+    </style>
+
+</head>
+
+<body>
+    <div id="box">
+        不同字体的letter-spacing负值不一样，使用em单位呢，可以更智能适配各个font-size的文字。demo使用的微软雅黑字体，我大致测试了下，-.15em是个挺合适的值，其他字体我就不详了，你有兴趣，可以自己捣腾下。 至此，我们的任意中文英文的两端对齐效果就实现了。 使用JS再总结下就是（假设box是文字容器元素)
+    </div>
+    <script>
+        var $div = document.getElementById('box');
+        $div.innerHTML = box.innerHTML.replace(/^[\s\uFEFF\xA0]+|[\s\uFEFF\xA0]+$/g, '').split("").join(" ").replace(/\s{3}/g, " &nbsp; ");
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+   <script src="jquery-1.11.3.js"></script>
+    <script>
+        var testType = function(){ //不但要实现功能，还要有扩展，旨在分离出不同的模块
+            var typesMeths = {},
+                i,typeLen,test;
+            test = function(value,istype){
+                return !!value && !!typesMeths[istype] && typesMeths[istype](value);
+            };
+            typesMeths = {
+              isNumber: function(value){
+                  return !isNaN(value*1) && typeof value!='string';
+              },
+              isString: function(value){
+                  //.....
+              }
+            };
+            return test;
+        }();
+        console.log(testType('5','isNumber'));
+        var each = function(){
+            var each,i,arrLen;
+            each = function(arr,fn){
+                arr = [].slice.call(arr);
+    
+                for(i=0,arrLen=arr.length;i<arrLen;i++){
+                    (function(index,ele){
+                        fn.apply(null,arguments)
+                    })(i,arr[i])
+                }
+            };
+            return each;
+        }();
+        
+        each(document.getElementsByTagName("*"),function(i,item){
+            console.log(item);
+        })
+        
+        var deferredTest = function(){
+            var test={};
+            var data,dtd;
+            test = {
+                getData: function(){
+                  dtd = $.Deferred();
+                  setTimeout(function(){
+                      data = { 'name':'tangerine' };
+                      dtd.resolve();
+                  },2000)
+                  return dtd.promise();
+                },
+                showData: function(){
+                    console.log(data);
+                },
+                running: function(){
+                    deferredTest.getData().done(deferredTest.showData);
+                }
+            };
+            return test;
+        }();
+          deferredTest.running();
+        //对象的自执行.......
+       (function(){
+        var attr,my;
+            my = {
+                showMsg: function(){
+                    for(attr in this) console.log(attr); //关于性能 能用简介的原生js就用 如: $(this).attr('data') ;this.data
+                },
+                running: function(){
+                    $(document).on('click',function(){my.showMsg.call(this)})
+                }
+         };
+         return my;
+      }()).running();
+    </script>
+</body>
+</html>

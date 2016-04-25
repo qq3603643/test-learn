@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style>
+        .v1 {
+            height: 300px;
+            border-bottom: 1px dashed gray;
+        }
+        
+        .v2 {
+            height: 200px;
+            border-bottom: 1px dashed gray;
+        }
+        
+        .v3 {
+            height: 100px;
+            border-bottom: 1px dashed gray;
+        }
+        #box{
+            width: 100px;
+            height: 100px;
+            border: 2px solid blue;
+            padding: 10px;
+            margin: 15px;
+        }
+    </style>
+    <script src="jquery-1.11.3.js"></script>
+    <script>
+        $(function () {
+            $('p').closest().css('borderColor', 'red'); //最近的指定的祖先元素 （）内必须填上条件可选择自身
+            $('p').closest('.v1').css('borderColor', 'red');
+            $('p').parents('.v1').css('borderBottomStyle', 'solid'); //全部的祖先元素 可不填条件为选择所有父级 不可自身
+        })
+        var arr = [3, 557, 3535, 96, 3535, 57524, 25, 96, 3];
+        var delRe = function (arr) { //利用$.inArray对数组进行去重
+            var newArr = [];
+            $.each(arr, function (i, item) {
+                ($.inArray(item, arr) == i) && (newArr.push(item), true) || console.log(item + ',is repeated..');
+            })
+            return newArr;
+        };
+        console.log(delRe(arr));
+        
+        $(document).on('keyup',function(e){
+            console.log(e.which);  //可以检测按的哪个键
+        })
+        
+        var quickSort = function(arr){  //利用$.inArray快速排序
+            var newArr = [];
+            while(arr.length){
+                newArr.push(arr.splice($.inArray(Math.max.apply(null,arr),arr),1)[0]);
+            }
+            return newArr;
+        };
+        console.log(quickSort(arr));
+    </script>
+</head>
+
+<body>
+    <div class="v1">
+        <div class="v2">
+            <div class="v3">
+                <p>i am a tangerine..</p>
+            </div>
+        </div>
+    </div>
+    <div id="box"></div>
+    <script>
+        (function(){
+            var my,$ele,showList,height,innerheight,outerheight;
+            $ele = $('#box');
+                my = {
+                    showHeight: function(){
+                        console.log('height: '+$ele.height())  //不包括margin、padding、border等，设置的原始高度
+                    },
+                    showOuterheight: function(){
+                        console.log('outerheight: '+$ele.outerHeight()) //包括padding，border（即能肉眼看见的）可选参数（true）包括margin
+                    },
+                    showInnerheight: function(){
+                        console.log('innerheight: '+$ele.innerHeight())  //包括padding
+                    },
+                    running: function(){
+                        my.showHeight();
+                        my.showOuterheight();
+                        my.showInnerheight();
+                    }
+                };
+            return my;
+        }()).running()
+        var getStyle = function(){
+            if(window.currentStyle) return function(obj,attr){ return obj.currentStyle[attr] };
+            return function(obj,attr){ return getComputedStyle(obj)[attr] };
+        }();
+        console.log(getStyle($('#box').get(0),'height'));  //原始大小，等同jq的height();
+    </script>
+</body>
+
+</html>

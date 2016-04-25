@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style>
+        img{
+/*            切记： 必须为绝对定位元素*/
+            position: absolute;
+            clip: rect(0px 128px 128px 0px);  
+        }
+        img:hover{
+            clip: rect(128px 128px 256px 0px);
+            top: -128px;
+        }
+    </style>
+</head>
+<body>
+    <img src="sofa_sprite.png">
+</body>
+</html>

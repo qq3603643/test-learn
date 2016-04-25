@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+    <button>按钮一</button>
+    <button>按钮二</button>
+    <button>按钮三</button>
+    <script src="jquery-1.11.3.js"></script>
+    <script>
+        $('button:first').click(function(){
+            alert(1);
+        })
+        $('button:eq(1)').click(function(){
+            alert(2);
+        })
+        $('button:last').click(function(){
+            $('button:eq(1)').trigger('click').off();
+        })
+    </script>
+</body>
+</html>

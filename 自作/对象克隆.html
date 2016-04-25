@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        var json = {
+            name: 'tangerine',
+            showName: function(){
+                console.log(this.name);
+            },
+            favir:[
+                'apple',
+                {
+                    food:{
+                        firut:'apple'
+                    }
+                }
+            ]
+        };
+       var json2 =  JSON.parse(JSON.stringify(json));
+        console.log(json2)  //showName 木有了..
+        console.log(json)
+    </script>
+</body>
+</html>

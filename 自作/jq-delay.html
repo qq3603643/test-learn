@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <script src="jquery-1.11.3.js"></script>
+    <style>
+        .wrap{ position: relative;left: 150px;padding: 0;list-style: none;width: 42px;transform: rotateY(180deg);margin-right: 400px; }
+        .item{ position: absolute;width: 175px;height: 150px;font: 30px/150px 'microsoft';border: 0px solid silver;text-align: center;background: white;z-index: 1;background: url(img/keyframes.jpg) no-repeat; }
+        .item:nth-child(1){ z-index: 2;background-position: 0 0; }
+        .item:nth-child(2){ background-position: -175px 0; }
+        .item:nth-child(3){ background-position: -350px 0; }
+        .item:nth-child(4){ background-position: -545px 0; }
+        .item:nth-child(5){ background-position: 0 -150px; }
+        .item:nth-child(6){ background-position: -175px -150px; }
+        .item:nth-child(7){ background-position: -350px -150px;}
+        .item:nth-child(8){ background-position: -542px -150px; }
+    </style>
+    <script>
+        $(function(){
+            var i=1,$items=$('.item'),$wrap=$('.wrap'),
+                startL = $wrap.offset().left,
+                indexZ = 2,
+                timer = null;
+            
+            $(document).on('click',function(){
+                clearInterval(timer);
+                timer = setInterval(function(){
+                    i+=1;i%=$items.length;
+                    $items.eq(i).css( 'zIndex',indexZ++ );
+                    $wrap.css( 'left',startL+=10 );
+                    //if( !i ) clearInterval( timer );
+                 },200);
+            })
+        })
+        //可把item换成连续的图片帧即可看到动画
+    </script>
+</head>
+<body>
+    <ul class="wrap">
+        <li class="item"></li>
+        <li class="item"></li>
+        <li class="item"></li>
+        <li class="item"></li>
+        <li class="item"></li>
+        <li class="item"></li>
+        <li class="item"></li>
+        <li class="item"></li>
+    </ul>
+</body>
+</html>

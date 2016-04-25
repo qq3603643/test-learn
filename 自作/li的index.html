@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+    <ul>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+    </ul>
+    <script>
+        window.onload = function(){
+            
+            var $aLi = document.getElementsByTagName('li');
+            //var arr = [].concat.apply(this,$aLi);
+            //arr.shift();  需要去掉首个
+            var arr = [].slice.call($aLi);
+            alert(Object.prototype.toString.call(arr)) // 可判断是否为数组
+            
+//            arr.forEach(function(item,i){
+//                
+//               item.onclick = function(){
+//                   console.log(i)
+//               }
+//                
+//            })
+            
+            for(var i = 0;i<$aLi.length;i++){
+                
+                $aLi[i].onclick = function(){
+                    
+                    alert([].indexOf.call($aLi,this))
+                    
+                }
+                
+            }
+            
+        }
+    </script>
+</body>
+</html>

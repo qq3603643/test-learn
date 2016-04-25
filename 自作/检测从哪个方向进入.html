@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style>
+        .wrap {
+            margin: 40px auto;
+            width: 100px;
+            height: 100px;
+            background: gray;
+            color: white;
+            font: 20px/100px 'Microsoft YaHei';
+            text-align: center;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="wrap">
+        检测方向
+    </div>
+    <script src="jquery-1.11.3.js"></script>
+    <script>
+        $(".wrap").bind("mouseenter mouseleave",
+            function (e) {
+                var w = $(this).width();
+                var h = $(this).height();
+                var x = (e.pageX - this.offsetLeft - (w / 2)) * (w > h ? (h / w) : 1);
+                var y = (e.pageY - this.offsetTop - (h / 2)) * (h > w ? (w / h) : 1);
+                var direction = Math.round((((Math.atan2(y, x) * (180 / Math.PI)) + 180) / 90) + 3) % 4;
+                var eventType = e.type;
+                var dirName = new Array('上方', '右侧', '下方', '左侧');
+                if (e.type == 'mouseenter') {
+                    $(this).html(dirName[direction] + '进入');
+                } else {
+                    $(this).html('检测方向');
+                }
+            });
+    </script>
+
+</body>
+
+</html>

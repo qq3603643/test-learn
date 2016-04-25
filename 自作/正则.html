@@ -25,8 +25,25 @@
         //        };
         //        alert(m);
 
-        alert(str.match(re).length);
-
+       console.log(str.match(re)); 
+        
+        (function(){
+            
+            var str = '2016-6-6';
+            var re = /-(\d{1})/g
+                
+            console.log(str.match(re))
+            console.log(str =  str.replace(re,'-0' +  '$1'))//括号可以将匹配出来的结果独立出来以备使用
+        })()
+        var str = ' i am a tangerine ';
+        str.replace( /\s+(tan)(g)/ig,function(a,b,c,d){  //第一个参数为全部匹配的结果，后面依次为（）中匹配的内容,多出一位为出现的位置
+            console.log( a +"||"+ b+"||"+ c+"||"+d );
+        } )
+        str.replace( /tan(?=g)/ig,function(a,b){
+            console.log( a+"||"+b )
+        } )
+        var id = 'http://m.ypzdw.cc/Operate/VipActivityMember/Details?id=1567'.match( /(?!id=)(\d+)/ig ).toString();
+        console.log( id );
     </script>
 </body>
 

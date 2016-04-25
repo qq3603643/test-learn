@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style>
+        .wrap {
+            width: 100px;
+            margin: 40px auto;
+        }
+        
+        .wrap a {
+            position: relative;
+            display: block;
+            width: 80px;
+            height: 20px;
+            border-width: 1px 0px;
+            border-style: solid;
+            border-color: gray;
+            background: #f9f9f9;
+        }
+        
+        .wrap a span {
+            position: absolute;
+            left: -1px;
+            display: block;
+            width: 80px;
+            height: 20px;
+            border-width: 0px 1px;
+            border-style: solid;
+            border-color: gray;
+            text-align: center;
+            cursor: pointer;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="wrap">
+        <a>
+            <span>onclick</span>
+        </a>
+    </div>
+</body>
+
+</html>

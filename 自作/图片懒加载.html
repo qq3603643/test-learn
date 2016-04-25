@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style>
+        .wrap #list {
+            padding: 0px;
+            margin: 0px;
+            list-style: none;
+        }
+        
+        .wrap #list li img {
+            width: 200px;
+            height: 250px;
+            padding: 3px;
+            border: 1px solid gray;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="wrap">
+        <ul id="list">
+            <!--            <li><img></li>-->
+
+        </ul>
+    </div>
+    <script>
+        window.onload = function () {
+            var aSrc = ['http://g.hiphotos.baidu.com/image/h%3D220/sign=c7e197fc3dc79f3d90e1e3328aa0cdbc/aec379310a55b319e518507645a98226cefc17cb.jpg', 'http://c.hiphotos.baidu.com/image/h%3D220/sign=072601fe7d899e51678e3d1672a6d990/b999a9014c086e062f49ed4804087bf40bd1cbd4.jpg', 'http://f.hiphotos.baidu.com/image/h%3D220/sign=6aac2e0e76cf3bc7f700caeee101babd/f636afc379310a55bebc0cf7b14543a98226101c.jpg', 'http://d.hiphotos.baidu.com/image/h%3D220/sign=82f85faaaf014c08063b2fa73a7a025b/023b5bb5c9ea15ce5d0f320ab0003af33b87b2d4.jpg', 'http://img3.imgtn.bdimg.com/it/u=424932682,3511173251&fm=21&gp=0.jpg', 'http://img0.imgtn.bdimg.com/it/u=2895044146,515252042&fm=21&gp=0.jpg', 'http://img1.imgtn.bdimg.com/it/u=1302166611,3152269736&fm=21&gp=0.jpg', 'http://img0.imgtn.bdimg.com/it/u=936977389,3218749241&fm=21&gp=0.jpg', 'http://img2.imgtn.bdimg.com/it/u=757492652,3569869756&fm=21&gp=0.jpg', 'http://img5.imgtn.bdimg.com/it/u=786907852,1183976383&fm=21&gp=0.jpg', 'http://img4.imgtn.bdimg.com/it/u=3421133282,2819091654&fm=21&gp=0.jpg', 'http://img2.imgtn.bdimg.com/it/u=2130332431,3957615689&fm=21&gp=0.jpg', 'http://img5.imgtn.bdimg.com/it/u=2740110167,189793728&fm=21&gp=0.jpg'];
+
+            var oUl = document.getElementById('list');
+            var i = 0;
+            var imgH = 0;
+            var pageY = getHeight();
+
+            function creatImg(m) {
+                var oImg = document.createElement('img');
+                oImg.src = aSrc[m];
+                oImg.onload = function () {
+
+                    var oLi = document.createElement('li');
+                    oLi.appendChild(oImg);
+                    oUl.appendChild(oLi);
+                    imgH += oImg.offsetHeight;
+                    document.title = imgH;
+                    i++;
+
+                    if (pageY >= imgH) {
+                        creatImg(i);
+                    }
+                }
+            };
+
+            function getHeight() {
+                return window.innerHeight ? window.
+                innerHeight: document.body.clientHeight;
+            }
+
+            function getPos(obj) {
+                var pos;
+                var l = 0,
+                    t = 0;
+                while (obj) {
+                    l += obj.offsetLeft;
+                    t += obj.offsetTop;
+                    obj = obj.offsetParent;
+                };
+                pos = {
+                    left: l,
+                    top: t,
+                };
+                return pos;
+            }
+
+
+            creatImg(i);
+
+            function loadImg() {
+                var aLi = document.getElementsByTagName('li');
+                var lastL = aLi[aLi.length - 1];
+                var iTop = getPos(lastL).top;
+                var onff = (getScrollTop() + getHeight()) > (iTop + lastL.offsetHeight) ? true : false;
+
+                if (onff) {
+                    creatImg(i);
+                }
+            }
+
+
+            window.onscroll = window.onresize = function () {
+                loadImg();
+            }
+        }
+    </script>
+</body>
+
+</html>

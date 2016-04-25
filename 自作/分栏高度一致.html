@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style>
+        #box{
+            width: 80%;
+            padding-left: 20%;
+            overflow: hidden;
+        }
+        #box:after{
+            display: block;
+            content: 'clear';
+            height: 0;
+            overflow: hidden;
+        }
+        .v1{
+            width: 34%;
+            outline: 2px solid blue;
+            float: left;
+            margin-left: -4%;
+            margin-bottom: -3000px;
+            padding-bottom: 3000px;
+        }
+    </style>
+</head>
+<body>
+    <div id="box">
+        <div class="v1">part1<br>part1</div>
+        <div class="v1">part2</div>
+        <div class="v1">part3</div>
+    </div>
+</body>
+</html>

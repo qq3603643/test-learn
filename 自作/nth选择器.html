@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style>
+        #list{
+            padding: 0;
+            margin: 0;
+            list-style: none;
+            width: 200px;
+            font: 16px/20px 'Microsoft YaHei';
+        }
+        .item{
+            text-align: center;
+            background: gray;
+        }
+        .first~li{
+            border-bottom:2px dashed black;
+        }
+        h3,p{
+            padding: 0;
+            margin: 0;
+        }
+/*        1.first的第二个子元素；2.其是否为p；3.为p，设置颜色；*/
+        .first p:nth-child(2){  
+            background: red;
+        }
+/*        1.first的所有p子元素；2.选择第二个；3.设置颜色*/
+        .first p:nth-of-type(2){
+            background: blue;
+        }
+        #wrap{ display: block;margin-top: 40px;cursor: pointer; }
+        .wrap-item,.wrap-itel{ display: inline-block;border: 1px solid silver;height: 25px;width: 60px; }
+/*        .wrap-itel:nth-child(-n+2){ background: silver; }*/
+        .wrap-itel:nth-of-type(-n+2){ background: silver; }
+/*        可理解为n从零开始+=1直到最大，而-n+*的结果为负数时没效果*/
+    </style>
+</head>
+<body>
+    <ul id="list">
+        <li class="item first">
+            <h3>h3-li1</h3>
+            <p>p1</p>
+            <p>p2</p>
+            <p>p3</p>
+        </li>
+        <li class="item">li2</li>
+        <li class="item">li3</li>
+        <li class="item">li4</li>
+    </ul> 
+    <a id="wrap">
+        <span class="wrap-itel"></span>
+        <em class="wrap-item"></em>
+        <span class="wrap-itel"></span>
+        <span class="wrap-itel"></span>
+    </a> 
+</body>
+</html>

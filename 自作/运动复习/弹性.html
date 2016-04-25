@@ -1,66 +1,37 @@
+
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <title>Document</title>
-    <style>
-        .move_div {
-            position: absolute;
-            top: 10px;
-            left: 10px;
-            margin: 0px;
-            width: 40px;
-            height: 40px;
-            border: 1px solid red;
-        }
+<style>
+    .move_div{position: absolute;top: 10px;left: 10px;margin: 0px;width: 40px;height: 40px;border: 1px solid red;}  
+     .still_div{position: absolute;top: 0px;left: 400px;margin: 0px;width: 2px;height: 400px;background: black;}  
+</style>
+<script>
+window.onload = function(){
+    var oDiv = document.getElementsByTagName('div')[0];
+    var speed = 0;
+    var timer = null;
+    var left = 0;
+    timer = setInterval(function(){
         
-        .still_div {
-            position: absolute;
-            top: 0px;
-            left: 500px;
-            margin: 0px;
-            width: 2px;
-            height: 400px;
-            background: black;
-        }
-
-    </style>
-    <script>
-        window.onload = function() {
-            var oDiv = document.getElementsByTagName('div')[0];
-            var speed = 0;
-            var timer = null;
-            var left = getStyle(oDiv,'left')
-    
-            timer = setInterval(function() {
-
-                speed += (500 - oDiv.offsetLeft) / 8;
-                speed = speed * 0.8;
-                document.title = speed;
-                left += speed;
-
-                if (Math.abs(500 - oDiv.offsetLeft) < 1 && Math.abs(speed) < 1) {
-                    clearInterval(timer);
-                    oDiv.style.left = 500 + 'px';
-                    alert('stop..')
-                } else {
-                    oDiv.style.left = left + 'px';
-                }
-            }, 100);
-            
-            function getStyle(obj,attr){
-                var value = obj.currentStyle ? obj.currentStyle[attr] : getComputedStyle(obj)[attr];
-                return parseInt(value);
-            }
-        }
-
-    </script>
+        speed += (400 - oDiv.offsetLeft)/8;
+        speed = speed*0.8;document.title = speed;
+        left  += speed;
+        
+        if(Math.abs(400 - oDiv.offsetLeft)<1&&Math.abs(speed)<1){
+            clearInterval(timer);
+            oDiv.style.left =  400 + 'px';
+       
+        }else{
+        oDiv.style.left =  left + 'px';}
+    },50)
+}    
+</script>
 </head>
-
 <body>
     <div class="move_div"></div>
     <div class="still_div"></div>
 </body>
-
 </html>

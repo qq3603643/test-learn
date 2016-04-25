@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style>
+        *{ margin: 0;padding: 0; }
+        #list{ padding-left: 20px; }
+        .item{ display: inline-block;width: 100px;height: 30px;font: 18px/30px 'microsoft yahei';text-align: center;border: 1px solid silver;cursor: pointer;margin-top: 18px;transition: .4s; }
+        .item:hover{ transform: scale(1.2); }
+        #list li{ 1px solid red; }
+/*        类选择器权重更高*/
+    </style>
+    <script src="jquery-1.11.3.js"></script>
+    <script>
+        $(function(){
+            $( '#list' ).on({  //一个元素绑定多个事件时使用这样的形式
+                'mouseenter':function(){
+                    $(this).css('background','silver');
+                },
+                'mouseleave':function(){
+                    $(this).css('background','white');
+                },
+                'click': function(){
+                    alert( $(this).index() )
+                }
+            },'.item')
+        })
+    </script>
+</head>
+<body>
+    <ul id="list">
+        <li class="item"></li>
+        <li class="item"></li>
+        <li class="item"></li>
+        <li class="item"></li>
+        <li class="item"></li>
+    </ul>
+</body>
+</html>

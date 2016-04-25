@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    <title>Document</title>
+    <script src="jquery-1.11.3.js"></script>
+</head>
+
+<body>
+    <div id="main" style="height:800px;width:100%;"></div>
+    <script src="echarts-all.js"></script>
+    <script>
+        var data = {
+            title: {
+                text: '测试一下 纯属虚构',
+                subtext: '我是副标题'
+            },
+            legend: {
+                data: ['标题一', '标题二', '标题三', '标题四', '标题五']
+            },
+            series: {
+                name: '自定义',
+                data: [
+                    {
+                        value: 567,
+                        name: '标题一'
+                        },
+                    {
+                        value: 310,
+                        name: '标题二'
+                        },
+                    {
+                        value: 457,
+                        name: '标题三'
+                        },
+                    {
+                        value: 234,
+                        name: '标题四'
+                        },
+                    {
+                        value: 456,
+                        name: '标题五'
+                        }
+            ]
+            }
+        };
+        drawPie($('#main'), data);
+
+        function drawPie($obj, $json) {
+
+            var myChart = echarts.init($obj.get(0));
+
+            myChart.setOption({
+                title: {
+                    text: $json.title.text, //标题
+                    subtext: $json.title.subtext, //副标题
+                    x: 'center', //标题的水平对齐方式
+                },
+                tooltip: { //提示框，鼠标悬浮交互时的信息提示。
+                    trigger: 'item',
+                    formatter: "{a} <br/>{b} : {c} ({d}%)"
+                },
+                legend: { //图例，每个图表最多仅有一个
+                    orient: 'vertical', //布局方式  可选'horizontal' | 'vertical'
+                    x: 'left', //对齐方式
+                    data: $json.legend.data //自定义名字
+                },
+                series: [ //驱动图表生成的数据内容数组
+                    {
+                        name: $json.series.name, //系列名称
+                        type: 'pie',
+                        radius: '60%', //实测控制面饼的大小
+                        center: ['50%', '30%'], //圆心坐标 控制圆饼的位置
+                        data: $json.series.data,
+                    }
+                       ]
+            });
+            $(window).resize(function () {
+                drawPie($obj, $json);
+            })
+        }
+    </script>
+</body>
+
+</html>

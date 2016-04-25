@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        var a = void(0);
+        var result = (3 > 1) && (a = 1,true),
+            result1 = (2 < 5) && (a = 4);
+        console.log(result);  //返回ture
+        console.log(result1);  // 返回 a=4 的执行结果 4
+        //基于上面的结果 可将if else 用&& || 代替 ;也可用三木代替（感觉多了一个层级）
+        var yourName;
+        //(a > 2)&&(yourName = 'tangerine',true) || (a == 2)&&(yourName = 'apple',true) || (a < 2)&&(yourName = 'tangple');
+        (a > 2) ? yourName = 'tangerine' : (a == 2) ? yourName = 'apple' : yourName = 'tangple';
+        console.log(yourName);
+        
+        var getDate = new Function('str','return(new Date(str))');
+        var getDate2 = function(str){  //这种看来可以退休了
+            return eval('new Date(' + str + ')');
+        }
+        var date = getDate(2015,11,30,18,34,00);
+        console.log(date*1);
+        console.log(new Date())
+        console.log(new Date - date);
+        var date2 = getDate2(2015,11,30,18,34,00);
+        console.log(date2*1); //事实证明这两种方式都无法转化为毫秒
+        console.log(new Date - date2); //此时可以正常进行日期的加减
+        
+        //&& || 改写三木
+        (3 > 4) && (console.log('tangerine'),true) || console.log('apple');
+        
+        var arr = [2,54,76,978,534,2],
+            fn1 = function(){
+                console.log('there is this..');
+            },
+            fn2 = function(){
+                console.log('there is nothing..')
+            };
+        ~arr.indexOf(54) && (fn1(),true) || fn2();
+        
+    </script>
+</body>
+</html>

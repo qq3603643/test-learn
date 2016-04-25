@@ -75,26 +75,124 @@ $(function () {
         }
     }
 
-    //购物车数量的加减
-    function count($obj) {
-        var m = 0;
-        $obj.on('click', '.cart_up', function () {
+    //    //购物车数量的加减
+    //    function count($obj) {
+    //        var m = 0;
+    //        $obj.on('click', '.cart_up', function () {
+    //
+    //            m = isNaN(parseInt($(this).parent().find('.cart_count').val())) ? 0 : parseInt($(this).parent().find('.cart_count').val());
+    //            m++;
+    //            $(this).parent().find('.cart_count').val(m);
+    //
+    //        })
+    //
+    //        $obj.on('click', '.cart_low', function () {
+    //
+    //            m = isNaN(parseInt($(this).parent().find('.cart_count').val())) ? 0 : parseInt($(this).parent().find('.cart_count').val());
+    //            m = (m - 1) < 0 ? 0 : (m - 1);
+    //            $(this).parent().find('.cart_count').val(m);
+    //
+    //        })
+    //    }
 
-            m = isNaN(parseInt($(this).parent().find('.cart_count').val())) ? 0 : parseInt($(this).parent().find('.cart_count').val());
-            m++;
-            $(this).parent().find('.cart_count').val(m);
+    //count($('.module1'));
 
-        })
+    //领券的出现
+    function giftGet() {
 
-        $obj.on('click', '.cart_low', function () {
+        var itop = ($(window).height() - $('.get_gif').outerHeight()) > 0 ? ($(window).height() - $('.get_gif').outerHeight()) / 2 : 0;
+        var ileft = ($(window).width() - $('.get_gif').outerWidth()) > 0 ? ($(window).width() - $('.get_gif').outerWidth()) / 2 : 0;
 
-            m = isNaN(parseInt($(this).parent().find('.cart_count').val())) ? 0 : parseInt($(this).parent().find('.cart_count').val());
-            m = (m - 1) < 0 ? 0 : (m - 1);
-            $(this).parent().find('.cart_count').val(m);
-
-        })
+        $('.get_gif').animate({
+            'top': itop,
+            'left': ileft
+        }, 200);
     }
 
-    count($('.module1'));
+    //视频关闭按钮点击
+    $('.mask #video_close').click(function () {
+
+            //            $(this).parent().hide();
+            $('.video_bg').hide();
+            $('.get_gif').show();
+            $('.get_gif .gif img').css('display', 'block');
+            $('.get_gif .gif .giftInfo').css('display', 'none');
+            $.jPlayer.pause();
+            //        $(document.body).removeClass('fancybox-lock-test');
+            giftGet();
+
+
+        })
+        //礼券关闭按钮点击
+    $('.mask #gif_close').click(function () {
+
+        $('.mask').hide();
+        $('.get_gif').hide();
+        $(document.body).removeClass('fancybox-lock-test');
+    })
+
+    //点击播放弹出遮罩层
+    $('.play_video').click(function () {
+        $('.mask').css({
+            'display': 'block',
+            'height': $(document).height() + 'px',
+            'width': $(document).width() + 'px'
+        })
+
+        $('.video_bg').show();
+
+        $(document.body).addClass('fancybox-lock-test');
+
+
+        play({
+            title: '这里可以放视频的title',
+            m4v: "http://www.jplayer.org/video/m4v/Big_Buck_Bunny_Trailer.m4v",
+            ogv: "http://www.jplayer.org/video/ogv/Big_Buck_Bunny_Trailer.ogv",
+            webmv: "http://www.jplayer.org/video/webm/Big_Buck_Bunny_Trailer.webm",
+            poster: "http://www.jplayer.org/video/poster/Big_Buck_Bunny_Trailer_480x270.png"
+        })
+
+    });
+
+    //领券点击事件
+    $('.get_gif .gif img').click(function () {
+
+        $(this).css('display', 'none');
+        $('.get_gif .gif .giftInfo').css('display', 'block');
+
+    })
+
+    function play(urlJson) {
+
+        $("#jquery_jplayer_1").jPlayer({
+            ready: function () {
+                $(this).jPlayer("setMedia", {
+                    title: urlJson.title,
+                    m4v: urlJson.m4v,
+                    ogv: urlJson.ogv,
+                    webmv: urlJson.webmv,
+                    poster: urlJson.poster
+                });
+            },
+            swfPath: "../../dist/jplayer",
+            supplied: "webmv, ogv, m4v",
+            size: {
+                width: "640px",
+                height: "360px",
+                cssClass: "jp-video-360p"
+            },
+            useStateClassSkin: true,
+            autoBlur: false,
+            smoothPlayBar: true,
+            keyEnabled: true,
+            remainingDuration: true,
+            toggleDuration: true
+        });
+        //开始播放
+        //$("#jquery_jplayer_1").jPlayer('play');
+        //暂停播放
+        //$("#jquery_jplayer_1").jPlayer('stop');
+
+    }
 
 })

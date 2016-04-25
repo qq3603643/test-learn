@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style>
+        .content {
+            width: 40%;
+            height: 500px;
+            margin: 100px auto;
+            position: relative;
+            padding: 5px;
+            word-break: break-all;
+        }
+        
+        .content span {
+            display: inline-block;
+            width: 8px;
+            height: 20px;
+            font: 14px/20px '';
+            color: red;
+        }
+        
+        .black{
+            color: black !important;
+        }
+        
+        .content .data,.content .nowdata{
+            color: black;
+            margin-bottom: -10px;
+        }
+        
+        .content .pointer {
+            position: absolute;
+            width: 6px;
+            height: 2px;
+            background: black;
+            display: block;
+            content: '';
+            animation: flicker .5s infinite;
+            left: 0px;
+            top: 40px;
+        }
+        
+        .content .end{
+            margin-top: 20px;
+        }
+        
+        @keyframes flicker {
+            0% {
+                opacity: 1;
+            }
+            50% {
+                opacity: 0;
+            }
+            100% {
+                opacity: 1;
+            }
+        }
+    </style>
+    <script src="jquery-1.11.3.js"></script>
+    <script>
+        $(function () {
+
+
+
+            var wordsInsert = function (str,$obj,fn,classStr) {
+
+                var len = str.length,
+                    index = 0,
+                    timer = null;
+                timer = setInterval(function () {
+
+                    var $span = $('<span>');
+                    $span.addClass(classStr);
+                    console.log(classStr);
+                    $span.html(str.charAt(index) == '' ? '&nbsp;' : str.charAt(index));
+                    $obj.append($span);
+
+                    var itop = $span.position().top + 16,
+                        ileft = $span.position().left + 6;
+                    $('.content .pointer').css({
+                        'top': itop + 'px',
+                        'left': ileft + 'px'
+                    })
+
+                    index++;
+                    if(index == len){
+                        clearInterval(timer);
+                        if(fn){
+                            fn();
+                        }
+                    }
+
+                }, 300)
+
+            }
+            wordsInsert('i am a tangerine..',$('.me'),function(){
+                
+                wordsInsert('you are an apple..',$('.you'),function(){
+                    
+                    wordsInsert('// data:2012-01-01',$('.data'),function(){
+                        
+                        wordsInsert('wo are fall in love..',$('.dataInfo'),function(){
+                            
+                            wordsInsert('// now :2016-02-26',$('.nowdata'),function(){
+                                
+                                wordsInsert('the times we are together: ' + (new Date() - (new Date(2012,00,00,00,00,00))) + '...',$('.nowInfo'),function(){
+                                    
+                                    wordsInsert('to be continued...',$('.end'))
+                                    
+                                })
+                                
+                            },'black')
+                            
+                        })
+                        
+                    },'black')
+                    
+                })
+                
+            });
+            
+
+        })
+    </script>
+</head>
+
+<body>
+    <div class="content">
+        <div class="me"></div>
+        <div class="you"></div>
+        <div class="data"></div>
+        <div class="dataInfo"></div>
+        <div class='nowdata'></div>
+        <div class="nowInfo"></div>
+        <div class="end"></div>
+        <div class="pointer"></div>
+    </div>
+</body>
+
+</html>

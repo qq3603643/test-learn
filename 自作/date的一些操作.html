@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        var date = function(){
+            var dataMethods;
+            dataMethods = {
+                getFirstDayInMouth: function(data){
+                  return new Date(data.getFullYear(),data.getMonth(),1)
+                },  
+                //所在月的最后一天
+                getLastDayInMouth: function(data){
+                  return new Date(data.getFullYear(),data.getMonth()+1,0)  //日设置成0，可自动转化为上月的最后一天，据此可用来判断本月是大月or小月
+                },
+                //判断是否闰年，所在年的二月天数是否等于29
+                isLeapYear: function(data){
+                  return new Date( data.getFullYear(),2,0 ).getDate() === 29; 
+                }  
+                },
+            
+            return dataMethods;
+        }();
+    </script>
+</body>
+</html>

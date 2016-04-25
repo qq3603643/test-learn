@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style>
+        .box{
+            position: absolute;
+            background: blue;
+            outline: 1px solid white;
+        }
+    </style>
+    <script src="jquery-1.11.3.js"></script>
+    <script>
+     $(function(){
+        (function(){
+            var game,config,$div,divChid,boxHeart,modules,baseL,baseT,radModule,i,moudLen,targetTop,chidheightArr,keyFun,degNum
+                ,busySpace,timer,sortChid,isStop,isChangable,isLeftStop,isRightStop,isGameOver,nowL,nowR,clearRowSpace,rowTop,clearRepeat,radNumber;
+            var moveEleStr = '.box-heart:last';
+            busySpace = [];
+            clearRowSpace = {};
+            keyFun = {'32':'game.changeShape()','37':'game.moveLeft()','39':'game.moveRight()'};
+            config = {  //设置一些关于界面的属性 后续可添加速度等功能
+              row: 15,
+              col: 10,
+              height: 40,
+              width: 40,
+              speed: 400
+            };
+            baseL = config.width;baseT = config.height;
+            modules = [ //每个模型都设置一个核心方块作为父级，其他三个为根据父级绝对定位
+                [ [0,0,0,-baseT,baseT,baseT*2],[-baseL,baseL,baseL*2,0,0,0],[0,0,0,-baseT,baseT,baseT*2],[-baseL,baseL,baseL*2,0,0,0] ], //每种模型对应的四个不同的状态
+                [ [-baseL,0,baseL,0,baseT,0],[0,-baseL,0,-baseT,0,baseT],[baseL,0,-baseL,0,-baseT,0],[0,baseL,0,baseT,0,-baseT] ],
+                [ [0,0,baseL,-baseT,baseT,baseT],[baseL,-baseL,-baseL,0,0,baseT],[0,0,-baseL,baseT,-baseT,-baseT],[-baseL,baseL,baseL,0,0,-baseT] ]
+            ];  //几种不同方块的模型，后续可添加，现在就以3中为例（前三个依次为left，后三个依次为top）
+           clearRepeat = function(arr){
+               var newArr=[];
+               $.each(arr,function(i,item){ $.inArray(item,arr)==i && newArr.push(item) })
+               return newArr;
+           };
+            
+            for(rowTop=1;rowTop<config.row;rowTop += 1) clearRowSpace[baseT*rowTop] = [];
+                game = {
+                    layout: function(){
+                        $('body').append($('<div class="gameBox">').css({
+                            'position': 'relative',
+                            'width': config.col*baseL,
+                            'height': config.row*baseT,
+                            'border': '1px solid red',
+                            'margin': '0 auto'
+                        }));
+                    },
+                    createBlocks: function(){
+                        degNum = 0;
+                        radNumber = ~~(Math.random()*modules.length);
+                        radModule = modules[radNumber][degNum];  
+                        $div = $('<div class="box-heart">').addClass('box').css({  //方块的核心创建
+                            width: baseL,
+                            height: baseT,
+                            left: baseL*(~~(config.col/2)),
+                            top: baseT*2
+                        });
+                        for(i=0,moudLen=radModule.length;i<moudLen/2;i++){  //以核心为基础创建出形状
+                            divChid = $('<div>').addClass('box').css({
+                            width: baseL,
+                            height: baseT,
+                            left: radModule[i],
+                            top: radModule[i+3]
+                        });
+                            $div.append(divChid);
+                        }
+                        $('.gameBox').append($div);
+                    },
+                    down: function(){
+                        boxHeart = $(moveEleStr);
+                        timer = setInterval(function(){
+                            sortChid = game.sortHeightEle(boxHeart);
+                            isLeftStop = false;isRightStop = false;
+                            if(sortChid.offset().top + sortChid.height() > $('.gameBox').offset().top + $('.gameBox').height()){    clearInterval(timer);game.clearRow();game.addBusy();game.createBlocks();game.down();}else{
+                                if(game.isStop()){
+                                  if(game.isGameOver()){ alert('game over');clearInterval(timer);return false; }else{
+                                  clearInterval(timer);game.clearRow();game.addBusy();game.createBlocks();game.down(); }
+                                 }else{
+                                  boxHeart.css('top',boxHeart.position().top+baseT);}  
+                            }
+                        },config.speed)
+                    },
+                    addBusy: function(){
+                        busySpace = [];
+                        $.each($('.box'),function(i,item){
+                            if($(item).height()){
+                            busySpace.push({ 'left':$(item).offset().left,'top':$(item).offset().top }); }
+                        })
+                    },
+                    clearRow: function(){
+                        $.each($('.box'),function(i,item){
+                            for(rowTop in clearRowSpace){
+                                if($('.gameBox').offset().top + $('.gameBox').innerHeight()-$(item).offset().top == rowTop-1 ){
+                                    $('.box').eq(i).height()!=0 &&
+                                    clearRowSpace[rowTop].push(i);
+                                    clearRowSpace[rowTop] = clearRepeat(clearRowSpace[rowTop]);
+                                } 
+                            }
+                        })
+                        
+                        for(rowTop in clearRowSpace){
+                            if( clearRowSpace[rowTop].length == config.col ){
+                                //alert('是时候清除一下了...');
+                                console.log(clearRowSpace[rowTop])
+                                $.each(clearRowSpace[rowTop],function(i,item){
+                                    //此处为消除之后怎样将空余出来的位置搬出来用
+                                    $.each(busySpace,function(i,pos){
+                                        if(pos.left == $('.box').eq(item).offset().left && pos.top == $('.box').eq(item).offset().top){
+                                                busySpace[i] = {'left':'','top':''} };
+                                    })
+                                    $('.box').eq(item).css('height','0px');
+                                    //这里还差一个功能就是把清空行数的上面box下移一个单位
+                                    $.each($('.box'),function(i,eleBox){
+                                        $(eleBox).offset().top+(rowTop*1) <= $('.gameBox').offset().top+$('.gameBox').height() && (
+                                          //$(eleBox).css('top',$(eleBox).position().top+baseT),
+                                          $(eleBox).css('background','black')
+                                        );
+                                        
+                                    }) 
+                                })
+                             clearRowSpace[rowTop] = [];
+                            };  
+                        }
+                    },
+                    isStop: function(){
+                        isStop = false;
+                        $.each($(moveEleStr).children(),function(i,item){
+                            for(var posIndex=0,posLen=busySpace.length;posIndex<posLen;posIndex++){
+                                if($(item).offset().left == busySpace[posIndex].left && $(item).offset().top+baseT == busySpace[posIndex].top){
+                                    isStop = true;
+                                    break;
+                                }
+                            }
+                        })
+                        return isStop;
+                    },
+                    isLeftStop: function(){
+                        isLeftStop = false;
+                        $.each($(moveEleStr).children(),function(i,item){
+                        if( $(item).offset().left-baseL < $('.gameBox').offset().left ) {isLeftStop = true;return isLeftStop;}
+                        for(var posIndex=0,posLen=busySpace.length;posIndex<posLen;posIndex++){
+                            if( $(item).offset().top == busySpace[posIndex].top && $(item).offset().left-baseL == busySpace[posIndex].left){
+                                isLeftStop = true;
+                                break;
+                            }
+                        }
+                        })
+                        return isLeftStop;
+                    },
+                    isRightStop: function(){
+                        isRightStop = false;
+                        $.each($(moveEleStr).children(),function(i,item){
+                        if( $(item).offset().left+baseL > $('.gameBox').offset().left+parseInt($('.gameBox').width()) ) {isRightStop = true;return isRightStop;}
+                        for(var posIndex=0,posLen=busySpace.length;posIndex<posLen;posIndex++){
+                            if( $(item).offset().top == busySpace[posIndex].top && $(item).offset().left+baseL == busySpace[posIndex].left){
+                                isRightStop = true;
+                                break;
+                            }
+                        }
+                        })
+                        return isRightStop;
+                    },
+                    isGameOver: function(){
+                        isGameOver = false;
+                        game.mostHeightEle($(moveEleStr)).offset().top - $('.gameBox').offset().top < 2*baseT && (isGameOver=true);
+                        return isGameOver;
+                    },
+                    sortHeightEle: function(parent){
+                        chidheightArr = [];
+                        $.each(parent.children(),function(i,item){
+                            chidheightArr.push($(item).offset().top)
+                        })
+                        return parent.children().eq($.inArray(Math.max.apply(null,chidheightArr),chidheightArr));
+                    },
+                    mostHeightEle: function(parent){
+                        chidheightArr = [];
+                        $.each(parent.children(),function(i,item){
+                            chidheightArr.push($(item).offset().top)
+                        })
+                        return parent.children().eq($.inArray(Math.min.apply(null,chidheightArr),chidheightArr));
+                    },
+                    changeShape: function(){
+                        //前面应该有一个isChangable来判断是否可以变形此处为bug
+                        degNum += 1;
+                        radModule = modules[radNumber][degNum%4];
+                        $(moveEleStr).empty();
+                        for(i=0,moudLen=radModule.length;i<moudLen/2;i++){  //以核心为基础创建出形状
+                            divChid = $('<div>').addClass('box').css({
+                            width: baseL,
+                            height: baseT,
+                            left: radModule[i],
+                            top: radModule[i+3]
+                        });
+                        $(moveEleStr).append(divChid);
+                        }
+                        if(game.isLeftStop()){$(moveEleStr).css('left',$(moveEleStr).position().left+baseL)};
+                        if(game.isRightStop()){$(moveEleStr).css('left',$(moveEleStr).position().left-baseL)};
+                    },    
+                    moveLeft: function(){ 
+                        nowL = $(moveEleStr).position().left;
+                        !game.isLeftStop() &&
+                        $(moveEleStr).css({
+                            left: nowL - baseL
+                        })  
+                    },
+                    moveRight: function(){
+                        nowL = $(moveEleStr).position().left;
+                       !game.isRightStop() &&
+                        $(moveEleStr).css({
+                            left: nowL + baseL
+                        })
+                    },
+                    keyEvent: function(){
+                        $(document).on('keyup',function(e){
+                            eval( keyFun[e.which] );
+                        })
+                    },
+                    running: function(){
+                        game.layout();
+                        game.createBlocks();
+                        game.down();
+                        game.keyEvent();
+                    }
+                };
+            return game;
+        }()).running();
+    })
+    </script>
+</head>
+<body>
+    
+</body>
+</html>

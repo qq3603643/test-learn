@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    <title>Document</title>
+    <link href="css/main.css" rel="stylesheet" type="text/css" />
+</head>
+
+<body>
+<div class="wrap">
+  <header>
+      <h1>2016年03月分析</h1>
+      <h2>2016年02月29日统计</h2>
+  </header>
+  <div class="content">
+      <h2>总体指标</h2>
+      <dl>
+        <dt>注册用户数</dt>
+        <dd>10000</dd>
+      </dl>
+      <dl>
+        <dt>认证用户数</dt>
+        <dd>10000</dd>
+      </dl>
+      <dl>
+        <dt>首单用户数</dt>
+        <dd>10000</dd>
+      </dl>
+      <dl>
+        <dt>前三单用户数</dt>
+        <dd>10000</dd>
+      </dl>
+  </div>
+  <div class="content" style="height:43rem;">
+      <h2>大区域推广现状</h2>
+      <div class="barArea" id="barArea"></div> 
+  </div>
+  <div class="content">
+      <h2>推广员排行榜</h2>
+      <table cellpadding="0" cellspacing="0">
+      	<thead>
+        	<tr>
+            	<td>区域</td>
+                <td>推广员</td>
+                <td>绑定人数</td>
+                <td>完成交易数</td>
+                <td>完成前三单数</td>
+            </tr>
+        </thead>
+        <tbody>
+        	<tr>
+            	<td>四川</td>
+                <td>张三</td>
+                <td>10</td>
+                <td>1000</td>
+                <td>1000</td>
+            </tr>
+            <tr>
+            	<td>四川</td>
+                <td>张三</td>
+                <td>10</td>
+                <td>1000</td>
+                <td>1000</td>
+            </tr>
+            <tr>
+            	<td>四川</td>
+                <td>张三</td>
+                <td>10</td>
+                <td>1000</td>
+                <td>1000</td>
+            </tr>
+        </tbody>
+      </table>
+  </div>
+</div>
+   
+<script type="text/javascript" src="js/zepto.min.js"></script>
+<script type="text/javascript" src="js/echarts-all.js"></script>
+<script type="text/javascript">
+	var myChart = echarts.init($('#barArea').get(0));
+	var option = {
+		color: ['#BDD7EF','#F5B183'],
+		tooltip: {
+			trigger: 'axis'
+		},
+		legend: {
+			data: ['注册数', '交易数']
+		},
+		calculable: true,
+		grid : {
+			borderWidth : 0	
+		},
+		xAxis: [
+			{
+				type: 'value',
+				splitLine : {
+					show : false	
+				},
+				boundaryGap: [0, 0]
+			}
+		],
+		yAxis: [
+			{
+				type: 'category',
+				splitLine : {
+					show : false	
+				},
+				data: ['四川', '北京', '重庆', '湖南', '湖北', '山西', '山东', '山东', '山东', '山东', '山东']
+			}
+		],
+		series: [
+			{
+				name: '注册数',
+				type: 'bar',
+				data: [200, 200, 200, 200, 200, 4000]
+			},
+			{
+				name: '交易数',
+				type: 'bar',
+				data: [200, 400, 40, 700, 500, 3000]
+			}
+		]
+	};
+	
+	 myChart.setOption(option);
+</script>
+</body>
+
+</html>

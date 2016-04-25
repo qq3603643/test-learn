@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+         (function(){
+            var my,startStr,endStr;
+            var textNameStr = 'tangerine';
+            my = {
+                hasChidStr: function(parentStr,chidStr){
+                    return parentStr.indexOf(chidStr) > 0;
+                },
+                starWith: function(parentStr,chidStr){
+                    startStr = parentStr.substr(0,chidStr.length);
+                    return chidStr === startStr;
+                },
+                endWith: function(parentStr,chidStr){
+                    endStr = parentStr.substr( -chidStr.length );
+                    return chidStr === endStr;
+                },
+                repeatWith: function(amount,chidStr){
+                    return Array(amount+1).join(chidStr);
+                },
+                strLen: function(parentStr){
+                    return parentStr.replace(/[^\x00-\xff]/g,'--').length;
+                },
+                strLenLimit: function(parentStr,amount,chidStr){
+                    if(amount <= chidStr.length) return parentStr.substr(0,amount);
+                    if(parentStr.length <= Math.max( amount,chidStr.length )) return parentStr;
+                    return parentStr.substr(0,amount - chidStr.length) + chidStr;
+                },
+                strFillWith: function(parentStr,amount,chidStr){
+                    if(parentStr.length > amount) return parentStr;
+                    return Array( amount+1 - parentStr.length ).join(chidStr) + parentStr;
+                },
+                trim: function(parentStr){
+                    return parentStr.replace(/^\s\s*/g,'').replace(/\s*\s$/g,'');
+                },
+                running: function(){
+                    console.log('hasChidStr: ' + my.hasChidStr(textNameStr,'eri'));
+                    console.log('starWith: ' + my.starWith(textNameStr,'tang'));
+                    console.log('endWith: ' + my.endWith(textNameStr,'ne'));
+                    console.log('repeatWith: ' + my.repeatWith(4,textNameStr));
+                    console.log('strLen: ' + my.strLen('我是谁?'));
+                    console.log('strLenLimit: ' + my.strLenLimit('tangerine',2,'...'));
+                    console.log('strFillWith: ' + my.strFillWith('4',10,'0'));
+                    console.log('trim: ' + my.trim(' tangerine '));
+                }
+            }
+            return my;
+        }()).running();
+    </script>
+</body>
+</html>

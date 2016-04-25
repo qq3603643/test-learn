@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style>
+        .p2 {
+            display: none;
+        }
+        
+        .on .p2 {
+            display: block;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="">
+        <p>123</p>
+        <p class="p2">345</p>
+    </div>
+    <script>
+        document.getElementsByTagName('div')[0].onclick = function () {
+
+            var str = this.className;
+            if (str) {
+                this.className = '';
+            } else {
+                this.className = 'on';
+            }
+
+        }
+    </script>
+</body>
+
+</html>

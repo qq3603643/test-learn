@@ -68,7 +68,8 @@
             height: 100%;
             background: white;
             float: left;
-            background: url(img/qq_logo.jpg) no-repeat;
+            background: url(img/login_bg.jpg) no-repeat;
+            background-size: cover;
             position: relative;
             border-radius: 5px;
         }
@@ -188,58 +189,52 @@
             text-indent: 10px;
             cursor: pointer;
         }
-
     </style>
     <script src="jquery-1.11.3.js"></script>
     <script>
-        $(function() {
-            $('.contant .login .list_login #user').blur(function() {
+        $(function () {
+            $('.contant .login .list_login #user').blur(function () {
                 var userVal = $(this).val();
                 var re = /^\w+$/;
                 if (userVal) {
                     if (!re.test(userVal)) {
                         alert('用户名只能为数字字母下划线！！！')
                     }
-                } else {
-                    alert('请输入用户名！！！')
                 }
             });
 
-            $('.contant .login .list_login #password').blur(function() {
+            $('.contant .login .list_login #password').blur(function () {
                 var passwordVal = $(this).val();
                 var ilenght = passwordVal.length;
 
                 if (ilenght) {
-                    if (ilenght < 6) {
-                        alert('密码至少为6位！！');
+                    if (ilenght < 5) {
+                        alert('密码至少为5位！！');
                     }
-                } else {
-                    alert('请输入密码');
                 }
             });
         })
-
     </script>
 </head>
 
 <body>
-    <div class="head"><a>成都理工大学</a></div>
+    <div class="head"><a>博客管理登陆</a></div>
     <div class="title">
-        <h1>成都理工大学用户登录界面模板效果演示</h1></div>
+        <h1>据说只有长得帅的人才能登陆成功</h1></div>
     <div class="contant">
         <div class="pic">
-            <span class="pic_info"><a href="https://www.baidu.com">没有账号？  使用qq登陆</a></span>
+            <span class="pic_info"><a href="https://www.baidu.com">博客管理  始于心..</a></span>
         </div>
         <div class="login">
-            <form class="list_login">
-                <h1>没有账号 现在注册?</h1>
+            <form action="/login" method="post" class="list_login">
+                <h1>没有账号 联系博主?</h1>
                 <input id="user" type="text" placeholder="用户名" required="required">
                 <input id="password" type="password" placeholder="密码" required="required">
                 <div id="submit">
                     <input type="submit" value="登陆">
                 </div>
                 <div class="select">or</div>
-                <strong>忘记密码!</strong>
+                <strong>忘记密码？</strong>
             </form>
         </div>
     </div>

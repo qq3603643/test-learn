@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="main" style="height:500px;width:90%;margin:30px auto;border:1px solid #ccc;padding:10px;"></div>
+    <script src="echarts-all.js"></script>
+    <script>
+        var myChart = echarts.init(document.getElementById('main'));
+
+                myChart.setOption({
+                    backgroundColor:'rgba(0,0,0,.4)',   //背景颜色
+                    color:['#00448a','#0580b9','#28c6b9','#84e6f1','#dddddd'],  //
+                    title: {
+                        text: '某站点用户访问来源', //标题
+                        subtext: '纯属虚构', //副标题
+                        x: 'center' //标题的水平对齐方式
+                    },
+                    tooltip: { //提示框，鼠标悬浮交互时的信息提示。
+                        trigger: 'item',
+                        formatter: "{a} <br/>{b} : {c} ({d}%)"
+                    },
+                    legend: { //图例，每个图表最多仅有一个
+                        orient: 'vertical', //布局方式  可选'horizontal' | 'vertical'
+                        x: 'left', //对齐方式
+                        data: ['直接访问', '邮件营销', '联盟广告', '视频广告', '搜索引擎'] //自定义名字
+                    },
+                    toolbox: { //工具箱
+                        show: true,
+                        feature: { //启用功能
+                            mark: { //辅助线功能
+                                show: true
+                            },
+                            dataView: { //数据视图
+                                show: true,
+                                readOnly: false
+                            },
+                            magicType: { //动态类型切换
+                                show: true,
+                                type: ['pie', 'funnel'], //可添加要切换的模型type ['line', 'bar', 'stack', 'tiled', 'force', 'chord', 'pie', 'funnel'] 但都要在下面自定义才能生效
+                                option: {
+                                    funnel: {
+                                        x: '25%',
+                                        width: '50%',
+                                        funnelAlign: 'left',
+                                        max: 1548
+                                    }
+                                }
+                            },
+                            restore: { //还原
+                                show: true
+                            },
+                            saveAsImage: { //保存为图片
+                                show: true
+                            }
+                        }
+                    },
+                    calculable: true,
+                    series: [ //驱动图表生成的数据内容数组
+                        {
+                            name: '访问来源', //系列名称
+                            type: 'pie',
+                            radius: '60px', //实测控制面饼的大小
+                            center: ['50%', '60%'], //圆心坐标 控制圆饼的位置
+                            data: [
+                                {
+                                    value: 335,
+                                    name: '直接访问',
+                                },
+                                {
+                                    value: 310,
+                                    name: '邮件营销'
+                                },
+                                {
+                                    value: 234,
+                                    name: '联盟广告'
+                                },
+                                {
+                                    value: 135,
+                                    name: '视频广告'
+                                },
+                                {
+                                    value: 1548,
+                                    name: '搜索引擎'
+                                }
+                    ]
+                }
+            ]
+                });
+       
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style>
+        .list {
+            width: 600px;
+            height: 40px;
+            margin-left: 20%;
+            border: 1px solid gray;
+            overflow: hidden;
+        }
+        
+        .list ul {
+            width: 720px;
+            height: inherit;
+            padding: 0px;
+            margin: 0px;
+            list-style: none;
+        }
+        
+        .sing {
+            height: inherit;
+            float: left;
+            width: 119px;
+            border-right: 1px solid white;
+            background: blue;
+            color: white;
+            font: 12px/40px 'Microsoft YaHei';
+            text-align: center;
+        }
+        /*
+        .sing:after{
+            display: block;
+            content: '';
+            height: 100%;
+            width: 1px;
+            background: white;
+            position: relative;
+            left: 100%;
+            top: -100%;
+        }
+*/
+    </style>
+</head>
+
+<body>
+    <div class="list">
+        <ul>
+            <li class="sing">  </li>
+            <li class="sing">  </li>
+            <li class="sing">  </li>
+            <li class="sing">  </li>
+            <li class="sing">  </li>
+            <li class="sing">  </li>
+        </ul>
+    </div>
+    <script src="jquery-1.11.3.js"></script>
+    <script>
+        $(function () {
+
+            var move = function ($obj) {
+
+                var $Obj = $obj.find('li').eq(0);
+                $Obj.animate({
+                    'width': 0,
+                }, 1000, 'linear', function () {
+                    $obj.append($Obj.detach());
+                    $Obj.css('width', '120px');
+                    move($obj);
+                })
+
+            };
+            move($('.list ul'));
+
+        })
+    </script>
+</body>
+
+</html>

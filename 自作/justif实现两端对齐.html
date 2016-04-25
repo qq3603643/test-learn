@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style>
+        ul {
+            padding: 0px;
+            margin: 0px;
+            text-align: justify;
+            /*            兼容ie8*/
+            text-justify: distribute-all-lines;
+            font: 0px/0px '';
+        }
+        
+        li {
+            display: inline-block;
+            width: 260px;
+            background: gray;
+            font: 14px/50px 'Microsoft YaHei';
+            color: white;
+            text-align: center;
+        }
+        
+        .fix {
+            height: 0px;
+            overflow: hidden;
+        }
+    </style>
+</head>
+
+<body>
+    <ul>
+        <li>a</li>
+        <li>b</li>
+        <li>c</li>
+        <li>a</li>
+        <li>b</li>
+        <li>c</li>
+        <li>a</li>
+        <li>b</li>
+        <li>c</li>
+        <li>c</li>
+        <li class="fix">&emsp;</li>
+        <li class="fix">&emsp;</li>
+        <li class="fix">&emsp;</li>
+        <li class="fix">&emsp;</li>
+<!--    后面的个数为最多一排的个数减一-->
+    </ul>
+</body>
+
+</html>

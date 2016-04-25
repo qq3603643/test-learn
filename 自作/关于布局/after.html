@@ -4,10 +4,19 @@
     <meta charset="UTF-8">
     <title>Document</title>
 <style>
-    .contant:after{content: '123' ;color: white;top: 20px;left: 100%; position: absolute; display: block;height: 40px;width: 40px;background: black;}
+    .contant:after{content: attr(data) ;color: white;top: 20px;left: 100%; position: absolute; display: block;height: 40px;width: 40px;background: black;}
+    .box:after{ transition: .8s;transform: scale(2)} 
+/*    .box可用来修改伪元素的样式*/
 </style>
 </head>
 <body>
-    <div class="contant" style="width:100px;height:100px;background:red;position:relative;"></div>
+    <div id="v1" class="contant" data="abc" style="width:100px;height:100px;background:red;position:relative;"></div>
+    <script>
+        var fn = function(){
+            document.getElementById('v1').setAttribute( "data","apple" );
+            document.getElementById('v1').className += ' box';
+        };
+        setTimeout(fn,1000);
+    </script>
 </body>
 </html>

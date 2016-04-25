@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style>
+        .wrap {
+            overflow: hidden;
+            color: white;
+            min-width: 500px;
+        }
+        
+        .center {
+            background: gray;
+            padding: 0px 300px 0px 200px;
+        }
+        
+        .left {
+            background: blue;
+            width: 200px;
+            float: left;
+            margin-bottom: -3000px;
+            padding-bottom: 3000px;
+        }
+        
+        .right {
+            background: black;
+            width: 300px;
+            float: right;
+            margin-bottom: -3000px;
+            padding-bottom: 3000px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="wrap">
+        <div class="left">设置宽度，高度未知</div>
+        <div class="right">设置宽度，高度的未知</div>
+        <div class="center" contenteditable="true">将在中间设置高度</div>
+    </div>
+</body>
+
+</html>

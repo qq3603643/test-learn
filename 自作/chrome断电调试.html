@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        var test = function(){
+            var name = 'tangeine';
+            var mine = {
+                'name': name,
+                'getname': function(){
+                    console.log( this.name );
+                }
+            };
+            return mine;
+        }();
+    </script>
+</body>
+</html>

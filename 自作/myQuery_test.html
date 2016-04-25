@@ -4,27 +4,151 @@
 <head>
     <meta charset="UTF-8">
     <title>Document</title>
+    <style>
+        #list {
+            padding: 0px;
+            margin: 0px;
+            list-style: none;
+            width: 20%;
+            margin: 50px auto;
+            border-top: 1px solid black;
+        }
+        
+        #list .deliver {
+            height: 20px;
+            width: 100%;
+            border-bottom: 1px solid black;
+            text-indent: 10px;
+            letter-spacing: 2px;
+        }
+        
+        .red {
+            background: red !important;
+        }
+        
+        .green {
+            background: green;
+        }
+        
+        .box {
+            width: 80px;
+            height: 80px;
+            background: red;
+            position: absolute;
+        }
+    </style>
     <script src="myQuery.js"></script>
     <script>
-        $(function() {
+        $(function () {
 
-            $('.deliver').click(function() {
+            $('.box').trag();
 
-                alert();
+            $('.deliver').click(function () {
+
+                alert($(this).index())
+                $(this).animation({
+                    height: 60,
+                    opacity: 20,
+                }, 500)
+            })
+        });
+
+        $(function () {
+            $('.deliver').hover(function () {
+                $(this).css({
+                    background: 'red',
+                    height: '30px',
+                })
+            }, function () {
+                $(this).css({
+                    background: '',
+                    height: '20px',
+                })
+            })
+        });
+    </script>
+
+    <script>
+        $(function () {
+            $('button').toggle(function () {
+
+                $(this).css('background', 'red');
+            }, function () {
+
+                $(this).css('background', 'black');
+            }, function () {
+
+                $(this).css('background', '');
+            })
+        });
+    </script>
+
+    <script>
+        $(function () {
+            $('li').eq(2).css('background', 'red');
+        })
+    </script>
+
+    <script>
+        $(function () {
+
+            $('#list').find('.deliver').css('color', 'green');
+            $('#list').find('div').css('color', 'red');
+        })
+    </script>
+
+    <script>
+        $(function () {
+
+            var num = 0;
+            $('ol').click(function () {
+                var $oLi = $('<li>');
+                $oLi.innerHTML = '插入内容' + (num++);
+                $(this).prepend($oLi);
+
+                return false;
+            });
+
+            $('ol').find('li').click(function () {
+
+                $('ol').find('li').attr('index', 'order')
+                $(this).addClass('red');
+                $(this).removeClass('green');
+                //$(this).toggleClass('red');
+                $('ol').find('li').html('abc');
+                //                alert($(this).attr('index'));
+                //                alert($(this).html());                //                alert($(this).text());             
             })
         })
-
     </script>
 </head>
 
 <body>
+
+    <div class="box"></div>
+    <div class="box"></div>
+    <div class="box"></div>
+    <div class="box"></div>
+    <div class="box"></div>
+
+    <button id="bt1">click</button>
+    <button id="bt1">click</button>
+    <button id="bt1">click</button>
+    <button id="bt1">click</button>
     <ul id="list">
-        <li class="deliver"></li>
-        <li class="deliver"></li>
-        <li class="deliver"></li>
-        <li class="deliver"></li>
-        <li class="deliver"></li>
+        <li class="deliver">123</li>
+        <li class="deliver">234</li>
+        <li class="deliver">345</li>
+        <li class="deliver">456</li>
+        <li>567</li>
+        <div>123</div>
     </ul>
+    <ol>
+        <li class="green"><span>A</span>aaa</li>
+        <li><span>B</span>bbb</li>
+        <li><span>C</span>ccc</li>
+        <li><span>D</span>ddd</li>
+    </ol>
 </body>
 
 </html>

@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style>
+        #box{
+            width: 120px;
+            padding: 10px;
+            position: relative;
+            line-height: 16px;
+            font-size: 16px;
+            border-bottom: 1px dashed gray;
+            text-align: justify;
+        } 
+    </style>
+</head>
+<body>
+    <div id="box">
+       i am a tangerine .i am a tangerine .i am a tangerine .
+       i am a tangerine .i am a tangerine .i am a tangerine .
+       i am a tangerine .i am a tangerine .i am a tangerine .
+       i am a tangerine .i am a tangerine .i am a tangerine .
+    </div>
+    <script>
+        var getStyle = (function(){
+            return document.body.currentStyle ? function(obj,attr){
+                return obj.currentStyle[attr];
+            } : function(obj,attr){
+                return getComputedStyle(obj)[attr];
+            };
+        })();
+        var Box = document.getElementById('box');
+        
+        var autoLine = function(ele,numLine){
+            var maxHeight = numLine * parseInt(getStyle(ele,'line-height')) - parseInt(getStyle(ele,'paddingTop'));
+            document.title = maxHeight;
+            var iheigt = parseInt(getStyle(ele,'height'));
+            var fn = function(){
+                ele.style.cssText = 'height:' + maxHeight + 'px;overflow:hidden;';
+                ele.className = 'mark';
+                var sty = document.createElement('style');
+                var html = [
+                    '.mark:after{',
+                    'display: block;',
+                    'content: "...";',
+                    'position: absolute;',
+                    'background: white;',
+                    'height: 16px;',
+                    'top:' + (maxHeight+5) +'px;',
+                    'right: 12px;',
+                    'padding:0px 5px;'
+                    ];
+                sty.innerHTML = html.join('');
+                document.head.appendChild(sty);
+        }
+            
+            (iheigt > maxHeight) && fn();
+        };
+        autoLine(Box,8)
+    </script>
+</body>
+</html>

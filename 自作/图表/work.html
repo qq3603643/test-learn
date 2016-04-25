@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    <title>Document</title>
+</head>
+
+<body>
+   <div class="wrap">
+      <div id="head">
+          <h1>2016年03月</h1>
+          <h2>2016年02月29日统计</h2>
+      </div>
+      <div class="">
+          <h2></h2>
+      </div>
+      <div id="main" style="height:800px;width:100%;"></div> 
+   </div>
+   
+   <script src="jquery-1.11.3.js"></script>
+   <script src="echarts-all.js"></script>
+    <script>
+        
+        var myChart = echarts.init($('#main').get(0));
+        var option = {
+            color: ['gray','blue'],
+            title: {
+                text: '世界人口总量',
+                subtext: '数据来自网络'
+            },
+            tooltip: {
+                trigger: 'axis'
+            },
+            legend: {
+                data: ['2011年', '2012年']
+            },
+            toolbox: {
+                show: true,
+                feature: {
+                    mark: {
+                        show: true
+                    },
+                    dataView: {
+                        show: true,
+                        readOnly: false
+                    },
+                    magicType: {
+                        show: true,
+                        type: ['line', 'bar']
+                    },
+                    restore: {
+                        show: true
+                    },
+                    saveAsImage: {
+                        show: true
+                    }
+                }
+            },
+            calculable: true,
+            xAxis: [
+                {
+                    type: 'value',
+                    boundaryGap: [0, 0.01]
+        }
+    ],
+            yAxis: [
+                {
+                    type: 'category',
+                    data: ['巴西', '印尼', '美国', '印度', '中国', '世界人口(万)']
+        }
+    ],
+            series: [
+                {
+                    name: '2011年',
+                    type: 'bar',
+                    data: [18203, 23489, 29034, 104970, 131744, 630230]
+        },
+                {
+                    name: '2012年',
+                    type: 'bar',
+                    data: [19325, 23438, 31000, 121594, 134141, 681807]
+        }
+    ]
+        };
+        
+         myChart.setOption(option);
+    </script>
+</body>
+
+</html>

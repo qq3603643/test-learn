@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style>
+        .btn {
+            width: 60px;
+            height: 20px;
+            background: black;
+            color: aliceblue;
+            border-style: none;
+            outline-style: none;
+        }
+        
+        .btn:active {
+            position: relative;
+            top: 2px;
+        }
+        
+        .btn:hover {
+            background: white;
+            border: 1px solid black;
+            color: black;
+            cursor: pointer;
+        }
+        
+        .btn:hover:after {
+            display: block;
+            content: '';
+            width: 4px;
+            height: 4px;
+            background: red;
+        }
+        /*        可用于任何元素*/
+    </style>
+</head>
+
+<body>
+    <button type="button" class="btn">click </button>
+</body>
+
+</html>

@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+
+<body>
+   <script src="jquery-1.11.3.js"></script>
+    <script>
+        //switch改写if else
+        switch (true) {
+
+        case (1 > 4):
+            console.log('a');
+            break;
+        case (1 < 4):
+            console.log('a');
+            break;
+        }
+
+        //~的妙用:将 -1 转化为 0
+        var arr = [4, 768, 7, 3, 64, 7567, 345];
+        if (~arr.indexOf(76)) {
+            console.log('success to find')
+        } else {
+            console.log('filed to find')
+        }
+       
+       //合并数组
+        var a = [1,3,4],
+            b = [5,6,7];
+       [].push.apply(a,b);
+        console.log(a);
+        
+        //缓冲中速度转化新解(~~的使用)
+        var speedTranslate = function(speed){
+            
+           return speed > 0 ? ~~speed + 1 : ~~speed - 1; 
+            
+        }
+        console.log(speedTranslate(-5.6))
+        
+        //数组去重
+        var arr = [45,76,53,252,45,434,54,252,22,22];
+        var quRe = function(arr){
+            
+            $.each(arr,function(i,item){
+                (arr.indexOf(item) !== i) && arr.splice(i,1);
+            })
+        }
+        quRe(arr);
+        var type = Object.prototype.toString.call(arr + []);
+        console.log(type)
+        console.log(arr + [])  //可直接将arr 转化为string
+    </script>
+</body>
+
+</html>

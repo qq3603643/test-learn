@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style>
+        .wrap{ position: absolute;width: 260px;;margin-left: 56px; }
+        .box{ position: relative;padding: 4px 6px;min-height: 40px;max-height: 200px;outline: 0;overflow-x: hidden;overflow-y: auto;font: 12px/14px 'Microsoft YaHei';color: gray;}
+        .wrap:hover{ outline: 1px solid silver; }
+        .wrap:hover:after{ position: absolute; display: block;content: attr(data);font: 12px/14px 'microsoft yahei';color: silver;left: 100%;top: 0; }
+    </style>
+    <script src="jquery-1.11.3.js"></script>
+    <script>
+        $(function(){
+            $( '.box' ).on( 'focus',function(){
+                $( this ).css( {'outline': '1px solid gray','color': 'black'} )
+                $( '.wrap' ).attr( 'data',' ' );
+            } )
+            $( '.box' ).on( 'blur',function(){
+                $( this ).css( {'outline': '0','color': 'gray'} )
+                $( '.wrap' ).attr( 'data','edit..' );
+            } )
+            $( 'button' ).click( function(){
+                console.log( $.trim($( '.box' ).text()) );
+            } )
+        })
+    </script>
+</head>
+<body>
+    <div class="wrap" data="edit..">
+    <div class="box" contenteditable="true">
+        i am a tangerine..
+    </div>
+    </div>
+    <button type="button" style="display:block;position:absolute;z-index:2;">sumbit</button>
+</body>
+</html>

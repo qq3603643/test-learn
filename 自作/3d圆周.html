@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <title>Document</title>
     <style>
-        #div {
+        .div {
             width: 40px;
             height: 40px;
             background: black;
@@ -13,39 +13,114 @@
             left: 800px;
             top: 300px;
         }
-
+        
+        body {}
     </style>
+    <script src="jquery-1.11.3.js"></script>
     <script>
-        window.onload = function() {
+        window.onload = function () {
 
             var x = 700;
             var y = 300;
             var m = 0;
+            var timer = null;
             var oDiv = document.getElementById('div');
-            setInterval(function() {
-                m++;
-                var a = Math.sin(m * Math.PI / 180) * 100;
-                var b = Math.cos(m * Math.PI / 180) * 100;
+            timer = setInterval(function () {
+                m += 100;
+                var a = Math.sin(m * Math.PI / 180) * 400;
+                var b = Math.cos(m * Math.PI / 180) * 400;
+                var $div = document.createElement('div');
 
-                oDiv.style.width = Math.sin(m * Math.PI / 180) * 30 + 40 + 'px';
-                oDiv.style.height = Math.sin(m * Math.PI / 180) * 30 + 40 + 'px';
-                oDiv.style.left = x + b + 'px';
+                $div.className = 'div';
+                $div.style.width = Math.sin(m * Math.PI / 180) * 30 + 40 + 'px';
+                $div.style.height = Math.sin(m * Math.PI / 180) * 30 + 40 + 'px';
+                $div.style.left = x + b + 'px';
+                $div.style.top = y + Math.sin(m * Math.PI / 180) * 60 + 'px';
 
-                //        var sDiv = document.createElement('div');
-                //        sDiv.className = 'heart';
-                //        sDiv.style.left = oDiv.offsetLeft + 'px';
-                //        sDiv.style.top = oDiv.offsetTop + 'px';
-                //        document.body.appendChild(sDiv);
-            }, 10)
+                document.body.appendChild($div);
+
+                if (m > 1700) {
+                    clearInterval(timer);
+                    var aDiv = getByClass('div');
+                    for (var i = 0; i < aDiv.length; i++) {
+                        var _aDiv = aDiv;
+                        document.onclick = function (ev) {
+                            ev = ev || window.evet;
+                            var dir = ev.pageX > parseInt($(window).outerWidth()) / 2 ? 1 : 0;
+                            move(dir, this, _aDiv);
+                        }
+                    }
+                }
+
+            }, 5);
+
+            function move(dir, obj, _aDiv) {
+
+                $.each($('.div'), function (i, item) {
+                    $('.div').eq(i).stop(true);
+                })
+
+                var Ajson = [];
+                for (var i = 0; i < _aDiv.length; i++) {
+                    var iwidth = getStyle(_aDiv[i], 'width');
+                    var iheight = getStyle(_aDiv[i], 'height');
+                    var itop = getStyle(_aDiv[i], 'top');
+                    var ileft = getStyle(_aDiv[i], 'left');
+                    Ajson.push({
+                        width: iwidth,
+                        height: iheight,
+                        top: itop,
+                        left: ileft,
+                    })
+                };
+                if (dir) {
+                    Ajson.unshift(Ajson.pop());
+                } else {
+                    Ajson.push(Ajson.shift());
+                }
+
+
+                console.log(Ajson[2].width)
+                for (var j = 0; j < Ajson.length; j++) {
+                    var Width = parseInt(Ajson[j].width);
+                    var Height = parseInt(Ajson[j].height);
+                    var Left = parseInt(Ajson[j].left);
+                    var Top = parseInt(Ajson[j].top);
+
+                    $('.div').eq(j).animate({
+                        width: Width,
+                        height: Height,
+                        top: Top,
+                        left: Left,
+                    }, 500)
+
+                }
+            }
 
         }
 
+        function getByClass(srt) {
+            var els = document.getElementsByTagName('*');
+            var arr = [];
+            var re = RegExp('\\b' + srt + '\\b', '');
+
+            for (var i = 0; i < els.length; i++) {
+                if (re.test(els[i].className)) {
+                    arr.push(els[i]);
+                }
+            };
+            return arr;
+        };
+
+        function getStyle(obj, attr) {
+            return obj.currentStyle ? obj.currentStyle[attr] : getComputedStyle(obj)[attr];
+        };
     </script>
 </head>
 
 <body>
 
-    <div id="div"></div>
+
 </body>
 
 </html>

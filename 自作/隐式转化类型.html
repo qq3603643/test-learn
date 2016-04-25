@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        var show = function(str){
+            var result = eval(str);
+            console.log('(' + str + ') 的比较结果是：' + result);
+        };
+        show('0 == undefined');
+        show('1 == true');
+        show('2 == {valueOf: function(){return 2}}');
+        show('8 == undefined');
+        show('1 == undefined');
+        show('null == {toString: function(){return 2}}');
+        show('0 == null');
+        show('null == 1');
+    </script>
+</body>
+</html>

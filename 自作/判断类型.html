@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        function type(obj) {
+            var toString = Object.prototype.toString,
+                strT = toString.call(obj),
+                len = strT.length;
+            console.log(strT.substring(8, len - 1).toLowerCase());
+        }
+        var fn = function () {},
+            str = '',
+            num = 100,
+            und,
+            nu = null;
+        type(fn);
+        type(str);
+        type(num);
+        type(und);
+        type(nu);
+
+        var arr = [3, 68, 98, 32, 9, 323, 76];
+
+        function sortArr(arr) {
+            var newArr = [],
+                m = 0,
+                value = 0;
+            while (arr.length) {
+                value = Math.max.apply(null, arr);
+                arr.toString().replace(/\d+/g, function () {
+                    if (arr[m] == value) {
+                        newArr.push(arr.splice(m, 1));
+                    };
+                    m += 1;
+                    m = m % arr.length;
+                })
+            }
+            return newArr;
+        }
+        alert(sortArr(arr))
+    </script>
+</body>
+
+</html>

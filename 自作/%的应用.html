@@ -3,54 +3,60 @@
 <head>
     <meta charset="UTF-8">
     <title>Document</title>
-<style>
-    li{list-style: none;width: 400px;height: 40px;border: 1px solid black;background-color: white;}  
-</style>
-<script>
-window.onload = function(){
-    var aLi = document.getElementsByTagName('li');
-    var aColor = ['pink','green','yellow','red','blue',];
-    var oBtn = document.getElementsByTagName('input')[0];
-    
-      oBtn.onclick = function(){
-          for(var i=0;i<aLi.length;i++){
-              aLi[i].style.backgroundColor = aColor[i%aColor.length]; 
-          
-      }
-}   
-      for(var i=0;i<aLi.length;i++){
-          aLi[i].index = i;
-          aLi[i].onmouseover = function(){
-             var str = aLi[this.index].style.backgroundColor ;
-              
-              if(str != ''){
-                  for(var j=0;j<aLi.length;j++){
-                      aLi[j].style.backgroundColor = aColor[j%aColor.length]; 
-          
-      } 
-              aLi[this.index].style.backgroundColor = 'white';
-              
-          }
-          }
-      }
+    <style>
+        li {
+            list-style: none;
+            width: 400px;
+            height: 40px;
+            border: 1px solid black;
+            background-color: white;
         }
-</script>
+    </style>
+    <script>
+        window.onload = function () {
+            var aLi = document.getElementsByTagName('li');
+            var aColor = ['pink', 'green', 'yellow', 'red', 'blue',];
+            var oBtn = document.getElementsByTagName('input')[0];
+
+            oBtn.onclick = function () {
+                for (var i = 0; i < aLi.length; i++) {
+                    aLi[i].style.backgroundColor = aColor[i % aColor.length];
+
+                }
+            }
+            for (var i = 0; i < aLi.length; i++) {
+                aLi[i].index = i;
+                aLi[i].onmouseover = function () {
+                    var str = aLi[this.index].style.backgroundColor;
+
+                    if (str != '') {
+                        for (var j = 0; j < aLi.length; j++) {
+                            aLi[j].style.backgroundColor = aColor[j % aColor.length];
+
+                        }
+                        aLi[this.index].style.backgroundColor = 'white';
+
+                    }
+                }
+            }
+        }
+    </script>
 </head>
 <body>
-   <input type="button" value="点击添加颜色">
-    <li></li>
-    <li></li>
-    <li></li>
-    <li></li>
-    <li></li>
-    <li></li>
-    <li></li>
-    <li></li>
-    <li></li>
-    <li></li>
-    <li></li>
-    <li></li>
-    
-    
+<input type="button" value="点击添加颜色">
+<li></li>
+<li></li>
+<li></li>
+<li></li>
+<li></li>
+<li></li>
+<li></li>
+<li></li>
+<li></li>
+<li></li>
+<li></li>
+<li></li>
+
+
 </body>
 </html>

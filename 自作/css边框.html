@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style>
+        .v1 {
+            height: 0px;
+            width: 0px;
+            border: 10px solid transparent;
+            border-top: 20px solid red;
+        }
+        
+        .v2 {
+            height: 0px;
+            width: 0px;
+            border: 10px solid transparent;
+            border-top: 10px solid red;
+            border-right: 10px solid red;
+        }
+        
+        .v3 {
+            height: 0px;
+            width: 0px;
+            border: 20px solid transparent;
+            border-bottom: 30px solid red;
+        }
+        
+        .v3:after{
+            display: block;
+            position: relative;
+            top: -16px;
+            left: -18px;
+            content: '';
+            height: 0px;
+            height: 0px;
+            border: 18px solid transparent;
+            border-bottom: 30px solid white;
+        }
+    </style>
+</head>
+
+<body>
+    边框一：
+    <div class="v1"></div>
+    边框二：
+    <div class="v2"></div>
+    边框三：
+    <div class="v3"></div>
+</body>
+
+</html>

@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style>
+        #box {
+            position: absolute;
+            width: 100px;
+            height: 100px;
+            border: 1px dashed gray;
+            left: 40%;
+            top: 10%;
+            z-index: 2;
+        }
+        
+        .box {
+            position: absolute;
+            width: 50px;
+            height: 50px;
+            background: gray;
+            left: 40%;
+            top: 10%;
+            z-index: 2;
+        }
+        
+        #bor-milite {
+            width: 450px;
+            height: 450px;
+            border: 1px dashed gray;
+            position: absolute;
+            left: 100px;
+            top: 100px;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="box"></div>
+    <div class="box"></div>
+    <div id="bor-milite"></div>
+
+    <script src="jquery-1.11.3.js"></script>
+    <script>
+        function Trag(selector) {
+
+            this.ele = $(selector);
+            this.orgX = 0, this.orgY = 0;
+            this.moveX = 0, this.moveY = 0;
+            this.orgLeft = 0, this.orgTop = 0;
+            var _this = this,
+                $self = this.ele;
+            $self.on('mousedown', function (e) {
+                _this.mouseD(e);
+                $(document).on('mousemove', function (e) {
+                    _this.mouseM(e);
+                })
+                $(document).on('mouseup', function () {
+                    _this.mouseU();
+                })
+                return false;
+            })
+        }
+        Trag.prototype = {
+            mouseD: function ($ele) {
+                this.orgX = $ele.pageX;
+                this.orgY = $ele.pageY;
+                this.orgLeft = this.ele.position().left;
+                this.orgTop = this.ele.position().top;
+            },
+            mouseM: function ($ele) {
+                this.moveX = $ele.pageX - this.orgX;
+                this.moveY = $ele.pageY - this.orgY;
+                this.ele.css({
+                    'left': this.orgLeft + this.moveX,
+                    'top': this.orgTop + this.moveY
+                })
+            },
+            mouseU: function () {
+                $(document).off();
+            }
+        };
+        var TragcBox = new Trag('#box');
+
+        function TragLimit(selector) {
+            Trag.apply(this, arguments)
+        }
+        for (var proTy in Trag.prototype) {
+            TragLimit.prototype[proTy] = Trag.prototype[proTy];
+        }
+        TragLimit.prototype.mouseM = function ($ele) {
+            this.moveX = $ele.pageX - this.orgX;
+            this.moveY = $ele.pageY - this.orgY;
+            this.ele.css({
+                'left': (this.orgLeft + this.moveX > 500) && 500 || (this.orgLeft + this.moveX < 100) && 100 || (this.orgLeft + this.moveX),
+                'top': (this.orgTop + this.moveY > 500) && 500 || (this.orgTop + this.moveY < 100) && 100 || (this.orgTop + this.moveY)
+            })
+        }
+
+        var TragiBox = new TragLimit('.box');
+
+        function createT(configJson) {
+            var configJ = {
+                MAXLEN: configJson.MAXLEN || 10,
+                //等等一系列配置
+            };
+
+            function add() {
+                console.log(configJ.MAXLEN);
+            }
+            return {
+                add: add
+            }
+        }
+        var maxL = createT(100);
+        //$(document).on('click', maxL.add);
+    </script>
+    <input type="text" name="search">
+    <script>
+        function IsNullOrEmpty(obj) {
+            var flag = false;
+            if (obj == null || obj == undefined || typeof (obj) == 'undefined' || obj == '') {
+                flag = true;
+            } else if (typeof (obj) == 'string') {
+                obj = $.trim(obj);
+                if (obj == '') { //为空  
+                    flag = true;
+                } else { //不为空  
+                    obj = obj.toUpperCase();
+                    if (obj == 'NULL' || obj == 'UNDEFINED' || obj == '{}') {
+                        flag = true;
+                    }
+                }
+            } else {
+                flag = false;
+            }
+            return flag;
+        }
+        (function () {
+            function test() {
+                var tangerine = 'apple';
+
+                function alerT() {
+                    alert(tangerine);
+                };
+
+                function consolE() {
+                    console.log(tangerine);
+                };
+
+                return {
+                    alert: alerT,
+                    console: consolE,
+                }
+            }
+
+            var test1 = test();
+            $(document).click(test1.alert)
+        })()
+    </script>
+    <script>
+        var myBlog = (function () {
+            var my = {},
+                _name = 'tangerine',
+                _sex = 'man'; //在此申明私有变量
+            var MAX_TAG_AMOUNT;
+            my = {
+                getName: function () {
+                    console.log(_name);
+                },
+                getSex: function () {
+                    console.log(_sex)
+                },
+                showNum: function () {
+                    var i;
+                    MAX_TAG_AMOUNT = document.getElementsByTagName('div').length;
+                    for (i = 0; i < MAX_TAG_AMOUNT; i += 1) console.log(i);
+                }
+            };
+            return my;
+        }());
+        myBlog.showNum();
+    </script>
+    <script>
+        var a = {
+            x: 10,
+            sum: function (z) {
+                return this.x + this.y + z;
+            }
+        };
+        var b = {
+            y: 20,
+            __proto__: a
+        };
+        b.prototype = a;
+        //alert(b.sum(4))
+    </script>
+    <script>
+        var x = 10;
+        function ale(){
+            alert(x)
+        };
+        (function(){
+//            var x = 20;  //弹出10..
+            x = 20;
+            ale();
+        })()
+    </script>
+</body>
+
+</html>

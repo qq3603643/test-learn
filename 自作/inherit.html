@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        var inheritTest = function(){
+            var my,parent,chid;
+            var you,mine;
+                parent = function(name,arr){
+                    this.name = name;
+                    this.arr = arr;
+                };
+                parent.prototype.showName = function(){ console.log(this.name) };
+                parent.prototype.showSex = function(){ console.log("man") };
+                chid = function(name,arr){
+                    parent.apply(this,arguments); 
+                };
+                my = {
+                    inherit: function(Chid,Pare){
+                        Chid.prototype = new Pare();   //实现继承的新方式.......
+                    },
+                    running: function(){
+                        my.inherit(chid,parent);
+                        mine = new parent('tangerine',[1,2,3]);
+                        you = new chid('little tangerine',[1,2,3]);
+                        you.arr.push(4);
+                        alert(mine.arr);
+                        mine.showName();
+                        you.showName();
+                        you.showSex();
+                    }
+                };
+            return my;
+        }();
+        inheritTest.running();
+    </script>
+</body>
+</html>

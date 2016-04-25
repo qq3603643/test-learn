@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style>
+        .repeat{
+            letter-spacing: -.4em;
+            font: 600 25px/25px '微软雅黑';
+            display: block;
+            margin: 40px auto;
+            width: 40px;
+            color: red;
+        }
+        
+        .arrow{
+            display: block;
+            width: 0px;
+            height: 0px;
+            border: 10px solid transparent;
+            border-left: 30px solid red;
+            position: relative;
+        }
+        
+        .arrow:after{
+            display: block;
+            position: absolute;
+            content: '';
+            width: 0px;
+            height: 0px;
+            bottom: -8px;
+            right: 0px;
+            border: 8px solid transparent;
+            border-left: 30px solid white;
+        }
+    </style>
+</head>
+<body>
+    <span class="repeat">&#x3e;&#x3e;</span>
+    <span class="arrow"></span>
+</body>
+</html>

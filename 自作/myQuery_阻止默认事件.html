@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style>
+        div {
+            position: absolute;
+        }
+    </style>
+    <script src="myQuery.js"></script>
+    <script>
+        $(function () {
+
+            alert(Math.sin(90 * Math.PI / 180));
+
+            $('#v1').click(function () {
+                alert('a');
+                return false;
+            });
+            $('#v2').click(function () {
+                alert('b');
+                return false;
+            });
+            $('#v3').click(function () {
+                alert('c');
+                return false;
+            });
+        })
+    </script>
+</head>
+
+<body>
+    <div id="v1" style="background:black;width:200px;height:200px">
+        <div id="v2" style="background:green;width:150px;height:150px">
+            <div id="v3" style="background:red;width:100px;height:100px"></div>
+        </div>
+    </div>
+</body>
+
+</html>

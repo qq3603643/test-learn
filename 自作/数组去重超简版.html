@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+
+<body>
+
+    <script>
+        var arr = [1, 5, 78, 89, 55, 4, 5, 78, 43, 24, 89, 54, 25];
+
+        var removeRepeat = function (arr) {
+
+            return arr.filter(function (item, index) {
+
+                return arr.indexOf(item) == index;
+
+            })
+
+        }
+
+        console.log(removeRepeat(arr));
+    </script>
+
+</body>
+
+</html>

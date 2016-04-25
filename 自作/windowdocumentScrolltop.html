@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>`</title>
+    <script src="jquery-1.11.3.js"></script>
+</head>
+
+<body style="height:2000px">
+    <script>
+        $(window).scroll(function () {
+
+            document.title = $(window).scrollTop() + '||' + $(document).scrollTop();
+        })
+    </script>
+</body>
+
+</html>

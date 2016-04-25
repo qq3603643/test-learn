@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style>
+        #btn1{ visibility: hidden; }   
+/*        隐藏后仍然占据位置*/
+/*        #btn1{ display: none; }*/
+/*        隐藏后对应的位置也没了*/
+    </style>
+    <script src="jquery-1.11.3.js"></script>
+    <script>
+        $(function(){
+            var startValue = '',nowValue = '';
+            $( '#text' ).on( 'input propertychange',function(){
+                nowValue = $(this).val();
+                if( !nowValue  ) return;
+                if( startValue!=nowValue ) console.log( nowValue );
+                startValue = nowValue;
+            } )
+        })
+    </script>
+</head>
+<body>
+    <input type="text" id="text">
+    <input type="button" value="btn1" id="btn1">
+    <input type="button" value="btn2" id="btn2">
+    <script>
+        var oBtn1 = document.querySelector('#btn1');
+        oBtn1.onclick = function(){
+            console.log( 'click..' );
+        };
+        try{ throw new Error();alert(1) }catch(e){
+            alert(2);  //直接跳过抛出错误的地方
+            }
+    </script>
+</body>
+</html>

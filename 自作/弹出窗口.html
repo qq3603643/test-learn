@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+
+<body>
+    <a href="http:\\www.baidu.com">baidu</a>
+    <script src="jquery-1.11.3.js"></script>
+    <script>
+        $('a').on('click', function () {
+            
+        newwindow = window.open($(this).attr('href'), '', 'height=200,width=150');
+        if (window.focus) {
+            newwindow.focus();
+        } return false;
+    });
+    </script>
+</body>
+
+</html>

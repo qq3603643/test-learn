@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style>
+        .paga-totle{
+            margin: 20px 50px;
+            padding: 20px;
+        }
+        .page1{
+            display: inline-block;
+/*            width: 18px;*/
+            height: 20px;
+            padding: 2px 4px;
+            border: 1px dashed gray;
+            margin-right: 5px;
+            font: 14px/20px "microsoft yahei";
+            text-align: center;
+            cursor: pointer;
+        }
+        .active{
+            color: red;
+            font-weight: 600;
+        }
+    </style>
+</head>
+<body>
+    <script src="jquery-1.11.3.js"></script>
+    <script>
+        $(function(){
+            function creatPage(indexNow,totle){
+                var $onffPrev,$onffnNext,pageStr,pageArr,i,j,k,len,html;
+                $onffPrev = indexNow > 4,$onffnNext = totle+1 - indexNow > 4,html = '';         
+                //当前页前半部分的判断
+                if(!$onffPrev){
+                    pageStr = '1';
+                    i = 2;
+                    while( i<indexNow+1 ) pageStr += '$' + (i++);                   
+                }else{ 
+                    pageStr = '1$...';
+                    i = 1;
+                    while( i<4 ) pageStr += '$' + ((indexNow-3) + (i++));
+                }
+                //当前页后半部分的判断
+                if(!$onffnNext){
+                    j = 0;
+                    while ( indexNow+(j++) < totle ) pageStr += '$' + ( indexNow + j );
+                }else{
+                    j = 1;
+                    while( (j+1)<4 ) pageStr += '$' + ((j++)+indexNow);
+                    pageStr += '$...$' + totle;
+                }
+                
+                pageArr = pageStr.split('$');pageArr.unshift('Prev');pageArr.push('Next');
+                for(k=0,len = pageArr.length;k<len;k++){
+                    if( pageArr[k]==indexNow ) {html += '<a class="page1 active">'+ pageArr[k] +'</a>';continue};
+                    html += '<a class="page1">'+ pageArr[k] +'</a>';
+                }
+                $('.paga-totle').html(html);
+                return pageArr;
+            }
+            creatPage(1,2);
+            $('.paga-totle').on('click','.page1:first,.page1:last',function(e){
+                var indexNow,indexClick;
+                indexClick = $(e.target).index()*1;
+                
+                !indexClick && ( indexNow = $('.active').text()-1,true ) || (indexNow = $('.active').text()*1+1);
+                ( indexNow<1 )&&( indexNow=1 );
+                ( indexNow>2 )&&(indexNow=2);
+                creatPage(indexNow,2);
+            })
+            $('.paga-totle').on('click','.page1',function(){
+                var index = $(this).text()*1;
+                !!index && creatPage(index,2);
+            })
+        })
+    </script>
+    <div class="paga-totle">
+        
+    </div>
+</body>
+</html>

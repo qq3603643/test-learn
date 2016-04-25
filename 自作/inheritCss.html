@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style>
+        .outer{
+            position: static;
+            height: 200px;
+            width: 400px;
+            outline: 2px solid red;
+        }
+        .inherit{
+            position: absolute;
+            height: inherit;
+            width: 200px;
+            background: gray;
+        }
+        .second{
+            left: 500px;
+        }
+        .height-100{
+            position: absolute;
+            left: 200px;
+            height: 100%;
+            width: 200px;
+            background: gray;
+        }
+    </style>
+</head>
+<body>
+    <div class="outer"><div class="inherit"></div></div>
+    <div class="outer second"><div class="height-100"></div></div>
+</body>
+</html>

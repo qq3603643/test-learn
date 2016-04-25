@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style>
+        #list {
+            padding: 0px;
+            margin: 0px;
+            list-style: none;
+            width: 60%;
+            margin: 200px auto;
+        }
+        
+        #list .deliver {
+            width: 16%;
+            height: 100px;
+            background: black;
+            float: left;
+            margin-right: 20px;
+        }
+    </style>
+    <script src="jquery-1.11.3.js"></script>
+    <script>
+        $(function () {
+            var Apos = [];
+            var $aLi = $('.deliver');
+
+            $.each($aLi, function (i, item) {
+                var left = $aLi.eq(i).offset().left;
+                var top = $aLi.eq(i).offset().top;
+                var width = $aLi.eq(i).outerWidth();
+                Apos.push({
+                    width: width,
+                    left: left,
+                    top: top,
+                });
+            });
+
+            $aLi.css('position', 'absolute');
+            $.each($aLi, function (i, item) {
+                var ileft = Apos[i].left;
+                var itop = Apos[i].top;
+                var iwidth = Apos[i].width;
+                $aLi.eq(i).css({
+                    width: iwidth,
+                    left: ileft,
+                    top: itop,
+                })
+            });
+
+            function possPos(obj) {
+                var iCenter = parseInt($(document).outerWidth()) / 2;
+                var x = obj.offset().left + parseInt(obj.outerWidth()) / 2;
+                var disX = Math.abs(iCenter - x);
+
+            };
+
+            $.each($aLi, function (i) {
+                possPos($aLi.eq(i));
+            })
+        })
+    </script>
+</head>
+
+<body>
+    <ul id="list">
+        <li class="deliver"></li>
+        <li class="deliver"></li>
+        <li class="deliver"></li>
+        <li class="deliver"></li>
+        <li class="deliver"></li>
+    </ul>
+</body>
+
+</html>

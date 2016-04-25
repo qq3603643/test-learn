@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        var person = {
+            name: 'ju-zi',
+            showName: function () {
+                alert(this.name);
+            },
+        }
+        person.showName();
+        delete person.name;
+        person.showName();
+    </script>
+</body>
+
+</html>

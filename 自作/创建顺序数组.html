@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+
+<body>
+   <script src="jquery-1.11.3.js"></script>
+    <script>
+        var rangCreate = function (n) {
+            return Array.apply(null,Array(n)).map(function(item,index){
+                return index;
+            })
+        };
+        alert(rangCreate(10));
+    </script>
+</body>
+
+</html>

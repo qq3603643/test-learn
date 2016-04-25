@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="box">
+        
+    </div>
+    <script>
+        var insertH = {
+            formatTpl: function (tpl, stub, data) { //第一个参数为html代码片段，第二个参数为数据处理函数。如： title ： function（）｛return ‘45645’｝
+                return tpl.replace(/#\{(.+?)\}/g, function (match, key) {
+                    var result = '',
+                        replacer = stub[key];
+                    if (typeof replacer === 'undefined') {
+                        replacer = key;
+                    }
+                    if ('[object Function]' === Object.prototype.toString.call(replacer)) {
+                        result = replacer(data);
+                    } else {
+                        result = data[replacer];
+                    }
+                    return ('undefined' === typeof result ? '' : result);
+                });
+            },
+            data: [
+                {
+                    title: '标题一',
+                    content: '我是内容一，我好高兴啊'
+                },
+                {
+                    title: '标题二',
+                    content: '我是内容二，我好高兴啊'
+                },
+                {
+                    title: '标题三',
+                    content: '我是内容三，我好高兴啊'
+                }
+            ],
+            tepHtml: [
+                '<div>',
+                    '<h1>#{title}</h1>',
+                    '<p>#{content}</p>',
+                '</div>'
+                    ],
+            insertEle: function(){
+                var $ele = document.getElementById('box');
+                var htmlStr = '';
+                for(var i = 0;i<insertH.data.length;i += 1){
+                    htmlStr += insertH.formatTpl(insertH.tepHtml.join(''),{title : function(){
+                        return '这是' + insertH.data[i].title
+                    }},insertH.data[i])
+                }
+                $ele.innerHTML = htmlStr;
+            }
+            
+        };
+        insertH.insertEle();
+    </script>
+</body>
+
+</html>

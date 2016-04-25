@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        var str,
+            num = '5345534645645';
+        var re = /\B(?=((\d{3})+$))/g;  //?= 从有此内容处开始匹配，但不计算在匹配结果中..\B与\b相反，匹配非字间
+        str = num.replace(re,',');
+       // console.log(str);
+        var re3 = /(\d{3})/g;
+        str = num.split('').reverse().join('').replace(re3,'$1,').split('').reverse().join('');
+        console.log(str);
+        var newStr = 'gggehheryrujtr',
+            re = /\B(?=[r|j])/g,
+            re2 = /(?=[r|j])\B/g;
+        console.log(newStr.replace(re,'2333'))
+        console.log(newStr.replace(re2,'2333'))
+    </script>
+</body>
+</html>

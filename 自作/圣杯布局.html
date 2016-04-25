@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style>
+        .container{
+/*            width: 500px;*/
+/*            max-width: 500px;*/
+            min-width: 200px;
+            height: 100px;
+            margin: 0px auto;
+            padding-left: 200px;
+            padding-right: 300px;
+            color: white;
+        }
+        .sing{
+            float: left;
+            position: relative;
+        }
+        #center{
+            width: 100%;
+            height: inherit;
+            background: gray;
+        }
+        #left{
+            width: 200px;
+            height: inherit;
+            background: black;
+            margin-left: -100%;
+            left: -200px;
+        }
+        #right{
+            width: 300px;
+            height: inherit;
+            background: blue;
+            margin-right: -300px;
+        }
+        body{
+/*            min-width:(2X+Y)px;*/
+/*            min-width: 700px;*/
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div id="center" class="sing">center</div>
+        <div id="left" class="sing">left</div>
+        <div id="right" class="sing">right</div>
+    </div>
+</body>
+</html>

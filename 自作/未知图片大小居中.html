@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style>
+        .wrap {
+/*            display: table-cell;*/
+            width: 500px;
+            height: 500px;
+            text-align: center;
+/*            vertical-align: middle;*/
+            font-size: 0px;
+            border: 1px dashed gray;
+        }
+        
+        .wrap:after {
+            display: inline-block;
+            width: 0;
+            height: 100%;
+            content: "center";
+            vertical-align: middle;
+            overflow: hidden;
+        }
+        
+        .wrap img {
+            vertical-align: middle;
+        }
+/*        利用伪元素的高100%；图片与之vertical-align: middle 自然是垂直居中了，text-align: center保证水平居中*/
+    </style>
+</head>
+
+<body>
+    <div class="wrap">
+        <img src="http://image.zhangxinxu.com/image/study/s/s256/mm1.jpg">
+    </div>
+</body>
+
+</html>

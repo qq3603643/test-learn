@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style>
+        .box{
+            width: 100px;
+            height: 100px;
+            border: 1px dashed gray;
+            margin: 40px auto;
+        }
+    </style>
+    <script src="jquery-1.11.3.js"></script>
+    <script>
+        $(function(){
+            $('.box').find('.box').css('background','red');  //只匹配子元素 此情况找不到 无效
+        })
+    </script>
+</head>
+<body>
+    <div class="box"></div>
+</body>
+</html>

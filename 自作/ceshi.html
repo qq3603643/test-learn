@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style>
+        #yin-yang {
+            width: 96px;
+            height: 48px;
+            background: #eee;
+            border-color: red;
+            border-style: solid;
+            border-width: 2px 2px 50px 2px;
+            border-radius: 100%;
+            position: relative;
+        }
+        
+        #yin-yang:hover {
+            transition: 2.5s;
+            transform: rotate(360deg);
+        }
+        
+        #yin-yang:before {
+            content: "";
+            position: absolute;
+            top: 50%;
+            left: 0;
+            background: #eee;
+            border: 18px solid red;
+            border-radius: 100%;
+            width: 12px;
+            height: 12px;
+        }
+        
+        #yin-yang:after {
+            content: "";
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            background: red;
+            border: 18px solid #eee;
+            border-radius: 100%;
+            width: 12px;
+            height: 12px;
+        }
+    </style>
+</head>
+
+<body>
+   35435
+    <div id="yin-yang"></div>
+    <script>
+        function test(fn) {
+            var _args = [];
+            return function () {
+                var len = arguments.length;
+                if (len == 0) {
+
+                    return fn.apply(null, _args);
+                } else {
+                    _args = _args.concat([].slice.call(arguments));
+                }
+
+            }
+
+        };
+        var cur = 0;
+        var show = test(function () { //test（） 返回的是一个函数，在 _args之外 所以后面的show（）运行时可以在_argus的保留基础上进行操作
+
+            var len = arguments.length,
+                i = 0;
+            for (i; i < len; i++) {
+
+                cur += arguments[i];
+
+            }
+            return cur;
+        })
+        console.log(show)
+        show(4, 5);
+        show(4)
+        console.log(show())
+
+        //最简易计算器
+        var str = '36+44/67-44*45-5-5/5';
+        var markRe = /[/|*]/g;
+        var numberRe = /(\d+)([/|*])/g;
+        var markLeng = str.match(markRe).length;
+        str = str.replace(numberRe, '$1' + ')' + '$2');
+        str = new Array(markLeng + 1).join('(') + str;
+        console.log(str);
+        console.log(eval(str));
+
+        //函数柯里化
+        var creatMath = function (number) {
+            var math = (function () {
+
+                switch (true) {
+                case number > 2:
+                    return function (arr) {
+                        console.log(eval(arr.join('+')));
+                    }
+                    break;
+                case number < 2:
+                    return function (arr) {
+                        console.log(eval(arr.join('-')));
+                    }
+                }
+            })(number);
+            return math;
+        }
+
+        creatMath(1)([4, 4, 4, 4]);
+
+        //void的使用:让函数自执行,并返回 undefined 常用于 <a href="javascript:void(0);"></a>阻止点击的默认事件 
+        var result = void
+        function () {
+            console.log('start..')
+        }()
+        console.log(result);
+        str = '2013,04,03,17,00,00';
+        var data = eval('new Date(' + str + ')'); //切记设置时间的时候月要减一
+        console.log(data)
+
+        var json = {
+            name: 'tangerine',
+            showName: function(){
+                console.log(this.name);
+            },
+            favir:[
+                'apple',
+                {
+                    food:{
+                        firut:'apple'
+                    }
+                }
+            ]
+        };
+        //var json2 = eval("(" + json.toString() + ")");
+        console.log(json.showName())
+    </script>
+</body>
+
+</html>

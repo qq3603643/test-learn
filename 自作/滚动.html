@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style>
+        *{ margin: 0;padding: 0; }
+        .list-wrap{ position: relative;left: 40px;top: 40px; width: 40px;height: 160px;outline: 1px solid silver;padding: 10px;overflow: hidden; }
+        .list-wrap ul{ list-style: none;height: 100%;overflow: hidden;font: 20px/40px 'microsoft yahei';text-align: center; }
+        .list-wrap li{ width: 39px;height: 39px;border-bottom: 1px dashed gray; }
+    </style>
+    <script src="jquery-1.11.3.js"></script>
+    <script>
+        $(function(){
+            var roll = function(){
+                $( '.list' ).prepend( $( '.list li:last' ).detach().css('height','0px').animate( {'height':39},500 ) );
+            }
+            setInterval(roll,1000);
+        })
+    </script>
+</head>
+<body>
+    <div class="list-wrap">
+        <ul class="list">
+            <li>1</li>
+            <li>2</li>
+            <li>3</li>
+            <li>4</li>
+            <li>5</li>
+        </ul>
+    </div>
+</body>
+</html>

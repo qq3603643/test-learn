@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <script>
+    
+        window.onload = function(){
+            
+            var $btn = document.getElementById('btn');
+            
+            $btn.onclick = function(){
+                
+                var $meta = document.getElementsByTagName('meta')[0];
+                //$meta.setAttribute('content','0; url="http://www.qq.com/"');跳转指定网页
+                //刷新
+                $meta.setAttribute('http-equiv','refresh')
+                //时间
+                $meta.setAttribute('content','1')
+                
+            }
+            
+        }
+        
+    </script>
+</head>
+<body>
+    <input type="button" id="btn" value="click to refresh">
+</body>
+</html>

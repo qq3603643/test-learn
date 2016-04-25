@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style>
+        .wrap_onff {
+            position: relative;
+            left: 50px;
+            width: 50px;
+            height: 30px;
+/*            background: #75D321;*/
+            background: gray;
+        }
+        
+        .wrap_onff:before ,.wrap_onff:after ,.slider_onff:before ,.slider_onff:after {
+            display: block;
+            content: '';
+            position: absolute;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+        }
+        
+        .wrap_onff:before {
+            background: #75D321;
+            left: -15px;
+            z-index: 1;
+        }
+        
+        .wrap_onff:after {
+/*            background: #75D321;*/
+            right: -15px;
+            z-index: 1;
+            background: gray;
+        }
+        
+        .slider_onff {
+            position: absolute;
+            display: block;
+            width: 30px;
+            height: 30px;
+            background: blue;
+            cursor: pointer;
+            z-index: 2;
+        }
+        
+        .slider_onff:before {
+            background: blue;
+            left: -15px;
+            z-index: 2;
+        }
+        
+        .slider_onff:after {
+            background: blue;
+            right: -15px;
+            z-index: 2;
+        }
+    </style>
+    <script src="jquery-1.11.3.js"></script>
+    <script>
+        $(function () {
+            var $onff = true;
+            var toGray = function(){
+                $('.wrap_onff').css('background','gray');
+            };
+            var toGreen = function(){
+                $('.wrap_onff').css('background','#75D321');
+            };
+            $('.slider_onff').on('click', function () {
+                $onff && (toGreen()
+                    ,$(this).animate({
+                    'left': '20'
+                }, 50), $onff = !$onff, true) || (toGray()
+                    ,$(this).animate({
+                    'left': '0'
+                }, 50), $onff = !$onff);
+            })
+        })
+    </script>
+</head>
+
+<body>
+    <div class="wrap_onff">
+        <span class="slider_onff"></span>
+    </div>
+</body>
+
+</html>

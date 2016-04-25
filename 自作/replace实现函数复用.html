@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        var fn1 = function(arr){
+            return eval(arr.join('+'));
+        }
+        console.log(fn1([1,4,6]));
+        
+        var fn2 = eval("(" + fn1.toString().replace(/\+/g,'*') + ")");
+        console.log(fn2([5,4,2]))
+    </script>
+</body>
+</html>

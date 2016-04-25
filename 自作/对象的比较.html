@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        var a = {
+//            name:'tangerine'
+        };
+        var b = {
+//            name:'tangerine'
+        };
+        console.log(a == b);  //两个对象总是不相等的
+        var str1 = new String('apple');
+        var str2 = 'apple';
+        console.log(str1 === str2);  //前者类型为object,后者则为string
+        
+        var fn1 = function(){};
+        var fn2 = function(){};
+        console.log(fn1 == fn2); //两个对象总是不相等的
+    </script>
+</body>
+</html>

@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style>
+/*        使用margin-top:-1;margin-left:-1px;好处在于去掉其中的任何一个，其他的都还能保证完整性*/
+        #list{ width: 80%;margin: 20 auto;padding: 0;list-style: none;overflow: hidden;border: 1px solid silver;border-right: 0;border-bottom: 0; }
+        #list .item{ width:calc(25% - 1px);float: left;border: 1px solid silver;margin: -1px 0 0 -1px; }
+        #list .first{ width: calc(50% - 1px); }
+/*        去掉其中一个，会有失边框的完整性    */
+        #list2{ width: 80%;margin: 20 auto;padding: 0;list-style: none;overflow: hidden;;border-top: 1px solid silver;border-right: 1px solid silver; }
+        #list2 .item{ float: left;width:calc(25% - 1px);border-left: 1px solid silver;border-bottom: 1px solid silver; }
+        #list2 .first{ width: calc(50% - 1px); }
+/*        inline-block方式，好处在于不用清除浮动，但要设置字体*/
+        #list3{ width: 80%;margin: 20 auto;padding: 0;list-style: none;font-size: 0; }
+        #list3 .item{ display: inline-block;width:calc(25% - 1px);font: 12px/19px 'microsoft yahei';border: 1px solid silver;margin-left: -1px;margin-top: -1px; }
+        #list3 .first{ width: calc(50% - 1px); }
+    </style>
+</head>
+<body>
+    <ul id="list">
+        <li class="item first">1</li>
+        <li class="item">2</li>
+        <li class="item">3</li>
+        <li class="item">4</li>
+        <li class="item">5</li>
+        <li class="item">6</li>
+        <li class="item">7</li>
+    </ul>
+    <ul id="list2">
+        <li class="item first">1</li>
+        <li class="item">2</li>
+        <li class="item">3</li>
+        <li class="item">4</li>
+        <li class="item">5</li>
+        <li class="item">6</li>
+        <li class="item">7</li>
+    </ul>
+    <ul id="list3">
+        <li class="item first">1</li>
+        <li class="item">2</li>
+        <li class="item">3</li>
+        <li class="item">4</li>
+        <li class="item">5</li>
+        <li class="item">6</li>
+        <li class="item">7</li>
+    </ul>
+</body>
+</html>

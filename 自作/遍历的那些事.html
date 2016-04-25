@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        //不用数字的累加实现遍历
+        var 
+        mine = {
+            'name': 'tangerine',
+            'sex': 'man',
+            'favourite': [ 'apple','orange' ]
+        },
+        arr = [ 'a','b','c','d' ],arrKey = [];
+        for( arrKey[arrKey.length] in mine );  //快速的将json的attr放入一个数组
+        console.log(arrKey);
+        //while( arr.length ) console.log( arr.pop() );  //如果事后不再用到arr 可用此遍历 更改pop为shift可改为正序排列
+        for( var newArr=[];arr.length; ){  //用此方法可分别处理数组头尾；
+            newArr.push( arr.shift() );
+            newArr.push( arr.pop() );
+        } 
+        console.log( newArr );
+        //for( var item;newArr.length; ){ item = newArr.shift();console.log(item); }
+        for( var item;newArr.length; ){ item = newArr.pop();console.log( item ) }  //可以用到一些使用完数组就置空的情况
+        for( var item,i=0,len=newArr.length;i<len;console.log( item ) ){
+            item = newArr[i];
+            i+=1;
+        }  //for 循环的实质就是1.定义变量 2.判断条件； 3.执行｛｝内内容 4.执行（；；）内最后一段 所以可以把最后一段放在｛｝内最后执行 效果一致
+       var arr2 = [ 5,6,7,8,9 ],i,item;
+        //for( i=0;item=arr2[i];i+=1 ){ console.log( item ); }
+        for( i=-1;item=arr2[i+=1]; ) console.log(item );  //Get此技能，又可以愉快的玩耍了
+     </script> 
+</body>
+</html>
