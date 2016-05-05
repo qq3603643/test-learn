@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style>
+        .wrap {
+            position: relative;
+            width: 240px;
+            height: 80px;
+            border: 1px solid silver;
+            margin: 140px auto;
+            padding: 0;
+            list-style: none;
+            overflow: hidden;
+        }
+        
+        .item {
+            position: relative;
+            width: 78px;
+            height: 78px;
+            border: 1px solid gray;
+            float: left;
+        }
+        
+        .img-wrap {
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 78px;
+            height: 800px;
+        }
+        
+        .img-wrap>span {
+            display: inline-block;
+            width: 100%;
+            height: 78px;
+            outline: 1px solid blue;
+            font: 40px/78px 'microsoft yahei';
+            text-align: center;
+        }
+    </style>
+    <script src="jquery-1.11.3.js"></script>
+    <script>
+        $(function(){
+       var move = function(){
+           var times = {},
+               endAmount = 0,
+               endTimer = null,
+               moveE = {
+                   startMove: function($ele){
+                       times[$ele.parent().index()] = {};
+                       clearInterval(times[$ele.parent().index()].timerS);
+                        var 
+                            startT = 0,
+                            speed = 1,
+                            nowT,
+                            clickTime = new Date() * 1,
+                            nowTime, passedTime;
+                        times[$ele.parent().index()].timerS = setInterval(function () {
+                            nowT = $ele.position().top - speed;
+                            if (nowT < -722) nowT = 0; //322为img-wrap的高减去item的高
+                            $ele.css('top', nowT);
+                            nowTime = new Date() * 1;
+                            passedTime = nowTime - clickTime;
+                            if (passedTime < 1000) {
+                                speed += 1;
+                            } else if (passedTime >= 1000) {
+                                speed = 25;
+                            } 
+                        }, 50)
+
+                    },
+                   moveTo: function($ele,number){
+
+                        clearInterval(times[$ele.parent().index()].timerS);
+                        clearInterval(times[$ele.parent().index()].timerT);
+                        var startT = 0,
+                            nowT, speed = 95,
+                            roundTime = 0,
+                            targetT = -number * 78;
+                        times[$ele.parent().index()].timerT = setInterval(function () {
+                            nowT = $ele.position().top - speed;
+                            if (nowT < -722) nowT = 0;
+                            $ele.css('top', nowT);
+                            speed -= 2;
+                            if (speed <= 10) {
+                                speed = 10;
+                            }
+                            if ( Math.abs(nowT-targetT)<8 ) {
+
+                                    clearInterval(times[$ele.parent().index()].timerT);
+                                    $ele.css('top', targetT);
+                                    endAmount += 1;
+
+                            }
+                        }, 250)
+                    },
+                   running: {
+                       start: function(){
+                           moveE.startMove($('.img-wrap').eq(0));
+                           setTimeout(function(){moveE.startMove($('.img-wrap').eq(1))},500)
+                           setTimeout(function(){moveE.startMove($('.img-wrap').eq(2))},1000)
+                       },
+                       endTo: function(value1,value2,value3,fn){
+                           
+                           moveE.moveTo($('.img-wrap').eq(0),value1);
+                           setTimeout(function(){moveE.moveTo($('.img-wrap').eq(1),value2)},1000)
+                           setTimeout(function(){moveE.moveTo($('.img-wrap').eq(2),value3)},1500)
+                           
+                           endTimer = setInterval(function(){
+                               if(endAmount==3){
+                                   endAmount = 0;
+                                   fn&&fn();
+                                   clearInterval(endTimer);
+                               }
+                           },100)
+                       }
+                   }
+                };
+               return moveE;
+           
+       }();
+           move.running.start();
+           function fn(){ alert('滚动已完成.') };
+           setTimeout(function(){
+               move.running.endTo( 2,3,7,fn );
+           },6000)
+})
+    </script>
+</head>
+
+<body>
+    <ul class="wrap">
+        <li class="item">
+            <div class="img-wrap">
+                <span>0</span>
+                <span>1</span>
+                <span>2</span>
+                <span>3</span>
+                <span>4</span>
+                <span>5</span>
+                <span>6</span>
+                <span>7</span>
+                <span>8</span>
+                <span>9</span>
+            </div>
+        </li>
+        <li class="item">
+            <div class="img-wrap">
+                <span>0</span>
+                <span>1</span>
+                <span>2</span>
+                <span>3</span>
+                <span>4</span>
+                <span>5</span>
+                <span>6</span>
+                <span>7</span>
+                <span>8</span>
+                <span>9</span>
+            </div>
+        </li>
+        <li class="item">
+            <div class="img-wrap">
+                <span>0</span>
+                <span>1</span>
+                <span>2</span>
+                <span>3</span>
+                <span>4</span>
+                <span>5</span>
+                <span>6</span>
+                <span>7</span>
+                <span>8</span>
+                <span>9</span>
+            </div>
+        </li>
+    </ul>
+</body>
+
+</html>

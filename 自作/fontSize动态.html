@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no">
+    <style>
+        *{padding: 0;margin: 0;}
+        body{ width: 10rem; max-width: 1000px;margin: 0 auto;}
+        #list{ width: 8rem;height: 2.5rem; border: 1px dashed silver;box-sizing: content-box;margin: 0 auto;text-align: justify;overflow: hidden; }
+        #list:after{ display: inline-block;content: 'center';height: 0;width: 100%; line-height: 0;vertical-align: top;overflow: hidden; }
+        .item{ display: inline-block;width: 2.3rem;height: 2.5rem;margin-right: 1px;font: .5rem/2.5rem 'microsoft yahei';background: silver;list-style: none;text-align: center; }
+    </style>
+    <script>
+        var oHtml = document.querySelector('html');
+            oHtml.style.fontSize = document.documentElement.clientWidth/10 + 'px';
+    </script>
+</head>
+<body>
+    <ul id="list">
+        <li class="item">1</li>
+        <li class="item">2</li>
+        <li class="item">3</li>
+    </ul>
+</body>
+</html>

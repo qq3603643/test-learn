@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style>
+        #btn{ display: inline-block;height: 25px;width: 80px;background: green;outline: 0;border: 0;cursor: pointer;}
+        .content{ margin-top: 20px;height: 40px;width: 160px;border: 1px dashed silver;display: none;}
+    </style>
+    <script>
+        window.onload = function(){
+        var $btn = document.querySelector('#btn'),$box = document.querySelector('.content');
+            
+           document.onclick = function(event){
+               if( event.target.id == 'btn' ){
+                   $box.style.display = 'block';
+                   return false;
+               }
+               $box.style.display = 'none';
+           }
+        }
+    </script>
+</head>
+<body>
+    <input type="button" id="btn" value="ANniu">
+    <div class="content"></div>
+</body>
+</html>
