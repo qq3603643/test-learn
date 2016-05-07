@@ -34,7 +34,7 @@
         .wrap-item,.wrap-itel{ display: inline-block;border: 1px solid silver;height: 25px;width: 60px; }
 /*        .wrap-itel:nth-child(-n+2){ background: silver; }*/
         .wrap-itel:nth-of-type(-n+2){ background: silver; }
-/*        可理解为n从零开始+=1直到最大，而-n+*的结果为负数时没效果*/
+/*        可理解为n从1开始+=1直到最大，而-n+*的结果为负数时没效果*/
     </style>
 </head>
 <body>
@@ -51,9 +51,9 @@
     </ul> 
     <a id="wrap">
         <span class="wrap-itel"></span>
-        <em class="wrap-item"></em>
+        <em class="wrap-itel"></em>
+        <span class="wrap-item"></span>
         <span class="wrap-itel"></span>
-        <span class="wrap-itel"></span>
-    </a> 
+    </a>
 </body>
 </html>

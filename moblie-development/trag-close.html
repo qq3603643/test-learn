@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<title>覆盖</title>
+	<style type="text/css">
+		.wrap{ position:absolute;left:calc( 50% - 200px );top:calc( 50% - 125px );width:400px;height:250px;border:1px solid silver;cursor:move; }
+		.close{ display:block;float:right;width:40px;height:40px;font:40px/50px 'microsoft yahei';cursor:pointer; }
+		.close:hover{ color:red;transform:scale(1.1);transition:.4s; }
+	</style>
+</head>
+<body>
+	<div class="wrap">
+		<a class="close">X</a>
+	</div>
+	<script type="text/javascript">
+		var alertTip = function(){
+			var $oClose = document.querySelector('.close'),
+				$oWrap = document.querySelector('.wrap'),
+	
+		    	clickPos,movePos,nowPos,
+		    	alertT = {
+		    		closeEvent: function(e){
+		    			//alert(e.target.className);调用时不用传入e，便可使用
+		    			$oWrap.style.display = 'none';
+		    			e.stopPropagation();
+		    		},
+		    		mouseD: function(e){
+		    			clickPos = {
+		    				x: e.clientX,
+		    				y: e.clientY
+		    			};
+		    			nowPos = {
+		    				x: $oWrap.offsetLeft,
+		    				y: $oWrap.offsetTop
+		    			}
+		    			document.onmousemove = alertT.mouseM;
+		    			document.onmouseup = alertT.mouseU;
+		    		},
+		    		mouseM: function(e){
+		    			movePos = {
+		    				x: e.clientX - clickPos.x,
+		    				y: e.clientY - clickPos.y,
+		    			};
+		    			//console.log(movePos);
+		    			$oWrap.style.left = (nowPos.x+movePos.x) + 'px';
+		    			$oWrap.style.top = (nowPos.y+movePos.y) + 'px';
+		    		},
+		    		mouseU: function(){
+		    			document.onmouseup 
+		    			= document.onmousemove 
+		    			= null;
+		    		},
+		    		running: function(){
+		    			$oClose.onmousedown = alertT.closeEvent;
+		    			$oWrap.onmousedown = alertT.mouseD;
+		    		}
+		    	};
+		    	return alertT;
+		}();
+		alertTip.running();
+	</script>
+</body> 
+</html>

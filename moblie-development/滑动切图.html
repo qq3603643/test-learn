@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>滑动切图</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"> 
+	<meta name="viewport" content="width=device-width,height=device-height,user-scalable=no,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0" />
+	<style type="text/css">
+	*{ padding:0;margin:0; }
+	body{ position:absolute;font-size:1rem;font-family:'microsoft yahei';overflow:hidden; }
+	#list{ padding:0;margin:0;width:40rem;height:2rem;text-align:center;line-height:1rem;list-style:none; }
+	.item{ position:relative;width:25%;float:left;background:red; }
+	.item:nth-of-type(1):before{ position:absolute;left:-10rem;top:0;display:block;content:'first';width:10rem;height:1rem;color:red;text-align:right; }
+	.item:nth-of-type(4):before{ position:absolute;left:10rem;top:0;display:block;content:'last';width:10rem;height:1rem;color:red;text-align:left; }
+	</style>
+	<script type="text/javascript">
+	var onload = function(fn){
+		window.onload = fn;
+		},
+		bind = function(){
+			   return window.addEventListener 
+			   ? function(ele,event,fn){
+					ele.addEventListener(event,function(e){ fn(e); },false);
+			   }
+			   : function(ele,event,fn){
+			   		ele.attachEvent(on+event,function(e){ fn(e); },false);
+			   }
+		}(),
+		delE = function(){
+			   return window.addEventListener 
+			   ? function(ele,event,fn){
+					ele.removeEventListener(event,function(e){ fn(e); },false);
+			   }
+			   : function(ele,event,fn){
+			   		ele.detachEvent(on+event,function(e){ fn(e); },false);
+			   }
+		}();
+    //onsole.log( delE );
+	onload(function(){
+		var oHtml = document.getElementsByTagName('html')[0];
+			oHtml.style.fontSize = window.screen.width/10 + 'px';
+        var oList = document.getElementById('list'),
+        	items = document.getElementsByTagName('li');
+        var startTouchPos,moveLeft,iNow=0,ileft,
+            changeStyle = function(){
+			    	if( Math.abs(moveLeft)>3 ){
+			    		 moveLeft>0 && (iNow-=1);
+			    		 moveLeft<0 && (iNow+=1);
+			    	}
+			    	if( iNow<0 ) iNow = 0;
+			        if( iNow > items.length-1 ) iNow = items.length-1;
+			        //console.log( iNow )
+			        oList.style.transition = '.6s';
+			    	oList.style.transform = 'translateX(-' + 10*iNow + 'rem)';
+			    },
+        	moveEvent = function(e){
+			    	moveLeft = (e.changedTouches[0].pageX - startTouchPos)/window.screen.width*10;
+			    	ileft = -iNow*10 + moveLeft;
+			    	//console.log( moveLeft+'|'+ileft )
+			    	oList.style.transition = '0s';
+			    	oList.style.transform = 'translateX('+ ileft +'rem)';
+			    	
+			    };
+		    bind(oList,'touchstart',function(e){
+		    	startTouchPos = e.changedTouches[0].pageX;
+		    	//console.log( startTouchPos + '|' + ileft )
+		    	
+		    	bind(oList,'touchmove',function(e){ moveEvent(e); });
+			    bind(oList,'touchend',changeStyle);
+				delE(oList,'touchmove',function(e){ moveEvent(e); });
+		    	delE(oList,'touchend',changeStyle);
+			 }) 
+			 
+		   })
+	</script>
+</head>
+<body>
+	<ul id="list"> 
+		<li class="item">1</li>
+		<li class="item">2</li>
+		<li class="item">3</li>
+		<li class="item">4</li>
+	</ul>
+</body>
+</html>
