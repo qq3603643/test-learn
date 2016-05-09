@@ -1,11 +1,7 @@
-body, dl, dd, h1, h2, h3, h4, h5, h6, p, form{margin:0;}   
-ol,ul{margin:0; padding:0;list-style: none;}
-body{ font-family: "microsoft yahei";font-size: 12px;}
-i,em{font-style: normal;}
-a,a:active{text-decoration: none; color: #000;}
-h2{ font-size: 16px; font-weight: normal;}
-h3{ font-size: 14px; font-weight: normal;}
-h4{ font-size: 12px; font-weight: normal;}
-h5{ font-size: 12px; font-weight: normal;}
-b,strong,span{ font-weight:normal;}
-img{ border: none; vertical-align:top;}
+body, dl, dd, h1, h2, h3, h4, h5, h6, p, form{ margin: 0; }   
+h2,h3,h4,h5,b,strong,span{ font-weight: normal; }
+ol,ul{ margin: 0; padding: 0;list-style: none; }
+body{ font: 12px/20px 'microsoft yahei'; }
+i,em{ font-style: normal; }
+a,a:active{ text-decoration: none; color: #000; }
+img{ border: none; vertical-align:top; }
