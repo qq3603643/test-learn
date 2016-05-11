@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<title>弧度布局</title>
+<meta name="description" content="">
+<meta name="keywords" content="">
+<style type="text/css">
+	.nav{ width:500px;height:570px;border:1px solid silver;margin:45px auto;font-family:'microsoft yahei'; }
+	.list{ width:500px;padding:0;margin:0;list-style:none;text-align:right;font:20px; }
+	
+	.footstone{ float:right;clear:right;background:silver; }
+</style>
+<script type="text/javascript" src="jquery-1.11.3.js"></script>
+<script type="text/javascript">
+	$(function(){
+		var Nav = function(){
+			var $nav = $('.nav'),
+				$left = $('.left'),
+				nav = {
+					config:{
+						footstoneAmount: 26,
+					},
+					rightLayout: function(){
+						var maxAmout = nav.config.footstoneAmount;
+						while( maxAmout ){
+							$left.append($('<div class="footstone">'));
+							maxAmout-=1;
+						}
+					},
+					fontRePos: function(){
+						var $footstones = $('.footstone'),
+							baseHeight = 10,baseWidth = 185;
+						$.each($footstones,function(index,ele){
+							if( index<15 ){ $(ele).height(baseHeight); }
+							if( index>=15 && index <17 ){ $(ele).height(baseHeight + 5); }
+							if( index>=17 && index<21 ){ $(ele).height(baseHeight + 10); }
+							if( index>=21 && index<23 ){ $(ele).height(baseHeight + 20); }
+							if( index == 23 ){ $(ele).height(145); }
+							if( index>23 ){ $(ele).height(35); }
+							if( index<23 ){ $(ele).width(baseWidth+5*index); }
+							if( index>=23 ){ $(ele).width( 300-(index-23)*5 ) }
+						})
+					},
+					run: function(){
+						this.rightLayout();
+						this.fontRePos();
+					}
+				};
+			return nav;
+		}();
+		Nav.run();
+	})
+</script>
+</head>
+<body>
+    <div class="nav">
+    	<div class="left">
+    	</div>
+    	<ul class="list">
+			<li class="item">洗护系列
+			<ul>
+				<li>1</li>
+				<li>2</li>
+				<li>3</li>
+			</ul>
+			</li>
+			<li class="item">造型系列</li>
+			<li class="item">促销信息</li>
+			<li class="item">秀发护理小tips</li>
+			<li class="item">VEDEO</li>
+		</ul>
+    </div>
+</body>
+</html>

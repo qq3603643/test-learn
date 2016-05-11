@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+	<title>writing_mode</title>
+	<style type="text/css">
+	.content{ height:240px;font:16px/26px 'microsoft yahei';writing-mode: tb-rl;-webkit-writing-mode: vertical-rl;padding:20px;text-align:justify; }
+	/* 亲测一定要加前缀 */
+	.title{ height:240px;line-height:60px;text-align:center;color:red; }
+	</style>
+	<script type="text/javascript" src="jquery-1.11.3.js"></script>
+	<script>
+	$(function(){
+		function insertWord($ele,wordStr,fn){
+			var indexWord = 0,lenWord = wordStr.length,timer = null;
+				timer = setInterval(function(){
+					if( indexWord == lenWord ){
+						clearInterval(timer);
+						fn && fn();
+					}
+					$ele.append( wordStr.charAt(indexWord) );
+					indexWord++;
+				},200)
+		}
+		var title = '自我介绍',main = '直到有一天，有一个叫苏敏的女孩子转到了我们这个美术Ａ班，她披着长长的头发，穿着一身白色，无视我们所有人，坐在了最前面的一个位置，还故意把头发一甩。这时，老师进了教室，边说：“介绍一下，这是新转来的学生，叫做苏敏。”说完，只见那位叫苏敏的女孩子从座位上站起来，说：“大家好，我叫做苏敏，初次来到这个班，请多指教。”然后又把头发一甩，坐在了座位上，“哼，以为自己了不起似的，还把头发一甩，什么‘请多指教’，以为自己文绉绉的，什么嘛！”小丝在夏瑶耳边说，但是夏瑶什么也没说，只是抬起头看了看正在讲课的老师。苏敏仿佛听到了什么，往后一看，露出一种阴险的笑。其实，小丝是认识苏敏的，因为苏敏的妈妈和小丝的妈妈是认识的，所以她们才走到了一起，但是小丝非常讨厌她，因为苏敏什么东西都爱和她抢，曾经还把错推到她身上过，那次，明明是苏敏不小心把小丝家的花瓶摔碎了，却不敢承认，甚至还把错推到了小丝身上，对于小丝来说，那次就是对她最大的伤害，所以，小丝最讨厌最讨厌的就是苏敏了，可是……不该发生在小丝身上的，还是发生了……';
+		insertWord($('.title'),title,function(){
+			insertWord($('.main'),main)
+		})
+	})
+	</script>
+</head>
+<body>
+   <div class="content">
+   		<div class="title"></div>
+   		<div class="main">
+   		&emsp;&emsp;
+   		</div>
+   </div>
+</body>
+</html>
