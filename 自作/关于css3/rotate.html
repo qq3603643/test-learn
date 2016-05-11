@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Examples</title>
+<style>
+	.wrap{ width:100px;height:50px;margin:140px auto;perspective: 100px;perspective-origin:top; }
+	.content{ position:relative;height:50px;transform-style:preserve-3d;transition:1s;transform:rotateX(-90deg); }
+	.content>div{ position:absolute;width:100%;height:inherit;box-shadow:0 0 2px #000;font:24px/50px 'microsoft';text-align:center; }
+	.content div:nth-of-type(1){ top:0;left:0;background:blue; }
+	.content div:nth-of-type(2){ top:50px;left:0;background:red;transform-origin:top;transform:rotateX(-90deg); }
+	.content div:nth-of-type(3){ top:-50px;left:0;background:pink;transform-origin: bottom;transform:rotateX(90deg); }
+	.wrap:hover .content{ transform:rotateX(90deg);top:-50px; }
+</style>
+</head>
+<body>
+    <div class="wrap">
+      <div class="content">
+    	<div>1</div>
+    	<div>2</div>
+    	<div>3</div>
+      </div>	
+    </div>
+</body>
+</html>

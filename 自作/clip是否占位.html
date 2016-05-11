@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<title>clip占位</title>
+<meta name="description" content="">
+<meta name="keywords" content="">
+<link href="" rel="stylesheet">
+<style>
+     body{ margin:0; }
+	.box{ position:absolute;width:180px;height:180px;border:10px solid black;border-radius:10px;background:silver;clip:rect( 10px 190px 190px 10px ); }
+	.box:hover{ clip:rect( 0px 200px 200px 0px );transition:.5s;background:#666; }
+	/* 此方法的好处在于能提前占位 */
+</style>
+</head>
+<body>
+    <div class="box"></div>
+</body>
+</html>

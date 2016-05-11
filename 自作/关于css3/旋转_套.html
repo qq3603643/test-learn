@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+	.wrap{ width:100px;height:100px;padding:40px;border:1px solid silver;transform-style:preserve-3d;perspective: 100px; }
+	.wrap div{ width:100px;height:100px;position:absolute;font:20px/100px 'microsoft yahei';text-align:center;top:0;left:100px;outline:1px dashed black;background:#fff;transform-style:preserve-3d;transform-origin:left; }
+	.wrap>div div{ transform:rotateY(90deg); }
+	.wrap>div{ position:relative;margin-left:-100px;transform-origin:center center -50px; }
+	.wrap>div:hover{ transform:rotateY(-360deg);transition:2s; }
+	</style>
+</head>
+<body>
+	<div class="wrap">
+		
+			<div>1
+				<div>
+					2
+					<div>
+						3
+						<div>
+							4
+						</div>
+					</div>
+				</div>
+			</div>
+		
+	</div>
+</body>
+</html>

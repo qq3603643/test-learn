@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<title>指定值的替换</title>
+<meta name="description" content="">
+<meta name="keywords" content="">
+<link href="" rel="stylesheet">
+</head>
+<body>
+    <script>
+    	var jsonRule = {
+    		'an': '123',
+    		'g': '456'
+    	},
+    		str = 'tangerine,apple,orange',
+    		replaceBaseRlue = function(str,jsonRule){
+    			var ruleArr=[];
+    			for( ruleArr[ruleArr.length] in jsonRule );
+    			//console.log(ruleArr);
+    			var re = new RegExp( ruleArr.join('|'),'g' );
+    			return str.replace( re,function($0){
+    				console.log( jsonRule[$0] );
+    				return ( $0 in jsonRule ) ? jsonRule[$0] : $0;
+    			} )   //再次提示，字符串方法不对原字符串造成实质的改变
+    		};
+		   console.log(replaceBaseRlue(str,jsonRule));
+    </script>
+</body>
+</html>

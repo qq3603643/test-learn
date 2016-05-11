@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<title>nav</title>
+<meta name="description" content="">
+<meta name="keywords" content="">
+<style>
+	.nav{ width:400px;height:50px;margin:40px auto;font:20px/50px 'microsoft yahei';text-align:center; }
+	.nav .list{ padding:0;margin:0;list-style:none; }
+	.nav div{ position:absolute;width:100px;height:50px;outline:1px dashed #000;left:0;top:50px;background:white; }
+	.item{ float:left;width:100px;height:inherit;transform-style:preserve-3d;transition:2s;transform-origin:center center -30px;perspective: 100px; }
+	.item>div{ position:relative;top:0;color:#000; }
+	.item>div div{ transform-origin:top;transform-style:preserve-3d; }
+	.item:hover{ transform:rotateX(360deg);transition:2s; }
+</style>
+</head>
+<body>
+    <div class="nav">
+    	<ul class="list">
+    		<li class="item">
+    			<div>
+    				1
+    				<div style="transform:rotateX(-90deg);">2
+						<div style="transform:rotateX(-40deg);">3
+							<div style="transform:rotateX(60deg);">
+								4
+							</div>
+						</div>
+    				</div>
+    			</div>
+    		</li>
+    			<li class="item">
+    			<div>
+    				1
+    				<div style="transform:rotateX(20deg);">2
+						<div style="transform:rotateX(-40deg);">3
+							<div style="transform:rotateX(60deg);">
+								4
+							</div>
+						</div>
+    				</div>
+    			</div>
+    		</li>
+    			<li class="item">
+    			<div>
+    				1
+    				<div style="transform:rotateX(20deg);">2
+						<div style="transform:rotateX(-40deg);">3
+							<div style="transform:rotateX(60deg);">
+								4
+							</div>
+						</div>
+    				</div>
+    			</div>
+    		</li>
+    			<li class="item">
+    			<div>
+    				1
+    				<div style="transform:rotateX(20deg);">2
+						<div style="transform:rotateX(-40deg);">3
+							<div style="transform:rotateX(60deg);">
+								4
+							</div>
+						</div>
+    				</div>
+    			</div>
+    		</li>
+    	</ul>
+    </div>
+</body>
+</html>

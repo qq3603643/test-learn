@@ -1,61 +1,26 @@
 <!DOCTYPE html>
-<html lang="en">
-
+<html>
 <head>
-    <meta charset="UTF-8">
-    <title>Document</title>
-    <style>
-        .box {
-            margin: 20px 0px 0px 100px;
-            width: 40px;
-            height: 40px;
-            background: black;
-        }
-        
-        .move {
-            animation: domove 1s;
-        }
-        
-        @keyframes domove {
-            0% {
-                opacity: 1;
-                width: 40px;
-                height: 40px;
-            }
-            70% {
-                opacity: 0.1;
-                width: 100px;
-                height: 100px;
-                background: red;
-                margin-left: 70px;
-                margin-top: 0px;
-            }
-            100% {
-                opacity: 1;
-                width: 40px;
-                height: 40px;
-            }
-        }
-
-    </style>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<title>animation</title>
+<meta name="description" content="">
+<meta name="keywords" content="">
+<style type="text/css" media="screen">
+    @keyframes move{
+    	0%{ background:blue; }
+    	100%{ background:red; }
+    }
+	.box{ margin:40px auto;width:80px;height:80px;border:1px dashed silver;animation:move 2s linear forwards;
+		/* animation-fill-mode:forwards;  */
+		/* 此句设置animation运动完成后展示的状态 none；forwards；backwards；both */
+		/* 另外还可设置运动次数之类的 */
+	}
+</style>
 </head>
-
 <body>
-    <div class="box"></div>
-    <script src="jquery-1.11.3.js"></script>
-    <script>
-        $('.box').on('mouseover', function() {
-            $(this).removeClass('move');
-
-            var _this = $(this);
-            setTimeout(function() {
-                _this.addClass('move');
-
-            }, 200)
-
-        })
-
-    </script>
+    <div class="box">
+    	
+    </div>
 </body>
-
 </html>

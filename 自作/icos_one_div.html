@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<title>one_div</title>
+<meta name="description" content="">
+<meta name="keywords" content="">
+<style>
+	div{ margin:40px;display:inline-block;width:100px;height:100px;position:relative; }
+	.face{ background:#000;border-radius:5px; }
+	.face:before{ position:absolute;left:36px;top:30px;display:block;content:'';width:50px;height:10px;background:#fff;z-index:1; }
+
+	.face:after{ position:absolute;left:55px;top:5px;display:block;content:'';width:20px;height:80px;background:#000;border:10px solid #fff;border-right-width:0;border-bottom-width:0;border-top-left-radius:20px; }
+	.send{ width:50px;height:80px;border-left:20px solid #000;border-top:20px solid #000;border-top-left-radius:40px;border-left-width:0; }
+	.send:after{ position:absolute;left:50px;top:-28px;display:block;content:'';width:0;height:0;border:20px solid transparent;border-left-color:#000; }
+
+	.download{ width:120px;height:16px;border:6px solid #000;border-radius:10px;background: linear-gradient(120deg, transparent 25%, #2c2c2c 50%, transparent 75%) 0 0 repeat-x;background-size:14px 20px;animation:downMove 2s infinite linear; }
+	@keyframes downMove{
+		0%{ background-position:0 0; }
+		100%{ background-position:140px 0; }
+	}
+</style>
+</head>
+<body>
+    <div class="face"></div>
+    <div class="send"></div>
+    <div class="download"></div>
+</body>
+</html>

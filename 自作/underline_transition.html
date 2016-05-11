@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<title>下划线</title>
+<meta name="description" content="">
+<meta name="keywords" content="">
+<link href="" rel="stylesheet">
+<style>
+	.title{ margin:40px auto;width:200px;height:20px;cursor:pointer; }
+	.titie-text,.titie-text-noUnderLine{ position:relative;font:16px/20px 'microsoft yahei'; }
+	.titie-text{ font-weight:600;transition:.5s; }
+	.titie-text:after,.titie-text-noUnderLine:after{ display:block;content:'';position:absolute;bottom:-4px;height:2px;width:100%;background:black;transition:.5s; }
+	.titie-text-noUnderLine:after{ transform:scale(0); }
+</style>
+</head>
+<body>
+    <div class="title">
+    	<h2>
+    	<a class="titie-text-noUnderLine">我是一个标题</a>
+    	</h2>
+    </div>
+    <script>
+    	var $oA = document.querySelector('.title a');
+    	$oA.onmouseover = function(e){
+    		this.className = 'titie-text';
+    	};
+    	$oA.onmouseout = function(){
+    		this.className = 'titie-text-noUnderLine';
+    	};
+    </script>
+</body>
+</html>

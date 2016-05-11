@@ -9,8 +9,12 @@
 <style type="text/css">
 	.nav{ width:500px;height:570px;border:1px solid silver;margin:45px auto;font-family:'microsoft yahei'; }
 	.list{ width:500px;padding:0;margin:0;list-style:none;text-align:right;font:20px; }
-	
-	.footstone{ float:right;clear:right;background:silver; }
+	.item{ position:relative;cursor:pointer; }
+	.item:nth-of-type(1):before{ position:absolute;display:block;content:attr(data-dir);left:308px;top:-1px;width:20px;height:20px;font: 20px/20px 'microsoft';color:red; }
+	.item:nth-of-type(4):before{ position:absolute;display:block;content:attr(data-dir);left:278px;top:-1px;width:20px;height:20px;font: 20px/20px 'microsoft';color:red; }
+	.item>ul{ display:none;list-style:none; }
+	.item>ul.show{ display:block; }
+	.footstone{ float:right;clear:right; }
 </style>
 <script type="text/javascript" src="jquery-1.11.3.js"></script>
 <script type="text/javascript">
@@ -43,9 +47,18 @@
 							if( index>=23 ){ $(ele).width( 300-(index-23)*5 ) }
 						})
 					},
+					showDetail: function(){
+						var _this = $(this);
+						_this.find('ul').toggleClass('show');
+						( _this.attr('data-dir')=='︿' ) && ( _this.attr('data-dir','﹀'),true ) || ( _this.attr('data-dir','︿') );
+						
+					},
 					run: function(){
 						this.rightLayout();
 						this.fontRePos();
+						$('.item').on( 'click',function(){
+							nav.showDetail.call(this);
+						} )
 					}
 				};
 			return nav;
@@ -59,7 +72,7 @@
     	<div class="left">
     	</div>
     	<ul class="list">
-			<li class="item">洗护系列
+			<li class="item" data-dir="︿">洗护系列
 			<ul>
 				<li>1</li>
 				<li>2</li>
@@ -68,7 +81,13 @@
 			</li>
 			<li class="item">造型系列</li>
 			<li class="item">促销信息</li>
-			<li class="item">秀发护理小tips</li>
+			<li class="item" data-dir="︿">秀发护理小tips
+			<ul>
+				<li>4</li>
+				<li>5</li>
+				<li>6</li>
+			</ul>
+			</li>
 			<li class="item">VEDEO</li>
 		</ul>
     </div>
