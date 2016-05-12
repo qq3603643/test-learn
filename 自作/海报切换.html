@@ -12,6 +12,12 @@
 	.left,.right{ position:absolute;width:400px;height:inherit; }
 	.left{ left:0;border-right:2px solid #666; }
 	.right{ right:0;border-left:2px solid #666; }
+	.center{ position:relative; }
+	.center span{ position:absolute;top:500px;display:block;width:60px;height:30px;font:16px/30px 'microsoft yahei';text-align:center;outline:1px solid silver;transition:.4s; }
+	.center span:hover{ cursor:pointer;background:silver;color:#fff;box-shadow:0 0 5px #000; }
+	.center .prev{ left:40px; }
+	.center .next{ right:40px; }
+	.center .showBox{ position:absolute;left:100px;top:100px;display:block;width:200px;height:200px;background:#666;box-shadow: 0 0 4px #666,inset 0 0 3px red;font:80px/200px 'microsoft yahei';text-align:center;opacity:0; }
 	.item-pic{ position:absolute;display:block;width:180px;height:180px;font:80px/180px 'microsoft yahei';text-align:center;background:#999;box-shadow: 0 0 4px #666,inset 0 0 3px red;transition:1s; }
 </style>
 <script type="text/javascript" src="jquery-1.11.3.js"></script>
@@ -19,9 +25,10 @@
 $(function(){
 	var PicTab = function(){
 		var $itemPics = $('.item-pic'),
-			$oWrap = $('.wrap'),
+			$oWrap = $('.wrap'),$showBox = $('.showBox'),
 			$onffClick = !0,
 			//$clickAble = !0,
+			nowIndex = 0,
 			pictab = {
 				createPos: function(){
 					//left: 0-200;top: 0-400;rotate: 0-120
@@ -34,12 +41,30 @@ $(function(){
 							'rotate': rotate
 						};
 				},
+				nowShow: function($ele){
+					$ele.animate({
+					 		'left':480,
+					 		'top':100,
+					 		'width':240,
+					 		'height':240,
+					 		'lineHeight':240,
+					 	},20)
+				 	$ele.css('transform','rotate(0deg)');
+				},
 				picLayOut: function(){
+					(nowIndex<0) && (nowIndex+=$itemPics.length);
+					nowIndex %= $itemPics.length;
 					$.each($itemPics,function(index,ele){
-						
+					 if( index==nowIndex ){ 	
+					 	pictab.nowShow($(ele));
+					 	return;
+				 	 }
 				   	 $(ele).css({
 							'left': pictab.createPos().leftOrRight,
 							'top': pictab.createPos().top,
+							'width': 180,
+							'height': 180,
+							'lineHeight':'180px',
 							'transform': 'rotate('+pictab.createPos().rotate+'deg)'
 						     });
 					 if(index >= 5) $(ele).css('left',$oWrap.outerWidth() - pictab.createPos().leftOrRight - $(ele).width());
@@ -47,11 +72,19 @@ $(function(){
 					//setTimeout(function(){ clickAble=!0; },600)
 				},
 				picLayOutReserve: function(){
+					(nowIndex<0) && (nowIndex+=$itemPics.length);
+					nowIndex %= $itemPics.length;
 					$.each($itemPics,function(index,ele){
-					 
+					 if( index==nowIndex ){ 	
+					 	pictab.nowShow($(ele));
+					 	return;
+				 	 }
 				   	 $(ele).css({
 							'left': $oWrap.outerWidth() - pictab.createPos().leftOrRight - $(ele).width(),
 							'top': pictab.createPos().top,
+							'width': 180,
+							'height': 180,
+							'lineHeight':'180px',
 							'transform': 'rotate('+pictab.createPos().rotate+'deg)'
 						     });
 					 if(index >= 5) $(ele).css('left', pictab.createPos().leftOrRight);
@@ -60,8 +93,9 @@ $(function(){
 				},
 				run: function(){
 					pictab.picLayOut();
-					$(document).on('click',function(){
-						
+					$(document).on('click','.prev,.next',function(e){
+						var eleClass = e.target.className;
+						(eleClass=='prev') && ( (nowIndex-=1),true ) || (nowIndex+=1);
 						$onffClick && ( pictab.picLayOutReserve(),true ) || pictab.picLayOut();
 						$onffClick = !$onffClick;
 					})
@@ -76,7 +110,11 @@ $(function(){
 <body>
     <div class="wrap">
     	<div class="left"></div>
-    	<div class="center"></div>
+    	<div class="center">
+    		<a class="showBox"></a>
+    		<span class="prev">上一张</span>
+    		<span class="next">下一张</span>
+    	</div>
     	<div class="right"></div>
     	<a class="item-pic">1</a>
     	<a class="item-pic">2</a>

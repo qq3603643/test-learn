@@ -5,40 +5,25 @@
     <meta charset="UTF-8">
     <title>Document</title>
     <style>
-        .btn {
-            width: 60px;
-            height: 20px;
-            background: black;
-            color: aliceblue;
-            border-style: none;
-            outline-style: none;
-        }
-        
-        .btn:active {
-            position: relative;
-            top: 2px;
-        }
-        
-        .btn:hover {
-            background: white;
-            border: 1px solid black;
-            color: black;
-            cursor: pointer;
-        }
-        
-        .btn:hover:after {
-            display: block;
-            content: '';
-            width: 4px;
-            height: 4px;
-            background: red;
-        }
+        .btn {width: 60px;background: black;color: aliceblue;border-style: none;outline-style: none;cursor:pointer; }
+        .box{ width:40px;height:40px;background:silver; }
+        .box:active{ background:red; }
+        .box .boxChid{ width:20px;height:20px;background:blue; }
+        .box:hover .btn{ background:red; }
+        .box:hover .boxChid{ background:red; }   
+        /* 原来一个元素hover时想要使其他的元素样式发生改变，辣么被改变元素必须是hover元素的子元素 */
+        .btn:active { position: relative;top: 2px; }
+        .btn:after{ position:absolute;left:100px;display: block;width: 4px;height: 4px;background:blue; }
+        .btn:hover:after { background: red; }
         /*        可用于任何元素*/
     </style>
 </head>
 
 <body>
     <button type="button" class="btn">click </button>
+    <div class="box">
+        <div class="boxChid"></div>
+    </div>
 </body>
 
 </html>
