@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<title>pointer-events</title>
+<meta name="description" content="">
+<meta name="keywords" content="">
+<link href="" rel="stylesheet">
+<style>
+	.box{ width:100px;height:100px;margin:100px  auto;background:#777;cursor:pointer;pointer-events:none; }
+	/* pointer-events:none;可以使元素失去鼠标事件，可以用在一些悬浮式的装饰物上 */
+	/* 可见下面的上述的cursor以及点击事件都失效了 */
+	/* 可惜实测不兼容ie8.................. */
+</style>
+<script>
+	window.onload = function(){
+		var $oBox = document.querySelector('.box');
+			$oBox.onclick = function(){
+				alert();
+			};
+	}
+</script>
+</head>
+<body>
+    <div class="box"></div>
+</body>
+</html>

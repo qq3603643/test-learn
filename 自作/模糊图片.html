@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<title>模糊效果</title>
+<meta name="description" content="">
+<meta name="keywords" content="">
+<link href="" rel="stylesheet">
+<style>
+	.img,.text{ display:block;width:100px;height:100px;margin:100px auto;transition:.6s;border-radius:4px; }
+	.img:hover,.text:hover{ 
+		-webkit-filter: blur(4px); /* Chrome, Opera */
+        -moz-filter: blur(4px);
+        -ms-filter: blur(4px);    
+            filter: blur(4px);
+    
+    filter: progid:DXImageTransform.Microsoft.Blur(PixelRadius=4, MakeShadow=false); /* IE6~IE9 */ }
+</style>
+</head>
+<body>
+    <img src="img/10.jpg" alt="" class="img">
+    <span class="text">i am a tangerine..</span>
+</body>
+</html>
