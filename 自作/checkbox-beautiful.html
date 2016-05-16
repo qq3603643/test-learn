@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<title>复选框美化</title>
+<meta name="description" content="">
+<meta name="keywords" content="">
+<link href="" rel="stylesheet">
+<style type="text/css">
+     label{ cursor:pointer;display:inline-block;height:200px;width:200px;font:20px/40px 'microsoft yahei' }
+     label:after{ display:inline-block;content:'';width:0;height:100%;vertical-align:middle; }
+	.box{ position:relative;display:inline-block;width:20px;height:20px;border:1px solid #666;border-radius:1px;box-shadow:inset 0 0 4px #444;cursor:pointer;vertical-align:middle;transition:.5s; }
+	.item{ position:absolute;left:-3px;top:-3px;width:20px;height:20px;clip:rect( 0 0 0 0 );vertical-align:middle; }
+	.check,.Nocheck{ position:absolute;z-index:2;width:2px;height:10px;background:black;left:6px;top:6px;transform:rotate(-30deg);transform-origin:bottom; }
+	.check:after,.Nocheck:after{ position:absolute;display:block;content:'';width:2px;height:16px;background:#000;left:0px;top:-5px;transform-origin:bottom;transform:rotate(60deg); }
+	.Nocheck{ height:16px;left:14px;top:0px;transform:rotate(-45deg); }
+    .Nocheck:after{ left:-8px;top:-8px;transform:rotate(80deg); }
+</style>
+<script type="text/javascript">
+	window.onload = function(){
+		var $oBox = document.querySelector('.box'),
+			$oItem = $oBox.querySelector('.item'),
+			$oCon = $oBox.querySelector('i');
+			$oItem.onclick = function(){ 
+				setTimeout(statusChange,20);
+			}
+			function statusChange(){
+				var $onff = $oItem.checked;
+				if( $onff ){ 
+					$oBox.style.background = "#0F0";
+					$oCon.className = 'check';
+					return false;
+				}
+				$oBox.style.background = '#F00';  //在此可添加背景图片的等实现良好的外观；
+				$oCon.className = 'Nocheck';
+			}
+	};
+</script>
+</head>
+<body>
+    <label>
+    <div class="box">
+    	<input type="checkbox" class="item"></input>
+    	<i class=""></i>
+    </div>
+    selection 1
+    </label>
+</body>
+</html>

@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<title>日历制作</title>
+<meta name="description" content="">
+<meta name="keywords" content="">
+<link href="index.css" rel="stylesheet">
+<script type="text/javascript" src="../jquery-1.11.3.js"></script>
+<script type="text/javascript">
+	$(function(){
+		var calendar = function(){
+			var 
+			showMouth,showYear,isScroll=!0,
+			toTwo = function(value){
+				if( value>9 ) return value;
+				return '0'+value;
+			},
+			calendarE = {
+				getNowTime: function(){
+					var d = new Date(),w = d.getDay();
+						switch(w){
+							case 0:
+							w = '星期日';break;
+							case 1:
+							w = '星期一';break;
+							case 2:
+							w = '星期二';break;
+							case 3:
+							w = '星期三';break;
+							case 4:
+							w = '星期四';break;
+							case 5:
+							w = '星期五';break;
+							case 6:
+							w = '星期六';break;
+						};
+						return {
+							y: d.getFullYear(),
+							m: d.getMonth()+1,
+							d: d.getDate(),
+							w: w,
+							h: toTwo(d.getHours()),
+							min: toTwo(d.getMinutes()),
+							s: toTwo(d.getSeconds())
+						};
+				},
+				getMouthMaxDays: function(str){
+					return eval('new Date(' + str + ')').getDate();
+				},
+				getMouthFirstDay: function(str){
+				    return eval('new Date(' + str + ')').getDay();
+				},
+				layOut : function(){
+					//head上面的时间
+					var y = calendarE.getNowTime().y,
+						m = calendarE.getNowTime().m,
+						d = calendarE.getNowTime().d,
+						w = calendarE.getNowTime().w;
+					    showYear = y;showMouth = m;
+					$('.calendar-head-titleDetail').html(y+'年'+m+'月'+d+'日，'+w);
+					$('.calendar-head-title').html(calendarE.getNowTime().h+':'+calendarE.getNowTime().min+':'+calendarE.getNowTime().s); 
+					setInterval(function(){
+						$('.calendar-head-title').html(
+							calendarE.getNowTime().h+':'+calendarE.getNowTime().min+':'+
+							calendarE.getNowTime().s); 
+					},1000)
+					//主体部分
+					//1.标题
+					$('.content-title-year').html(y+'年');
+					$('.content-title-mouth').html(m+'月');
+					//2.大体
+					calendarE.timesApper();
+				},
+				timesApper: function(){
+					$('.time-list-item').remove();
+					var $oLi = $('<li>').addClass('time-list-item'),html='',spanAmount=42;
+					    
+						while( spanAmount ){
+							html += '<span>1</span>';
+							spanAmount-=1;
+						};
+						$('.time-list').append($oLi.html(html));
+						calendarE.timersRepair($oLi,showYear,showMouth);
+				},
+				timersRepair: function(parent,showYear,showMouth){
+					var 
+						i = 0,
+						j = 0,
+						nowDay = calendarE.getNowTime().d,
+						nowYear = calendarE.getNowTime().y,
+						nowMouth = calendarE.getNowTime().m,
+						prevMouthDays = calendarE.getMouthMaxDays(showYear+','+(showMouth-1)+',0'),
+						firstDay = calendarE.getMouthFirstDay(showYear+','+(showMouth-1)+',1'),
+						startIndex = (firstDay==0) ? 6 : firstDay - 1,
+						endIndex = calendarE.getMouthMaxDays(showYear+','+showMouth+',0');
+
+						$.each(parent.find('span'),function(index,ele){
+							if( index<startIndex ){
+								$(ele).html(prevMouthDays-(startIndex-index-1));
+								$(ele).addClass('prev-mouth');
+								return;
+							}
+							if( index>=(endIndex+startIndex) ){
+								$(ele).html(j+=1);
+								$(ele).addClass('next-mouth')
+							}
+							if( index>=startIndex){
+								if(i<endIndex) $(ele).html(i+=1);
+								if(i==nowDay && showMouth==nowMouth && showYear==nowYear) $(ele).addClass('active');
+							}
+						})
+						
+				},
+				showDefineDate: function(){
+					$('.content-title-year').html(showYear+'年');
+					$('.content-title-mouth').html(showMouth+'月');
+				},
+				mouthSelectEvent: function(){
+
+					$.each($('.time-list-item-mouth span'),function(index,ele){
+						$(ele).removeClass('active');
+						if( (index+1)==showMouth ) $(ele).addClass('active');
+					})
+					$('.yearBox').hide();
+					$('.time-list-item').hide();
+					$('.time-week-list').hide();
+					$('.content-title-right').hide();
+					$('.time-list-item-mouth').show();
+				},
+				yearClickEvent: function(){
+					var 
+						yearItem = '',
+						i = 0,yearItemAmount = 16;
+						while( yearItemAmount ){
+
+						 yearItem += '<span>' + (showYear+i) + '</span>';
+						 i+=1;
+						 yearItemAmount -= 1;
+						}
+						$('.yearList').html('');
+						$('.yearList').html(yearItem).css('top','0px');
+					    $('.content-title-right').hide();
+					    $('.time-list-item-mouth').hide();
+					    $('.yearBox').show();
+					    $('.time-week-list').show();
+					    calendarE.timesApper();
+
+				},
+				yearMousewheel: function(e){
+					var delta = (e.originalEvent.wheelDelta && (e.originalEvent.wheelDelta > 0 ? 1 : -1)),
+						baseTop = $('.yearList span').height()*3,
+						target = delta > 0 ? $('.yearList').position().top - baseTop : $('.yearList').position().top + baseTop;
+						if( isScroll ){
+						isScroll = !1;
+						$('.yearList').animate({'top':target},600,function(){
+							isScroll = !0;
+							if( $('.yearList').position().top>0 ){
+								var html = '',newItemAmount = 12,
+									firstNum = $('.yearList span:first').html()*1;
+								while(newItemAmount){
+									html += '<span>'+ (firstNum-newItemAmount) +'</span>';
+									newItemAmount -= 1;
+								};
+								$('.yearList').html( html + $('.yearList').html() ).css('top','0');
+								return false;
+							}
+						   if( $('.yearList').height()- $('.yearBox').height()- Math.abs($('.yearList').position().top) <0){
+							   	var html = '',newItemAmount = 12,
+									firstNum = $('.yearList span:last').html()*1;
+								while(newItemAmount){
+									html += '<span>'+ (firstNum+=1) +'</span>';
+									newItemAmount -= 1;
+								};
+								$('.yearList').html( $('.yearList').html()+html );
+						   }
+
+						})}
+					     
+				},
+				run: function(){
+					//console.log(calendarE.getNowTime())
+					calendarE.layOut();
+					//上下翻页的展示
+					$('.content-title-right').on('click','.time-prev,.time-next',function(e){
+					   if(e.target.className == 'time-prev'){
+					   	showMouth -= 1;
+					   	(showMouth == 0) && (showYear-=1,showMouth=12);
+					   }else {
+					   	showMouth += 1;
+					   	(showMouth == 13) && (showYear+=1,showMouth=1);
+					   }
+					   calendarE.timesApper();
+					   calendarE.showDefineDate();
+					   //console.log( showMouth+'||'+showYear );
+					})
+					//选择月份
+					$('.content-title-mouth').on('click',calendarE.mouthSelectEvent);
+					$('.time-list-item-mouth span').on('click',function(){
+						showMouth = $(this).html().match(/\d+/g)*1;
+						$('.time-list-item-mouth').hide();
+					    calendarE.timesApper();
+					    calendarE.showDefineDate();
+						$('.time-week-list').show();
+						$('.content-title-right').show();
+						})
+					//选择年份
+					$('.content-title-year').on('click',calendarE.yearClickEvent);
+					$('.yearBox').on('click','span',function(){
+						showYear = $(this).html()*1;
+						$('.yearBox').hide();
+						calendarE.timesApper();
+						calendarE.showDefineDate();
+						$('.time-week-list').show();
+						$('.content-title-right').show();
+					})
+					$('.yearBox').on('mousewheel',calendarE.yearMousewheel);
+				}
+			};
+			return calendarE;
+		}();
+		calendar.run();
+	})
+</script>
+</head>
+<body>
+    <div class="calendar">
+    	<div class="calendar-head">
+    		<h2 class="calendar-head-title"></h2>
+    		<h3 class="calendar-head-titleDetail"></h3>
+    	</div>
+    	<div class="content">
+	    	<div class="yearBox">
+	    	 <div class="yearList">
+	    		
+	    	 </div>
+	    	</div>
+    		<div class="content-title">
+    			<a class="content-title-left">
+    			<span class="content-title-year"></span>
+    			<span class="content-title-mouth"></span></a>
+    			<a class="content-title-right">
+    			<span class="time-prev">︿</span>
+    			<span class="time-next">﹀</span></a>
+    		</div>
+    		<ul class="time-week-list">
+    			<li class="time-week-item">一</li>
+    			<li class="time-week-item">二</li>
+    			<li class="time-week-item">三</li>
+    			<li class="time-week-item">四</li>
+    			<li class="time-week-item">五</li>
+    			<li class="time-week-item">六</li>
+    			<li class="time-week-item">日</li>
+    		</ul>
+    		<ul class="time-list">
+    			<!-- <li class="time-list-item"> -->
+    				<!-- <span class="prev-mouth">1</span>
+    				<span class="prev-mouth">2</span>
+    				<span>3</span>
+    				<span>4</span>
+    				<span class="active">5</span>
+    				<span class="next-mouth">6</span>
+    				<span class="next-mouth">7</span> -->
+    			<!-- </li> -->
+    			<li class="time-list-item-mouth">
+    				<span>1月</span>
+    				<span>2月</span>
+    				<span>3月</span>
+    				<span>4月</span>
+    				<span>5月</span>
+    				<span>6月</span>
+    				<span>7月</span>
+    				<span>8月</span>
+    				<span>9月</span>
+    				<span>10月</span>
+    				<span>11月</span>
+    				<span>12月</span>
+    			</li>
+    		</ul>
+    	</div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<title>旋转的圆环效果</title>
+<meta name="description" content="">
+<meta name="keywords" content="">
+<link href="" rel="stylesheet">
+<style type="text/css">
+	.wrap{ position:relative;width:200px;height:200px;border:1px solid #666;background:#444; }
+	.left,.right,.left-circle,.right-circle{ position:absolute;width:100px;height:200px; }
+	.left{ left:0;top:0;z-index:3;background:#444; }
+	.right{ left:100px;top:0;z-index:1;background:#444; }
+	.left-circle{ left:0;top:0;background:url('bg_green.png') no-repeat;z-index:2;transform-origin:right center; }
+	.right-circle{ left:100px;top:0;background:url('bg_green.png') no-repeat -100px 0;z-index:1;display:none;transform-origin:left center; }
+
+</style>
+<script type="text/javascript">
+	window.onload = function(){
+		var
+			$leftMark = document.querySelector('.left'),
+			$rightMark = document.querySelector('.right'),
+			$leftCircle = document.querySelector('.left-circle'),
+			$rightCircle = document.querySelector('.right-circle'),
+			startDeg = 0,rightStartDeg = 0;
+			
+		var 
+			leftRotate = function(fn){
+				var speed = 1,timerLeft;
+
+				$leftMark.style.zIndex = '3';
+				$leftCircle.style.zIndex = '2';
+				$rightMark.style.zIndex = '1';
+				$rightCircle.style.display = 'none';
+
+				timerLeft = setInterval(function(){
+					startDeg += speed;
+					if( startDeg>180 ){
+						$leftCircle.style.transform = 'rotate(180deg)';
+						clearInterval(timerLeft);
+						fn && fn();return;
+					}
+					$leftCircle.style.transform = 'rotate('+ startDeg +'deg)';
+				},10)
+			},
+			rightRotate = function(fn){
+				var speed = 0,timerRight;
+				
+				$rightCircle.style.display = 'block';
+				$rightCircle.style.zIndex = '3';
+
+				timerRight = setInterval(function(){
+					rightStartDeg += 1;
+					if( rightStartDeg > 180 ){
+						//$rightCircle.style.transform = 'rotate(180deg);';
+						clearInterval(timerRight);
+						fn && fn();return;
+					}
+					$rightCircle.style.transform = 'rotate('+ rightStartDeg +'deg)';
+				},10)
+			},
+			Start = function(){
+				$rightCircle.style.transform = 'rotate(0deg)';
+				$leftCircle.style.transform = 'rotate(0deg)';
+				startDeg = 0;rightStartDeg = 0;
+				leftRotate(function(){
+				rightRotate( Start );
+				});
+			};
+			Start();
+
+	};
+</script>
+</head>
+<body>
+    
+<div class="wrap">	
+		<div class="left"></div>
+		<div class="left-circle"></div>
+		<div class="right"></div>
+		<div class="right-circle"></div>
+</div>	
+
+</body>
+</html>
