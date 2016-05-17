@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<title>翻页效果</title>
+<meta name="description" content="">
+<meta name="keywords" content="">
+<link href="" rel="stylesheet">
+
+</head>
+<body style="background: #000">
+
+<svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="400" height="400" style="background: #fff;">
+	<g style="cursor:pointer;" id="box">
+		<rect x="100" y="100" width="200" height="200" fill="#ddd"/>
+		<path d="M100 100 L300 100 L300 300 L100 300" fill="none"/>
+		<text x="200" y="210" style="font-size: 40px;text-anchor: middle;fill: #f0f" > Tangerine </text>
+	</g>
+</svg>
+    
+<script>
+
+	var Se = function(str){ return document.querySelector(str) },
+		timer = null,startX,DofPath = 'M100 100 L300 100 L300 300 ',
+		nowD,nowY,
+		$path = Se('path'),
+		$box = Se('#box');
+		
+	$box.onmouseenter = function(){  
+		clearInterval(timer);
+		startX = 100;
+		$path.setAttribute('fill', '#888');
+		timer = setInterval(function(){
+			if( startX<250 ){
+				startX += 6;nowY = 400 - startX;
+				nowD =  DofPath + 'L' + startX + ' ' + nowY;
+				$path.setAttribute('d', nowD);
+			}else{
+				clearInterval(timer);
+				$path.setAttribute('fill', 'none');
+				$path.setAttribute('d', 'M100 100 L300 100 L300 300 L100 300');
+			}
+		}, 30)
+	};
+</script>
+
+</body>
+</html>
