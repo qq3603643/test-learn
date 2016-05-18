@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<title>linear-gradient</title>
+<meta name="description" content="">
+<meta name="keywords" content="">
+<link href="" rel="stylesheet">
+<style>
+	.box{ margin:100px;width:100px;height:400px;outline:1px solid #888; }
+	/* .gradient{ background:linear-gradient(#700 20%,#060 50%,#005 80%); } */
+	/* 为0~20%为第一个颜色纯色 20~50为第一个颜色到第二个颜色的渐变 50~80为第二个颜色到第三个的渐变 80以后为第三个颜色纯色*/
+	.gradient{ background:linear-gradient( to bottom,#800 50%,#080 50%);background-size:100% 25%; }
+</style>
+</head>
+<body>
+    <div class="box gradient"></div>
+</body>
+</html>

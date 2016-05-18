@@ -8,14 +8,24 @@
             display: inline;
             margin: 0px;
         }
-        dd:after{
+
+        dl dt:nth-of-type(1)~dt:before{
             content: '\A';
             white-space: pre;
         }
+        /* ie8不支持nth-of-type */
+        /* dd:after{
+            content: '\A';
+            white-space: pre;
+        } */
     </style>
 </head>
 <body>
     <dl>
+        <dt>q:</dt><dd>&emsp;what are you doing?</dd>
+        <dt>a:</dt>&emsp;running...<dd></dd>
+        <dt>q:</dt><dd>&emsp;what are you doing?</dd>
+        <dt>a:</dt>&emsp;running...<dd></dd>
         <dt>q:</dt><dd>&emsp;what are you doing?</dd>
         <dt>a:</dt>&emsp;running...<dd></dd>
     </dl>

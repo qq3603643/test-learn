@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<title>outline</title>
+<meta name="description" content="">
+<meta name="keywords" content="">
+<link href="" rel="stylesheet">
+<style>
+	.v1,.v2{ width:100px;height:100px;background:#444;margin:100px;outline:10px solid #f00;cursor:pointer; }
+	.v1{ border-radius:40px; }
+	/* 不会贴合 */
+	.v2{ outline-offset:-20px; }
+	/* 可设置偏移量 ;ie8不支持偏移量的设置............*/
+	.v2:hover{ outline-offset:20px;transition:.6s;outline-style:dashed; }
+	.v3{ width:150px;height:100px;padding:20px;margin:100px;background:#ccc;font:20px/50px 'microsoft yahei';word-break:break-all;border-radius:20px;outline:10px solid #555;box-shadow:0 0 0 8px #555; }
+	/* 利用了box-shadow跟随圆角变化，outline不跟随的特点，ie8不支持box-radius和box-shadow看上去也比较和谐，可以普遍使用 */
+
+	
+</style>
+</head>
+<body>
+    <div class="v1"></div>
+    <div class="v2"></div>
+    <div class="v3"> i am a tangerine,and you? </div>
+</body>
+</html>
