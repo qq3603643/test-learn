@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<title>Examples</title>
+<meta name="description" content="">
+<meta name="keywords" content="">
+<link href="" rel="stylesheet">
+</head>
+<body>
+    <script>
+    	var isSupport = function(attrName){
+    		var root = document.documentElement;  //获取html元素（根元素）
+
+    		if( attrName in root.style ) return !0;
+    		return !1;
+    	};
+    	//alert( isSupport('width') );  //值得注意的是即使浏览器能识别该属性 也不一定能渲染出想要的效果
+
+    	//是否支持该样式下的某一属性
+
+    	var isSupportValue = function(attr,value){
+    		var result,nowValue,
+    			tepEle = document.createElement('p');
+    			
+    		    tepEle.style[attr] = value;
+    		    nowValue = tepEle.style[attr];
+		        result = nowValue == 0 ? !0 : !!nowValue;
+
+		        return result;
+    	};
+    	alert( isSupportValue('width','0') )
+    </script>
+</body>
+</html>

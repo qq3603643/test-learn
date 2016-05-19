@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<title>pic</title>
+<meta name="description" content="">
+<meta name="keywords" content="">
+<link href="" rel="stylesheet">
+<style>
+	.box{ width:100px;height:100px;margin:100px auto;background:url('../pics/0.jpg') no-repeat;
+		  -webkit-clip-path: polygon(50% 0,100% 50%,50% 100%,0 50%);transform:scale(1.4);
+	 }
+	 .box2{ width:100px;height:100px;margin:100px auto;position:relative;transform:rotate(45deg);overflow:hidden; }
+	 .box2:after{ width:100%;height:100%;display:block;content:'';position:absolute;z-index:-2;background:#777;transform:rotate(-45deg); }
+</style>
+</head>
+<body>
+    <div class="box"></div>
+    <div class="box2"></div>
+</body>
+</html>

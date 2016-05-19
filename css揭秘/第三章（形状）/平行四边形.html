@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<title>平行四边形</title>
+<meta name="description" content="">
+<meta name="keywords" content="">
+<link href="" rel="stylesheet">
+<style>
+	.box{ width:100px;height:40px;padding:0 10px;position:relative;margin:100px auto;font:20px/40px 'microsoft yahei';text-align:center;color:#fff;cursor:pointer; }
+	.box:after{ width:100%;height:100%;display:block;content:'';position:absolute;left:0;top:0;z-index:-2;background:#777;transform:skewX(-45deg);border-radius:10px; }
+	.box:hover:after{ transition:.4s;transform:skewX(-40deg); }
+	/* 向下兼容，不支持skewX的看起来还可以 */
+</style>
+</head>
+<body>
+    <div class="box">
+    	tangerine.
+    </div>
+</body>
+</html>
