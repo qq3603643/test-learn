@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<title>isNumber</title>
+<meta name="description" content="">
+<meta name="keywords" content="">
+<link href="" rel="stylesheet">
+<script src="../自作/jquery-1.11.3.js"></script>
+</head>
+<body>
+
+    <script>
+    //严格的数字类型检测
+    	var isNumber = function(value){
+    		value+='';
+    		value = value.replace(/^\s\s*/,'').replace(/\s*\s$/,'');
+    		//console.log(value);
+    		var re1 = /^([+|-])?[1-9]\d*$/,re2 = /^\d+$/,reZreo = /^[+|-]?0$/,
+    			valueArr = value.split('.'),first = valueArr[0],last = valueArr[1];
+			if( valueArr.length ==  1 ){
+				if( reZreo.test(first) ) return true;
+				return re1.test(first);
+				
+			}
+			if( reZreo.test(first) ) return re2.test(last);
+			return re1.test(first) && re2.test(last);
+    	};
+    	//console.log( isNumber('+0.5') );
+
+    	var DeferredTest = function(){
+    		var data,times = 2000,
+    			testE = {
+    				config: function(obj){
+    					times =  obj.times || times; 
+    				},
+    				getData: function(){
+    					var D = $.Deferred();
+    					setTimeout(function(){
+    						data = { 'name':'tangerien' };
+    						D.resolve();
+    					}, times)
+    					return D.promise();
+    				},
+    				dealData: function(){
+    					try {
+    						if(!data){ throw new Error() };
+    					} catch(e) {
+    						console.log('数据没有获取');
+    						testE.dealData();
+    					}
+    					console.log(data);
+    				},
+    				run: function(){
+    					testE.getData(
+    					).done(
+    						testE.dealData
+    					).done(function(){
+    						setTimeout('console.log(123)', times)
+    					}).done(function(){
+    						console.log(456);  //不会等到2s后才执行........先打印456再打印123
+    					});	
+    				}
+    			};
+
+			return {  //不需要全部返回，给一些用户操作的即可
+				'config': testE.config,
+				'run': testE.run
+			};
+    	}();
+    	DeferredTest.config({
+    		times: 3000
+    	})
+    	DeferredTest.run();
+    </script>
+</body>
+</html>
