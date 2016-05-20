@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    <title>Document</title>
+    <link href="css/index.css" type="text/css" rel="stylesheet">
+    <style>
+    	div{ width:100px;height:100px;background:#888;margin:100px; }
+		.single{ box-shadow:0 6px 10px -3px #f00; }
+		/* 最后一个参数为box-shadow的实体颜色参数 可理解为其的padding（只是可为负值）上述理解为10px的模糊效果再向里缩进3px(模糊后用较小的缩进即可抵消)就没有了在向下偏移所以下方能看见投影 */
+		.sib{ box-shadow: 3px 3px 6px #f00; }
+		.opposite{ box-shadow:6px 0 6px -2px #f00,-6px 0 6px -2px #f00; }
+    </style>
+</head>
+<body >
+	<!--单边投影 -->
+	<div class="single"></div>
+	<!-- 邻边投影 -->
+	<div class="sib"></div>
+	<!-- 对边投影 -->
+	<div class="opposite"></div>
+</body>
+</html>

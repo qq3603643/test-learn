@@ -4,7 +4,7 @@ var confirmGoods = function(){
 	var  $calcBox = $('.calcTotal'),
 		 timerHideBottom = null,
 		 confirm = {
-		 	keepBottom: function(){
+		 	calcBoxKeepBottom: function(){
 		 		clearTimeout(timerHideBottom);
 		 		$calcBox.css({'visibility':'hidden','opacity':'0'});
 		 		var calcBoxHeight = $calcBox.height(),scrollTop = $(window).scrollTop(),
@@ -17,10 +17,10 @@ var confirmGoods = function(){
 	 		    }),400},400)
 		 	},
 		 	run: function(){
-		 		confirm.keepBottom();
+		 		confirm.calcBoxKeepBottom();
 		 		$(window).on({
-		 			'scroll':confirm.keepBottom,
-		 			'resize':confirm.keepBottom
+		 			'scroll':confirm.calcBoxKeepBottom,
+		 			'resize':confirm.calcBoxKeepBottom
 		 		});
 		 	}
 		 };
@@ -30,6 +30,10 @@ var confirmGoods = function(){
 	 };
 }();
 
+// a标签active的兼容(绑定一个空事件)
+$('a').on('touchstart',function(){});
+
+//结算相关
 confirmGoods.run();
 
 })

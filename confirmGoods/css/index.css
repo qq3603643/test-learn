@@ -32,9 +32,11 @@ body{
     font-size: 1.4rem;
     background: #efefef;
     padding-bottom:5rem;
+    -webkit-overflow-scrolling: touch;
 }
 .calcTotal{ 
 	position:absolute;
+	bottom:-10rem;
 	/* position:fixed; */
 	/* bottom:0; */
 	width:100%;
