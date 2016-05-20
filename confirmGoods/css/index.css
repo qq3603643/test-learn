@@ -6,6 +6,22 @@ body{ font: 12px/20px 'microsoft yahei'; }
 i,em{ font-style: normal; }
 a,a:active{ text-decoration: none; color: #000; }
 img{ border: none; vertical-align:top; }
+/* global */
+.centerWrap{
+	text-align:center;
+	vertical-align:middle;
+}
+.centerWrap:after{
+	display:inline-block;
+	content:'centerWrap';
+	width:0;
+	height:100%;
+	vertical-align:middle;
+	overflow:hidden;
+}
+.banScroll{
+	overflow-y:hidden;overflow-x:hidden;
+}
 /* html */
 html{
     font-size: 62.5%;
@@ -23,5 +39,6 @@ body{
 	/* bottom:0; */
 	width:100%;
 	height:5rem;
+	color:#fff;
 	background:#000;
 }

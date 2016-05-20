@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    <title>Document</title>
+    <link href="css/rushRed.css" type="text/css" rel="stylesheet">
+    <script src="js/zepto.min.js"></script>
+    <script src="js/rushRed.js"></script>
+    <style type="text/css">
+    .mark{ width:100%;height:100%;position:absolute;background:#000;opacity:0;display:none;transition:.8s; }
+    .pic{ display:inline-block;width:50px;height:50px;margin:100px 0 0 100px;cursor:pointer; }
+    </style>
+</head>
+<body class="centerWrap">
+	<div class="mark"></div>
+	<img class="pic" src="../css揭秘/pics/0.jpg"></img>
+	<script type="text/javascript">
+		var oPic = $('.pic');
+		oPic.on('click',function(){
+			
+			var Src=$(this).attr('src'),
+				newImg=$('<img>').attr('src',Src);
+
+				newImg.get(0).onload = function(){
+					newImg.css({
+						'position': 'absolute',
+						'display':'inline-block',
+						'width':'50px',
+						'height':'50px',
+						'left': oPic.offset().left,
+						'top':oPic.offset().top
+					});
+					$('.mark').append(newImg);
+
+					newImg.animate({
+						'left': 400,
+						'top': 400,
+						'width': 400,
+						'height': 400
+					},600)
+				}
+
+			$('.mark').css('display','block').animate({
+				'opacity':'1'
+			},600);
+			$('.mark').on('click',function(){
+				newImg.animate({
+						'left': oPic.offset().left,
+						'top': oPic.offset().top,
+						'width': 50,
+						'height': 50
+					},600)
+				$('.mark').animate({
+				'opacity':'0'
+				},600,function(){
+					$('.mark').css('display','none')
+				});
+			})
+		})
+
+
+	</script>
+</body>
+</html>
