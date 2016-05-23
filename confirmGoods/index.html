@@ -7,8 +7,47 @@
     <link href="css/index.css" type="text/css" rel="stylesheet">
     <script src="js/zepto.min.js"></script>
     <script src="js/index.js"></script>
+    <script>
+    	//初始化整个页面的字体大小
+		$('html').css({'fontSize':$(window).width()/10 +'px'});
+    </script>
+    <style>
+    .goodsCountActi{ font:0/0 '';text-align:center; }
+    .countMinus,.countPlus,.countGoods{
+    	display:inline-block;height:1rem;font:.6rem/1rem 'microsoft yahei';border:1px solid #888;
+    	vertical-align:middle;
+    }
+    .countMinus,.countPlus{ padding:0 .2rem;width:.4rem;font-weight:600; }
+	.countGoods{ display:inline-block;padding:0;margin:1rem auto;width:2rem;border-left:none;border-right:none;}
+    </style>
 </head>
-<body class="centerWrap">
+<body>
+	<div class="goodsCountActi centerWrap">
+		<a href="javascript:;" class="countMinus">-</a>
+		<a href="javascript:;" class="countGoods" >0</a>
+		<a href="javascript:;" class="countPlus">+</a>
+	</div>
+	<div class="goodsCountActi centerWrap">
+		<a href="javascript:;" class="countMinus">-</a>
+		<a href="javascript:;" class="countGoods" >0</a>
+		<a href="javascript:;" class="countPlus">+</a>
+	</div>
+		
 	<div class="calcTotal">我是底部</div>
+	<!-- <div class="y-keyboard">
+		<h2><span class="y-keyboard-completed">完成</span></h2>
+		<span class="y-keyboard-item borderR">1</span>
+		<span class="y-keyboard-item borderR">2</span>
+		<span class="y-keyboard-item">3</span>
+		<span class="y-keyboard-item borderR">4</span>
+		<span class="y-keyboard-item borderR">5</span>
+		<span class="y-keyboard-item">6</span>
+		<span class="y-keyboard-item borderR">7</span>
+		<span class="y-keyboard-item borderR">8</span>
+		<span class="y-keyboard-item">9</span>
+		<span class="y-keyboard-item borderR bg-silver none">清除</span>
+		<span class="y-keyboard-item borderR">0</span>
+		<span class="y-keyboard-item action-delete bg-silver">删除</span>
+	</div> -->
 </body>
 </html>

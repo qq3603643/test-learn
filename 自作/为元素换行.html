@@ -8,10 +8,23 @@
             display: inline;
             margin: 0px;
         }
+		dd{
+			font-weight:bold;
+		}
+       /*  dl dd+dt:before{
+        	content:'\A';
+        	white-space:pre;
+        } */
+        /* dd后面的dt 完美的避开第一个dt */
+        /* +选择器支持ie8 另外~ ：first-child也是支持的 */
 
-        dl dt:nth-of-type(1)~dt:before{
+        dl dt:first-child~dt:before{
             content: '\A';
             white-space: pre;
+        }
+        dl dd+dd:before{
+			content:',';
+			margin-left:10px;
         }
         
         /* dd:after{
@@ -22,12 +35,12 @@
 </head>
 <body>
     <dl>
-        <dt>q:</dt><dd>&emsp;what are you doing?</dd>
-        <dt>a:</dt>&emsp;running...<dd></dd>
-        <dt>q:</dt><dd>&emsp;what are you doing?</dd>
-        <dt>a:</dt>&emsp;running...<dd></dd>
-        <dt>q:</dt><dd>&emsp;what are you doing?</dd>
-        <dt>a:</dt>&emsp;running...<dd></dd>
+        <dt>q:</dt>&emsp;<dd>what are you doing?</dd>
+        <dt>a:</dt>&emsp;<dd>running...</dd>
+        <dt>q:</dt>&emsp;<dd>what are you doing?</dd><dd>and how are you feeling?</dd>
+        <dt>a:</dt>&emsp;<dd>running...</dd>
+        <dt>q:</dt>&emsp;<dd>what are you doing?</dd>
+        <dt>a:</dt>&emsp;<dd>running...</dd>
     </dl>
 </body>
 </html>

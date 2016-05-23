@@ -22,16 +22,20 @@ img{ border: none; vertical-align:top; }
 .banScroll{
 	overflow-y:hidden;overflow-x:hidden;
 }
+.act-active{
+	background:#fff;
+	transition:.4s;
+	box-shadow:0 0 10px #000 inset;
+}
 /* html */
 html{
-    font-size: 62.5%;
     font-family: "Microsoft YaHei";
 }
-body{
-	height: 200rem;
-    font-size: 1.4rem;
+body{	
     background: #efefef;
-    padding-bottom:5rem;
+    padding-bottom:2rem;
+    height:200rem;
+    text-align:center;
     -webkit-overflow-scrolling: touch;
 }
 .calcTotal{ 
@@ -40,7 +44,54 @@ body{
 	/* position:fixed; */
 	/* bottom:0; */
 	width:100%;
-	height:5rem;
+	height:2rem;
+	font:1.4rem/2rem 'Microsoft YaHei';
 	color:#fff;
 	background:#000;
+}
+/* keyboard */
+.y-keyboard{
+	position:absolute;
+	width:100%;
+	overflow:hidden;
+	z-index:10;
+	display:none;
+}
+.y-keyboard h2{
+	display:block;
+	text-align:right;
+}
+.y-keyboard-completed{
+	display:inline-block;
+	margin:.1rem;
+	width:2rem;
+	font:.5rem/1rem 'Microsoft YaHei';
+	color:#fff;
+	background:#43B9FB;
+	text-align:center;
+	border-radius:4px;
+}
+.y-keyboard-completed:active{
+	background:#fff;
+	color:#000;
+	transition:.4s;
+}
+.y-keyboard-item{
+	display:block;
+	float:left;
+	width:33.3333%;
+	height:1.2rem;
+	font:.5rem/1.2rem 'Microsoft YaHei';
+	background:#fff;
+	border-top:1px solid #CECDCE;
+}
+.y-keyboard-item:active{
+	background:#D3D9E0;
+}
+.borderR{
+	width:calc( 33.3333% - 1px );
+	border-right:1px solid #CECDCE;
+}
+.y-keyboard .bg-silver{
+	background:#D3D9E0;
 }
