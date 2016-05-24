@@ -5,19 +5,6 @@ var confirmGoods = function(){
 		$calcBox = $('.calcTotal'),
 		timerShowBottom = null,
 		confirm = {
-		 	calcBoxKeepBottom: function(){
-
-		 		clearTimeout(timerShowBottom);
-		 		$calcBox.css({'visibility':'hidden','opacity':'0'});
-		 		var calcBoxHeight = $calcBox.height(),scrollTop = $(window).scrollTop(),
-		 			itop = $(window).height()-calcBoxHeight+scrollTop;
-		 		    $calcBox.css({'top':itop});
-	 		    
-	 		    timerShowBottom = setTimeout(function(){ $calcBox.animate({
-	 		    	'opacity':'1',
-	 		    	'visibility':'visible'
-	 		    }),400},400)
-		 	},
 		 	goodsInfoListHide: function(){
 		 		
 		 	},
@@ -53,12 +40,6 @@ var confirmGoods = function(){
 		 	},
 		 	run: function(){
 
-		 		//底部结算悬浮
-		 		confirm.calcBoxKeepBottom();
-		 		$(window).on({
-		 			'scroll':confirm.calcBoxKeepBottom,
-		 			'resize':confirm.calcBoxKeepBottom
-		 		});
 		 		//加减按钮
 		 		$('.goodsCountActi').off('touchstart').on('touchstart','.countPlus,.countMinus',function(e){
 		 			var e = e||window.event;

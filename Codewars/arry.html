@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<title>Examples</title>
+<meta name="description" content="">
+<meta name="keywords" content="">
+<link href="" rel="stylesheet">
+</head>
+<body>
+    <script>
+    	var names = [{name: 'Bart'},{name: 'Lisa'},{name: 'tangerine'},'tangerine'],
+    		getName = function(arr){
+    			var result = [];
+    			for(var i=0,len=arr.length;i<len;i+=1){
+    				try{ ('name' in arr[i]) }catch(e){
+    					console.log(e);
+    					continue;
+    				}
+    				if('name' in arr[i]) result.push(arr[i].name);
+    			}
+    			return result.length > 2 ? result.shift()+','+result.join('&') : result.join('&');
+    		};
+
+    		console.log(getName(names));
+
+    	
+    </script>
+</body>
+</html>

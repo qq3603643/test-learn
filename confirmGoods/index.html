@@ -6,10 +6,19 @@
     <title>Document</title>
     <link href="css/index.css" type="text/css" rel="stylesheet">
     <script src="js/zepto.min.js"></script>
+    <script src="js/iscroll.js"></script>
     <script src="js/index.js"></script>
     <script>
     	//初始化整个页面的字体大小
 		$('html').css({'fontSize':$(window).width()/10 +'px'});
+		//scroll初始化
+		$(function(){
+			myScroll = new iScroll('wrapper', { 
+				fixedScrollbar: true,
+				vScrollbar: true,
+				fadeScrollbar: true
+			 });
+		})
     </script>
     <style>
     .goodsCountActi{ font:0/0 '';text-align:center; }
@@ -22,18 +31,57 @@
     </style>
 </head>
 <body>
-	<div class="goodsCountActi centerWrap">
-		<a href="javascript:;" class="countMinus">-</a>
-		<a href="javascript:;" class="countGoods" >0</a>
-		<a href="javascript:;" class="countPlus">+</a>
+	<header>
+		i am header.
+	</header>
+	<div id="wrapper" class="main">
+        <div class="content">
+			<div class="goodsCountActi centerWrap">
+			<a href="javascript:;" class="countMinus">-</a>
+			<a href="javascript:;" class="countGoods" >0</a>
+			<a href="javascript:;" class="countPlus">+</a>
+			</div>
+			<div class="goodsCountActi centerWrap">
+			<a href="javascript:;" class="countMinus">-</a>
+			<a href="javascript:;" class="countGoods" >0</a>
+			<a href="javascript:;" class="countPlus">+</a>
+			</div>
+			<div class="goodsCountActi centerWrap">
+			<a href="javascript:;" class="countMinus">-</a>
+			<a href="javascript:;" class="countGoods" >0</a>
+			<a href="javascript:;" class="countPlus">+</a>
+			</div>
+			<div class="goodsCountActi centerWrap">
+			<a href="javascript:;" class="countMinus">-</a>
+			<a href="javascript:;" class="countGoods" >0</a>
+			<a href="javascript:;" class="countPlus">+</a>
+			</div>
+			<div class="goodsCountActi centerWrap">
+			<a href="javascript:;" class="countMinus">-</a>
+			<a href="javascript:;" class="countGoods" >0</a>
+			<a href="javascript:;" class="countPlus">+</a>
+			</div>
+			<div class="goodsCountActi centerWrap">
+			<a href="javascript:;" class="countMinus">-</a>
+			<a href="javascript:;" class="countGoods" >0</a>
+			<a href="javascript:;" class="countPlus">+</a>
+			</div>
+			<div class="goodsCountActi centerWrap">
+			<a href="javascript:;" class="countMinus">-</a>
+			<a href="javascript:;" class="countGoods" >0</a>
+			<a href="javascript:;" class="countPlus">+</a>
+			</div>
+			<div class="goodsCountActi centerWrap">
+			<a href="javascript:;" class="countMinus">-</a>
+			<a href="javascript:;" class="countGoods" >0</a>
+			<a href="javascript:;" class="countPlus">+</a>
+			</div>
+		</div>
 	</div>
-	<div class="goodsCountActi centerWrap">
-		<a href="javascript:;" class="countMinus">-</a>
-		<a href="javascript:;" class="countGoods" >0</a>
-		<a href="javascript:;" class="countPlus">+</a>
-	</div>
-		
-	<div class="calcTotal">我是底部</div>
+	
+	<footer class="calcTotal">
+		i am footer.
+	</footer> 
 	<!-- <div class="y-keyboard">
 		<h2><span class="y-keyboard-completed">完成</span></h2>
 		<span class="y-keyboard-item borderR">1</span>
