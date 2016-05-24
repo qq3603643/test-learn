@@ -11,14 +11,6 @@
     <script>
     	//初始化整个页面的字体大小
 		$('html').css({'fontSize':$(window).width()/10 +'px'});
-		//scroll初始化
-		$(function(){
-			myScroll = new iScroll('wrapper', { 
-				fixedScrollbar: true,
-				vScrollbar: true,
-				fadeScrollbar: true
-			 });
-		})
     </script>
     <style>
     .goodsCountActi{ font:0/0 '';text-align:center; }
@@ -35,7 +27,9 @@
 		i am header.
 	</header>
 	<div id="wrapper" class="main">
+
         <div class="content">
+ 
 			<div class="goodsCountActi centerWrap">
 			<a href="javascript:;" class="countMinus">-</a>
 			<a href="javascript:;" class="countGoods" >0</a>
@@ -75,6 +69,11 @@
 			<a href="javascript:;" class="countMinus">-</a>
 			<a href="javascript:;" class="countGoods" >0</a>
 			<a href="javascript:;" class="countPlus">+</a>
+			</div>
+			<div class="footer-fix"></div>
+
+			<div class="noMore">
+				暂无更多..
 			</div>
 		</div>
 	</div>

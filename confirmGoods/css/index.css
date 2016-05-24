@@ -51,11 +51,15 @@ header{
 }
 /* 中间内容 */
 .main{
-	padding:2rem 0;
+	padding-top:2rem;
+	padding-bottom:2rem;
 	-webkit-box-flex:1;
 	box-flex:1;
 	height:100%;
 	overflow:auto;
+}
+.footer-fix,.noMore{
+	height:2rem;
 }
 /* 脚部*/
 .calcTotal{ 
@@ -98,8 +102,8 @@ header{
 	display:block;
 	float:left;
 	width:33.3333%;
-	height:1.2rem;
-	font:.5rem/1.2rem 'Microsoft YaHei';
+	height:1.5rem;
+	font:.5rem/1.5rem 'Microsoft YaHei';
 	background:#fff;
 	border-top:1px solid #CECDCE;
 }
