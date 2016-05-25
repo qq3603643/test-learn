@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<title>scroll</title>
+<meta name="description" content="">
+<meta name="keywords" content="">
+<link href="" rel="stylesheet">
+<style>
+	.box{ position:absolute;right:0;height:40px;width:100px;background:#666; }
+</style>
+<script src="jquery-1.11.3.js"></script>
+</head>
+<body style="height:2000px">
+<div class="box"></div>
+    <script>
+    	$(window).on('scroll',function(){
+    		//console.log('scrolling');
+    		//一直滑动时，浏览器决定多久间隔触发一次
+    		// $('.box').stop(true).animate({'top':~~$(window).scrollTop()},400)
+    	})
+    </script>
+    <script>
+    	// $(window).on('scroll',function(){
+    	// 	var timer = null;
+    	// 	return function(){
+    	// 		clearTimeout(timer);
+    	// 		timer = setTimeout(function(){
+    	// 			$('.box').stop(true).animate({'top':~~$(window).scrollTop()},400)
+    	// 		}, 200)
+    	// 	}
+    	// 	//两次滚动时间间隔少于200时不触发
+    	// }())
+    </script>
+    //滚动过程中每隔多少秒执行一次函数的需求
+    <script>
+    	$(window).on('scroll',function(){
+    		var startTime = new Date,timer=null;
+    		return function(){
+    			var nowTime = new Date;
+    			clearTimeout(timer);
+    			if( nowTime-startTime>400 ){
+    				$('.box').stop(true).animate({'top':~~$(window).scrollTop()},400)
+    				startTime = nowTime;
+    			}else {
+    				timer = setTimeout(function(){  //这个定时器确保停止滚动后会触发一次事件
+                      $('.box').stop(true).animate({'top':~~$(window).scrollTop()},400)
+    				}, 200)
+    			}
+    		}
+    		//一直滚动时每隔两秒运行一次 有一个全局（稍大一级）变量starttime 每次滚动用现在时间与其对比，如若过了2s则执行且把starttime设置为当前时间 然后再次滚动时重复以上操作
+    	}())
+    </script>
+</body>
+</html>

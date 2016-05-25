@@ -22,10 +22,25 @@ img{ border: none; vertical-align:top; }
 .banScroll{
 	overflow-y:hidden;overflow-x:hidden;
 }
-.act-active{
+.input-active{
+	text-align:right;
 	background:#fff;
 	transition:.4s;
-	box-shadow:0 0 10px #000 inset;
+	box-shadow:0 0 1px #000 inset;
+}
+.input-active:after{
+	position:absolute;
+	top:15%;right:2px;
+	display:block;
+	content:'';
+	height:70%;
+	width:2px;
+	background:#00f;
+	animation:flicker .6s infinite;
+	opacity:0;
+}
+@keyframes flicker{
+	100%{ opacity:1;  }
 }
 /* html */
 html{
@@ -51,6 +66,7 @@ header{
 }
 /* 中间内容 */
 .main{
+	position:relative;
 	padding-top:2rem;
 	padding-bottom:2rem;
 	-webkit-box-flex:1;
@@ -58,8 +74,8 @@ header{
 	height:100%;
 	overflow:auto;
 }
-.footer-fix,.noMore{
-	height:2rem;
+.footer-fix{
+	height:4rem;
 }
 /* 脚部*/
 .calcTotal{ 

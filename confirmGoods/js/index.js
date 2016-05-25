@@ -3,7 +3,6 @@ $(function(){
 var confirmGoods = function(){
 	var  
 		$calcBox = $('.calcTotal'),
-		startY,nowY,moveY,clickScrollY=0,
 		confirm = {
 		 	InfoHideCountShow: function(){
 		 		
@@ -27,7 +26,6 @@ var confirmGoods = function(){
 		 			countEle = _this.siblings('.countGoods'),
 		 			targetClass = e.target.className,
 		 			number = countEle.text()*1;
-
 
 	 			//增加
 	 			if(~targetClass.indexOf('countPlus')){
@@ -58,7 +56,7 @@ var confirmGoods = function(){
 var keyboardMine = function(){
 	var 
 		self,appearOnff = !0,
-		index,
+		index,minScrollY,
 		boardHtml = '<div class="y-keyboard">'
 		+'<h2><span class="y-keyboard-completed">完成</span></h2>'
 		+'<span class="y-keyboard-item borderR">1</span>'
@@ -97,18 +95,29 @@ var keyboardMine = function(){
 				})
 			},
 			disAppear: function(){
-				if(clickScrollY <= myScroll.maxScrollY){
-					console.log(myScroll.maxScrollY);
-					$('.content').animate({
-						'translate':'0,'+ clickScrollY + 'px'
-					},200);
-				};
+
+				//存储现在的scrolltop坐标以备再次初始化时使用
+				var nowScrollY = $('.content').attr('style').match(/translate\(\d+px\,\s*((-)?(\d+\.)?\d+)px\)/ig)[0].match(/(\d+\.)?\d+/g)[1];
+				nowScrollY*=-1;
+				
+				//动态隐藏键盘
 				var target = $('.y-keyboard').offset().top + $('.y-keyboard').height();
 				$('.y-keyboard').animate({top: target+'px'}, 200,function(){
 					$('.y-keyboard').css({'display':'none'});
 					$('html,body').removeClass('banScroll');
 					$('.calcTotal').animate({'bottom':0},200);
 				})
+
+				//重新初始化（不能向下拉了）
+				myScroll.destroy();
+				$('.footer-fix').css('height','4rem');
+				myScroll = new iScroll('wrapper',{ 
+										   hScrollbar: false,
+										   vScrollbar: false
+									     });
+
+				//初始化后将操作的置顶
+				myScroll.scrollTo(0,nowScrollY,0);
 			},
 			numberLimit: function(value,maxValue){
 
@@ -138,7 +147,7 @@ var keyboardMine = function(){
 				};
 				//完成
 				if(~targetClass.indexOf('completed')){
-					self.eq(index).removeClass('act-active');
+					self.eq(index).removeClass('input-active');
 					keyboardE.disAppear();
 					keyboardE.numberLimit(self.eq(index).text(),1000);
 					return false;
@@ -161,22 +170,29 @@ var keyboardMine = function(){
 				
 				self.on('touchstart',function(){
 
-					//将输入框所在的列表移动至屏幕的可视区域内
-					clickScrollY = $('.content').attr('style').match(/translate\(\d+px\,\s*((-)?\d+)px\)/ig)[0].match(/\d+/g)[1];
-					clickScrollY*=-1;//获取实际的滚动条高度
+					//重新初始化（可以将下面的顶上）
+					myScroll.destroy();
+					$('.footer-fix').css('height','18rem');
+					myScroll = new iScroll('wrapper', { 
+												hScrollbar: false,
+												vScrollbar: false
+											 });
+
+					//将输入框所在的商品 移动至屏幕的可视区域内
+					clickScrollY = $('.content').attr('style').match(/translate\(\d+px\,\s*((-)?(\d+\.)?\d+)px\)/ig)[0].match(/(\d+\.)?\d+/g)[1];
+					clickScrollY*=-1;
 					var i = $(this).closest('.goodsCountActi').offset().top,
 						target = (-i)+$('header').height()+clickScrollY;
-					$('.content').animate({
-						'translate':'0,'+ target + 'px'
-					},200);
+					myScroll.scrollTo(0,target,0);
 
 					//呼出键盘
 					appearOnff && (keyboardE.appear());
 					appearOnff = !1;
 
-					index = $.inArray($(this)[0],self);
-					//index = $(this).closest('.goodsCountActi').index();  //通过全局的index变量锁定用户当前操作的键盘元素
-					self.removeClass('act-active').eq(index).addClass('act-active');
+					//键盘输入事件
+					index = $.inArray($(this)[0],self);//通过全局的index变量锁定用户当前操作的键盘元素
+					//index = $(this).closest('.goodsCountActi').index();  
+					self.removeClass('input-active').eq(index).addClass('input-active');
 					$('.y-keyboard').off('touchstart').on('touchstart',keyboardE.outPutEvent);
 					return false;
 				})
@@ -191,10 +207,10 @@ var keyboardMine = function(){
 
 //scroll初始化
 myScroll = new iScroll('wrapper', { 
-				fixedScrollbar: true,
-				vScrollbar: true,
-				fadeScrollbar: true
+				hScrollbar: false,  //是否显示滚动条
+				vScrollbar: false
 			 });
+
 
 // a标签active的兼容(绑定一个空事件)
 $('a').on('touchstart',function(){});
