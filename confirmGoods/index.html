@@ -9,17 +9,14 @@
     <script src="js/iscroll.js"></script>
     <script src="js/index.js"></script>
     <script>
-    	//初始化整个页面的字体大小
+    	//初始化字体大小
 		$('html').css({'fontSize':$(window).width()/10 +'px'});
     </script>
     <style>
     .goodsCountActi{ font:0/0 '';text-align:center;height:4rem; }
-    .countMinus,.countPlus,.countGoods{
-    	display:inline-block;height:.8rem;font:.4rem/.8rem 'microsoft yahei';border:1px solid #888;
-    	vertical-align:middle;
-    }
-    .countMinus,.countPlus{ padding:0 .2rem;width:.2rem;font-weight:600; }
-	.countGoods{ position:relative;display:inline-block;padding:0 4px;width:1rem;border-left:none;border-right:none;overflow:hidden;text-overflow:ellipsis;}
+    .countMinus,.countPlus,.countGoods{ display:inline-block;height:.8rem;font:.4rem/.8rem 'microsoft yahei';border:1px solid #888;vertical-align:middle; }
+    .countMinus,.countPlus{ padding:0 .2rem;font-weight:600;font-size:.6rem; }
+	.countGoods{ position:relative;display:inline-block;padding:0 .2rem;width:1rem;border-left:none;border-right:none;overflow:hidden;text-overflow:ellipsis; }
     </style>
 </head>
 <body>
@@ -33,12 +30,32 @@
  			 
 				<div class="goodsCountActi centerWrap">
 				<a href="javascript:;" class="countMinus">-</a>
-				<a href="javascript:;" class="countGoods">222222222</a>
+				<a href="javascript:;" class="countGoods" data-maxCount="1000">2222</a>
 				<a href="javascript:;" class="countPlus">+</a>
 				</div>
 				<div class="goodsCountActi centerWrap">
 				<a href="javascript:;" class="countMinus">-</a>
-				<a href="javascript:;" class="countGoods">100</a>
+				<a href="javascript:;" class="countGoods" data-maxCount="1000">100</a>
+				<a href="javascript:;" class="countPlus">+</a>
+				</div>
+				<div class="goodsCountActi centerWrap">
+				<a href="javascript:;" class="countMinus">-</a>
+				<a href="javascript:;" class="countGoods" data-maxCount="1000">2222</a>
+				<a href="javascript:;" class="countPlus">+</a>
+				</div>
+				<div class="goodsCountActi centerWrap">
+				<a href="javascript:;" class="countMinus">-</a>
+				<a href="javascript:;" class="countGoods" data-maxCount="1000">100</a>
+				<a href="javascript:;" class="countPlus">+</a>
+				</div>
+				<div class="goodsCountActi centerWrap">
+				<a href="javascript:;" class="countMinus">-</a>
+				<a href="javascript:;" class="countGoods" data-maxCount="1000">2222</a>
+				<a href="javascript:;" class="countPlus">+</a>
+				</div>
+				<div class="goodsCountActi centerWrap">
+				<a href="javascript:;" class="countMinus">-</a>
+				<a href="javascript:;" class="countGoods" data-maxCount="1000">100</a>
 				<a href="javascript:;" class="countPlus">+</a>
 				</div>
 				

@@ -22,6 +22,54 @@ img{ border: none; vertical-align:top; }
 .banScroll{
 	overflow-y:hidden;overflow-x:hidden;
 }
+@-webkit-keyframes flicker{
+	100%{ opacity:1;  }
+}
+/* html */
+html{
+    height:100%;
+}
+body{	
+	font-family: "Microsoft YaHei";
+    background: #efefef;
+    text-align:center;
+    height:100%;
+}
+/* 弹窗 */
+.myAlert{
+	position:absolute;
+	z-index:9999999;
+	margin:auto;
+	left:0;right:0;top:0;bottom:0;
+	/* transform:translate( -50%, -50%);不知道为什么这个不能生效.... */
+	width:3.4rem;
+	height:1.2rem;
+	font:.4rem/1.2rem 'microsoft yahei';
+	color:#fff;
+	text-align:center;
+	background:#000;
+	border-radius:8px;
+	display:none;
+}
+/* 头部 */
+header{
+	position:absolute;
+	z-index:2;
+	top:0;
+	width:100%;
+	font:.4rem/1rem 'Microsoft YaHei';
+	color:#fff;
+	background:#888;
+}
+/* 主体内容 */
+.main{
+	position:relative;
+	padding-top:1rem;
+	/* padding-top为header的高度 */
+	height:100%;
+	height:-webkit-calc(100% - 1rem);
+	overflow:auto;
+}
 .input-active{
 	text-align:right;
 	background:#fff;
@@ -36,46 +84,12 @@ img{ border: none; vertical-align:top; }
 	height:70%;
 	width:2px;
 	background:#00f;
-	animation:flicker .6s infinite;
+	-webkit-animation:flicker .6s infinite;
 	opacity:0;
 }
-@keyframes flicker{
-	100%{ opacity:1;  }
-}
-/* html */
-html{
-    font-family: "Microsoft YaHei";
-    height:100%;
-}
-body{	
-    background: #efefef;
-    text-align:center;
-    height:100%;
-    display:-webkit-box;
-    display:box;
-    -webkit-box-orient:vertical;
-}
-/* 头部 */
-header{
-	position:absolute;
-	z-index:2;
-	top:0;
-	width:100%;
-	font:1.4rem/2rem 'Microsoft YaHei';
-	background:#888;
-}
-/* 中间内容 */
-.main{
-	position:relative;
-	padding-top:2rem;
-	padding-bottom:2rem;
-	-webkit-box-flex:1;
-	box-flex:1;
-	height:100%;
-	overflow:auto;
-}
 .footer-fix{
-	height:4rem;
+	height:2rem; 
+	/* main padding-top+footer的height */
 }
 /* 脚部*/
 .calcTotal{ 
@@ -83,7 +97,7 @@ header{
 	z-index:2;
 	bottom:0;left:0;
 	width:100%;
-	font:1.4rem/2rem 'Microsoft YaHei';
+	font:.4rem/1rem 'Microsoft YaHei';
 	color:#fff;
 	background:#888;
 }
