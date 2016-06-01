@@ -93,7 +93,13 @@ var confirmGoods = function(){
 		 		myScroll = new iScroll('wrapper', { 
 								hScrollbar: false,  //是否显示滚动条
 								vScrollbar: false,
-								bounce: false  //禁止上下超出时的反弹
+								bounce: false,  //禁止上下超出时的反弹
+								onBeforeScrollStart: function (e) { 
+									var target = e.target; 
+									while (target.nodeType != 1) target = target.parentNode; 
+									if (target.tagName != 'SELECT' && target.tagName != 'INPUT' && target.tagName != 'TEXTAREA') 
+									e.preventDefault(); 
+								}
 							   });
 		 	},
 		 	shrinkEvent: function(e){
