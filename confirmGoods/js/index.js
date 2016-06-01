@@ -16,7 +16,12 @@ var myAlert = function(){
 			showEvent: function(str){
 				alertAppearOnff = !1;
 				str && ($('.myAlert').html(str),true) || ($('.myAlert').html('超出数量了额~'));
-				$('.myAlert').css({'display':'block','opacity': '1','-webkit-transform':'scale(1)'});
+				$('.myAlert').css({
+					'display':'block',
+					'opacity': '1',
+					'-webkit-transform':'scale(1)',
+					'top': $(window).scrollTop()+($(window).height()-$('.myAlert').height())/2 +'px'
+				});
 				setTimeout(function(){
 					$('.myAlert').animate({'scale': '.8'}, 400,function(){
 						$('.myAlert').animate({'opacity': '0'},600,function(){
@@ -89,18 +94,7 @@ var confirmGoods = function(){
 		 			e.target.className = 'shrink-open';
 		 			$shrinkEle.height($shrinkEle.attr('realHeight'));
 		 		}
-		 		myScroll.destroy();
-		 		myScroll = new iScroll('wrapper', { 
-								hScrollbar: false,  //是否显示滚动条
-								vScrollbar: false,
-								bounce: false,  //禁止上下超出时的反弹
-								onBeforeScrollStart: function (e) { 
-									var target = e.target; 
-									while (target.nodeType != 1) target = target.parentNode; 
-									if (target.tagName != 'SELECT' && target.tagName != 'INPUT' && target.tagName != 'TEXTAREA') 
-									e.preventDefault(); 
-								}
-							   });
+		 		
 		 	},
 		 	shrinkEvent: function(e){
 		 		var e = e||window.event,
@@ -115,21 +109,7 @@ var confirmGoods = function(){
 		 			e.target.className = 'shrink-open';
 		 			$ul.height($ul.attr('realHeight'));
 		 		}
-
-		 		var oldY = myScroll.y;
-		 		myScroll.destroy();
-		 		myScroll = new iScroll('wrapper', { 
-								hScrollbar: false,  //是否显示滚动条
-								vScrollbar: false,
-								bounce: false,  //禁止上下超出时的反弹
-								onBeforeScrollStart: function (e) { 
-									var target = e.target; 
-									while (target.nodeType != 1) target = target.parentNode; 
-									if (target.tagName != 'SELECT' && target.tagName != 'INPUT' && target.tagName != 'TEXTAREA') 
-									e.preventDefault(); 
-								}
-							   });
-		 		myScroll.scrollTo(0,oldY,0);
+	 		
 		 	},
 		 	limitCount: function($ele,maxValue){
 
@@ -212,15 +192,13 @@ var keyboardWatch = function(){
 		keyboardE={
 			moveToTop: function(){
 
-				var clickScrollY = myScroll.y,
-					i = $(this).closest('.goodsCountAction').offset().top;
-					target = (-i)+clickScrollY+10;
-
-				myScroll.scrollTo(0,target,0);
+				//$(window).scrollTop($(this).closest('.goodsCountAction').offset().top-10);
 				$ele.removeClass('input-active');
 				$(this).addClass('input-active');
 			},
 			limitCount: function(){
+
+				$ele.removeClass('input-active');
 				var maxCount = $(this).attr('data-maxCount')*1,
 					number = $(this).val();
 				if(number>maxCount){
@@ -266,21 +244,6 @@ var keyboardWatch = function(){
 	return {
 		inte: keyboardE.run
 	};
-}();
-
-//scroll初始化
-void function(){
-	myScroll = new iScroll('wrapper', { 
-				hScrollbar: false,  //是否显示滚动条
-				vScrollbar: false,
-				bounce: false,  //禁止上下超出时的反弹
-				onBeforeScrollStart: function (e) { 
-					var target = e.target; 
-					while (target.nodeType != 1) target = target.parentNode; 
-					if (target.tagName != 'SELECT' && target.tagName != 'INPUT' && target.tagName != 'TEXTAREA') 
-					e.preventDefault(); 
-				}
-			 });
 }();
 
 //active状态的兼容
