@@ -47,9 +47,9 @@ body{
 	margin:auto;
 	left:0;right:0;top:0;bottom:0;
 	/* transform:translate( -50%, -50%);不知道为什么这个不能生效.... */
-	width:3.4rem;
-	height:1.2rem;
-	font:.4rem/1.2rem 'microsoft yahei';
+	width:4.2rem;
+	height:1.6rem;
+	font:.5rem/1.6rem 'microsoft yahei';
 	color:#fff;
 	text-align:center;
 	background:#000;
@@ -161,7 +161,7 @@ header{
 	width:2rem;
 	height:2rem;
 	border:1px solid #DEDEDE;
-	border-radius:8px;
+	border-radius:4px;
 }
 .goodsItem-order{
 	position:relative;
@@ -243,7 +243,7 @@ header{
 .countMinus,.countPlus,.countGoods{ 
 	display:inline-block;		
 	height:.8rem;
-	font:.4rem/.8rem 'microsoft yahei';
+	font:.4rem/.4rem 'microsoft yahei';
 	text-align:center;
 	vertical-align:middle;
 	background:#efefef; 
@@ -261,31 +261,16 @@ header{
 	float:right;
 }
 .countGoods{ 
-	position:relative;
 	display:inline-block;
 	padding:0 .2rem;
 	width:3.4rem;height:2rem;
-	font-size:.4rem;
-	line-height:2rem;
 	overflow:hidden;
 	text-overflow:ellipsis; 
 }
 .input-active{
-	text-align:right;
+	font-size:.6rem;
 	background:#fff;
-	transition:.4s;
 	box-shadow:0 0 1px #000 inset;
-}
-.input-active:after{
-	position:absolute;
-	top:15%;right:2px;
-	display:block;
-	content:'';
-	height:70%;
-	width:2px;
-	background:#00f;
-	-webkit-animation:flicker .6s infinite;
-	opacity:0;
 }
 .calculate-totle{
     padding: .4rem .4rem .5rem .4rem;

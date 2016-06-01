@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<title>Examples</title>
+<meta name="description" content="">
+<meta name="keywords" content="">
+<link href="" rel="stylesheet">
+<style type="text/css">
+div{ display:inline-block;width:100px;height:100px;box-shadow:0 0 0 2px #000;font:20px/100px 'microsoft yahei';text-align:center; }
+</style>
+<script type="text/javascript">
+window.onload = ()=>{
+	//let 开始就不支持了.......
+	let $divs = document.querySelectorAll('div');
+    
+	Array.from($divs).forEach(item=>{
+		console.log(item);
+	})
+}
+</script>
+</head>
+<body>	
+    <div>1</div>
+    <div>2</div>
+    <div>3</div>
+    <div>4</div>
+</body>
+</html>

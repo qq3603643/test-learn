@@ -13,9 +13,10 @@ var myAlert = function(){
 			isHaveAlertBox: function(){
 				return !!$('.myAlert').size();
 			},
-			showEvent: function(){
+			showEvent: function(str){
 				alertAppearOnff = !1;
-				$('.myAlert').css({'display':'block','opacity': '1','transform':'scale(1)'});
+				str && ($('.myAlert').html(str),true) || ($('.myAlert').html('超出数量了额~'));
+				$('.myAlert').css({'display':'block','opacity': '1','-webkit-transform':'scale(1)'});
 				setTimeout(function(){
 					$('.myAlert').animate({'scale': '.8'}, 400,function(){
 						$('.myAlert').animate({'opacity': '0'},600,function(){
@@ -25,12 +26,12 @@ var myAlert = function(){
 					})
 				}, 600)
 			},
-			showAlert: function(){
+			showAlert: function(str){
 				if( !alertAppearOnff ) return false;
 				if(!alertE.isHaveAlertBox()){
 					alertE.layOut();
 				}
-				alertE.showEvent();
+				alertE.showEvent(str);
 			}
 		};
 	return {
@@ -108,12 +109,21 @@ var confirmGoods = function(){
 		 			e.target.className = 'shrink-open';
 		 			$ul.height($ul.attr('realHeight'));
 		 		}
+
+		 		var oldY = myScroll.y;
 		 		myScroll.destroy();
 		 		myScroll = new iScroll('wrapper', { 
 								hScrollbar: false,  //是否显示滚动条
 								vScrollbar: false,
-								bounce: false  //禁止上下超出时的反弹
+								bounce: false,  //禁止上下超出时的反弹
+								onBeforeScrollStart: function (e) { 
+									var target = e.target; 
+									while (target.nodeType != 1) target = target.parentNode; 
+									if (target.tagName != 'SELECT' && target.tagName != 'INPUT' && target.tagName != 'TEXTAREA') 
+									e.preventDefault(); 
+								}
 							   });
+		 		myScroll.scrollTo(0,oldY,0);
 		 	},
 		 	limitCount: function($ele,maxValue){
 
@@ -192,29 +202,58 @@ var confirmGoods = function(){
 
 //键盘监听
 var keyboardWatch = function(){
-	var $ele,
+	var $ele,timer,
 		keyboardE={
-			moveToTop:function(){
-				var clickScrollY = $('.content').attr('style').match(/translate\(\d+px\,\s*((-)?(\d+\.)?\d+)px\)/ig)[0].match(/(\d+\.)?\d+/g)[1],
+			moveToTop: function(){
+
+				var clickScrollY = myScroll.y,
 					i = $(this).closest('.goodsCountAction').offset().top;
-					clickScrollY*=-1;
 					target = (-i)+clickScrollY+10;
 
 				myScroll.scrollTo(0,target,0);
+				$ele.removeClass('input-active');
+				$(this).addClass('input-active');
 			},
 			limitCount: function(){
 				var maxCount = $(this).attr('data-maxCount')*1,
 					number = $(this).val();
-				if(number>maxCount) number=maxCount;
-				if(number.val()<0) number=0;
+				if(number>maxCount){
+					number=maxCount;
+					myAlert.show();
+				}
+				if(number<0) number=0;
 				$(this).val(number);
+		 	},
+		 	valueCheck: function(){
+		 		clearTimeout(timer);
+		 		var _this = $(this);
+		 		timer = setTimeout(function(){
+		 			var value=_this.val(),
+		 				re = /[^0-9]/g;
+			 		if(value=='') return;
+			 		if(re.test(value)){
+			 			myAlert.show('只能输入数字额~');
+			 			value = value.split(re).join('');
+			 		}
+			 		if(value==''||value<0) value=0;
+			 		if(value>_this.attr('data-maxCount')*1){
+			 			myAlert.show();
+			 			value=_this.attr('data-maxCount');
+			 		}
+			 		_this.val(value);
+		 		},200)
+		 		
 		 	},
 			run:function(eles){
 				$ele = eles;
 				$ele.on({
 					'focus':keyboardE.moveToTop,
+					'input propertychange':keyboardE.valueCheck,
 					'blur':keyboardE.limitCount
 				});
+				$('body').on('touchstart',function(){
+					$ele.blur();
+				})
 			}
 		};
 
@@ -228,7 +267,13 @@ void function(){
 	myScroll = new iScroll('wrapper', { 
 				hScrollbar: false,  //是否显示滚动条
 				vScrollbar: false,
-				bounce: false  //禁止上下超出时的反弹
+				bounce: false,  //禁止上下超出时的反弹
+				onBeforeScrollStart: function (e) { 
+					var target = e.target; 
+					while (target.nodeType != 1) target = target.parentNode; 
+					if (target.tagName != 'SELECT' && target.tagName != 'INPUT' && target.tagName != 'TEXTAREA') 
+					e.preventDefault(); 
+				}
 			 });
 }();
 
@@ -236,7 +281,7 @@ void function(){
 $('body').on('touchstart',function(){});
 
 //keyboard监听 传入响应键盘事件的jq元素对象
-keyboardWatch.inte('.goodsCountAction .countGoods');
+keyboardWatch.inte($('.goodsCountAction .countGoods'));
 
 //结算列表运行
 confirmGoods.run();
