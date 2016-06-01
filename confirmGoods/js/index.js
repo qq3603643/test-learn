@@ -40,223 +40,203 @@ var myAlert = function(){
 
 var confirmGoods = function(){
 	var  
-		$calcBox = $('.calcTotal'),
+		$rushShowEle = $('.calculate-totle').find('.rush'),
+		$resultShowEle = $('.calculate-totle').find('.result'),
+		$totalOrderPrice = $('.all-order').find('.totalOrderPrice'),
+		numberToTwo = function(number){
+			number+='';
+			if( ~(number.indexOf('.')) ){
+			var numberArr = number.split('.'),
+			    arrFist = numberArr[0],arrLast = numberArr[1];
+			if( arrLast.length==1 ) return arrFist+'.'+arrLast+'0';
+			if( arrLast.length==2 ) return number;
+			if( arrLast.length>2 ) return Math.round(number*100)/100;
+			}
+			return number+='.00';
+		},
 		confirm = {
-		 	InfoHideCountShow: function(){
-		 		
+		 	rushEvent: function(e){
+		 		var e = e||window.event,text=e.target.innerHTML,
+		 			$actEle = $(this).parent().siblings('.goodsCountAction'),
+		 			$detailsEle = $(this).parent().siblings('.goodsItem-details'),
+		 			$inputEle = $actEle.find('.countGoods');
+	 			//点击冲红
+		 		if(text=='发起冲红'){
+		 			$inputEle.val($inputEle.attr('data-maxCount'));
+		 			$actEle.show();
+		 			$detailsEle.hide();
+		 			$(this).text('取 消');
+		 			return false;
+		 		}
+		 		//点击取消
+		 			$inputEle.attr('data-nowCount',$inputEle.attr('data-maxCount'));
+		 			$actEle.hide();
+		 			$detailsEle.show();
+		 			$inputEle.removeClass('input-active');
+		 			$(this).text('发起冲红');
+		 			confirm.moneyCalcEvent();
 		 	},
-		 	countHideInfoshow: function(){
-
+		 	headShrinkEvent: function(e){
+		 		var e = e||window.event,
+		 			classStr = e.target.className,
+		 			$shrinkEle = $(this).siblings('.address-details');
+		 		if(~classStr.indexOf('open')){
+		 			e.target.className = 'shrink-close'; 
+		 			$shrinkEle.height('0px');
+		 		}
+		 		else {
+		 			e.target.className = 'shrink-open';
+		 			$shrinkEle.height($shrinkEle.attr('realHeight'));
+		 		}
+		 		myScroll.destroy();
+		 		myScroll = new iScroll('wrapper', { 
+								hScrollbar: false,  //是否显示滚动条
+								vScrollbar: false,
+								bounce: false  //禁止上下超出时的反弹
+							   });
+		 	},
+		 	shrinkEvent: function(e){
+		 		var e = e||window.event,
+		 			classStr = e.target.className,
+		 			$ul = $(this).parent().siblings('ul');
+		 		if(~classStr.indexOf('open')){
+		 			e.target.className = 'shrink-close'; 
+		 			$ul.height('0px');
+		 			
+		 		}
+		 		else {
+		 			e.target.className = 'shrink-open';
+		 			$ul.height($ul.attr('realHeight'));
+		 		}
+		 		myScroll.destroy();
+		 		myScroll = new iScroll('wrapper', { 
+								hScrollbar: false,  //是否显示滚动条
+								vScrollbar: false,
+								bounce: false  //禁止上下超出时的反弹
+							   });
 		 	},
 		 	limitCount: function($ele,maxValue){
 
-		 		var number = $ele.text()*1;
+		 		var number = $ele.val()*1;
 		 		if(number<0) number = 0;
 		 		if(number>maxValue){
 		 			myAlert.show();
 		 			number = maxValue;
 		 		}
-		 		$ele.text(number);
+		 		$ele.val(number);
+		 	},
+		 	amountLayOut: function(){
+		 		$.each($('.countGoods'),function(i,item){
+		 			$(item).attr('data-nowCount',$(item).attr('data-maxCount'));
+		 		})
+		 		$rushShowEle.attr('startMoney',$rushShowEle.text());
+		 		$resultShowEle.attr('startMoney',$resultShowEle.text());
+		 		$totalOrderPrice.attr('startMoney',$totalOrderPrice.text());
+		 		$.each($('.goodsList ul'),function(i,item){
+		 			$(item).attr('data-realHeight',$(item).height());
+		 		})
+		 		$('.address-details').attr('data-realHeight',$('.address-details').height());
+		 	},
+		 	moneyCalcEvent: function(){
+		 		var resultReduce=0,rushAdd=0;
+
+		 		$.each($('.countGoods'),function(i,item){
+		 			rushAdd += ($(item).attr('data-maxCount')*1-$(item).attr('data-nowCount')*1)*$(item).attr('data-price');
+		 			if(!$(item).parent().siblings('.goodsItem-details').find('.free-goods').size()){
+		 				resultReduce += ($(item).attr('data-maxCount')*1-$(item).attr('data-nowCount')*1)*$(item).attr('data-price');
+		 			}
+		 		})
+		 		$rushShowEle.text(numberToTwo($rushShowEle.attr('startmoney')*1+rushAdd));
+		 		$resultShowEle.text(numberToTwo($resultShowEle.attr('startmoney')*1-resultReduce));
+		 		$totalOrderPrice.text(numberToTwo($totalOrderPrice.attr('startmoney')*1-resultReduce));
 		 	},
 		 	amountChangeEvent: function(e){
 
-		 		var _this = $(e.target),
+		 		var e = e||window.event;
+		 			_this = $(e.target),
 		 			countEle = _this.siblings('.countGoods'),
 		 			targetClass = e.target.className,
-		 			number = countEle.text()*1;
+		 			number = countEle.val()*1;
 
 	 			//增加
 	 			if(~targetClass.indexOf('countPlus')){
-	 				countEle.text(number+1);
+	 				countEle.val(number+1);
 	 			}
 	 			//减少
 	 			if(~targetClass.indexOf('countMinus')){
-	 				countEle.text(number-1);
+	 				countEle.val(number-1);
 	 			}
 	 			confirm.limitCount(countEle,countEle.attr('data-maxCount')*1);
+	 			countEle.attr('data-nowCount',countEle.val());
+	 			confirm.moneyCalcEvent();
 		 	},
 		 	run: function(){
 
+		 		//初始化nowCount
+		 		confirm.amountLayOut();
 		 		//加减按钮
-		 		$('.goodsCountActi').off('touchstart').on('touchstart','.countPlus,.countMinus',function(e){
-		 			var e = e||window.event;
-		 			confirm.amountChangeEvent(e);
-		 		})
-		 		//toggle冲红按钮
+		 		$('.goodsCountAction').off('touchstart').on('touchstart','.countPlus,.countMinus',confirm.amountChangeEvent);
+		 		//冲红按钮
+		 		$('.rushRed-btn').on('touchstart',confirm.rushEvent);
+		 		//收缩按钮
+		 		$('.goodsList .title').on('touchstart','i',confirm.shrinkEvent);
+		 		$('header').on('touchstart','i',confirm.headShrinkEvent);
 		 	}
 		 };
 
 	 return {
-	 	'run': confirm.run
+	 	'run': confirm.run,
+	 	'moneyCalcEvent': confirm.moneyCalcEvent
 	 };
 }();
 
-var keyboardMine = function(){
-	var 
-		self,keyboardAppearOnff = !0,
-		index,
-		keyboardHtml = 
-		'<div class="y-keyboard">'
-			+'<h2><span class="y-keyboard-completed">完成</span></h2>'
-			+'<span class="y-keyboard-item borderR">1</span>'
-			+'<span class="y-keyboard-item borderR">2</span>'
-			+'<span class="y-keyboard-item">3</span>'
-			+'<span class="y-keyboard-item borderR">4</span>'
-			+'<span class="y-keyboard-item borderR">5</span>'
-			+'<span class="y-keyboard-item">6</span>'
-			+'<span class="y-keyboard-item borderR">7</span>'
-			+'<span class="y-keyboard-item borderR">8</span>'
-			+'<span class="y-keyboard-item">9</span>'
-			+'<span class="y-keyboard-item borderR bg-silver none">清除</span>'
-			+'<span class="y-keyboard-item borderR">0</span>'
-			+'<span class="y-keyboard-item bg-silver delete">删除</span>'
-		'</div>',
-		keyboardE = {
-			layOut: function(){
+//键盘监听
+var keyboardWatch = function(){
+	var $ele,
+		keyboardE={
+			moveToTop:function(){
+				var clickScrollY = $('.content').attr('style').match(/translate\(\d+px\,\s*((-)?(\d+\.)?\d+)px\)/ig)[0].match(/(\d+\.)?\d+/g)[1],
+					i = $(this).closest('.goodsCountAction').offset().top;
+					clickScrollY*=-1;
+					target = (-i)+clickScrollY+10;
 
-				$('body').append(keyboardHtml);
-				$('.y-keyboard').css({
-					'top':$(window).height()+$(window).scrollTop(),
-					'display':'none'
-				})
+				myScroll.scrollTo(0,target,0);
 			},
-			appear: function(){		
-
-				$('.calcTotal').css('bottom',$('.calcTotal').height()*-1);
-				$('html,body').addClass('banScroll');
-				//出现之前先将键盘重置在可见范围下面
-				$('.y-keyboard').css({'display':'block',
-									  'top':$(window).height()+$(window).scrollTop()
+			limitCount: function(){
+				var maxCount = $(this).attr('data-maxCount')*1,
+					number = $(this).val();
+				if(number>maxCount) number=maxCount;
+				if(number.val()<0) number=0;
+				$(this).val(number);
+		 	},
+			run:function(eles){
+				$ele = eles;
+				$ele.on({
+					'focus':keyboardE.moveToTop,
+					'blur':keyboardE.limitCount
 				});
-				var target = $(window).height() - $('.y-keyboard').height() + $(window).scrollTop();
-				$('.y-keyboard').animate({top: target+'px'}, 300,function(){
-					keyboardAppearOnff = !0;
-				})
-			},
-			disAppear: function(){
-
-				//存储现在的scrolltop坐标以备再次初始化时使用
-				var nowScrollY = $('.content').attr('style').match(/translate\(\d+px\,\s*((-)?(\d+\.)?\d+)px\)/ig)[0].match(/(\d+\.)?\d+/g)[1];
-				nowScrollY*=-1;
-				
-				//动态隐藏键盘
-				var target = $('.y-keyboard').offset().top + $('.y-keyboard').height();
-				$('.y-keyboard').animate({top: target+'px'}, 200,function(){
-					$('.y-keyboard').css({'display':'none'});
-					$('html,body').removeClass('banScroll');
-					$('.calcTotal').animate({'bottom':0},200);
-				})
-
-				//重新初始化（不能向下拉了）
-				myScroll.destroy();
-				$('.footer-fix').css('height',parseFloat($('.main').css('padding-top')) + $('footer').height());
-				myScroll = new iScroll('wrapper',{ 
-							    hScrollbar: false,
-							    vScrollbar: false
-						     });
-
-				//初始化后恢复置顶
-				myScroll.scrollTo(0,nowScrollY,0);
-			},
-			numberLimit: function($ele,maxValue){
-				var value = $ele.text();
-				if(value.length==0){
-					$ele.text('0');return false;
-				}
-				value*=1;
-				if(value>maxValue){
-					myAlert.show();
-					$ele.text(maxValue);return false;
-				}
-				$ele.text(value);
-			},
-			outPutEvent: function(e){
-
-				var e = e||window.event,
-				    targetEle = e.target,
-					targetClass = targetEle.className,
-					targetTagName = targetEle.tagName;
-					if(targetTagName.toLowerCase() !== 'span') return false;
-				var nowInputEle = self.eq(index);
-				//清除
-				if(~targetClass.indexOf('none')){
-					nowInputEle.text('');
-					return false;
-				};
-				//完成
-				if(~targetClass.indexOf('completed')){
-					nowInputEle.removeClass('input-active');
-					keyboardE.disAppear();
-					keyboardE.numberLimit(nowInputEle,nowInputEle.attr('data-maxCount')*1);
-					return false;
-				}
-				//删除
-				if(~targetClass.indexOf('delete')){
-					var number = nowInputEle.text();
-					number+='';
-					if(number.length){ nowInputEle.text(number.substr(0,number.length-1)) };
-					return false;
-				}
-				//数字键
-				nowInputEle.text(nowInputEle.text()+$(targetEle).text());
-				keyboardE.numberLimit(nowInputEle,nowInputEle.attr('data-maxCount')*1);
-			},
-			run: function($ele){
-
-				keyboardE.layOut();
-				self=$ele;
-				
-				self.on('touchstart',function(){
-
-					//重新初始化（加大滚动条的最大长度）
-					myScroll.destroy();
-					$('.footer-fix').css('height',$(window).height());
-					myScroll = new iScroll('wrapper', { 
-									hScrollbar: false,
-									vScrollbar: false
-								 });
-
-					//将当前点击的输入框移动至屏幕最上方
-					var clickScrollY = $('.content').attr('style').match(/translate\(\d+px\,\s*((-)?(\d+\.)?\d+)px\)/ig)[0].match(/(\d+\.)?\d+/g)[1];
-						clickScrollY*=-1;
-					var i = $(this).closest('.goodsCountActi').offset().top,
-						target = (-i)+$('header').height()+clickScrollY;
-					myScroll.scrollTo(0,target,0);
-
-					//呼出键盘
-					keyboardAppearOnff && (keyboardE.appear());
-					keyboardAppearOnff = !1;
-
-					//键盘输入事件
-					index = $.inArray($(this)[0],self);//通过全局的index变量锁定用户当前键盘操作的输入元素
-					//index = $(this).closest('.goodsCountActi').index();  
-					self.removeClass('input-active').eq(index).addClass('input-active');
-					$('.y-keyboard').off('touchstart').on('touchstart',keyboardE.outPutEvent);
-					return false;
-				})
 			}
 		};
+
 	return {
-		inte: keyboardE.run,
-		appear: keyboardE.appear,
-		hide: keyboardE.disAppear
+		inte: keyboardE.run
 	};
 }();
 
 //scroll初始化
 void function(){
-	$('.footer-fix').css('height',parseFloat($('.main').css('padding-top')) + $('footer').height());
 	myScroll = new iScroll('wrapper', { 
 				hScrollbar: false,  //是否显示滚动条
-				vScrollbar: false
+				vScrollbar: false,
+				bounce: false  //禁止上下超出时的反弹
 			 });
 }();
 
 //active状态的兼容
 $('body').on('touchstart',function(){});
 
-//keyboard,传入响应键盘事件的jq元素对象
-keyboardMine.inte($('.goodsCountActi .countGoods'));
+//keyboard监听 传入响应键盘事件的jq元素对象
+keyboardWatch.inte('.goodsCountAction .countGoods');
 
 //结算列表运行
 confirmGoods.run();
