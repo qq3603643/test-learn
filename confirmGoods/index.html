@@ -38,10 +38,11 @@
 <div class="goodsList all-order order-wrap">
  	<div class="title">
  		<i class="shrink-open"></i>
- 		<h2>订单全部商品（24）</h2>
+ 		<h2>订单全部商品（<span>220<span>）</h2>
  	</div>
  	<ul>
- 		<li class="goodsItem-order">
+ 		<!-- goodsId:商品id； data-shipmentId：商品出货id-->
+ 		<li class="goodsItem-order" data-goodsId="123" data-shipmentId="456">
  			<a href="javascript:;" class="goodsPic-wrap centerWrap">
  				<img src="pics/goods.png" alt="">
  			</a>
@@ -51,15 +52,16 @@
  				<dt>200ml*2</dt>
  			</dl>
  			<div class="goodsCountAction centerWrap">
-			<a href="javascript:;" class="countMinus">-</a>
-			<input type="tel" class="countGoods" data-price="28" data-maxCount="30" value="30" />
-			<a href="javascript:;" class="countPlus">+</a>
-		</div>
+				<a href="javascript:;" class="countMinus">-</a>
+				<!-- data-price：单价；  data-maxCount：初始数量（即可操作最大数量）-->
+				<input type="tel" class="countGoods" data-price="28" data-maxCount="30" value="30" />
+				<a href="javascript:;" class="countPlus">+</a>
+			</div>
  			<div class="rushRed-btnWrap">
  				<a href="javascript:;" class="rushRed-btn">发起冲红</a>
  			</div>
  		</li>
- 		<li class="goodsItem-order">
+ 		<li class="goodsItem-order"  data-goodsId="321" data-shipmentId="654">
  			<a href="javascript:;" class="goodsPic-wrap centerWrap">
  				<img src="pics/goods.png" alt="">
  			</a>
@@ -69,15 +71,15 @@
  				<dt>200ml*2</dt>
  			</dl>
  			<div class="goodsCountAction centerWrap">
-			<a href="javascript:;" class="countMinus">-</a>
-			<input type="tel" class="countGoods" data-price="18" data-maxCount="132" value="132" />
-			<a href="javascript:;" class="countPlus">+</a>
-		</div>
+				<a href="javascript:;" class="countMinus">-</a>
+				<input type="tel" class="countGoods" data-price="18" data-maxCount="132" value="132" />
+				<a href="javascript:;" class="countPlus">+</a>
+			</div>
  			<div class="rushRed-btnWrap">
  				<a href="javascript:;" class="rushRed-btn">发起冲红</a>
  			</div>
  		</li>
- 		<li class="goodsItem-order">
+ 		<li class="goodsItem-order" data-goodsId="132" data-shipmentId="465">
  			<a href="javascript:;" class="goodsPic-wrap centerWrap">
  				<img src="pics/goods.png" alt="">
  			</a>
@@ -87,56 +89,56 @@
  				<dt>200ml*2</dt>
  			</dl>
  			<div class="goodsCountAction centerWrap">
-			<a href="javascript:;" class="countMinus">-</a>
-			<input type="tel" class="countGoods" data-price="10" data-maxCount="58" value="58" />
-			<a href="javascript:;" class="countPlus">+</a>
-		</div>
+				<a href="javascript:;" class="countMinus">-</a>
+				<input type="tel" class="countGoods" data-price="10" data-maxCount="58" value="58" />
+				<a href="javascript:;" class="countPlus">+</a>
+			</div>
  			<div class="rushRed-btnWrap">
  				<a href="javascript:;" class="rushRed-btn">发起冲红</a>
  			</div>
  		</li>
  	</ul>
  	<div class="orderItemTotal">
- 		<em>合计：</em>&emsp;<strong>￥<em class="totalOrderPrice">3216.00</em></strong>
+ 		<em>合计:</em>&emsp;<strong>￥<em class="totalOrderPrice">3216.00</em></strong>
  	</div>
 </div>
 <div class="goodsList notDepot-order order-wrap">
 	<div class="title">
-	 		<i class="shrink-open"></i>
-	 		<h2>未出库商品（24）</h2>
-	 	</div>
+ 		<i class="shrink-open"></i>
+ 		<h2>未出库商品（<span>3</span>）</h2>
+ 	</div>
 	<ul>
 		<li class="goodsItem-order">
-	 			<a href="javascript:;" class="goodsPic-wrap centerWrap">
-	 				<img src="pics/goods.png" alt="">
-	 			</a>
-	 			<dl class="goodsItem-details">
-	 				<dt>一梳黑</dt><dd>￥<em>18.00</em></dd>
-	 				<dt>广州赛丝化妆品有限公司</dt><dd>x3</dd>
-	 				<dt>200ml*2</dt>
-	 			</dl>
-	 		</li>
+ 			<a href="javascript:;" class="goodsPic-wrap centerWrap">
+ 				<img src="pics/goods.png" alt="">
+ 			</a>
+ 			<dl class="goodsItem-details">
+ 				<dt>一梳黑</dt><dd>￥<em>18.00</em></dd>
+ 				<dt>广州赛丝化妆品有限公司</dt><dd>x3</dd>
+ 				<dt>200ml*2</dt>
+ 			</dl>
+ 		</li>
 	</ul>
 	<div class="orderItemTotal">
-	 		<em>合计：</em>&emsp;<strong>￥<em>54.00</em></strong>
-		</div>
+		<em>合计:</em>&emsp;<strong>￥<em>54.00</em></strong>
+	</div>
 </div>
 <div class="goodsList rushRed-Order order-wrap">
 	<div class="title">
-	 		<i class="shrink-open"></i>
-	 		<h2>冲红商品（<em>1</em>）</h2>
-	 	</div>
+ 		<i class="shrink-open"></i>
+ 		<h2>冲红商品（<span>3</span>）</h2>
+ 	</div>
 	<ul>
 		<li class="goodsItem-order">
-	 			<a href="javascript:;" class="goodsPic-wrap centerWrap">
-	 				<img src="pics/goods.png" alt="">
-	 			</a>
-	 			<dl class="goodsItem-details">
-	 				<dt>一梳黑</dt><dd>￥<em>18.00</em></dd>
-	 				<dt>广州赛丝化妆品有限公司</dt><dd>x3</dd>
-	 				<dt>200ml*2</dt>
-	 			</dl>
-	 		</li>
+ 			<a href="javascript:;" class="goodsPic-wrap centerWrap">
+ 				<img src="pics/goods.png" alt="">
+ 			</a>
+ 			<dl class="goodsItem-details">
+ 				<dt>一梳黑</dt><dd>￥<em>18.00</em></dd>
+ 				<dt>广州赛丝化妆品有限公司</dt><dd>x3</dd>
+ 				<dt>200ml*2</dt>
+ 			</dl>
+ 		</li>
 	</ul>
 	<div class="rushRed-reason">
 		<dl class="rushRed-reason-list">
@@ -144,8 +146,8 @@
 		</dl>
 	</div>
 	<div class="orderItemTotal">
-	 		<em>合计：</em>&emsp;<strong>￥<em>54.00</em></strong>
-		</div>
+ 		<em>合计:</em>&emsp;<strong>￥<em>54.00</em></strong>
+	</div>
 </div>
 <div class="calculate-totle order-wrap">
     <ul>
@@ -168,20 +170,5 @@
 	</dl>
 </div>
 
-	<!-- <div class="y-keyboard">
-		<h2><span class="y-keyboard-completed">完成</span></h2>
-		<span class="y-keyboard-item borderR">1</span>
-		<span class="y-keyboard-item borderR">2</span>
-		<span class="y-keyboard-item">3</span>
-		<span class="y-keyboard-item borderR">4</span>
-		<span class="y-keyboard-item borderR">5</span>
-		<span class="y-keyboard-item">6</span>
-		<span class="y-keyboard-item borderR">7</span>
-		<span class="y-keyboard-item borderR">8</span>
-		<span class="y-keyboard-item">9</span>
-		<span class="y-keyboard-item borderR bg-silver none">清除</span>
-		<span class="y-keyboard-item borderR">0</span>
-		<span class="y-keyboard-item action-delete bg-silver">删除</span>
-	</div> -->
 </body>
 </html>

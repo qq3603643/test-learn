@@ -1,6 +1,7 @@
 $(function(){
 
 var myAlert = function(){
+
 	var alertAppearOnff = !0,
 		alertHtml = '<div class="myAlert">'
 				   +	'超出数量了额~'
@@ -8,12 +9,15 @@ var myAlert = function(){
 
 		alertE = {
 			layOut: function(){
+
 				$('body').prepend(alertHtml);
 			},
 			isHaveAlertBox: function(){
+
 				return !!$('.myAlert').size();
 			},
 			showEvent: function(str){
+
 				alertAppearOnff = !1;
 				str && ($('.myAlert').html(str),true) || ($('.myAlert').html('超出数量了额~'));
 				$('.myAlert').css({
@@ -32,6 +36,7 @@ var myAlert = function(){
 				}, 600)
 			},
 			showAlert: function(str){
+
 				if( !alertAppearOnff ) return false;
 				if(!alertE.isHaveAlertBox()){
 					alertE.layOut();
@@ -50,6 +55,7 @@ var confirmGoods = function(){
 		$resultShowEle = $('.calculate-totle').find('.result'),
 		$totalOrderPrice = $('.all-order').find('.totalOrderPrice'),
 		numberToTwo = function(number){
+
 			number+='';
 			if( ~(number.indexOf('.')) ){
 			var numberArr = number.split('.'),
@@ -60,8 +66,16 @@ var confirmGoods = function(){
 			}
 			return number+='.00';
 		},
+		phoneIs = function(){
+
+			var u = navigator.userAgent;
+			if(~u.indexOf('Android') || ~u.indexOf('Adr')) return 'Android';
+			if(!!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/) || ~u.indexOf('iPhone') || ~u.indexOf('iPad')) return 'ios';
+			return false;
+		},
 		confirm = {
 		 	rushEvent: function(e){
+
 		 		var e = e||window.event,text=e.target.innerHTML,
 		 			$actEle = $(this).parent().siblings('.goodsCountAction'),
 		 			$detailsEle = $(this).parent().siblings('.goodsItem-details'),
@@ -83,6 +97,7 @@ var confirmGoods = function(){
 		 			confirm.moneyCalcEvent();
 		 	},
 		 	headShrinkEvent: function(e){
+
 		 		var e = e||window.event,
 		 			classStr = e.target.className,
 		 			$shrinkEle = $(this).siblings('.address-details');
@@ -97,6 +112,7 @@ var confirmGoods = function(){
 		 		
 		 	},
 		 	shrinkEvent: function(e){
+
 		 		var e = e||window.event,
 		 			classStr = e.target.className,
 		 			$ul = $(this).parent().siblings('ul');
@@ -121,7 +137,8 @@ var confirmGoods = function(){
 		 		}
 		 		$ele.val(number);
 		 	},
-		 	amountLayOut: function(){
+		 	amountAndHeightLayOut: function(){
+
 		 		$.each($('.countGoods'),function(i,item){
 		 			$(item).attr('data-nowCount',$(item).attr('data-maxCount'));
 		 		})
@@ -134,6 +151,7 @@ var confirmGoods = function(){
 		 		$('.address-details').attr('data-realHeight',$('.address-details').height());
 		 	},
 		 	moneyCalcEvent: function(){
+
 		 		var resultReduce=0,rushAdd=0;
 
 		 		$.each($('.countGoods'),function(i,item){
@@ -166,10 +184,35 @@ var confirmGoods = function(){
 	 			countEle.attr('data-nowCount',countEle.val());
 	 			confirm.moneyCalcEvent();
 		 	},
+		 	postData: function(str){
+
+		 		var data=[];
+		 		$.each($('.all-order .goodsItem-order'),function(i,item){
+		 			var dataItem={};
+		 			dataItem.goodsId = $(item).attr('data-goodsId');
+		 			dataItem.shipmentId = $(item).attr('data-shipmentId');
+		 			dataItem.isGift = !!$(item).find('.free-goods').size();
+		 			dataItem.receivedCount = $(item).find('.countGoods').attr('data-nowCount');
+		 			data.push(dataItem);
+		 		})
+		 		//console.log(data);
+		 		if(phoneIs()=='Android'){
+		 			if(str&&str=='1'){
+		 				return data;
+		 			}
+		 			window.jsBridge.injectResult(data);
+		 			return 'Android';
+		 		}
+		 		if(phoneIs()=='ios'){
+		 			return data;
+		 		}
+		 		return 'the phone is not Android or ios!';
+
+		 	},
 		 	run: function(){
 
-		 		//初始化nowCount
-		 		confirm.amountLayOut();
+		 		//初始化nowCount.记录收缩原始高度
+		 		confirm.amountAndHeightLayOut();
 		 		//加减按钮
 		 		$('.goodsCountAction').off('touchstart').on('touchstart','.countPlus,.countMinus',confirm.amountChangeEvent);
 		 		//冲红按钮
@@ -182,13 +225,15 @@ var confirmGoods = function(){
 
 	 return {
 	 	'run': confirm.run,
-	 	'moneyCalcEvent': confirm.moneyCalcEvent
+	 	'moneyCalcEvent': confirm.moneyCalcEvent,
+	 	'postData': confirm.postData
 	 };
 }();
 
 //键盘监听
 var keyboardWatch = function(){
-	var $ele,timer,
+
+	var $ele,timerInputChange,timerBlur,
 		keyboardE={
 			moveToTop: function(){
 
@@ -198,20 +243,25 @@ var keyboardWatch = function(){
 			},
 			limitCount: function(){
 
-				$ele.removeClass('input-active');
+				//防止当聚焦的时候点击输入框 会有class移出马上又加上的闪动
+				clearTimeout(timerBlur);
+				timerBlur = setTimeout(function(){
+					$ele.removeClass('input-active');
+				}, 22)
+				
 				var maxCount = $(this).attr('data-maxCount')*1,
 					number = $(this).val();
-				if(number>maxCount){
-					number=maxCount;
-					myAlert.show();
+				if(number==''){ 
+					$(this).val(maxCount).attr('data-nowCount',maxCount);
+					confirmGoods.moneyCalcEvent();
 				}
-				if(number<0) number=0;
-				$(this).val(number);
+
 		 	},
 		 	valueCheck: function(){
-		 		clearTimeout(timer);
+
+		 		clearTimeout(timerInputChange);
 		 		var _this = $(this);
-		 		timer = setTimeout(function(){
+		 		timerInputChange = setTimeout(function(){
 		 			var value=_this.val(),
 		 				re = /[^0-9]/g;
 			 		if(value=='') return;
@@ -219,21 +269,25 @@ var keyboardWatch = function(){
 			 			myAlert.show('只能输入数字额~');
 			 			value = value.split(re).join('');
 			 		}
+			 		value*=1;
 			 		if(value==''||value<0) value=0;
 			 		if(value>_this.attr('data-maxCount')*1){
 			 			myAlert.show();
 			 			value=_this.attr('data-maxCount');
 			 		}
-			 		_this.val(value);
+			 		_this.val(value).attr('data-nowCount',value);
+			 		confirmGoods.moneyCalcEvent();
+
 		 		},200)
 		 		
 		 	},
 			run:function(eles){
+
 				$ele = eles;
 				$ele.on({
 					'focus':keyboardE.moveToTop,
 					'input propertychange':keyboardE.valueCheck,
-					'blur':keyboardE.limitCount
+					'blur':keyboardE.limitCount,
 				});
 				$('body').on('touchstart',function(){
 					$ele.blur();

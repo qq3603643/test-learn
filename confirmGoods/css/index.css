@@ -26,23 +26,23 @@ input{-webkit-appearance:none;border:none;outline:none;border-radius:0;}
 	vertical-align:middle;
 	overflow:hidden;
 }
-.banScroll{
-	overflow-y:hidden;overflow-x:hidden;
-}
-@-webkit-keyframes flicker{
-	100%{ opacity:1;  }
-}
+
 /* html */
 body{	
     background: #EFEFEF;
+    overflow-x: hidden;
+}
+/* 隐藏滚动条 */
+html::-webkit-scrollbar,
+body::-webkit-scrollbar{
+	width:0;
+	height:0;
 }
 /* 弹窗 */
 .myAlert{
 	position:absolute;
 	z-index:9999999;
 	margin:auto;
-	/* left:0;right:0;top:0;bottom:0; */
-	/* transform:translate( -50%, -50%);不知道为什么这个不能生效.... */
 	left:-webkit-calc(50% - 2rem);
 	width:4.2rem;
 	height:1.6rem;
@@ -80,7 +80,7 @@ header{
 	overflow:hidden;
 }
 .address-details-list{
-	padding:.4rem .4rem 0.4rem 2rem;
+	padding:.2rem .4rem 0.4rem 2rem;
 }
 .address-logo{
 	display:block;
@@ -94,16 +94,17 @@ header{
 	float:left;
 }
 .user-info{
-	font-size:.5rem;
+	font-size:.4rem;
 	line-height:.7rem;
+	color:#333;
 }
 .address-info{
 	font-size:.4rem;
 	line-height:.5rem;
-	color:#696969;
+	color:#666;
 }
 .address-details .user-phone{
-	padding-left:2rem;
+	padding-left:3rem;
 }
 .order-details dt:first-child{
 	position:relative;
@@ -119,7 +120,7 @@ header{
 	width:2rem;
 	content:'等待收货';
 	font:.4rem/.6rem 'microsoft yahei';
-	color:#f00;
+	color:#ff3434;
 }
 .goodsList ul{
 	overflow:hidden;
@@ -127,7 +128,9 @@ header{
 .goodsList .title{
 	position:relative;
 	padding:.4rem;
-	font-size:.3rem;
+}
+.goodsList .title h2{
+	font-size:.4rem;
 }
 .shrink-open,.shrink-close{
 	position:absolute;
@@ -149,8 +152,8 @@ header{
 }
 .goodsPic-wrap{
 	display:block;
-	width:2rem;
-	height:2rem;
+	width:1.8rem;
+	height:1.8rem;
 	border:1px solid #DEDEDE;
 	border-radius:4px;
 }
@@ -158,6 +161,8 @@ header{
 	position:relative;
 	margin-bottom:.4rem;
 	padding:.2rem 0 .2rem .4rem;
+	border:1px solid #eee;
+	border-left:none;border-right:none;
 	background:#F8F8F8;
 }
 .goodsItem-order:last-child{
@@ -167,21 +172,21 @@ header{
 	position:absolute;
 	top:.2rem;
 	width:calc(100% - 3.2rem);
-	padding-left:2.4rem;
+	padding-left:2.3rem;
 }
 .goodsCountAction{
 	display:none;
 }
 .goodsItem-details dt,.goodsItem-details dd{
 	display:inline;
-	font-size:.4rem;
-	color:#AFAFAF;
+	font-size:.36rem;
+	color:#aaa;
 }
 .goodsItem-details dt:nth-of-type(1),.goodsItem-details dd:nth-of-type(1){
 	color:#000;
 }
 .goodsItem-details dd:nth-of-type(1){
-	font-size:.5rem;
+	font-size:.44rem;
 }
 .goodsItem-details dd.free-goods{
 	font-size:.4rem;
@@ -197,7 +202,7 @@ header{
 }
 .rushRed-btnWrap{
 	text-align:right;
-	padding:.4rem .4rem 0 0;
+	padding:.4rem .44rem 0 0;
 }
 .rushRed-btnWrap a{
 	display:inline-block;
@@ -212,7 +217,7 @@ header{
 	padding:.4rem;
 	font-size:.4rem;
 	color:#A7A7A7;
-	border-top:1px solid #DEDEDE;
+	border-bottom:1px solid #eee;
 }
 .rushRed-reason-list dt{
 	float:left;
@@ -224,8 +229,7 @@ header{
 .orderItemTotal{
 	text-align:right;
 	font-size:.5rem;
-	padding:.3rem .4rem;
-	border-top:1px solid #DEDEDE;
+	padding:.3rem .5rem;
 }
 .orderItemTotal strong{
 	color:#f00;
@@ -240,9 +244,9 @@ header{
 	background:#efefef; 
 }
 .countMinus,.countPlus{ 
-	height:2rem;	
-	width:1.4rem;
-	line-height:2rem;
+	height:1.8rem;	
+	width:1.8rem;
+	line-height:1.8rem;
 	font-size:1rem;
 }
 .countMinus{
@@ -254,7 +258,8 @@ header{
 .countGoods{ 
 	display:inline-block;
 	padding:0 .2rem;
-	width:3.4rem;height:2rem;
+	width:2.6rem;height:1.8rem;
+	font-size:.5rem;
 	overflow:hidden;
 	text-overflow:ellipsis; 
 }
