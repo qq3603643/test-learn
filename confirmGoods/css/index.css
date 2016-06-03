@@ -4,8 +4,9 @@ h2,h3,h4,h5,b,strong,span{ font-weight: normal; }
 ol,ul{ margin: 0; padding: 0;list-style: none; }
 body{ font: 12px/20px 'microsoft yahei'; }
 i,em{ font-style: normal; }
-a,a:active{ text-decoration: none; color: #000; }
+a,a:active{ text-decoration: none; color: #000; -webkit-tap-highlight-color:rgba(255,0,0,0);}
 img{ border: none; vertical-align:top; }
+/* reset-mobile-input */
 input{-webkit-appearance:none;border:none;outline:none;border-radius:0;}
 /* global */
 .centerWrap{
@@ -26,12 +27,29 @@ input{-webkit-appearance:none;border:none;outline:none;border-radius:0;}
 	vertical-align:middle;
 	overflow:hidden;
 }
-
+.shrink-open:after,.shrink-close:after{
+	display:block;
+	content:'︿';
+	font-size:.5rem;
+	font-weight:800;
+	position:absolute;
+	left:-.1rem;top:-.1rem;
+}
+.shrink-close:after{
+	content:'﹀';
+	top:.1rem;
+}
+.order-wrap{
+	background:#fff;
+	margin-bottom:.4rem;
+	position: relative;
+}
 /* html */
-body{	
+html,body{	
     background: #EFEFEF;
     overflow-x: hidden;
 }
+.wrap{ width: 100%; max-width: 640px; margin:0 auto;}
 /* 隐藏滚动条 */
 html::-webkit-scrollbar,
 body::-webkit-scrollbar{
@@ -43,7 +61,8 @@ body::-webkit-scrollbar{
 	position:absolute;
 	z-index:9999999;
 	margin:auto;
-	left:-webkit-calc(50% - 2rem);
+	left:50%;
+	left:-webkit-calc(50% - 1.8rem);
 	width:4.2rem;
 	height:1.6rem;
 	font:.5rem/1.6rem 'microsoft yahei';
@@ -54,10 +73,6 @@ body::-webkit-scrollbar{
 	display:none;
 }
 /* 主体内容 */
-.order-wrap{
-	background:#fff;
-	margin-bottom:.3rem;
-}
 header{
 	padding-top:.4rem;
 	margin-bottom:.5rem !important;
@@ -80,12 +95,13 @@ header{
 	overflow:hidden;
 }
 .address-details-list{
+	border-top:1px solid #eee;
 	padding:.2rem .4rem 0.4rem 2rem;
 }
 .address-logo{
 	display:block;
 	position:absolute;
-	top:.9rem;
+	top:.7rem;
 	left:.6rem;
 	width:1rem;
 	height:1rem;
@@ -114,14 +130,15 @@ header{
 }
 .orderStatus-wait:after{
 	position:absolute;
-	right:-4rem;
-	top:0;
+	right:-4.24rem;
+	top:-.05rem;
 	display:block;
 	width:2rem;
 	content:'等待收货';
 	font:.4rem/.6rem 'microsoft yahei';
 	color:#ff3434;
 }
+
 .goodsList ul{
 	overflow:hidden;
 }
@@ -138,18 +155,6 @@ header{
 	height:.8rem;
 	width:.8rem;
 }
-.shrink-open:after,.shrink-close:after{
-	display:block;
-	content:'︿';
-	font-size:.5rem;
-	font-weight:800;
-	position:absolute;
-	left:-.1rem;top:-.1rem;
-}
-.shrink-close:after{
-	content:'﹀';
-	top:.1rem;
-}
 .goodsPic-wrap{
 	display:block;
 	width:1.8rem;
@@ -160,19 +165,23 @@ header{
 .goodsItem-order{
 	position:relative;
 	margin-bottom:.4rem;
-	padding:.2rem 0 .2rem .4rem;
+	padding:.3rem 0 .2rem .4rem;
 	border:1px solid #eee;
 	border-left:none;border-right:none;
 	background:#F8F8F8;
 }
 .goodsItem-order:last-child{
 	margin-bottom:0;
+	border-bottom:none;
 }
 .goodsItem-details,.goodsCountAction{
 	position:absolute;
-	top:.2rem;
+	top:.4rem;
 	width:calc(100% - 3.2rem);
 	padding-left:2.3rem;
+}
+.goodsCountAction{
+	top:.3rem;
 }
 .goodsCountAction{
 	display:none;
@@ -180,6 +189,7 @@ header{
 .goodsItem-details dt,.goodsItem-details dd{
 	display:inline;
 	font-size:.36rem;
+	line-height:.56rem;
 	color:#aaa;
 }
 .goodsItem-details dt:nth-of-type(1),.goodsItem-details dd:nth-of-type(1){
@@ -187,6 +197,10 @@ header{
 }
 .goodsItem-details dd:nth-of-type(1){
 	font-size:.44rem;
+}
+.goodsItem-details dt:last-child{
+	position:relative;
+	top:-.1rem;
 }
 .goodsItem-details dd.free-goods{
 	font-size:.4rem;
@@ -204,20 +218,22 @@ header{
 	text-align:right;
 	padding:.4rem .44rem 0 0;
 }
-.rushRed-btnWrap a{
+.rushRed-btnWrap span{
 	display:inline-block;
 	padding:.1rem 0;
 	text-align:center;
 	width:2.2rem;
 	font-size:.4rem;
-	border:1px solid #aaa;
+	line-height:.6rem;
+	border:1px solid #ccc;
 	border-radius:2px;
 }
 .rushRed-reason-list{
 	padding:.4rem;
 	font-size:.4rem;
+	line-height:.4rem;
 	color:#A7A7A7;
-	border-bottom:1px solid #eee;
+	border-top:1px solid #eee;
 }
 .rushRed-reason-list dt{
 	float:left;
@@ -228,8 +244,9 @@ header{
 
 .orderItemTotal{
 	text-align:right;
-	font-size:.5rem;
+	font-size:.4rem;
 	padding:.3rem .5rem;
+	border-top:1px solid #eee;
 }
 .orderItemTotal strong{
 	color:#f00;
@@ -269,11 +286,13 @@ header{
 	box-shadow:0 0 1px #000 inset;
 }
 .calculate-totle{
-    padding: .4rem .4rem .5rem .4rem;
     font-size: .4rem;
     line-height: .6rem;
     font-weight:600;
     color: #323232;          
+}
+.calculate-totle ul{
+	padding: .4rem .5rem .5rem .5rem;
 }
 .calculate-totle li:last-child span{
 	font-size:.5rem;
@@ -287,6 +306,7 @@ header{
 }
 .order-times{
 	font-size:.4rem;
+	line-height:.6rem;
 	color:#9A9A9A;
 	margin-bottom:.2rem;
 }
@@ -299,55 +319,4 @@ header{
 .order-times dt:first-child~dt:before{
 	content:'\A';
 	white-space:pre;
-}
-.footer-fix{
-	height:2rem; 
-	/* main padding-top+footer的height */
-}
-/* keyboard */
-.y-keyboard{
-	position:absolute;
-	width:100%;
-	text-align:center;
-	overflow:hidden;
-	z-index:10;
-	display:none;
-}
-.y-keyboard h2{
-	display:block;
-	text-align:right;
-}
-.y-keyboard-completed{
-	display:inline-block;
-	margin:.1rem;
-	width:2rem;
-	font:.5rem/1rem 'Microsoft YaHei';
-	color:#fff;
-	background:#43B9FB;
-	text-align:center;
-	border-radius:4px;
-}
-.y-keyboard-completed:active{
-	background:#fff;
-	color:#000;
-	transition:.4s;
-}
-.y-keyboard-item{
-	display:block;
-	float:left;
-	width:33.3333%;
-	height:1.5rem;
-	font:.5rem/1.5rem 'Microsoft YaHei';
-	background:#fff;
-	border-top:1px solid #CECDCE;
-}
-.y-keyboard-item:active{
-	background:#D3D9E0;
-}
-.borderR{
-	width:calc( 33.3333% - 1px );
-	border-right:1px solid #CECDCE;
-}
-.y-keyboard .bg-silver{
-	background:#D3D9E0;
 }

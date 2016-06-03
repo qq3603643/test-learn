@@ -1,4 +1,4 @@
-$(function(){
+
 
 var myAlert = function(){
 
@@ -96,6 +96,7 @@ var confirmGoods = function(){
 		 			$(this).text('发起冲红');
 		 			confirm.moneyCalcEvent();
 		 	},
+		 	//按理应该把收缩功能新建对象的.....
 		 	headShrinkEvent: function(e){
 
 		 		var e = e||window.event,
@@ -107,7 +108,7 @@ var confirmGoods = function(){
 		 		}
 		 		else {
 		 			e.target.className = 'shrink-open';
-		 			$shrinkEle.height($shrinkEle.attr('realHeight'));
+		 			$shrinkEle.height($shrinkEle.attr('data-realHeight')+'px');
 		 		}
 		 		
 		 	},
@@ -123,7 +124,7 @@ var confirmGoods = function(){
 		 		}
 		 		else {
 		 			e.target.className = 'shrink-open';
-		 			$ul.height($ul.attr('realHeight'));
+		 			$ul.height($ul.attr('data-realHeight')+'px');
 		 		}
 	 		
 		 	},
@@ -155,8 +156,9 @@ var confirmGoods = function(){
 		 		var resultReduce=0,rushAdd=0;
 
 		 		$.each($('.countGoods'),function(i,item){
-		 			rushAdd += ($(item).attr('data-maxCount')*1-$(item).attr('data-nowCount')*1)*$(item).attr('data-price');
+		 			
 		 			if(!$(item).parent().siblings('.goodsItem-details').find('.free-goods').size()){
+		 				rushAdd += ($(item).attr('data-maxCount')*1-$(item).attr('data-nowCount')*1)*$(item).attr('data-price');
 		 				resultReduce += ($(item).attr('data-maxCount')*1-$(item).attr('data-nowCount')*1)*$(item).attr('data-price');
 		 			}
 		 		})
@@ -185,13 +187,14 @@ var confirmGoods = function(){
 	 			confirm.moneyCalcEvent();
 		 	},
 		 	postData: function(str){
-
+		 		console.log('123')
 		 		var data=[];
 		 		$.each($('.all-order .goodsItem-order'),function(i,item){
 		 			var dataItem={};
 		 			dataItem.goodsId = $(item).attr('data-goodsId');
 		 			dataItem.shipmentId = $(item).attr('data-shipmentId');
 		 			dataItem.isGift = !!$(item).find('.free-goods').size();
+		 			dataItem.totalCount = $(item).find('.countGoods').attr('data-maxCount');
 		 			dataItem.receivedCount = $(item).find('.countGoods').attr('data-nowCount');
 		 			data.push(dataItem);
 		 		})
@@ -224,7 +227,7 @@ var confirmGoods = function(){
 		 };
 
 	 return {
-	 	'run': confirm.run,
+	 	'inte': confirm.run,
 	 	'moneyCalcEvent': confirm.moneyCalcEvent,
 	 	'postData': confirm.postData
 	 };
@@ -247,7 +250,7 @@ var keyboardWatch = function(){
 				clearTimeout(timerBlur);
 				timerBlur = setTimeout(function(){
 					$ele.removeClass('input-active');
-				}, 22)
+				}, 29)
 				
 				var maxCount = $(this).attr('data-maxCount')*1,
 					number = $(this).val();
@@ -306,7 +309,5 @@ $('body').on('touchstart',function(){});
 //keyboard监听 传入响应键盘事件的jq元素对象
 keyboardWatch.inte($('.goodsCountAction .countGoods'));
 
-//结算列表运行
-confirmGoods.run();
-
-})
+//结算运行
+confirmGoods.inte();

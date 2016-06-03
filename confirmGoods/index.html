@@ -2,18 +2,17 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
     <title>Document</title>
+    <!-- https://static2.ypzdw.com/yaoyi/confirmgoods/ -->
     <link href="css/index.css" type="text/css" rel="stylesheet">
     <script src="js/zepto.min.js"></script>
-    <script src="js/index.js"></script>
     <script>
     	//初始化字体大小
 		$('html').css({'fontSize':$(window).width()/10 +'px'});
     </script>
 </head>
 <body>
-
 <header class="order-wrap">
 	<i class="shrink-open"></i>
 	<dl class="order-details">
@@ -30,7 +29,7 @@
 			<dt class="user-name">钟继红</dt><dd class="user-phone">12345678900</dd>
 		</dl>
         <dl class="address-info">
-        	<dt>收货地址：</dt><dd>四川省 成华区 海椒市街道 双林路44号28栋1单元4号</dd>
+        	<dt>收货地址：</dt><dd><em>&ensp;</em>四川省 成华区 海椒市街道 双林路44号28栋1单元4号</dd>
         </dl>
       </div>
 	</div>
@@ -38,7 +37,7 @@
 <div class="goodsList all-order order-wrap">
  	<div class="title">
  		<i class="shrink-open"></i>
- 		<h2>订单全部商品（<span>220<span>）</h2>
+ 		<h2>订单全部商品（<span>220</span>）</h2>
  	</div>
  	<ul>
  		<!-- goodsId:商品id； data-shipmentId：商品出货id-->
@@ -52,13 +51,13 @@
  				<dt>200ml*2</dt>
  			</dl>
  			<div class="goodsCountAction centerWrap">
-				<a href="javascript:;" class="countMinus">-</a>
+				<span class="countMinus">-</span>
 				<!-- data-price：单价；  data-maxCount：初始数量（即可操作最大数量）-->
 				<input type="tel" class="countGoods" data-price="28" data-maxCount="30" value="30" />
-				<a href="javascript:;" class="countPlus">+</a>
+				<span class="countPlus">+</span>
 			</div>
  			<div class="rushRed-btnWrap">
- 				<a href="javascript:;" class="rushRed-btn">发起冲红</a>
+ 				<span class="rushRed-btn">发起冲红</span>
  			</div>
  		</li>
  		<li class="goodsItem-order"  data-goodsId="321" data-shipmentId="654">
@@ -71,12 +70,12 @@
  				<dt>200ml*2</dt>
  			</dl>
  			<div class="goodsCountAction centerWrap">
-				<a href="javascript:;" class="countMinus">-</a>
+				<span class="countMinus">-</span>
 				<input type="tel" class="countGoods" data-price="18" data-maxCount="132" value="132" />
-				<a href="javascript:;" class="countPlus">+</a>
+				<span href="javascript:;" class="countPlus">+</span>
 			</div>
  			<div class="rushRed-btnWrap">
- 				<a href="javascript:;" class="rushRed-btn">发起冲红</a>
+ 				<span class="rushRed-btn">发起冲红</span>
  			</div>
  		</li>
  		<li class="goodsItem-order" data-goodsId="132" data-shipmentId="465">
@@ -89,17 +88,17 @@
  				<dt>200ml*2</dt>
  			</dl>
  			<div class="goodsCountAction centerWrap">
-				<a href="javascript:;" class="countMinus">-</a>
+				<span class="countMinus">-</span>
 				<input type="tel" class="countGoods" data-price="10" data-maxCount="58" value="58" />
-				<a href="javascript:;" class="countPlus">+</a>
+				<span class="countPlus">+</span>
 			</div>
  			<div class="rushRed-btnWrap">
- 				<a href="javascript:;" class="rushRed-btn">发起冲红</a>
+ 				<span class="rushRed-btn">发起冲红</span>
  			</div>
  		</li>
  	</ul>
  	<div class="orderItemTotal">
- 		<em>合计:</em>&emsp;<strong>￥<em class="totalOrderPrice">3216.00</em></strong>
+ 		<em>合计 :</em>&emsp;<strong>￥<em class="totalOrderPrice">3216.00</em></strong>
  	</div>
 </div>
 <div class="goodsList notDepot-order order-wrap">
@@ -120,7 +119,7 @@
  		</li>
 	</ul>
 	<div class="orderItemTotal">
-		<em>合计:</em>&emsp;<strong>￥<em>54.00</em></strong>
+		<em>合计 :</em>&emsp;<strong>￥<em>54.00</em></strong>
 	</div>
 </div>
 <div class="goodsList rushRed-Order order-wrap">
@@ -146,12 +145,12 @@
 		</dl>
 	</div>
 	<div class="orderItemTotal">
- 		<em>合计:</em>&emsp;<strong>￥<em>54.00</em></strong>
+ 		<em>合计 :</em>&emsp;<strong>￥<em>54.00</em></strong>
 	</div>
 </div>
 <div class="calculate-totle order-wrap">
     <ul>
-        <li><em>商品总价</em> :<span>￥<em>3216.00</em><span></li>
+        <li><em>商品总价</em> :<span>￥<em>3216.00</em></span></li>
         <li><em>出库金额</em> :<span>￥<em>3162.00</em></span></li>
         <li><em>活动优惠</em> :<span>-￥<em>100.00</em></span></li>
         <li><em>店铺优惠</em> :<span>-￥<em>100.00</em></span></li>
@@ -169,6 +168,6 @@
 		<dt>卖家已出库： </dt><dd>2016-02-26 17:51:11</dd>
 	</dl>
 </div>
-
+<script src="js/index.js"></script>
 </body>
 </html>
