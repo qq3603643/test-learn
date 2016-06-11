@@ -20,7 +20,22 @@
 			if( arrLast.length>2 ) return Math.round(number*100)/100;
 			}
 			return number+='.00';
-		},
+		}
+    </script>
+    <script type="text/javascript" src="tangerine.min.js"></script>
+    <script type="text/javascript">
+    	var ID=T.ID,CLASS=T.CLASS,Q=T.Q;
+
+    	T.CSS(Q('body'),{
+    		'height':'100px',
+    		'background':'#f00'
+    	})
+    	T.CLICK(Q('body'),function(){
+    		console.log('click');
+    		T.CSS([this],{
+    			'background':'#fff'
+    		})
+    	})
     </script>
 </body>
 </html>

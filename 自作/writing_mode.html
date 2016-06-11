@@ -4,9 +4,16 @@
 	<meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
 	<title>writing_mode</title>
 	<style type="text/css">
-	.content{ height:240px;font:16px/26px 'microsoft yahei';writing-mode: tb-rl;-webkit-writing-mode: vertical-rl;padding:20px;text-align:justify; }
+	.content{ height:240px;width:906px;font:16px/26px 'microsoft yahei';writing-mode: tb-rl;-webkit-writing-mode: vertical-rl;padding:20px;text-align:justify; }
 	/* 亲测一定要加前缀 */
 	.title{ height:240px;line-height:60px;text-align:center;color:red; }
+	.wrap{ width:400px;box-shadow:0 0 2px #000; }
+	.list{ padding:0;margin:0; }
+	.list>li{ display:inline-block;font:600 20px/40px 'microsoft yahei';width:32%;text-align:center;box-shadow:0 0 2px #000; }
+	.list:hover{ -webkit-writing-mode: vertical-lr;cursor:pointer; }
+	.list:hover .item{ height:100px;width:400px; }
+	.list:hover .item span{ display:inline-block;transform:rotate(-90deg); }
+	/* 可以用来做布局风格的切换 */
 	</style>
 	<script type="text/javascript" src="jquery-1.11.3.js"></script>
 	<script>
@@ -35,6 +42,19 @@
    		<div class="main">
    		&emsp;&emsp;
    		</div>
+   </div>
+   <div class="wrap">
+   		<ul class="list">
+   		<li class="item">
+   		<span>2</span>
+   		</li>
+   		<li class="item">
+   		<span>3</span>
+   		</li>
+   		<li class="item">
+   		<span>4</span>
+   		</li>
+   		</ul>
    </div>
 </body>
 </html>
