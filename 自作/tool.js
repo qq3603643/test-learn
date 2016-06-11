@@ -1,4 +1,4 @@
-	
+define([],()=>{
 	const _=(()=>{
 
 		const Doc=[document],
@@ -363,4 +363,6 @@
         return tools;
 	})()
 	
-	export default _;  //相当于return出去
+	// export default _;  //相当于return出去
+	return _;
+})
