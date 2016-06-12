@@ -1,5 +1,4 @@
 
-
 var myAlert = function(){
 
 	var alertAppearOnff = !0,
