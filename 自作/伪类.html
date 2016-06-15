@@ -6,17 +6,24 @@
     <title>Document</title>
     <style>
         .btn {width: 60px;background: black;color: aliceblue;border-style: none;outline-style: none;cursor:pointer; }
-        .box{ width:40px;height:40px;background:silver; }
+        .box{ position:relative;width:40px;height:40px;background:silver; }
         .box:active{ background:red; }
-        .box .boxChid{ width:20px;height:20px;background:blue; }
+        .box .boxChid{ position:absolute;left:100%;width:20px;height:20px;background:blue;visibility:hidden; }
         .box:hover .btn{ background:red; }
-        .box:hover .boxChid{ background:red; }   
+        .box:hover .boxChid{ visibility:visible; }
         /* 原来一个元素hover时想要使其他的元素样式发生改变，辣么被改变元素必须是hover元素的子元素 */
         .btn:active { position: relative;top: 2px; }
         .btn:after{ position:absolute;left:100px;display: block;width: 4px;height: 4px;background:blue; }
         .btn:hover:after { background: red; }
         /*        可用于任何元素*/
     </style>
+    <script>
+        window.onload=function(){
+            document.querySelector('.boxChid').onclick=function(){
+                console.log(1);
+            }
+        }
+    </script>
 </head>
 
 <body>

@@ -23,6 +23,7 @@ var myAlert = function(){
 					'display':'block',
 					'opacity': '1',
 					'-webkit-transform':'scale(1)',
+					'transform':'scale(1)',
 					'top': $(window).scrollTop()+($(window).height()-$('.myAlert').height())/2 +'px'
 				});
 				setTimeout(function(){
@@ -49,7 +50,7 @@ var myAlert = function(){
 }();
 
 var confirmGoods = function(){
-	var  
+	var
 		$rushShowEle = $('.calculate-totle').find('.rush'),
 		$resultShowEle = $('.calculate-totle').find('.result'),
 		$totalOrderPrice = $('.all-order').find('.totalOrderPrice'),
@@ -84,7 +85,7 @@ var confirmGoods = function(){
 		 			$inputEle.val($inputEle.attr('data-maxCount'));
 		 			$actEle.show();
 		 			$detailsEle.hide();
-		 			$(this).text('取 消');
+		 			$(this).text('取   消');
 		 			return false;
 		 		}
 		 		//点击取消
@@ -102,14 +103,14 @@ var confirmGoods = function(){
 		 			classStr = e.target.className,
 		 			$shrinkEle = $(this).siblings('.address-details');
 		 		if(~classStr.indexOf('open')){
-		 			e.target.className = 'shrink-close'; 
+		 			e.target.className = 'shrink-close';
 		 			$shrinkEle.height('0px');
 		 		}
 		 		else {
 		 			e.target.className = 'shrink-open';
-		 			$shrinkEle.height($shrinkEle.attr('data-realHeight')+'px');
+		 			$shrinkEle.height('auto');
 		 		}
-		 		
+
 		 	},
 		 	shrinkEvent: function(e){
 
@@ -117,15 +118,14 @@ var confirmGoods = function(){
 		 			classStr = e.target.className,
 		 			$ul = $(this).parent().siblings('ul');
 		 		if(~classStr.indexOf('open')){
-		 			e.target.className = 'shrink-close'; 
+		 			e.target.className = 'shrink-close';
 		 			$ul.height('0px');
-		 			
 		 		}
 		 		else {
 		 			e.target.className = 'shrink-open';
-		 			$ul.height($ul.attr('data-realHeight')+'px');
+		 			$ul.height('auto');
 		 		}
-	 		
+
 		 	},
 		 	limitCount: function($ele,maxValue){
 
@@ -145,17 +145,13 @@ var confirmGoods = function(){
 		 		$rushShowEle.attr('startMoney',$rushShowEle.text());
 		 		$resultShowEle.attr('startMoney',$resultShowEle.text());
 		 		$totalOrderPrice.attr('startMoney',$totalOrderPrice.text());
-		 		$.each($('.goodsList ul'),function(i,item){
-		 			$(item).attr('data-realHeight',$(item).height());
-		 		})
-		 		$('.address-details').attr('data-realHeight',$('.address-details').height());
 		 	},
 		 	moneyCalcEvent: function(){
 
 		 		var resultReduce=0,rushAdd=0;
 
 		 		$.each($('.countGoods'),function(i,item){
-		 			
+
 		 			if(!$(item).parent().siblings('.goodsItem-details').find('.free-goods').size()){
 		 				rushAdd += ($(item).attr('data-maxCount')*1-$(item).attr('data-nowCount')*1)*$(item).attr('data-price');
 		 				resultReduce += ($(item).attr('data-maxCount')*1-$(item).attr('data-nowCount')*1)*$(item).attr('data-price');
@@ -186,7 +182,7 @@ var confirmGoods = function(){
 	 			confirm.moneyCalcEvent();
 		 	},
 		 	postData: function(str){
-		 		console.log('123')
+
 		 		var data=[];
 		 		$.each($('.all-order .goodsItem-order'),function(i,item){
 		 			var dataItem={};
@@ -228,7 +224,8 @@ var confirmGoods = function(){
 	 return {
 	 	'inte': confirm.run,
 	 	'moneyCalcEvent': confirm.moneyCalcEvent,
-	 	'postData': confirm.postData
+	 	'postData': confirm.postData,
+	 	'phoneIs': phoneIs,
 	 };
 }();
 
@@ -250,10 +247,10 @@ var keyboardWatch = function(){
 				timerBlur = setTimeout(function(){
 					$ele.removeClass('input-active');
 				}, 29)
-				
+
 				var maxCount = $(this).attr('data-maxCount')*1,
 					number = $(this).val();
-				if(number==''){ 
+				if(number==''){
 					$(this).val(maxCount).attr('data-nowCount',maxCount);
 					confirmGoods.moneyCalcEvent();
 				}
@@ -281,7 +278,7 @@ var keyboardWatch = function(){
 			 		confirmGoods.moneyCalcEvent();
 
 		 		},200)
-		 		
+
 		 	},
 			run:function(eles){
 
@@ -310,3 +307,25 @@ keyboardWatch.inte($('.goodsCountAction .countGoods'));
 
 //结算运行
 confirmGoods.inte();
+
+//IOS定义的方法
+if(confirmGoods.phoneIs()=='ios'){
+	var setupWebViewJavascriptBridge = function(callback){
+	    if (window.WebViewJavascriptBridge) { return callback(WebViewJavascriptBridge); }
+	    if (window.WVJBCallbacks) { return window.WVJBCallbacks.push(callback); }
+	    window.WVJBCallbacks = [callback];
+	    var WVJBIframe = document.createElement('iframe');
+	    WVJBIframe.style.display = 'none';
+	    WVJBIframe.src = 'wvjbscheme://__BRIDGE_LOADED__';
+	    document.documentElement.appendChild(WVJBIframe);
+	    setTimeout(function() { document.documentElement.removeChild(WVJBIframe) }, 0)
+};
+
+setupWebViewJavascriptBridge(function(bridge) {
+    bridge.registerHandler('OC2JS_GetDataForReceiveOrder', function(data, responseCallback) {
+        console.log("JS Echo called with:", data)
+        var result = confirmGoods.postData();
+        responseCallback(result)
+    })
+})
+}

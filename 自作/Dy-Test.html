@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<title>调用测试</title>
+<meta name="description" content="">
+<meta name="keywords" content="">
+<link href="" rel="stylesheet">
+</head>
+<body>
+<script>
+	var obj1=function(){
+		return {
+			'fn1':function(){ console.log(1) },
+			'fn2':obj2.fn1,
+		}
+	}(),
+		obj2=function(){
+		return {
+			'fn1':function(){ console.log(2) },
+		}
+	}();
+	obj1.fn2();
+</script>
+</body>
+</html>
