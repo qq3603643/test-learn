@@ -1,7 +1,13 @@
 body, dl, dd, p, form{ margin: 0; }   
+/* dl:mg_t mg_b;dd:mg_l;p:mg_t,mg_b;form:; */
 h2,h3,h4,h5,b,strong,span{ font-weight: normal; }
+/* h2...:mg_t,mg_b; */
 ol,ul{ margin: 0; padding: 0;list-style: none; }
+/* mg_t,mg_b,pd_l:14,14,40（chrome）; */
 i,em{ font-style: normal; }
 a,a:active{ text-decoration: none; color: #000; }
 img{ border: none; }
 body{ font: 14px/20px 'microsoft yahei'; }
+
+/* 所有自带的margin都是margin-top,margin-bottom（除了dd是margin-left） */
+/* ul，ol自带padding-left */
