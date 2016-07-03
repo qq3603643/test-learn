@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<title>scrollIntoView</title>
+<meta name="description" content="">
+<meta name="keywords" content="">
+<link href="tangerine.css" rel="stylesheet">
+<style type="text/css">
+	.ht_2000{ height:2000px; }
+	.wd_600{ width:600px; }
+	#ponit1,#ponit2{ width:100px;height:100px; }
+	#ponit1{ left:200px;top:6000px; }
+	#ponit2{ left:200px;top:6000px; }
+</style>
+</head>
+<body class="ff_m">
+
+	<div id="ponit1" class="pos_a bg_olive index_1"></div>
+	<div id="ponit2" class="pos_a bg_teal index_2"></div>
+
+    <div class="auto wd_600">
+    <span class="btn bg_blue">to1</span>
+    <span class="btn bg_olive">to2</span>
+    <span class="btn bg_aqua">to3</span>
+    <span class="btn bg_lime">to4</span>
+    </div>
+    <span id="span_fixed" class="pos_f btn bg_silver blue" style="left:500px;top:400px;">fixed</span>
+    <div class="ht_2000"></div>
+
+    <ul class="auto mg_0">
+    	<li class="bd_d mg_30 pd_30 bg_blue">1</li>
+    	<li class="bd_d mg_30 pd_30 bg_olive">2</li>
+    	<li class="bd_d mg_30 pd_30 bg_aqua">3</li>
+    	<li class="bd_d mg_30 pd_30 bg_lime">4</li>
+    </ul>
+
+    <div class="ht_2000"></div>
+
+    <script type="text/javascript">
+    var  btns=document.querySelectorAll('.btn'),
+    	 lis=document.querySelectorAll('ul li');
+
+    for(var i=0,len=btns.length;i<len;i+=1){
+
+        btns[i].index=i;
+    	btns[i].onclick=function(e){
+    		e=e||window.event;
+    		lis[this.index].scrollIntoView();
+    		//里面的可以有参数true/false，代表该元素是上边缘在顶端 还是下边缘在底端，默认true
+    		try{
+    			e.stopPropagation();
+    		}catch(error){
+    			e.cancelBubble = !0;
+    		}
+    	}
+    }
+    [].slice.call(lis).forEach(function(item){
+    	item.onclick=function(){
+    		console.log(this.getBoundingClientRect()); //相对于window
+    	}
+    })
+    document.body.onclick=function(e){
+    	// this.scrollIntoView();
+    	console.log(e.clientX);//相对于window的位置 不包括滚动条
+    	//回到顶部的又一简便方法
+    };
+    document.querySelector('#span_fixed').onclick=function(e){
+    	e=e||window.event;
+    	console.log(this.clientWidth);  //包括padding不包括border等 ，相当于innerWidth
+    	console.log(this.offsetWidth);  //包括边框
+    	console.log(this.getBoundingClientRect());
+    	try{
+    			e.stopPropagation();
+		}catch(error){
+			e.cancelBubble = !0;
+		}
+    };
+    document.body.onclick=function(e){
+
+    	var x=e.clientX,y=e.clientY,
+    		point=document.elementFromPoint(x, y); //相对于窗口.... 重叠时获取上面的元素
+		console.log('x: '+x+';y: '+y);
+    	console.log(point);
+    };
+    </script>
+</body>
+</html>
