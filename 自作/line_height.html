@@ -4,18 +4,23 @@
     <meta charset="UTF-8">
     <title></title>
     <style>
-        div{
-            background: gray;
-            line-height: 200px;
-        }
-        div:after{
-            display: block;
-            content: '23';
-            height: 0px;
-        }
+        .parent{ font-size:16px;font-family:microsoft yahei;box-shadow:0 0 2px #aaa; }
+        .parent:nth-of-type(1){ line-height:2.5; }
+        /* 用2.5时子元素继承的是2.5这个倍数 ，根据子元素的字体大小发生变化*/
+        .parent:nth-of-type(2){ line-height:250%; }
+        /* 用250%时子元素继承的是计算后的数组，是固定的值 ，不再根据子元素的字体大小而变化*/
+        .child{ font-size:60px;box-shadow:0 0 2px #aaa; }
     </style>
 </head>
 <body>
-    <div></div>    
+    <div class="parent">
+    parent1
+        <div class="child">child1</div>
+    </div>
+
+    <div class="parent">
+    parent2
+        <div class="child">child2</div>
+    </div>
 </body>
 </html>

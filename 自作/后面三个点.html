@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<title>dotting</title>
+<meta name="description" content="">
+<meta name="keywords" content="">
+<link href="tangerine.css" rel="stylesheet">
+<style>
+.dotting>span{ display: inline-block; width: 10px; min-height:2px;padding-right: 2px;border-left: 2px solid currentColor; border-right: 2px solid currentColor;background-color: currentColor; background-clip: content-box;box-sizing: border-box;animation: dot 2s infinite step-start both; }
+.dotting>span:before{ content: '...'; } /* IE8 */
+.dotting>span::before{ content: ''; }
+:root .dotting>span{ margin-left: 2px; padding-left: 2px; } /* IE9+ */
+
+@keyframes dot {
+    0% { border-color: transparent; background-color: transparent; }          /* 0个点 */
+    33% { border-right-color: transparent; background-color: transparent; }    /* 1个点 */
+    66% { border-right-color: transparent; }                                   /* 2个点 */
+}
+</style>
+</head>
+<body>
+    <span class="btn bg_blue mg_10 ff_m">提交中<span></span></span>
+    <script>
+
+    var oBtn=document.querySelector('.btn');
+    oBtn.onclick=function(){
+
+    	this.className+=' dotting';
+    };
+    </script>
+</body>
+</html>

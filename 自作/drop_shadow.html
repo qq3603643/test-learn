@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<title>drop-shadow</title>
+<meta name="description" content="">
+<meta name="keywords" content="">
+<link href="tangerine.css" rel="stylesheet">
+<style>
+	.icon{ width:inherit;height:inherit;background:url('glyph-icons/love.png') no-repeat center; }
+</style>
+</head>
+<body>
+	<div class="bd_e">
+	    <div class="pd_20 fs_24" style="-webkit-filter:drop-shadow(rgba(0,0,0,1) 3px 3px 4px);">
+	    	i am a tangerine..
+	    </div>
+	    <div class="pd_20 fs_24" style="-webkit-filter:drop-shadow(#f00 3px 3px);">
+	    	i am a tangerine..
+	    </div>
+	    <!-- 右边三个参数代表x，y偏移 最后一个代表模糊半径 可省略(0) 值得注意的是颜色参数是第一个-->
+    </div>
+    <i class="bd_c dis_ib of_h" style="width:32px;height:32px;">
+    	<img class="dis_ib pos_r" src="glyph-icons/love.png" alt="" style="-webkit-filter:drop-shadow(#f00 32px 0);left:-32px;border-right:32px solid transparent;">
+    </i>
+
+    <i class="bd_c dis_ib mg_l_20 of_h" style="width:32px;height:32px;">
+    	<i class="icon dis_ib pos_r" style="-webkit-filter:drop-shadow(#00f 32px 0);left:-32px;border-right:32px solid transparent;"></i>
+    </i>
+</body>
+</html>

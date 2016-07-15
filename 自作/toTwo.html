@@ -11,31 +11,43 @@
 <body>
     <script>
 	var numberToTwo = function(number){
-			number+='';
-			if( ~(number.indexOf('.')) ){
-			var numberArr = number.split('.'),
-			    arrFist = numberArr[0],arrLast = numberArr[1];
-			if( arrLast.length==1 ) return arrFist+'.'+arrLast+'0';
-			if( arrLast.length==2 ) return number;
-			if( arrLast.length>2 ) return Math.round(number*100)/100;
-			}
-			return number+='.00';
-		}
-    </script>
-    <script type="text/javascript" src="tangerine.min.js"></script>
-    <script type="text/javascript">
-    	var ID=T.ID,CLASS=T.CLASS,Q=T.Q;
 
-    	T.CSS(Q('body'),{
-    		'height':'100px',
-    		'background':'#f00'
-    	})
-    	T.CLICK(Q('body'),function(){
-    		console.log('click');
-    		T.CSS([this],{
-    			'background':'#fff'
-    		})
-    	})
+			var _arr = (number+='').split('.'),front = _arr[0],behind = _arr[1]||'';
+            return behind.length<=2 ? [front,behind+Array(3-behind.length).join(0)].join('.') : arguments.callee(Math.round(number*100)/100);
+
+		};
+    console.log(numberToTwo(1.9));
+//保留两位小数
+    var to2 = function(number){
+        return (number+=/\./.test(number+='')?'':'.0').replace(/(\d+)(\.)(\d+)/,function($,$1,$2,$3){
+            return $3.length<=2 ? $+Array(3-$3.length).join(0) : $1+$2+Math.round(('0.'+$3)*100);
+        })
+    };
+    // console.log(to2(1.1));
+//保留任意位小数
+    var toAny=function(number,any){
+        return (number+=/\./.test(number+='')?'':'.0').replace(/(\d+)(\.)(\d+)/,function($,$1,$2,$3){
+            return $3.length<=any ? $+Array(any+1-$3.length).join(0) : $1+$2+Math.round(('0.'+$3)*Math.pow(10,any));
+        })
+    };
+    // console.log(toAny(1,2));
+
+    var toPoint=function(n){
+        var point='.',zero='0',n_point=n;  //相当于给下面的每个return出去的函数指定了这些局部变量
+        return function(number){
+            number+='';
+            var tempArr=number.split(point),first=tempArr[0],last=tempArr[1];
+            if(n_point==0) return Math.round(number);
+            if(!last) last=new Array(n_point+1).join(zero);
+            if(last.length>n_point){
+                return arguments.callee(Math.round(number*Math.pow(10,n_point))/Math.pow(10,n_point));
+            }
+            if(last.length<n_point) last+=new Array(n_point-last.length+1).join(zero);
+            return [first,last].join(point);
+        }
+    };
+    var number_toFour=toPoint(4);
+    console.log(number_toFour(3.19999));
     </script>
 </body>
 </html>
