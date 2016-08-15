@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<title>focus</title>
+<meta name="description" content="">
+<meta name="keywords" content="">
+<link href="" rel="stylesheet">
+<style>
+	.wrap{ position: relative;width: 400px;height: 250px; }
+	#txt{ border: 0 none;outline: none;padding: 4px 6px;border: 1px solid #467;border-radius: 2px; }
+	label{ position: absolute;display: block;left: 0;right: 0;top: 0;bottom: 0; }
+	#txt:focus+label{ border: 1px solid #f00; }
+	/* ie8 不支持 用label 模拟父级的变化 视觉上造成css选择父级的效果 */
+</style>
+</head>
+<body>
+
+<div class="wrap">
+	<input type="text" id="txt">
+	<label></label>
+</div>
+</body>
+</html>

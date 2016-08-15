@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<title>dirCheck</title>
+<meta name="description" content="">
+<meta name="keywords" content="">
+<link href="" rel="stylesheet">
+<style>
+	body{ width:100vw;overflow:hidden; }
+	.wrap{ position:relative;width:250px;height:250px;margin:140px auto 0;border:2px solid #ccc;font:60px/250px 'microsoft yahei';text-align:center; }
+	.tips_wrap{ position:absolute;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,.6); }
+	.move_formTop{ animation:.6s move_formTop forwards; }
+	.move_formBottom{ animation:.6s move_formBottom forwards; }
+	.move_formLeft{ animation:.6s move_formLeft forwards; }
+	.move_formRight{ animation:.6s move_formRight forwards; }
+	@keyframes move_formTop{
+		0%{ top:-100%;left:0;opacity:0; }
+		100%{ top:0;left:0;opacity:1; }
+	}
+	@keyframes move_formBottom{
+		0%{ top:100%;left:0;opacity:0; }
+		100%{ top:0;left:0;opacity:1; }
+	}
+	@keyframes move_formLeft{
+		0%{ top:0;left:-100%;opacity:0; }
+		100%{ top:0;left:0;opacity:1; }
+	}
+	@keyframes move_formRight{
+		0%{ top:0;left:100%;opacity:0; }
+		100%{ top:0;left:0;opacity:1; }
+	}
+</style>
+</head>
+<body>
+
+    <div class="wrap">
+    	dirCheck
+    	<div class="tips_wrap"></div>
+    </div>
+
+    <script>
+
+    	(function(Win,Doc){
+
+    		var oWrap=Doc.querySelector('.wrap');
+    		oWrap.addEventListener('mouseenter', enterEvent,!1);
+
+    		function getDirIn(e){
+    			e=e||window.event;
+    			var originX=this.getBoundingClientRect().left+this.offsetHeight/2,
+    				originY=this.getBoundingClientRect().top+this.offsetWidth/2,
+    				mouseX=e.clientX,
+    				mouseY=e.clientY;
+				var seatX=mouseX-originX,
+					seatY=-(mouseY-originY),
+					value=seatY/seatX;
+				var dir;
+				if(Math.abs(value)>1){
+					if(seatY>0) dir='top';
+					if(seatY<0) dir='bottom';
+				}
+				if(Math.abs(value)<1){
+					if(seatX<0) dir='left';
+					if(seatX>0) dir='right';
+				}
+				return dir;
+    		};
+    		function enterEvent(e){
+    			var dir=getDirIn.call(this,e).replace(/[a-z]/,function($){ return $.toUpperCase(); }),
+    				cls='move_form'+dir,
+					oMark=this.querySelector('.tips_wrap');
+				oMark.className='tips_wrap';
+				oMark.classList.add(cls);
+    		};
+
+    		(function(){
+    			var num=100;
+    			setInterval(function(){
+    				var inow=Math.abs(num)-1;
+    				if(num>0){
+    					num=inow*-1;
+					}else {
+						num=inow;
+					}
+					console.log(num);
+    			}, 1000)
+    		})()
+    	})(window,document)
+    </script>
+</body>
+</html>

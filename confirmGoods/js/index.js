@@ -3,9 +3,7 @@ var myAlert = function(){
 
 	var alertAppearOnff = !0,
 		alertHtml = '<div class="myAlert">'
-				   +	'超出数量了额~'
 				   +'</div>',
-
 		alertE = {
 			layOut: function(){
 
@@ -74,18 +72,23 @@ var confirmGoods = function(){
 			return false;
 		},
 		confirm = {
+
+			bindOnff: function(){
+				$('.rushRed-btn').attr('rushOnff','1');
+			},
 		 	rushEvent: function(e){
 
 		 		var e = e||window.event,text=e.target.innerHTML,
+		 			rushOnff=$(this).attr('rushOnff')*1,
 		 			$actEle = $(this).parent().siblings('.goodsCountAction'),
 		 			$detailsEle = $(this).parent().siblings('.goodsItem-details'),
 		 			$inputEle = $actEle.find('.countGoods');
 	 			//点击冲红
-		 		if(text=='发起冲红'){
+		 		if(rushOnff){
 		 			$inputEle.val($inputEle.attr('data-maxCount'));
 		 			$actEle.show();
 		 			$detailsEle.hide();
-		 			$(this).text('取   消');
+		 			$(this).text('取   消').attr('rushOnff','0');
 		 			return false;
 		 		}
 		 		//点击取消
@@ -93,7 +96,7 @@ var confirmGoods = function(){
 		 			$actEle.hide();
 		 			$detailsEle.show();
 		 			$inputEle.removeClass('input-active');
-		 			$(this).text('发起冲红');
+		 			$(this).text('发起冲红').attr('rushOnff','1');
 		 			confirm.moneyCalcEvent();
 		 	},
 		 	//按理应该把收缩功能新建对象的.....
@@ -110,7 +113,6 @@ var confirmGoods = function(){
 		 			e.target.className = 'shrink-open';
 		 			$shrinkEle.height('auto');
 		 		}
-
 		 	},
 		 	shrinkEvent: function(e){
 
@@ -125,7 +127,6 @@ var confirmGoods = function(){
 		 			e.target.className = 'shrink-open';
 		 			$ul.height('auto');
 		 		}
-
 		 	},
 		 	limitCount: function($ele,maxValue){
 
@@ -163,12 +164,12 @@ var confirmGoods = function(){
 		 	},
 		 	amountChangeEvent: function(e){
 
-		 		var e = e||window.event;
+		 		var e = e||window.event,
 		 			_this = $(e.target),
 		 			countEle = _this.siblings('.countGoods'),
 		 			targetClass = e.target.className,
 		 			number = countEle.val()*1;
-
+		 		if(isNaN(number)) number=0;
 	 			//增加
 	 			if(~targetClass.indexOf('countPlus')){
 	 				countEle.val(number+1);
@@ -197,18 +198,19 @@ var confirmGoods = function(){
 		 		if(phoneIs()=='Android'){
 		 			if(str&&str=='1'){
 		 				return data;
+		 			}else {
+		 				window.jsBridge.injectResult(JSON.stringify(data));
 		 			}
-		 			window.jsBridge.injectResult(data);
-		 			return 'Android';
 		 		}
 		 		if(phoneIs()=='ios'){
 		 			return data;
 		 		}
-		 		return 'the phone is not Android or ios!';
 
 		 	},
 		 	run: function(){
 
+		 		//按钮绑定onff
+		 		confirm.bindOnff();
 		 		//初始化nowCount.记录收缩原始高度
 		 		confirm.amountAndHeightLayOut();
 		 		//加减按钮
@@ -250,11 +252,11 @@ var keyboardWatch = function(){
 
 				var maxCount = $(this).attr('data-maxCount')*1,
 					number = $(this).val();
-				if(number==''){
+				if(number==''||number=='全部收货'){
 					$(this).val(maxCount).attr('data-nowCount',maxCount);
 					confirmGoods.moneyCalcEvent();
 				}
-
+				$(this).removeClass('palceHolder');
 		 	},
 		 	valueCheck: function(){
 
@@ -263,9 +265,16 @@ var keyboardWatch = function(){
 		 		timerInputChange = setTimeout(function(){
 		 			var value=_this.val(),
 		 				re = /[^0-9]/g;
-			 		if(value=='') return;
+			 		if(value==''){
+			 			_this.addClass('palceHolder').val('全部收货');
+			 			_this.attr('data-nowcount',_this.attr('data-maxCount'));
+			 			return;
+			 		}
+			 		_this.removeClass('palceHolder');
 			 		if(re.test(value)){
-			 			myAlert.show('只能输入数字额~');
+			 			if(! ~value.indexOf('全')){
+			 				myAlert.show('只能输入数字额~');
+			 			}
 			 			value = value.split(re).join('');
 			 		}
 			 		value*=1;
@@ -276,9 +285,7 @@ var keyboardWatch = function(){
 			 		}
 			 		_this.val(value).attr('data-nowCount',value);
 			 		confirmGoods.moneyCalcEvent();
-
-		 		},200)
-
+		 		},66)
 		 	},
 			run:function(eles){
 
@@ -310,6 +317,7 @@ confirmGoods.inte();
 
 //IOS定义的方法
 if(confirmGoods.phoneIs()=='ios'){
+
 	var setupWebViewJavascriptBridge = function(callback){
 	    if (window.WebViewJavascriptBridge) { return callback(WebViewJavascriptBridge); }
 	    if (window.WVJBCallbacks) { return window.WVJBCallbacks.push(callback); }
@@ -319,13 +327,13 @@ if(confirmGoods.phoneIs()=='ios'){
 	    WVJBIframe.src = 'wvjbscheme://__BRIDGE_LOADED__';
 	    document.documentElement.appendChild(WVJBIframe);
 	    setTimeout(function() { document.documentElement.removeChild(WVJBIframe) }, 0)
-};
+	};
 
-setupWebViewJavascriptBridge(function(bridge) {
-    bridge.registerHandler('OC2JS_GetDataForReceiveOrder', function(data, responseCallback) {
-        console.log("JS Echo called with:", data)
-        var result = confirmGoods.postData();
-        responseCallback(result)
-    })
-})
+	setupWebViewJavascriptBridge(function(bridge) {
+	    bridge.registerHandler('OC2JS_GetDataForReceiveOrder', function(data, responseCallback) {
+	        console.log("JS Echo called with:", data)
+	        var result = confirmGoods.postData();
+	        responseCallback(result)
+	    })
+	})
 }
