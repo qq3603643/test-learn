@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+<title>Examples</title>
+<meta name="description" content="">
+<meta name="keywords" content="">
+<link href="" rel="stylesheet">
+<script>
+	var
+		$root=document.documentElement;
+
+	$root.style.fontSize=$root.clientWidth/7.5+'px';
+	//设计稿是750px的情况,之所以除以7.5 是因为除以75就小于最小字体的限制了...
+</script>
+<style>
+/* 假设设计稿是750 以后的宽高都是设计稿上的除以100 */
+	body{
+	    width:7.5rem;
+	    margin:0;
+	    overflow:hidden;
+	    font-size:14px;
+	    font-family:microsoft yahei;
+	}
+	.page{
+		position:absolute;
+		left:0;right:0;top:0;bottom:0;
+	}
+    header{
+    	position:absolute;
+    	left:0;right:0;top:0;
+    	height:1rem;
+		font-size:24px;
+		line-height:1rem;
+		text-align:center;
+		background:#ddd;
+    }
+    .content{
+    	position:absolute;
+		left:0;right:0;top:1rem;bottom:1rem;
+		overflow:auto;
+    }
+    footer{
+    	position:absolute;
+    	left:0;right:0;bottom:0;
+    	height:1rem;
+    	line-height:1rem;
+    	text-align:center;
+    	background:#ddd;
+    }
+	.container{
+		margin-left:auto;margin-right:auto;
+		font-size:14px;
+		line-height:1rem;
+		text-indent:.5rem;
+		background:#ccc;
+	}
+	.half_word{
+		width:1rem;
+		height:1rem;
+		margin:0 auto;
+		border:1px solid #eee;
+		font-size:40px;
+	}
+	.half_word>.txt{
+		position:absolute;
+		display:block;
+		width:1rem;
+		height:1rem;
+		line-height:1rem;
+		text-align:center;
+		text-indent:0;
+		color:rgba(255,0,0,1);
+	}
+	.half_word>.txt:before{
+		position:absolute;
+		top:0;right:0;
+		display:block;
+		width:inherit;height:inherit;
+		content:attr(txt);
+		color:#ff0;
+		z-index:2;
+		clip:rect(0,.6rem,1rem,.4rem);
+	}
+	.half_word>.txt:after{
+		position:absolute;
+		top:0;right:0;
+		display:block;
+		width:inherit;height:inherit;
+		content:attr(txt);
+		color:#0ff;
+		z-index:2;
+		clip:rect(0,1rem,1rem,.6rem);
+	}
+	.container h2{
+		margin:0;
+	}
+	.container h2:hover{
+		transition:all .6s;
+		color:transparent;
+		text-shadow:#111 0 0 5px;
+	}
+	.inFo{
+		display:block;
+		line-height:.5rem;
+		text-align:left;
+	}
+	.inFo:after{
+		display:inline-block;
+		margin-top:10px;
+		content:attr(txt);
+		font-size:14px;
+		text-indent:0;
+		background:#f00;
+	}
+	.list_wrap{
+		width:4rem;
+		padding:0 .2rem;
+		margin:0 auto;
+		background:#f00;
+		overflow:hidden;
+	}
+	.list{
+		margin:0;padding:0;
+		margin-right:-.5rem;
+		list-style:none;
+		overflow:hidden;
+	}
+	.item_list{
+		float:left;
+		width:1rem;
+		margin-right:.5rem;
+		margin-bottom:.1rem;
+		height:1rem;
+		background:#0ff;
+	}
+	.item_list:first-child+li{
+		background:#000;
+	}
+	#check1+label{
+		position:relative;
+		margin-left:auto;
+		margin-right:auto;
+		margin-top:calc(50% - .1rem);
+		display:block;
+		width:.5rem;
+		height:.2rem;
+		border-radius:.1rem;
+		background:#ddd;
+		cursor:pointer;
+	}
+	#check1+label:after{
+		position:absolute;
+		left:2px;
+		display:block;
+		content:'';
+		width:.2rem;
+		height:.2rem;
+		background:#0f0;
+		border-radius:.1rem;
+		transition:.2s;
+	}
+	#check1{
+		position:absolute;
+		top:.5rem;
+		clip:rect(0 0 0 0);
+	}
+	#check1:checked+label{
+		background:#456;
+	}
+	#check1:checked+label:after{
+		transition:.2s;
+		left:calc(100% - .2rem - 2px);
+	}
+</style>
+</head>
+<body>
+<div class="page">
+
+	<header>
+    	i am title
+    </header>
+    <div class="content">
+	    <div class="container">
+
+	    	<div class="half_word">
+				<span class="txt" txt="爱">爱</span>
+	    	</div>
+	    	<h2>next is list</h2>
+	    	<div class="list_wrap">
+		    	<ul class="list">
+		    		<li class="item_list">
+		    			<input type="checkbox" id="check1">
+			    		<label for="check1">
+			    		</label>
+		    		</li>
+		    		<li class="item_list"></li>
+		    		<li class="item_list"></li>
+		    		<li class="item_list"></li>
+		    		<li class="item_list"></li>
+		    	</ul>
+	    	</div>
+	    	</div>
+    </div>
+    <footer>
+    		i am footer
+    </footer>
+
+    <script>
+    	console.log(document.querySelector('.list').clientWidth)
+    </script>
+</div>
+</body>
+</html>

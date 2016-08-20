@@ -1,0 +1,125 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>百度音乐-全选操作</title>
+<style>
+ul{ margin:0; padding:0;}
+li{ list-style:none; width:312px; border-top:1px solid #FFF;}
+label{ display:inline-block; width:208px; font-size:12px; line-height:30px;}
+span, form{font-size:12px; line-height:30px;}
+form input{ width:64px; height:22px; border:1px solid #cecece; padding:0; margin-left:11px;}
+#ceb{ margin:3px 3px 3px 4px;width:13px; height:13px; height:auto;}
+.bg_checked{ background:#ccc; }
+li:hover{ background:#ccc; }
+</style>
+<script>
+
+(function(Win,Doc){
+
+Win.onload=function(){
+
+	var checkDemo=(function(){
+
+		var 
+			$items=Doc.querySelectorAll('.item'),
+			$onff=Doc.querySelector('#ceb'),
+			$status=Doc.querySelectorAll('.active'),
+			checkE={
+				isCheckAll: function(){
+
+					return [].filter.call($items,function(item){
+						return item.checked;
+					}).length==$items.length;
+				},
+				isSomeCheck:function(){
+
+					return [].filter.call($items,function(item){
+						return item.checked;
+					}).length>0;
+				},
+				statusChange:function(){
+
+					[].forEach.call($status,function(item){
+						item.disabled=!checkE.isSomeCheck();
+					})
+				},
+				clickItem:function(){
+					
+					var $li=this.parentNode.parentNode;
+					(this.checked) && ($li.className+=' bg_checked',!0) || ($li.className=$li.className.replace(/bg_checked/g,''));
+					$onff.checked=checkE.isCheckAll();
+					checkE.statusChange();
+				},
+				clickOnff:function(){
+
+					var isCheckAll=this.checked;
+					[].forEach.call($items,function(item){
+						item.checked=isCheckAll;
+						var $li=item.parentNode.parentNode;
+						(isCheckAll) && ($li.className+=' bg_checked',!0) || ($li.className=$li.className.replace(/bg_checked/g,''));
+					})
+					checkE.statusChange();
+				},
+				run:function(){
+
+					[].forEach.call($items,function(item){
+						item.addEventListener('click', checkE.clickItem,!0);
+					})
+					$onff.addEventListener('click',checkE.clickOnff,!0);
+				}
+			};
+
+		return {
+			inte:checkE.run
+		};
+	})();
+	checkDemo.inte();
+};
+})(window,document);
+</script>
+</head>
+
+<body>
+<ul>
+	<li>
+        <label>
+            <input type="checkbox"  class="item" />私奔
+        </label>
+        <span>梁博</span><br />
+    </li>
+    <li>
+        <label>
+            <input type="checkbox" class="item" />北京北京
+        </label>
+        <span>梁博</span><br />
+    </li>
+    <li>
+        <label>
+            <input type="checkbox" class="item" />我爱你中国
+        </label>
+        <span>梁博</span><br />
+    </li>
+    <li>
+        <label>
+            <input type="checkbox" class="item" />花火
+        </label>
+        <span>梁博</span><br />
+    </li>
+    <li>
+        <label>
+            <input type="checkbox" class="item" />爱要有你才完美
+        </label>
+        <span>梁博</span><br />
+    </li>
+</ul>
+<form>
+	<label>
+    	<input id="ceb" type="checkbox" />全选
+    </label>
+    <input class="active" type="button" value="收藏" disabled />
+    <input class="active" type="button" value="添加" disabled />
+    <input class="active" type="button" value="删除" disabled />
+</form>
+</body>
+</html>

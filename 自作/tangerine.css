@@ -48,6 +48,10 @@
 .dis_b { display:block; }
 .dis_ib { display:inline-block; }
 
+/* width&&height */
+.wd_i { width:inherit; }
+.ht_i { height:inherit; }
+
 /* margin */
 .mg_0 { margin: 0; }
 .mg_1 { margin: 1px; }
@@ -240,6 +244,7 @@
 /* cursor */
 .cur_p { cursor: pointer; }
 .cur_d { cursor: default; }
+.cur_w { cursor: wait; }
 
 /* overflow */
 .of_h { overflow: hidden; }
@@ -259,6 +264,6 @@
 .hide_pos { position: absolute; left: -999em; top: -999em; }
 .hide_clip { position: absolute; clip: rect(0,0,0,0); }
 .hide_visi { visibility:hidden; }
-.wrap_center>*{ vertical-align:middle; }
+.wrap_center>*{ vertical-align:middle;display:inline-block; }
 .wrap_center:after { display:inline-block;content:'';width:0;height:100%;vertical-align:middle;overflow:hidden; }
 .txt_of_e { text-overflow: ellipsis;overflow:hidden;white-space:nowrap; }

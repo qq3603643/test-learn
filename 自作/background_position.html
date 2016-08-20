@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<title>background-position</title>
+<meta name="description" content="">
+<meta name="keywords" content="">
+<link href="tangerine.css" rel="stylesheet">
+<style type="text/css">
+#box1{ background:url('img/8.jpg') no-repeat;background-size:800px 800px; }
+/*  ie8不支持background-size*/
+</style>
+</head>
+<body>
+	<div class="pos_a bd_d" id="box0">
+		<img class="dis_b wd_i ht_i" src="img/8.jpg" style="width:200px;height:auto;">
+		<div class="pos_a" id="box" style="top:80px;left:100px;width: 100px;height:100px;background:rgb(0,0,0);opacity:.6;filter:alpha(opacity=50);"></div>
+	</div>
+   <!--  <div class="mg_t-30 auto bd_d" id="box1" style="width: 400px;height: 400px;">
+
+    </div> -->
+
+    <img class="dis_b pos_a" id="box2" src="img/8.jpg">
+
+    <!-- 应用浮动后能添加宽高了... -->
+    <a class="bd_d pd_30 fl_l" style="height:100px;">apple</a>
+    <!-- <script type="text/javascript">
+
+    	var box_small=document.querySelector('#box'),
+    		box_show=document.querySelector('#box1');
+
+		var valueL=box_small.offsetLeft/(box_small.parentNode.clientWidth-box_small.clientWidth),
+			valueT=box_small.offsetTop/(box_small.parentNode.clientHeight-box_small.clientHeight);
+		box_show.style.backgroundPosition=(valueT*100)+'% '+(valueT*100)+'%';
+		// 两边小大盒子的比例应该一样
+    </script> -->
+
+    <script type="text/javascript">
+    	var ID=function(id){ return document.querySelector('#'+id) },
+    		oWrap=ID('box0'),
+    		obox_s=ID('box'),
+    		oShow=ID('box2');
+
+    	var iScale=oShow.clientWidth/oWrap.clientWidth,
+    		iWidth_oShow=obox_s.clientWidth*iScale,
+    		iHeight_oShow=obox_s.clientHeight*iScale,
+    		width_start=oShow.clientWidth,
+    		height_start=width_start*(oWrap.clientHeight/oWrap.clientWidth);
+    		
+		var ileft=(obox_s.offsetLeft)*iScale,
+			itop=(obox_s.offsetTop)*iScale,
+			iright=ileft+iWidth_oShow,
+			ibottom=itop+iHeight_oShow;
+		var str_clip='clip:rect('+itop+'px,'+iright+'px,'+ibottom+'px,'+ileft+'px);';
+
+// cssText会完全代替原来在元素身上的style
+		oShow.style.cssText='width:'+width_start+'px;'+'height:'+height_start+'px;top:100px;left:600px;margin-left:-'+ileft+'px;margin-top:-'+itop+'px;'+str_clip;
+    </script>
+</body>
+</html>

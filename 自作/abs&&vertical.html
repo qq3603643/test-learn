@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<title>Examples</title>
+<meta name="description" content="">
+<meta name="keywords" content="">
+<link href="tangerine.css" rel="stylesheet">
+<style type="text/css">
+.st1_hide:first-letter{ letter-spacing:-1em; }
+</style>
+</head>
+<body class="mg_0">
+    
+    <div class="pos_r bd_e mg_t_20 pd_20 wrap_middle">
+    <!-- vertical-middle无法使absolute元素居中 -->
+    <label class="pos_a g9 index_-1" style="line-height:26px;text-indent:10px;">holderPlace</label>
+    <input class="pd_5 bd_none bd_e" id="" type="text" name="" style="background:transparent;">
+    </div>
+
+    <div class="auto pos_r bd_c mg_t_30" style="width:50%;height:400px;">
+    <!-- text-algin改变的是前面空格的位置借此可改变absolute元素的位置 -->
+    <!-- 最大的应用就是将元素定位在右边了吧 -->
+    i am an apple.
+   		 <div class="txt_r pos_a index_-1 st1_hide" style="width:100%;height:inherit;left:0;top:0;">
+   		 &ensp;<span class="pos_a bd_c fs_14 cur_p" style="bottom:40px;">toTop</span></div>
+   		
+   		 <span class="pos_a bd_c fs_14 cur_p" style="bottom:40px;right:100%;">toTop2</span>
+
+   		 <span class="pos_a bd_c fs_14 cur_p" style="top:40px;left:100%;">toTop3</span>
+    </div>
+</body>
+</html>

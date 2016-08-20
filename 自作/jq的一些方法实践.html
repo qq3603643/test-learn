@@ -9,23 +9,40 @@
             height: 300px;
             border-bottom: 1px dashed gray;
         }
-        
+
         .v2 {
             height: 200px;
             border-bottom: 1px dashed gray;
         }
-        
+
         .v3 {
             height: 100px;
             border-bottom: 1px dashed gray;
         }
         #box{
+        	position:relative;
             width: 100px;
-            height: 100px;
+            /* height: 100px; */
+            line-height: 100px;
             border: 2px solid blue;
             padding: 10px;
             margin: 15px;
         }
+        #box_child{
+        	position:absolute;
+        	top:20px;
+        	left:20px;
+        	right:20px;
+        	bottom:20px;
+        	background:#ccc;
+        }
+        .item_list{
+            line-height: 40px;
+            border-bottom: 1px solid #ccc;
+        }
+        /* .list .item_list:nth-child(-n+3){
+            color: #0f0;
+        } */
     </style>
     <script src="jquery-1.11.3.js"></script>
     <script>
@@ -43,11 +60,11 @@
             return newArr;
         };
         console.log(delRe(arr));
-        
+
         $(document).on('keyup',function(e){
             console.log(e.which);  //可以检测按的哪个键
         })
-        
+
         var quickSort = function(arr){  //利用$.inArray快速排序
             var newArr = [];
             while(arr.length){
@@ -67,7 +84,10 @@
             </div>
         </div>
     </div>
-    <div id="box"></div>
+    <div id="box">
+        box
+		<div id="box_child"></div>
+    </div>
     <script>
         (function(){
             var my,$ele,showList,height,innerheight,outerheight;
@@ -95,6 +115,27 @@
             return function(obj,attr){ return getComputedStyle(obj)[attr] };
         }();
         console.log(getStyle($('#box').get(0),'height'));  //原始大小，等同jq的height();
+
+        $('#box').hover(function(){
+        	clearTimeout(this.outTimer);
+        	this.overTimer=setTimeout(function(){ console.log('over') },500)
+        },function(){
+    		clearTimeout(this.overTimer);
+    		this.outTimer=setTimeout(function(){ console.log('out') },500)
+        });
+        //hover是没有冒泡事件的
+    </script>
+
+    <ul class="list">
+        <li class="item_list">1</li>
+        <li class="item_list">2</li>
+        <li class="item_list">3</li>
+        <li class="item_list">4</li>
+        <li class="item_list">5</li>
+    </ul>
+
+    <script>
+        $('.list .item_list:nth-child(-n+3)').css('color','#f00')  //n不管正负都必须写在前面( 可以理解为最大最小为n后面的数字（包括数字） )
     </script>
 </body>
 
