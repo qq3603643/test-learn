@@ -7,14 +7,125 @@
 <meta name="description" content="">
 <meta name="keywords" content="">
 <link href="" rel="stylesheet">
+<script src="jquery-1.11.3.js"></script>
+<style>
+	.btn{ display: inline-block;width: 60px;line-height: 26px;font-size: 14px;text-align: center;cursor:pointer;border-radius: 4px;border:1px solid rgba(0,0,0,.25);box-shadow: 0 1px rgba(0,0,0,.15), 0 1px rgba(255,255,255,.15);-webkit-user-select: none;overflow: hidden;/* transform:translate3d(0,0,0); */font-family: microsoft yahei; }
+	/* .btn:hover{ background-image: linear-gradient(to bottom,rgba(0,0,0,.2) 0%,rgba(0,0,0,.2) 100%); } */
+	/* .btn .mask{ position: absolute;width: 130px;height: 130px;border-radius: 50%;background: rgba(0,0,0,.4);opacity: 0; } */
+	/* .mask.scale{ transform: scale(0);opacity: 1; } */
+</style>
+<script>
+
+$.fn.extend({
+
+	'clickSpecial': function(){
+
+		var _this = this;
+		//_this.eq(0).get(0) = _this.get(0) = _this[0] = 原生element
+		if(!('transition' in _this[0].style)) return;
+
+		_this.on('click',function(e){
+
+			var $self = $(this);
+			if($self.find('.maskForSpecialClick').size()==0){
+				if($self.css('position')=='static') $self.css('positon','relative');
+				$self.css('position','relative').append($('<i>').addClass('maskForSpecialClick'));
+
+				if($('style[class="clickSpecial"]').size()==0){
+					var $inteSize = Math.max(this.clientWidth,this.clientHeight)*2.2,
+						$style = $('<style class="clickSpecial">').html('.maskForSpecialClick{ position: absolute;width: '+ $inteSize +'px;height: '+ $inteSize +'px;border-radius: 50%;background: rgba(0,0,0,.4);opacity: 0; }.maskForSpecialClick.scale{ transform: scale(0);opacity: 1; }');
+					$('head').append($style);
+				}
+			}
+			var $mask = $self.find('.maskForSpecialClick');
+			if($mask.get(0).className.indexOf('scale')==-1)
+				$mask.css({
+					'transition':'0s',
+					'left':'200%',
+					'top':'200%'
+				}).addClass('scale');
+
+			var pos = this.getBoundingClientRect(),
+				left = pos.left,
+				top = pos.top,
+				eX = e.clientX,
+				eY = e.clientY;
+			var iLeft = eX - left - $mask.get(0).clientWidth/2,
+				iTop = eY - top - $mask.get(0).clientHeight/2;
+			var timer = null;
+
+			$mask.css({
+				'left': iLeft + 'px',
+				'top': iTop + 'px'
+			});
+			clearTimeout(timer);
+			timer = setTimeout(function(){
+
+				$mask.css('transition','.6s').removeClass('scale');
+			},20)
+		})
+	}
+});
+
+$(function(){
+
+	$('.btn').clickSpecial();
+})
+
+// 	window.onload = function(){
+
+// 		var $btn = document.querySelector('.btn'),
+// 			$mask = $btn.querySelector('.mask');
+
+// 		$btn.onclick = function(e){
+
+// 			e = e || window.event;
+// //隐藏遮罩
+// 			var disMask = function(){
+// 				$mask.style.transition = '0s';
+// 				$mask.style.left = '200%';
+// 				$mask.style.left = '200%';
+// 				$mask.className = $mask.className.replace(/^\s\s*|\s\s*$/g,'') + ' scale';
+// 			};
+
+// 			if($mask.className.indexOf('scale') == -1)
+// 				disMask();
+
+// 			var pos = this.getBoundingClientRect(),
+// 				left = pos.left,
+// 				top = pos.top,
+// 				eX = e.clientX,
+// 				eY = e.clientY;
+// 			var iLeft = eX - left - $mask.clientWidth/2,
+// 				iTop = eY - top - $mask.clientHeight/2;
+// 			var timer = null;
+
+// 			$mask.style.left = iLeft + 'px';
+// 			$mask.style.top = iTop + 'px';
+
+// 			clearTimeout(timer);
+// 			timer = setTimeout(function(){
+
+// 				$mask.style.transition = '.6s';
+// 				$mask.className = $mask.className.replace(/\b(scale)\b/g,'');
+// 			}, 10)
+// 		};
+// 	};
+</script>
 </head>
 <body>
 
+<span class="btn">button
+	<!-- <i class="mask scale"></i> -->
+</span>
+<span class="btn">buttonBat
+	<!-- <i class="mask scale"></i> -->
+</span>
 
 <script>
 	var formatTpl=function(tpl, stub, data) {
 
-			return tpl.replace(/#\{(.*)\}/g,function($,$1){
+			return tpl.replace(/#\{(.*?)\}/g,function($,$1){
 
 			    if($1 in stub)
 			    	if(~Object.prototype.toString.call(stub[$1]).toLowerCase().indexOf('function'))

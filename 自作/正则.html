@@ -44,6 +44,10 @@
         } )
         var id = 'http://m.ypzdw.cc/Operate/VipActivityMember/Details?id=1567'.match( /(?!id=)(\d+)/ig ).toString();
         console.log( id );
+
+        var str = 'abcdef', re = /(?!d)./g, re2 = /.(?!d)/g;
+        console.log(str.match(re), str.match(re2));
+        //前者相当于排除d 或者排除d前面的c
     </script>
 </body>
 

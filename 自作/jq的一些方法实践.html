@@ -112,6 +112,115 @@
         }();
         console.log(getStyle($('#box').get(0),'height'));  //原始大小，等同jq的height();
     </script>
+    <div class="outer">
+    outer
+    	<div class="inner">
+    	inner
+    		<div class="hd">
+    		hd
+    			<span class="title">
+    				title
+    			</span>
+    		</div>
+    	</div>
+    </div>
+    <script>
+    	$('.outer').find('.hd').find('.title').css({
+    		'color':'#f00'
+    	})
+    	//.end() 返回最近的之前一个选择器处( 此处为find('.title')之前的find('.hd') ) 如果不是('.hd'),应该除去title全绿
+    	.end()
+    	.css({
+    		'color':'#0f0'
+    	})
+    	$('.outer').on('click',function(){ alert(1); })
+    			   .get(0).onclick = function(){ alert(2); };
+	    $('.outer').get(0).onclick = function(){ alert(3); };
+	    //jq 增加的事件和原生事件可以共存 但是原生增加的事件会产生覆盖 jq则不会
+        //此特性可用于点击一个按钮弹出层里面的按钮的事件绑定
+
+        var openNewWin = function(){
+
+             var a = $("<a href='http://www.test.com' target='_blank' >test</a>").get(0);
+             var e = document.createEvent('MouseEvents');
+             e.initEvent('click', true, true);
+             a.dispatchEvent(e);
+        };
+        setTimeout(openNewWin,3000);
+    </script>
+    <div class="parentNode"></div>
+    <script>
+    //创建一个元素并设置其的属性
+        $('.parentNode').append(
+            $('<div>',{
+                id: 'y_childNode',
+                class: 'childNode-item',
+                html: 'i am a childNode'
+            })
+        );
+
+        function fetch(options)
+                 {
+                    return $.ajax({
+                        type: options.type || 'POST',
+                        url: options.url || '',
+                        data: options.data || {}
+                    });
+                 };
+        function parseDate(d)
+                 {
+                    if(!d.length) d=[{'name': 'apple'}];
+                    return d;
+                 };
+        function dealError(d)
+                 {
+                    console.log(d);
+                    createDOM([{'name': 'apple'}]);
+                 };
+        function createDOM(d)
+                 {
+                    var tlp = '<span>#{name}</span>',
+                        Html = '',
+                        formTlp = function(tlp,deal,data){
+
+                            return tlp.replace(/#\{(.*?)\}/g, function($,$1){
+                                if($1 in deal)
+                                    if(typeof deal[$1]=='function')
+                                        return deal[$1]();
+                                else
+                                    return deal[$1];
+
+                                return $1 in data ? data[$1] : '';
+                            })
+                        },
+                        handleDOM = function(){
+                            Html += formTlp(tlp,{
+                                name: 'I am ' + (function(name){
+                                                    return /^a/.test.name ? 'an ' : 'a '
+                                                })(this.name) + this.name
+                            },{})
+                        };
+
+                        $.each(d,handleDOM);
+                        $('body').append(Html);
+                 };
+        fetch({
+            url: 'www.baidu.com',
+            data: { 'name': 'apple' }
+        }).then(parseDate,dealError)
+          .then(createDOM);
+          //ajax 错误不进入createDOM 不知道成功能否会进入 待测试
+
+          var a = [1, 2, 3, 4];
+          $.each(a, function(){
+            if(this == 2) return false;  //false 或者 只有return 跳出循环 return true 跳出本次 相当于continue
+            console.log('This Is ' + this);
+          })
+          a.forEach(function(i){
+            if(i == 2) return true;  //return 总是跳出本次 总是相当于continue
+            console.log('forEach This Is ' + i);
+          })
+    </script>
 </body>
 
 </html>
