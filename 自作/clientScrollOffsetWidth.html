@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<title>Examples</title>
+<meta name="description" content="">
+<meta name="keywords" content="">
+<link href="" rel="stylesheet">
+<style>
+	.outer{ width: 100px;height: 100px;margin: 0 auto;border: 1px solid #ccc;overflow: auto; }
+	.inner{ height: 110px; }
+</style>
+</head>
+<body>
+    <div class="outer">
+    	<div class="inner"></div>
+    </div>
+
+    <script>
+    	var eOuter = document.querySelector('.outer'),
+    		clientHeight = eOuter.clientHeight, //不加边框
+    		offsetHeight = eOuter.offsetHeight,	//加上边框
+    		scrollHeight = eOuter.scrollHeight; //不加边框 加上最大滚动距离
+
+		console.log(clientHeight, offsetHeight, scrollHeight);
+
+		var clientWidth = eOuter.clientWidth,
+			offsetWidth = eOuter.offsetWidth,
+			scrollWidth = eOuter.scrollWidth;
+
+		console.log(clientWidth, offsetWidth, scrollWidth);
+		//可以用clientWidth/scrollWidth 判断是否出现滚动条？
+    </script>
+</body>
+</html>

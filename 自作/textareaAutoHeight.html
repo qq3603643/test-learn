@@ -18,26 +18,38 @@
 <textarea>
 
 </textarea>
+
+<div style="width: 100px;min-height: 100px;border: 1px solid #ccc;" contenteditable="true"></div>
 <script>
 (function(factory){
 
 	if(typeof define == 'function' && define.amd)
 		define(['jquery'],factory);
+	else if(typeof moudle == 'object' && moudle.exports)
+		factory(require('jquery'));
 	else
 		factory(jQuery);
 })(function($){
 
 	$.fn.extend({
 		autoHeight: function(){
-			var inputWatch = function(){
+			var inputWatch = function()
+			{
 				var _this = $(this),
 					minHeight = parseFloat(_this.css('min-height'));
+
 				_this.height(minHeight).height(
 						this.scrollHeight - parseFloat(_this.css('padding-top')) - parseFloat(_this.css('padding-bottom'))
 					);
-				//在设置了最小高度后再设置新高度 能在删除时减小高度(每次输入都有两次高度设置 性能消耗??)
-			};
-			this.on('input propertychange',inputWatch);
+				//在设置了最小高度得到scrollTop 设置为scrollTop消除滚动条(没滚定条的时候scrollTop-padding == minHeight)；
+			},
+			timer = null;
+			this.on('input propertychange', function()
+			{
+				clearTimeout(timer);
+				var _this = this;
+				timer = setTimeout(function(){ inputWatch.call(_this) }, 0);
+			})
 		}
 	})
 });

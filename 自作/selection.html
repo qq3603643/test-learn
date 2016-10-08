@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<title>select相关操作</title>
+<meta name="description" content="">
+<meta name="keywords" content="">
+<link href="" rel="stylesheet">
+</head>
+<body>
+
+	<select name="" id="testSelect" multiple>
+		<option value="0">This Is Zero</option>
+	</select>
+
+	<script>
+		//添加新项
+		var oNewOption = new Option('This Is Two', '2'),
+			oSelect = document.querySelector('#testSelect');
+
+		oSelect.add(oNewOption, undefined); //在index之前； undefined表示在最后
+		var oNewAnotherOption = new Option('This Is One', '1');
+		oSelect.add(oNewAnotherOption, 1);
+
+		var oNewTheOption = new Option('This Is Three', '3');
+		oSelect.add(oNewTheOption, undefined);
+		//删除项
+		oSelect.remove(2); //删除的index
+		//获取已选中(index value text)
+		oSelect.addEventListener('change', function(){
+			//selectedIndex 第一个被选择的index
+			console.log(this.selectedIndex);
+			getSelected(oSelect);
+		})
+		function getSelected(oSelect)
+		{
+			var aOptions = oSelect.options;
+
+			console.log(aOptions);
+		};
+		//移动
+
+	</script>
+</body>
+</html>

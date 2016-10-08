@@ -221,6 +221,33 @@
             console.log('forEach This Is ' + i);
           })
     </script>
+
+	<style type="text/css">
+	.box1, .box2{ margin-top: 100px;width: 100px;line-height: 24px;box-shadow: 0 0 2px rgba(0, 0, 0, .5); }
+	div > span{ cursor: pointer;background: rgba(0, 0, 0, .2); }
+	</style>
+
+    <div class="box1">
+    	<span>i am span1, and you?</span>
+    </div>
+
+    <div class="box2">
+    	<span>i am span2, and you?</span>
+    </div>
+
+	<script type="text/javascript">
+		var $oSpan1 = $('.box1 > span'),
+			$oSpan2 = $('.box2 > span');
+
+		function handlerMove()
+		{
+			var $this = $(this);
+			$oSpan2.parent().append($this);
+		};
+		$oSpan1.on('click', handlerMove);
+		//点击无需删除原来 直接将其移动即可
+	</script>
+
 </body>
 
 </html>
