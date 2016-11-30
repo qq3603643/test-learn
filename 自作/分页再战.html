@@ -31,13 +31,13 @@
         $(function(){
             function creatPage(indexNow,totle){
                 var $onffPrev,$onffnNext,pageStr,pageArr,i,j,k,len,html;
-                $onffPrev = indexNow > 4,$onffnNext = totle+1 - indexNow > 4,html = '';         
+                $onffPrev = indexNow > 4,$onffnNext = totle+1 - indexNow > 4,html = '';
                 //当前页前半部分的判断
                 if(!$onffPrev){
                     pageStr = '1';
                     i = 2;
-                    while( i<indexNow+1 ) pageStr += '$' + (i++);                   
-                }else{ 
+                    while( i<indexNow+1 ) pageStr += '$' + (i++);
+                }else{
                     pageStr = '1$...';
                     i = 1;
                     while( i<4 ) pageStr += '$' + ((indexNow-3) + (i++));
@@ -51,7 +51,7 @@
                     while( (j+1)<4 ) pageStr += '$' + ((j++)+indexNow);
                     pageStr += '$...$' + totle;
                 }
-                
+
                 pageArr = pageStr.split('$');pageArr.unshift('Prev');pageArr.push('Next');
                 for(k=0,len = pageArr.length;k<len;k++){
                     if( pageArr[k]==indexNow ) {html += '<a class="page1 active">'+ pageArr[k] +'</a>';continue};
@@ -60,20 +60,20 @@
                 $('.paga-totle').html(html);
                 return pageArr;
             }
-            creatPage(1,2);
-            $('.paga-totle').on('click','.page1:first,.page1:last',function(e){
-                var indexNow,indexClick;
-                indexClick = $(e.target).index()*1;
-                
-                !indexClick && ( indexNow = $('.active').text()-1,true ) || (indexNow = $('.active').text()*1+1);
-                ( indexNow<1 )&&( indexNow=1 );
-                ( indexNow>2 )&&(indexNow=2);
-                creatPage(indexNow,2);
-            })
-            $('.paga-totle').on('click','.page1',function(){
-                var index = $(this).text()*1;
-                !!index && creatPage(index,2);
-            })
+            creatPage(50,100);
+            // $('.paga-totle').on('click','.page1:first,.page1:last',function(e){
+            //     var indexNow,indexClick;
+            //     indexClick = $(e.target).index()*1;
+
+            //     !indexClick && ( indexNow = $('.active').text()-1,true ) || (indexNow = $('.active').text()*1+1);
+            //     ( indexNow<1 )&&( indexNow=1 );
+            //     ( indexNow>2 )&&(indexNow=2);
+            //     creatPage(indexNow,2);
+            // })
+            // $('.paga-totle').on('click','.page1',function(){
+            //     var index = $(this).text()*1;
+            //     !!index && creatPage(index,2);
+            // })
         })
     </script>
     <div class="paga-totle">

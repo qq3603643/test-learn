@@ -10,72 +10,57 @@
             padding: 0px;
             list-style: none;
         }
-        
-        #list {
-            position: relative;
-            left: 400px;
-            top: 100px
-        }
-        
-        #list #aaa {
-            height: 40px;
-            width: 70px;
-            border: 2px solid black;
-            text-align: center;
-        }
-        
-        #list #aaa #Slist {
-            position: absolute;
-            top: 42px;
-            left: 0px;
-        }
-        
-        #list #aaa #Slist li {
-            width: 72px;
-            height: 25px;
-            border-bottom: 1px solid red;
-            transform: rotateY(90deg);
-        }
-
+        .box{ width: 100px;height: 100px;border: 1px solid #ccc; }
+        .box > p{ height: 40px;background: #ccc; }
     </style>
     <script src="jquery-1.11.3.js"></script>
     <script src="TweenMax.js"></script>
     <script>
-        $(function() {
-            $('#list #aaa').mouseenter(function() {
-
-                $('#list #aaa #Slist').css('display', 'block');
-                var x = new TimelineMax();
-                x.staggerTo('#Slist li', 0.5, {
-                    rotationY: 0,
-
-                }, 0.2)
-            })
-            $('#list #aaa').mouseleave(function() {
-                $('#list #aaa #Slist li').css('transform', 'rotateY(90deg)');
-                $('#list #aaa #Slist').css('display', 'none');
-
-
-            })
-
-
-        })
+//只会在选中元素上发生事件 和其他任何元素无关 无冒泡
+       // $(function(){
+       //      $('.box').on({
+       //          mouseenter: function()
+       //          {
+       //              console.log('enter..')
+       //          },
+       //          mouseleave: function()
+       //          {
+       //              console.log('leave..')
+       //          }
+       //      })
+       // })
+//选中元素子元素会触发事件
+       // $(function(){
+       //      $('.box').on({
+       //          mouseover: function()
+       //          {
+       //              console.log('enter..')
+       //          },
+       //          mouseout: function()
+       //          {
+       //              console.log('leave..')
+       //          }
+       //      })
+       // })
+//和mouseenter表现一致
+       $(function(){
+            $('.box').hover(
+                function(){
+                    console.log('enter..')
+                },
+                function()
+                {
+                    console.log('leave..')
+                })
+       })
 
     </script>
 </head>
 
 <body>
-    <ul id="list">
-        <li id="aaa">
-            <h1>aaa</h1>
-            <ul id="Slist">
-                <li>1</li>
-                <li>2</li>
-                <li>3</li>
-                <li>4</li>
-            </ul>
-        </li>
-    </ul>
+    <div class="box">
+        <p></p>
+    </div>
 </body>
 
 </html>

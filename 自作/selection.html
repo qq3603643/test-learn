@@ -31,13 +31,21 @@
 		oSelect.addEventListener('change', function(){
 			//selectedIndex 第一个被选择的index
 			console.log(this.selectedIndex);
-			getSelected(oSelect);
+			console.log(getSelected(oSelect));
 		})
 		function getSelected(oSelect)
 		{
-			var aOptions = oSelect.options;
+			var aOptions = oSelect.options,
+				i = 0,
+				theOption,
+				selectedEles = [];
 
-			console.log(aOptions);
+			while(theOption = aOptions[i])
+			{
+				if(theOption.selected)	selectedEles.push(theOption);
+				i++;
+			}
+			return selectedEles;
 		};
 		//移动
 
