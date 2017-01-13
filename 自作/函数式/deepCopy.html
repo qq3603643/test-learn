@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<title>deepCopy</title>
+<meta name="description" content="">
+<meta name="keywords" content="">
+<link href="" rel="stylesheet">
+</head>
+<body>
+    <script type="text/javascript">
+    	var oldJson = {
+    		name: 'apple',
+    		favourite: {
+    			fruit: 'tangerine'
+    		}
+    	};
+
+    	function deepCopy(o)
+    	{
+    		if(typeof o != 'object')
+    			return o;
+
+    		var tpO = new o.constructor();
+
+    		for(var k in o)
+				if(o.hasOwnProperty(k))
+					tpO[k] = deepCopy(o[k]);
+
+			return tpO;
+    	}
+
+        var copyedJson = deepCopy(oldJson);
+
+        oldJson.favourite = 'orange';
+    	console.log(copyedJson);
+
+//递归 1：终止条件 2：划分步骤
+        function faltten(list)
+        {
+            if(typeof list != 'object')
+                return list;
+
+            var rst = new Array,
+                i = 0,
+                len = list.length;
+
+            for(i; i<len; i+=1)
+                rst = rst.concat(faltten(list[i]));
+
+            return rst;
+        }
+
+        console.log(faltten([1,2,[3,4,[5,6,[7]]]]));
+
+        function factorial(n, srt)
+        {
+            var rst = srt || 1;
+            if(n <= 1)  return rst;
+
+            return n * factorial(n-1, rst);
+        }
+
+        console.log(factorial(4));
+    </script>
+</body>
+</html>

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<title>Examples</title>
+<meta name="description" content="">
+<meta name="keywords" content="">
+<link href="" rel="stylesheet">
+</head>
+<body>
+	<script>
+		function Log()
+		{
+			console.log.apply(
+					console,
+					Array.prototype.slice.call(arguments)
+				);
+		}
+	</script>
+	<script type="text/javascript">
+		var _tplBtn = '<button onclick="fn(this);">Click me</button>';
+
+		document.body.innerHTML = document.body.innerHTML += _tplBtn;
+	</script>
+	<script>
+		function fn()
+    	{
+    		var _this = Array.prototype.slice.call(arguments)[0];
+
+    		console.log(_this);
+    	}
+
+    	// fn可放置在绑定元素的前后都可( 一直以为只能放在之前 ) this指的是window ..  e竟然获取不到？？ 元素方法中可直接出入this为事件元素;也只能这样获取??
+    	// 经试验动态插入的dom也同样适用
+	</script>
+</body>
+</html>

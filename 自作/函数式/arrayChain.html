@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<title>chain</title>
+<meta name="description" content="">
+<meta name="keywords" content="">
+<link href="" rel="stylesheet">
+</head>
+<body>
+    <script type="text/javascript">
+    	function chain(list)
+    	{
+    		var calls = [];
+
+    		return {
+    			invoke: function()
+    			{
+    				var _args = Array.prototype.slice.call(arguments),
+    					_methodName = _args.shift(),
+    					_parameter = _args;
+
+    				calls.push(
+    						function(k)
+    						{
+    							var _method = k.constructor.prototype[_methodName];  //根据传入值的不同类型获取方法
+
+    							try
+    							{
+    								return _method.apply(k, _parameter);
+    							}
+    							catch(er)
+    							{
+    								throw  new Error('i think you are a foolMan! because you are using a wrong method in variable "' + k + '"');
+    								return k;
+    							}
+    						}
+    					);
+
+    				return this;
+    			},
+    			force: function()
+    			{
+    				return calls.reduce(function(srt, v){
+	    				   		return v(srt);
+		    			   }, list);
+    			}
+    		};
+    	}
+
+    	var aaa = chain([2, 3, 5])
+				  .invoke('concat', [4, 1])
+				  .invoke('sort');
+
+	  	console.log(
+	  			aaa.force()
+	  		);
+
+	  	var bbb = chain({ name: 'apple', age: '22' })
+	  			  .invoke('hasOwnProperty', 'name')
+	  			  .invoke('222')
+	  			  .invoke('substr', 1, 3);
+
+		console.log(
+				bbb.force()
+			);
+    </script>
+</body>
+</html>

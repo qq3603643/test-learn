@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<title>conditions</title>
+<meta name="description" content="">
+<meta name="keywords" content="">
+<link href="" rel="stylesheet">
+</head>
+<body>
+    <script>
+
+	    function Log()
+	    {
+	    	console.log.apply(console, toArray(arguments));
+	    }
+
+    	function toArray(a)
+    	{
+    		return Array.prototype.slice.call(a);
+    	}
+
+    	function validator(tip, fn)
+    	{
+    		function f()
+    		{
+    			return fn.apply(fn, toArray(arguments));
+    		}
+
+    		f.tip = tip;
+
+    		return f;
+    	}
+
+    	function condition(/** args */)
+    	{
+    		var fns = toArray(arguments),
+    			errors = [];
+
+			return function(rFn, n){
+				fns.forEach(function(v, k){
+					if(!v(n))	errors.push(v.tip)
+				})
+
+				if(errors.length > 0)	return errors;
+				else   					return rFn(n);
+			}
+    	}
+
+    	function overZero(n)
+    	{
+    		return n > 0;
+    	}
+
+    	function isEven(n)
+    	{
+    		return n % 2 == 0;
+    	}
+
+    	function div2(n)
+    	{
+    		return n / 2;
+    	}
+
+    	var overZeroEven = condition(
+    		validator('Must OverZero', overZero),
+    		validator('Must Even', isEven)
+    		);
+
+    	Log(
+    			overZeroEven(div2, 2)
+    		);
+    </script>
+
+<style>
+	.box{
+		position: relative;
+		margin: 0 auto;
+		max-width: 1560px;min-width: 1200px;
+		text-align: right;
+		background-color: #eee;
+		overflow: hidden;
+	}
+	.content{
+		float: left;
+		width: 100%; height: 1000px;
+	}
+	.fixed{
+		position: fixed;
+		display: inline-block;
+		top: 200px;
+		width: 80px;height: 140px;
+		background-color: #ccc;
+	}
+</style>
+
+    <div class="box">
+    	ABSOLUTE DIV
+    	<div class="content"></div>
+    	<div class="fixed"></div>
+    </div>
+</body>
+</html>

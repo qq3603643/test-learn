@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<title>var-css</title>
+<meta name="description" content="">
+<meta name="keywords" content="">
+<link href="" rel="stylesheet">
+<style type="text/css">
+	:root
+	{
+		--blue: #369;
+		--black: #000;
+		--sizeT: 18px;
+		--sizeP: 12px;
+	}
+	p{
+		--sizeP: 14px;
+	}
+	.tit
+	{
+		color: var(--blue);
+		font-size: var(--sizeT);
+	}
+	.words
+	{
+		color: var(--black);
+		font-size: var(--sizeP);
+	}
+
+	/* 结合媒体查询示例  */
+	:root
+	{
+		--base: 12;
+		--spacing: calc((var(--base) / 6) * 1px);
+		--ftSz: calc(var(--base) + 2px);
+		/* 利用calc将数字转化为带有单位的可用变量 */
+	}
+	.box
+	{
+		font-size: var(--ftSz);
+		letter-spacing: var(--spacing);
+	}
+	@media screen and (max-width: 900px)
+	{
+		.box
+		{
+			--base: 14;
+		}
+	}
+	@media screen and (max-width: 700px)
+	{
+		.box
+		{
+			--base: 12;
+		}
+	}
+</style>
+<!--
+	#变量定义格式为--* 使用时也使用--*
+	#不能包含$，[，^，(，%等字符，普通字符局限在只要是“数字[0-9]”“字母[a-zA-Z]”“下划线_”和“短横线-”这些组合，但是可以是中文，日文或者韩文
+	#定义时最好带上单位 不然可用 calc(var(--**) * 1px)转换
+	#变量的权重和选择器一样
+
+	#结合媒体查询食用风味俱佳
+ -->
+</head>
+<body>
+    <div class="content">
+    	<h2 class="tit">
+    		tit
+    	</h2>
+    	<p class="words">
+    		words
+    	</p>
+    </div>
+
+    <div class="box">fontSize</div>
+</body>
+</html>

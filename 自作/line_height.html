@@ -10,6 +10,9 @@
         .parent:nth-of-type(2){ line-height:250%; }
         /* 用250%时子元素继承的是计算后的数组，是固定的值 ，不再根据子元素的字体大小而变化*/
         .child{ font-size:60px;box-shadow:0 0 2px #aaa; }
+
+        .wrap{ margin-top: 20px;line-height: 24px; }
+        /* lineHeight在垂直方向并不会重叠 两行时高度为lineHeigt的2倍 */
     </style>
 </head>
 <body>
@@ -21,6 +24,11 @@
     <div class="parent">
     parent2
         <div class="child">child2</div>
+    </div>
+
+    <div class="parent wrap">
+    	hello,</br>
+    	world!
     </div>
 </body>
 </html>

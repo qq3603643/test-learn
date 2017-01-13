@@ -7,6 +7,24 @@
 <body>
     <script src="jquery-1.11.3.js"></script>
     <script>
+
+    	function someWait()
+    	{
+    		var d = $.Deferred();
+
+    		setTimeout(function(){
+    			console.log('start running..');
+    			d.resolve();
+    		}, 1000)
+    		return d.promise();
+    	}
+    	someWait().then(function(){
+    		setTimeout(function(){ console.log('first one') }, 6000)
+    	}).then(function(){
+    		setTimeout(function(){ console.log('second two') }, 2000)
+    	})
+    	//后面的then并不会等待前面的then执行完毕才运行
+
         var wait = function(str){
             var dtd = $.Deferred();
             setTimeout(function(){
@@ -14,31 +32,31 @@
                 dtd.resolve();
                 return 'tangerine..';
             },1000)
-            
+
             return dtd.promise();
         };
-       
+
           wait('first').then(function(){  //then 返回的数据在可以通过传参的形式给下一个函数使用
             console.log('second..');
               return 'thrtd..';
         }).done(function(value){
               console.log(value)
           });
-        
+
         //应用与ajax中,可在处理完数据后再进行操作其他
-        var dataDeal = function(){
-            var dtd = $.Deferred();
-            
-                $.post('url****',{data:***},function(data){
-                    
-                    //data 有关的数据处理
-                    dtd.resolve();
-                })
-            return dtd.promise();
-        };
-        dataDeal().done(function(){
-                    //一些其他的操作，比如前面是插入div，现在即可对div以及div里面的内容进行操作了..
-                })                  
+        // var dataDeal = function(){
+        //     var dtd = $.Deferred();
+
+        //         $.post('url****',{data:***},function(data){
+
+        //             //data 有关的数据处理
+        //             dtd.resolve();
+        //         })
+        //     return dtd.promise();
+        // };
+        // dataDeal().done(function(){
+        //             //一些其他的操作，比如前面是插入div，现在即可对div以及div里面的内容进行操作了..
+        //         })
     </script>
 </body>
 </html>
