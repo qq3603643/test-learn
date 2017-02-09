@@ -40,15 +40,13 @@
 				theOption,
 				selectedEles = [];
 
-			while(theOption = aOptions[i])
-			{
-				if(theOption.selected)	selectedEles.push(theOption);
-				i++;
-			}
+			while(theOption = aOptions[i++])	theOption.selected && selectedEles.push(theOption);
+			//当确定数组中的每一项都不为空时 可用while代替for进行循环
+			//不要问我为什么 逼格
+
 			return selectedEles;
 		};
 		//移动
-
 	</script>
 </body>
 </html>

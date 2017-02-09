@@ -18,8 +18,40 @@
     }
         var str1 = arr.join('');
         var n = arr.sort()[arr.length-1];
-        alert('字符出现最多的是：' + str.charAt(str1.indexOf(n)) + '\n' +'出现次数为：' + n)
+        // alert('字符出现最多的是：' + str.charAt(str1.indexOf(n)) + '\n' +'出现次数为：' + n)
       
+    function getMaxcountChar(str)
+    {
+        var _list = str.split(''),
+            _i = 0,
+            _item,
+            _o = new Object;
+
+        _list.reduce(function(o, char){
+            o[char] = o[char] ? o[char]+1 : 1;
+
+            return o;
+        }, _o)
+
+        for(var k in _o)
+        {
+            if(_o.hasOwnProperty(k))
+            {
+                if(_o[k] > _i)
+                {
+                    _i = _o[k];
+                    _item = k;
+                }
+            }
+        }
+        return {
+            v: _item,
+            c: _i
+        };
+    }
+    console.log(
+            getMaxcountChar('435435345dffff')
+        );
     </script>
 </body>
 </html>

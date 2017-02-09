@@ -12,7 +12,7 @@
 </head>
 <body>
 
-    <script>
+    <!-- <script>
     	var objT = [{ name: 'apple', age: '26' }, { name: 'tangerine', age: '24' }],
     		tplHtml = '<ul><li>name； <%= name %></li><li>age: <%= age %></li><li>sex: <%= sex %></li></ul>';
 
@@ -22,6 +22,19 @@
 					return t;
 				}, new String)
 			);
+    </script> -->
+
+    <script type="text/javascript">
+    	var data = [{ name: 'apple', age: '26' }, { name: 'tangerine', age: '24' }],
+    		tpl = '<ul>' +
+    				'<% _.each(data, function(p){ %>' +
+						'<li>name: <%= p.name %>; age: <%= p.age %><li>' +
+    				'<% }) %>' +
+				  '</ul>';
+
+	    console.log(
+	    		_.template(tpl)(data)
+	    	);
     </script>
 </body>
 </html>

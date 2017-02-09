@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<title>insertStyle</title>
+<meta name="description" content="">
+<meta name="keywords" content="">
+<link href="" rel="stylesheet">
+<style type="text/css">
+	.btn
+	{
+		cursor: pointer;
+	}
+</style>
+</head>
+<body>
+	<span class="btn" title="click to change this appearence" id="J_btn">BUTTON</span>
+    <script type="text/javascript">
+    	void function()
+    	{
+    		function addCssByStyle(selector, opts)
+    		{
+    			var oS = document.createElement('style'),
+    				sCss = '',
+    				sFull = '';
+
+				oS.type = 'text/css';
+				for(var k in opts)
+				{
+					if(opts.hasOwnProperty(k))
+						sCss += k + ':' + opts[k] + ';';
+				}
+				sFull = selector + '{' + sCss + '}';
+
+				if(oS.styleSheet)  //ie
+					oS.styleSheet.cssText = sFull;
+				else
+					oS.appendChild(document.createTextNode(sFull));
+
+				document.querySelectorAll('head')[0].appendChild(oS);
+    		}
+    		function $(selector)
+    		{
+    			return document.querySelector(selector);
+    		}
+    		var addEven = function(){
+    			return document.attachEvent
+    					? function(el, ev, fn){ el.attachEvent('on' + ev, fn) }
+    					: document.addEventListener
+    					? function(el, ev, fn){ el.addEventListener(ev, fn, false) }
+    					: function(el, ev, fn){ var _ev = 'on' + ev;el[_ev] = fn; }
+    		}();
+
+    		addEven(
+    				$('#J_btn'),
+    				'click',
+    				function()
+    				{
+    					addCssByStyle('#J_btn', { 'background-color': 'red' })
+    				}
+    			);
+    	}()
+    </script>
+</body>
+</html>
