@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<title>Examples</title>
+<meta name="description" content="">
+<meta name="keywords" content="">
+<link href="" rel="stylesheet">
+<style type="text/css">
+	/* *{ margin: 0;padding: 0; }
+	.wrap{ margin: 0 auto;width: 400px;height: 60px;box-shadow: 0 0 1px rgba(0, 0, 0, .6);overflow: hidden; }
+	.list{ list-style: none;height:inherit;animation: 12s scroll infinite cubic-bezier(0.230, 0.950, 0.465, 1.315); }
+	.item{ height: inherit;font: 16px/60px 'microsoft yahei';text-align: center;cursor: pointer; }
+	@keyframes scroll{
+		10%{ transform: translate3d(0, 0, 0) }
+		25%{ transform: translate3d(0, 0, 0) }
+
+		35%{ transform: translate3d(0, -60px, 0) }
+		50%{ transform: translate3d(0, -60px, 0) }
+
+		60%{ transform: translate3d(0, -120px, 0) }
+		75%{ transform: translate3d(0, -120px, 0) }
+
+		85%{ transform: translate3d(0, -180px, 0) }
+		100%{ transform: translate3d(0, -180px, 0) }
+	} */
+	*{ margin: 0;padding: 0; }
+	.wrap{ position: relative;margin: 0 auto;width: 400px;height: 60px;box-shadow: 0 0 1px rgba(0, 0, 0, .6);overflow: hidden; }
+	.list{ position: absolute;left: 0;top: 0;width: 100%;list-style: none;height:inherit; }
+	.item{ height: inherit;font: 16px/60px 'microsoft yahei';text-align: center;cursor: pointer; }
+</style>
+</head>
+<body>
+
+<div class="wrap">
+	<ul class="list">
+		<li class="item">1</li>
+		<li class="item">2</li>
+		<li class="item">3</li>
+	</ul>
+</div>
+
+<script type="text/javascript" src="jquery-1.11.3.js"></script>
+<!-- jq 无限滚动时间版本(鼠标上移停止) -->
+<script type="text/javascript">
+	function Scroll(option)
+	{
+		if(!(this instanceof(Scroll)))	return new Scroll(option);
+		var _default = {
+			$wrap: $('.wrap'),
+			$list: $('.list'),
+			$item: $('.item'),
+			stopTime: 1000,
+			moveTime: 1000,
+			index: 0,
+			timerId: null
+		};
+		this.config = $.extend(_default, option || {});
+		this.init();
+	};
+	Scroll.prototype.constructor = Scroll;
+	Scroll.prototype = {
+		addSameOne: function()
+		{
+			this.config.$list.append(this.config.$item.eq(0).clone(!0));
+		},
+		enterEv: function()
+		{
+			this.config.timerId && clearInterval(this.config.timerId);
+		},
+		leaveEv: function()
+		{
+			var _config = this.config,
+				_height = _config.$item[0].offsetHeight,
+				_len = _config.$item.size() + 1,
+				_index = _config.index;
+
+			_config.timerId = setInterval(function(){
+
+				var _targetTop = (_index + 1) * _height * -1;
+				_config.$list.animate(
+						{
+							top: _targetTop + 'px'
+						},
+						_config.moveTime,
+						'swing',
+						function()
+						{
+							_index += 1;
+							if(_index == _len - 1)
+							{
+								_config.$list.css('top', '0px');
+								_index = 0;
+							}
+						}
+					)
+			}, this.config.stopTime + this.config.moveTime);
+		},
+		init: function()
+		{
+			this.addSameOne();
+			this.leaveEv();
+			this.config.$item.hover(this.enterEv.bind(this), this.leaveEv.bind(this));
+		}
+	};
+	Scroll(
+			{
+				stopTime: 1000,
+				moveTime: 500
+			}
+		);
+</script>
+</body>
+</html>

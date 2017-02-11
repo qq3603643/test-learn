@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<title>onMouseWheel</title>
+<meta name="description" content="">
+<meta name="keywords" content="">
+<link href="" rel="stylesheet">
+<script src="jquery-1.11.3.js"></script>
+<style>
+	.wrap{ margin: 400px auto;width: 400px;height: 400px;border:1px solid #ccc;overflow-y: auto; }
+	.inner{ height: 800px; }
+</style>
+</head>
+<body>
+
+<div class="wrap" id="wrap">
+	<div class="inner"></div>
+</div>
+
+<script>
+	(function($,undefined){
+
+		$.fn.extend({
+			'scrollUnique': function(){
+
+				var typeEvent = document.mozHidden!=undefined ? 'DOMMouseScroll' : 'mousewheel';
+
+				this.on(typeEvent,function(e){
+// alert(e.target) jquery已经对event对象做了兼容处理 e.originalEvent获取未做处理的原始对象
+// console.log(e.originalEvent)
+					var _this = this,
+						scrollTop = _this.scrollTop,
+						scrollHeight = _this.scrollHeight,
+						height = _this.clientHeight,
+//一般是wheeldelta 向下为正 向上为负 可理解为一次最小滚动的距离(但一次滚动会触发多次最小滚动??)  火狐为detail 方向相反
+						delta = e.originalEvent.wheelDelta ? e.originalEvent.wheelDelta : -(e.originalEvent.detail || 0);
+					if((delta>0 && scrollTop<=delta)||(delta<0&&scrollHeight-height-scrollTop<=-delta)){
+						//scrollHeight-height 为最大滚动高度
+							_this.scrollTop = delta>0 ? 0 : scrollHeight;
+							e.preventDefault();
+					}
+				})
+			}
+		})
+	})(jQuery)
+	$('#wrap').scrollUnique();
+</script>
+</body>
+</html>

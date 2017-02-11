@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<title>Examples</title>
+<meta name="description" content="">
+<meta name="keywords" content="">
+<link href="" rel="stylesheet">
+</head>
+<body>
+    <script type="text/javascript">
+    	var getL = function()
+    	{
+    		var total = 0;
+
+    		function g(list)
+    		{
+    			if(!(list instanceof Array))
+    				throw new Error();
+    			for(var i = 0,len = list.length; i<len; )
+				{
+					if(!(list[i] instanceof Array))
+					{
+						total += 1;
+					}
+					else
+						g(list[i]);
+
+					i += 1;
+				}
+
+				return total;
+    		}
+
+    		return g;
+    	}();
+
+    	console.log(
+    				getL(
+    						[1, 3, [4, 5, [6, 7]]]
+    					)
+    			);
+    </script>
+
+<style type="text/css">
+	.box
+	{
+		height: 25px;
+		line-height: 25px;
+		box-shadow: 0 0 1px rgba(0, 0, 0, .5);
+		overflow: hidden;
+	}
+	ul
+	{
+		margin: 0;padding: 0;
+		list-style: none;
+		animation: dotting 2s steps(4, start) infinite;
+	}
+	.item
+	{
+		
+	}
+	/* 0 -25 -50 -75  四步 start表示跳过 25[[开始]]这一步*/
+	@keyframes dotting
+	{
+		0%
+		{
+			transform: translateY(25px);
+		}
+		100%
+		{
+			transform: translateY(-75px);
+		}
+	}
+</style>
+
+	<div class="box">
+	    <ul class="items">
+	    	<li class="item">·</li>
+	    	<li class="item">··</li>
+	    	<li class="item">···</li>
+	    	<li class="item">····</li>
+	    </ul>
+    </div>
+</body>
+</html>

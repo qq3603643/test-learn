@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<title>三向切分快速排序</title>
+<meta name="description" content="">
+<meta name="keywords" content="">
+<link href="" rel="stylesheet">
+</head>
+<body>
+
+
+<script>
+
+	function createArr(n)
+			 {
+			 	var arr = [];
+			 	while(n-- > 0) arr.push(Math.random());
+			 	return arr;
+			 };
+
+    var arr_test = createArr(100000),
+		qkSort_3Dir = function() //三个方向(小于 大于 等于 都进行不同处理 在大量相等的情况下差距很明显)
+		{
+		 	function exch(a, i, j)
+			{
+				a[i] = [a[j], a[j]=a[i]][0];
+			};
+			function compare(a, b)
+			{
+			 	return a > b ? 1 : a < b ? -1 : 0;
+			};
+			return function(arr, lo, hi, option)
+				   {
+			   	       var lo = lo == undefined ? 0 : lo,
+					 	   hi = hi == undefined ? arr.length - 1 : hi;
+				 	   if(lo >= hi) return;
+					   var lt = lo, gt = hi,
+					 	   i  = lo + 1,
+					 	   v  = arr[lo];
+
+				 	   while(i <= gt)
+				 	   {
+				 	       var dir = compare(arr[i], v),
+				 			   dir = option == undefined || option == true ? dir : -dir;
+				 		   if(dir > 0) 	    exch(arr, i, gt--);
+						   else if(dir < 0) exch(arr, i++, lt++);
+						   else 			i++;
+				 	   }
+
+				 	   arguments.callee(arr, lo, lt-1, option);
+				 	   arguments.callee(arr, gt+1, hi, option);
+				   }
+		}();
+	var time_s = new Date()*1;
+	qkSort_3Dir(arr_test);
+	console.log(new Date()*1 - time_s);
+
+	var arr_test1 = createArr(100000);
+	function qkSort_2(arr)
+			 {
+			 	var _len = arr.length;
+			 	if(_len <= 1) return arr;
+			 	var left = [],right = [],mid = arr[0],
+			 		handle = function(i,index)
+			 				 {
+			 				 	if(index == 0) return false;
+			 				 	if(i<mid)      left.push(i);
+			 				 	else           right.push(i);
+			 				 };
+			 	arr.forEach(handle);  //用forEach 比直接for循环慢 但是逼格高啊 ....
+			 	return arguments.callee(left).concat(mid,arguments.callee(right));
+			 };
+	var time_s1 = new Date()*1;
+	arr_test1 = qkSort_2(arr_test1);
+	console.log(new Date()*1 - time_s1);
+
+	var arr_test2 = createArr(10000);
+	function bubbleSort(arr)
+	{
+	 	var len = arr.length,
+	 		exch = function(arr, i, j)
+	 			   {
+	 			   	  arr[i] = [arr[j], arr[j]=arr[i]][0];
+	 			   };
+	 	for(var i = 0;i < len;i++){
+	 		for(var j = i;j < len;j++){
+	 			if(arr[i] - arr[j]>0) exch(arr, i, j);
+	 		}
+	 	}
+	};
+ //    var time_s2 = new Date()*1;
+	// bubbleSort(arr_test2);
+	// console.log(new Date()*1 - time_s2);
+	//快速排序比冒泡快了一千倍 就上面的数据量而言
+
+	function toFixed(b)
+    {
+   		var _n = this + '',
+   			_b = b || 2;
+
+        return (_n += _n.indexOf('.') > -1 ? '' : '.0').replace(/\d+$/,function($){
+	 		return $.length < _b ? [$, new Array(_b+1-$.length).join('0')].join('') : Math.round(('.'+$)*Math.pow(10, _b));
+	 	});
+    };
+    //判断函数中的this 只需判断函数所属对象 例如一般情况下是window.***
+    Number.prototype.toFixed = toFixed;
+    String.prototype.toFixed = toFixed;
+    var n  = '4.545',
+    	n1 = 4.3543545;
+    console.log(n.toFixed());
+    console.log(n1.toFixed(4));
+
+</script>
+<style>
+	.outer{ margin: 0 auto;width: 400px;height: 20px;box-shadow: 0 0 0 1px rgba(0, 0, 0, 1.0); }
+	.outer .left{ float: left;width: 50px;height: inherit;border-right: 1px solid #ccc; }
+	.outer .right{ float: right;width: 50px;height: inherit;border-left: 1px solid #ccc; }
+	.outer .middle{ padding: 0 4px;height: inherit;box-shadow: 0 0 1px rgba(0, 0, 0, .4) inset;overflow: hidden; }
+</style>
+<div class="outer">
+	<div class="left"></div>
+	<div class="right"></div>
+	<div class="middle">.......................................................</div>
+</div>
+
+<style>
+	.nodeP{ position: relative;left: 100px;width: 66px;height: 26px;background: #ccc;color: #ccc; }
+	.nodeP:after{ position: absolute;top: 0;left: -10px;content: '';display: block;width: 0;height: 0;border-top: 13px solid transparent;border-bottom: 13px solid transparent;border-right: 10px solid;color: inherit; }
+	/* 边框颜色不填 默认是color的颜色 */
+	.nodeP:hover{ background: #aaa;color: #aaa; }
+	.nodeP span{ vertical-align: middle;color: #fff; }
+</style>
+<div class="nodeP">
+	<span> apple . </span>
+</div>
+</body>
+</html>

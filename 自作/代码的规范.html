@@ -7,40 +7,43 @@
     <script>
         $(function(){
             var $$ = {
-                
-                fn1:function(){  //依赖于ajax请求后数据的函数
+                fn1:function()
+                {  //依赖于ajax请求后数据的函数
                     console.log('first..')
                 },
-                fn2:function(){  //依赖于ajax请求后数据的函数
+                fn2:function()
+                {  //依赖于ajax请求后数据的函数
                     console.log('second..')
                 },
-                fn3:function(){ //自执行函数
+                fn3:function()
+                { //自执行函数
                     console.log('third..')
                 },
-                fn4:function(){  //一些关于ajax的请求类函数
+                fn4:function()
+                {  //一些关于ajax的请求类函数
                    var dtd = $.Deferred();
-                   setTimeout(function(){
+                   setTimeout(function()
+                   {
                        console.log('fourth..');
                        dtd.resolve();
                    },1000)
                    return dtd.promise();
                 },
                 json:{
-                    //可以存放一些请求过来的数据，以供其他函数使用 
-                }, 
-                main:function(){
-                
+                    //可以存放一些请求过来的数据，以供其他函数使用
+                },
+                main:function()
+                {
                 $$.fn3();
                 $$.fn4().done($$.fn1)
                         .done($$.fn2);
-            }
+                }
             };
-          
           $$.main();
         })
     </script>
 </head>
 <body>
-    
+
 </body>
 </html>

@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<title>textAreaAutoHeight</title>
+<meta name="description" content="">
+<meta name="keywords" content="">
+<link href="" rel="stylesheet">
+<script src="jquery-1.11.3.js"></script>
+<style>
+	textarea{ padding: 10px;min-height: 100px;border: 1px solid #ccc;resize: none;border-radius: 2px;font-family: microsoft yahei;overflow: auto; }
+	textarea:focus{ outline: none;border: 1px solid #333;box-shadow: 0 0 6px #aaa; }
+</style>
+</head>
+<body>
+
+<textarea>
+
+</textarea>
+
+<div style="width: 100px;min-height: 100px;border: 1px solid #ccc;" contenteditable="true"></div>
+<script>
+(function(factory){
+
+	if(typeof define == 'function' && define.amd)
+		define(['jquery'],factory);
+	else if(typeof moudle == 'object' && moudle.exports)
+		factory(require('jquery'));
+	else
+		factory(jQuery);
+})(function($){
+
+	$.fn.extend({
+		autoHeight: function(){
+			var inputWatch = function()
+			{
+				var _this = $(this),
+					minHeight = parseFloat(_this.css('min-height'));
+
+				_this.height(minHeight).height(
+						this.scrollHeight - parseFloat(_this.css('padding-top')) - parseFloat(_this.css('padding-bottom'))
+					);
+				//在设置了最小高度得到scrollTop 设置为scrollTop消除滚动条(没滚定条的时候scrollTop-padding == minHeight)；
+			},
+			timer = null;
+			this.on('input propertychange', function()
+			{
+				clearTimeout(timer);
+				var _this = this;
+				timer = setTimeout(function(){ inputWatch.call(_this) }, 0);
+			})
+		}
+	})
+});
+
+$('textarea').autoHeight();
+</script>
+</body>
+</html>

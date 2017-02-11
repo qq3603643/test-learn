@@ -5,19 +5,26 @@
     <meta charset="UTF-8">
     <title>Document</title>
     <style>
+        body{ margin: 0; }
         .justfy {
             width: 250px;
             margin: 0px auto;
             font-family: '微软雅黑';
             text-align: justify;
-            line-height: 10px;
+            line-height: 0;
+            height: 13px;
+            font-size: 14px;
+            vertical-align: middle;
+            margin-top: 7px;
+            /* 伪元素内容为 ‘’ 占据lineHeight的高度 只有将其设置为零 用marginTop制造lineHeigt效果 */
         }
         .justfy:after{
             display: inline-block;
             content: '';
             width: 100%;
-            height: 0px;
+            height: 0;
             vertical-align: top;
+            overflow: hidden;
         }
 /*        自动对齐有第二行时才生效，所以利用伪元素制造第二行*/
     </style>

@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<title>Examples</title>
+<meta name="description" content="">
+<meta name="keywords" content="">
+<link href="" rel="stylesheet">
+<style>
+	.box{ position: relative;left: 100px;width: 100px;height: 100px;border: 1px solid #aaa;transition: .4s; }
+	/* supports 本身的兼容性就烂 不过不支持supports的也不会进去里面定义 所以尚可使用 */
+	@supports(transform: translate3d(0, 0, 0) ){
+		.box{ left:0;border:0 none;transform: translate3d(100px, 0, 0);box-shadow: 0 0 2px #ccc; }
+	}
+	label{ position: relative;display:block;width: 100px;height: 40px;vertical-align: middle;cursor: pointer; }
+	label>*{ display: inline-block;vertical-align: middle; }
+	label:after{ display: inline-block;content: '';width: 0;height: 100%;vertical-align: middle; }
+	#select{ position: absolute;clip: rect(0,0,0,0); }
+	.icon-select{ width: 20px;height: 20px;border-radius: 50%;border: 1px solid #ccc;box-shadow: 0 0 2px rgba(0,0,0,.4);transition: .4s; }
+	#select:checked + .icon-select{ background: rgb(0,0,255);text-align: center;box-shadow: none; }
+	#select:checked + .icon-select:after{ display: inline-block;content: '';margin-bottom: 2px;width: 10px;height: 4px;border: 3px solid #fff;border-top: 0;border-right: 0;transform: rotate(-45deg); }
+</style>
+</head>
+<body style="height:2000px">
+
+<div class="box"></div>
+<label for="select">
+	<input type="checkbox" id="select"/>
+	<i class="icon-select"></i>
+	<span>1234567</span>
+</label>
+
+<script>
+//二叉树构建一个能快速找到最大值的一个对象(二叉大法好)
+	function queue(){
+
+		this.N=0;
+		this.Q=[];
+	};
+	queue.prototype = {
+//向上比较 能否上浮
+		swim: function(k){
+
+			while(k>1){
+				var j = ~~(k/2);
+				if( this.Q[k]<=this.Q[j] ) break;
+				this.Q[k]=[this.Q[j],this.Q[j]=this.Q[k]][0];  //交换两个数
+				k=j;
+			}
+		},
+//向下比较 能否下沉
+		sink: function(k){
+
+			while(2*k<=this.N){
+				var j=2*k;
+				if( j+1<=this.N && this.Q[j+1]>this.Q[j] ) j+=1;
+				if( this.Q[k]>=this.Q[j] ) break;
+				this.Q[k]=[this.Q[j],this.Q[j]=this.Q[k]][0];
+				k=j;
+			}
+		},
+		add: function(k){
+
+			this.Q[this.N+=1] = k;
+			this.swim(this.N);
+		},
+		delMax: function(){
+//原理： 将最大值替换为数组的最后一个数 然后将其下沉
+			var tplMax = this.Q.pop(),orgMax = this.Q[1];
+			this.N-=1;
+			this.Q[1] = tplMax;
+			this.sink(1);
+			return orgMax;
+		},
+		maxItem: function(){
+
+			return this.Q[1];
+		},
+		minItem: function(){
+		},
+		showFull: function(){
+
+			return this.Q;
+		},
+		size: function(){
+
+			return this.N;
+		}
+	};
+	//原理 构建一颗树形的数据结构 只有一个根节点 即为 Q[1] .....
+	var newQueue = new queue(),Log= window.console&&window.console.log || function(){};
+	newQueue.add(2);
+	newQueue.add(5);
+	newQueue.add(8);
+	newQueue.add(3);
+	newQueue.add(6);
+	Log(newQueue.showFull());
+	newQueue.delMax();
+	Log(newQueue.showFull());
+	newQueue.add(10);
+	Log(newQueue.showFull());
+
+	window.onload=function(){
+
+		setTimeout(function(){
+
+			var $root = document.documentElement,
+			    heigtWithScroll = $root.scrollHeight,
+			    heightClient = $root.clientHeight,
+			    scrollTop = $root.scrollTop || $root.querySelector('body').scrollTop || '0';
+//ie 前者:$root.scrollTop 其他后者:$root.querySelector('body').scrollTop;
+//heightClient 和 widthClient 两者表现一致 都能正确获取
+			// alert(scrollTop);
+			// alert(heigtWithScroll-heightClient);
+		},233)
+	};
+</script>
+</body>
+</html>

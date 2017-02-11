@@ -32,9 +32,37 @@
         }
         #wrap{ display: block;margin-top: 40px;cursor: pointer; }
         .wrap-item,.wrap-itel{ display: inline-block;border: 1px solid silver;height: 25px;width: 60px; }
-/*        .wrap-itel:nth-child(-n+2){ background: silver; }*/
-        .wrap-itel:nth-of-type(-n+2){ background: silver; }
-/*        可理解为n从1开始+=1直到最大，而-n+*的结果为负数时没效果*/
+        .wrap-itel:nth-child(-n+2){ background: silver; }
+        /* .wrap-itel:nth-of-type(n+1){ background: silver; } */
+        /* .wrap-itel:nth-of-type(-n+2){ background: red; } */
+/*        可理解为n从1开始+=1直到最大，而-n+*的结果为负数时没效果
+*/
+
+        .bbb
+        {
+            height: 40px;
+            box-shadow: inset 0 0 1px rgba(0, 0, 0, .6);
+        }
+        .bbb:nth-of-type(n + 2)
+        {
+            background-color: silver;
+        }
+        /* n从表示index 但是(n+1)代表第多少个 */
+        /* .bbb:nth-of-type(-n + 2)
+        {
+            background-color: red;
+        } */
+        .bbb:nth-of-type(2n - 1)
+        {
+            background-color: red;
+        }
+        /*
+            ## 总结 ##
+            nth 表示的是第多少个 从1开始 里面计算的n表示index 从0开始
+            (n + a) 从第a个开始
+            (-n + a) 前a个
+            (2n)    第2n个
+         */
     </style>
 </head>
 <body>
@@ -55,5 +83,12 @@
         <span class="wrap-item"></span>
         <span class="wrap-itel"></span>
     </a>
+    <ul class="aaa">
+        <li class="bbb"></li>
+        <li class="bbb"></li>
+        <li class="bbb"></li>
+        <li class="bbb"></li>
+        <li class="bbb"></li>
+    </ul>
 </body>
 </html>

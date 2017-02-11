@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<title>堆排序</title>
+<meta name="description" content="">
+<meta name="keywords" content="">
+<link href="" rel="stylesheet">
+</head>
+<body>
+
+<script>
+	var sortHeap = function(arr){
+
+		var _arr = arr.concat([]),
+			N = _arr.length,
+			exch = function(arr, q ,p){
+
+				arr[q] = [arr[p], arr[p]=arr[q]][0];
+			},
+			sink = function(arr, k, N){
+				while(2*k<=N){
+					var j = 2*k;
+
+					if(j+1<=N && arr[j+1]>arr[j]) j+=1;  //arr[j+1] 换成 j+1<=N 的原因在于排序的时候N变小了 arr[j+1]依旧存在
+					if(arr[k]>=arr[j]) break;
+					exch(arr, k, j);
+					k = j;
+				};
+			};
+			_arr.unshift(undefined);
+			for(var i=~~(N/2);i>0;i--)	sink(_arr, i ,N);
+			while(N>1)
+			{
+				exch(_arr, 1, N);
+				sink(_arr, 1, N-=1);
+			}
+			_arr.shift();
+			return _arr;
+	};
+	var arr=[2,5,8,3,6,10,12,16,1],
+		Log=window.console && window.console.log || function(){};
+
+		Log(sortHeap(arr));
+</script>
+</body>
+</html>

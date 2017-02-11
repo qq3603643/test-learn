@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<title>Examples</title>
+<meta name="description" content="">
+<meta name="keywords" content="">
+<link href="" rel="stylesheet">
+</head>
+<body>
+    <script type="text/javascript">
+    	var _loaded = !1;
+    	function fetchDate()
+    	{
+    		var url = '',
+    			oIframe = document.createElement('iframe');
+
+			if(oIframe.attachEvent)
+			{
+				oIframe.attachEvent('onload', showDa);
+			}
+			else
+			{
+				oIframe.onload = showDa;
+			}
+
+			function showDa()
+			{
+				if(!_loaded)
+				{
+					oIframe.src = 'favicon.ico';
+					_loaded = !0;
+				}
+				else
+				{
+					console.log(
+							oIframe.contentWindow.name
+						);
+				}
+			}
+
+			oIframe.src = url;
+			document.body.appendChild(oIframe);
+    	}
+
+    	crossDomain();
+
+    	/**
+			后台代码示例
+			echo(
+				'<script type="text/javascript"> window.name = {请求的数据} <\/script>'
+			);
+    	*/
+    	/**
+			#原理简介#
+			iframe内可通过contentWindow.name获取到顶层window.name  (contentWindow.name = 顶层window.name 仍在当前window)
+			创建iframe 后台返回script 里面定义了window.name
+			iframe 再通过contentWindow.name 获取到定义的window.name
+    	*/
+
+    	var crossDomain = function()
+    	{
+    		var isLoaded = !1;
+
+    		return function()
+    		{
+    			
+    		}
+    	}();
+    </script>
+</body>
+</html>

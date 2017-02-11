@@ -3,6 +3,21 @@
 <head>
     <meta charset="UTF-8">
     <title>Document</title>
+    <style>
+        .parent{
+            position: relative;
+            height: 100px;
+            width: 10px;
+            background: #aaa;
+        }
+        .child{
+            position: absolute;
+            padding: 20px;
+            left: 0;right: 0;
+            top: 0;bottom: 0;
+            /* 实现box-sizing：border-box */
+        }
+    </style>
 </head>
 <body>
     <script>
@@ -37,5 +52,9 @@
         }();
         inheritTest.running();
     </script>
+
+    <div class="parent">
+        <div class="child"></div>
+    </div>
 </body>
 </html>

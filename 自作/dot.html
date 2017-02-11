@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<title>Examples</title>
+<meta name="description" content="">
+<meta name="keywords" content="">
+<link href="" rel="stylesheet">
+<style>
+	.btn{ padding: 6px 10px;color: #369;border: 1px solid;border-radius: 4px; }
+	.dot{ display: none;height: 1em;line-height: 1;text-align: left;overflow: hidden;vertical-align: top; }
+	.loadding > .dot{ display: inline-block; }
+	.dot:before{ display: block;content: '.\A..\A...';white-space: pre;
+	animation: dot 3s infinite steps(3, start);
+	}
+	/* (3步理解) 第一步到-2em 第二步到-1em 第三步到-0em */
+	@keyframes dot{
+		0%{ transform: translateY(1em) }
+		100%{ transform: translateY(-2em) }
+	}
+
+	.progress{ margin-top: 40px;width: 0;height: 4px;background: #ccc;animation: loadding 4s infinite steps(4, start); }
+	/* start 不显示0%状态 直接从 1等分处 开始 可以看见末状态 */
+	@keyframes loadding{
+		0%{ width: 0 }
+		100%{ width: 400px; }
+	}
+	.progress2{ margin-top: 40px;width: 400px;height: 4px;background: #ccc;animation: loadding 4s infinite steps(4, end); }
+	/* end 不显示100%状态 从0%开始 */
+
+	/**
+			总结：
+			可理解为有start就不显示start 有end就不显示end
+			所以我还是默默的用start    =_=
+	 */
+</style>
+</head>
+<body>
+	<div class="btns">
+	    <span class="btn loadding">
+	    	提交中
+			<i class="dot"></i>
+	    </span>
+	</div>
+
+	<div class="progress"></div>
+	<div class="progress2"></div>
+</body>
+</html>

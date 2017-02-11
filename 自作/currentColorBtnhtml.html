@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<title>currentColorBtn</title>
+<meta name="description" content="">
+<meta name="keywords" content="">
+<link href="" rel="stylesheet">
+<style>
+	.btn{
+		position: relative;
+		display: inline-block;
+		padding: 6px 12px;
+		border: 1px solid;
+		border-radius: 4px;
+		background-color: currentcolor;
+		/* ie8 不兼容慎用 */
+	}
+	.btn:first-line{
+		color: #fff;
+	}
+	/* .btn:first-letter{
+		margin-right: 6px;
+		font-size: 28px;
+	} */
+	.red{
+		color: #f00;
+	}
+</style>
+</head>
+<body>
+    <span class="btn">btn</span>
+    <span class="btn red">btn</span>
+</body>
+</html>

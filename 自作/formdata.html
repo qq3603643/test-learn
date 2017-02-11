@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<title>formdata</title>
+<meta name="description" content="">
+<meta name="keywords" content="">
+<link href="" rel="stylesheet">
+<style type="text/css">
+	label[for='userFile'], #submit
+	{
+		position: relative;
+		display: block;
+		margin-bottom: 10px;
+		width: 80px;line-height: 26px;
+		border-radius: 5px;
+		font-family: micsoft yahei;
+		text-align: center;
+		color: #fff;
+		background-color: rgba(0, 0, 120, .8);
+		cursor: pointer;
+		-webkit-user-select: none;
+	}
+	label[for='userFile']:hover, #submit:hover
+	{
+		background-image: linear-gradient(to bottom,rgba(0, 0, 0, .2), rgba(0, 0, 0, .2))
+	}
+	#filename
+	{
+		position: absolute;
+		left: 100px;
+		color: #000;
+		white-space: pre;
+	}
+	#userFile
+	{
+		position: absolute;
+		clip: rect(0, 0, 0, 0);
+	}
+	#submit
+	{
+		background-color: #999;
+	}
+</style>
+<script type="text/javascript" src="./jquery-1.11.3.js"></script>
+</head>
+<body>
+    <from id="form">
+    	<label for="userFile">
+    		选择文件
+    		<input type="file" name="userFile" id="userFile">
+    		<span id="filename"></span>
+    	</label>
+
+    	<span id="submit">submit</span>
+    </from>
+
+    <script type="text/javascript">
+    	var errors;
+    	function bindCh($e, ev)
+    	{
+    		$e.on('change', ev);
+    	}
+    	function bindCk($e, ev)
+    	{
+    		$e.on('click', ev)
+    	}
+    	function getfsize(obj)
+    	{
+    		var fileSize = 0,
+    			isIE = /msie/i.test(navigator.userAgent) && !window.opera;
+
+		    if (isIE && !obj.files)
+		    {
+		        var filePath = obj.value,
+		         	fileSystem = new ActiveXObject("Scripting.FileSystemObject"),
+		         	file = fileSystem.GetFile (filePath);
+
+		        fileSize = file.Size;
+		    }else
+		    {
+		        fileSize = obj.files[0].size;
+		    }
+		    return Math.round(fileSize/1024*100)/100;
+		    //保留两位小数 一直觉得这个方法非常巧妙
+    	}
+    	function getfname(obj)
+    	{
+			var _val = obj.value;
+
+    		return _val.substr(_val.lastIndexOf('\\')+1);
+    	}
+    	bindCh(
+    			$('#userFile'),
+    			fileCh
+    		);
+    	bindCk(
+    			$('#submit'),
+				fileUp
+    		);
+
+    	function fileCh()
+    	{
+    		var $this = $(this),
+    			_val = $this.val();
+
+			errors = [];
+			if(_val == '')
+			{
+				errors.push('尚未选择任何文件!');
+				return;
+			}
+			var _tp = _val.substr(_val.lastIndexOf('\.')+1),
+				//有时候想想 lastindexof好像挺好用的呀
+				_size = getfsize(this),
+				_name = getfname(this);
+
+			$('#filename').html(_name);
+			if(_tp != 'xls')
+			{
+				errors.push('只能上传excel表格哟!');
+				return;
+			}
+			if(_size > 100)
+			{
+				errors.push('文件最大为100kb哟!');
+				return;
+			}
+    	}
+    	function fileUp()
+    	{
+    		var $this = $(this);
+
+    		if(errors.length > 0)
+    			alert(errors[0]);
+    		if($this.data('isAjaxing'))
+			{
+				alert('正在提交中哟!');
+				return;
+			}
+
+			var formdata = new FormData();
+
+			formdata.append('userFile', document.querySelector('#userFile').files[0]);
+// console.log(formdata.get('userFile'));
+			$.ajax(
+					{
+						url: '',
+						type: 'POST',
+						data: formdata,
+						cache: false,
+						processData: false,
+						contentType: false,
+						beforeSend: function()
+						{
+							$this.data('isAjaxing', !0);
+						}
+					}
+				)
+				.done(function(){})
+				.fail(
+					function()
+					{
+						alert('未知错误!');
+					}
+					)
+				.complete(
+					function()
+					{
+						$this.data('isAjaxing', !1);
+					}
+					);
+    	}
+    </script>
+</body>
+</html>

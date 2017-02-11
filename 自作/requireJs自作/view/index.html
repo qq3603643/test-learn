@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<title>require</title>
+<meta name="description" content="">
+<meta name="keywords" content="">
+<link href="" rel="stylesheet">
+<script src="../js/require.js"></script>
+<script>
+	function Log(a)
+	{
+		var Log = (window.console && window.console.log) || alert;
+		Log(a);
+	};
+	require.config = {
+		baseURL: '../js',
+		b: '../js/b.js'
+	};
+	define(['a', 'b'],function(A, B){
+		Log(this);
+		Log(A);
+		Log(B);
+	})
+</script>
+
+<style>
+	.box{ position: relative;width: 100px;height: 20px;background: #ccc;cursor: pointer;transition: .6s; }
+	.box.active{ left: 20px; }
+	:root .box.active{ left: 0;transform: translate3d(20px, 0, 0); }
+</style>
+
+<script>
+	window.onload = fn;
+	String.prototype.trim = function()
+	{
+		return this.replace(/^\s\s*/g, '').replace(/\s*\s$/g, '');
+	};
+	function fn()
+	{
+		var oBox = document.querySelector('.box');
+		oBox.onclick = function(){
+			var _this = this, tplClass = ' ' + _this.className + ' ';
+			if(tplClass.indexOf(' active ') == -1)
+				_this.className = tplClass.trim() + ' active';
+			else
+				_this.className = tplClass.split(' active ').join(' ').trim();
+		};
+	}
+</script>
+
+<div class="box"></div>
+
+</head>
+<body>
+
+</body>
+</html>

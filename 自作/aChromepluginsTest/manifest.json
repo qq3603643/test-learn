@@ -1,0 +1,29 @@
+{
+  "name": "A browser action with a popup that changes the page color",
+  "description": "Change the current page color",
+  "version": "1.0",
+  "permissions": [
+    "tabs", "http://*/*", "https://*/*", "notifications", "cookies", "activeTab", "<all_urls>"
+  ],
+  "browser_action": {
+      "default_title": "Set this page's color.",
+      "default_icon": "icon.png",
+      "default_popup": "./view/popup.html"
+  },
+  /**
+    *content_scripts
+    *在匹配的页面中直接注入
+  */
+  "content_scripts": [
+    {
+      "matches": ["http://*/*", "https://*/*"],
+      "js": ["./js/jquery-1.11.3.js", "./js/content.js"],
+      "run_at": "document_start",
+      "all_frames": true
+    }
+  ],
+  "background": {
+    "page":"./view/background.html"
+  },
+  "manifest_version": 2
+}

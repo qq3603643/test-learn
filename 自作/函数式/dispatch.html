@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<title>dispatch</title>
+<meta name="description" content="">
+<meta name="keywords" content="">
+<link href="" rel="stylesheet">
+</head>
+<body>
+    <script type="text/javascript">
+    	function dispatch(/** arguments */)
+    	{
+    		var _args = Array.prototype.slice.call(arguments);
+
+    		return function(v)
+    		{
+    			if(_args.length == 0)
+    				throw new Error('No Conditions!');
+
+    			var i = -1,
+    				_res;
+
+				while(!_res)
+				{
+					if(_args[i += 1])
+						_res = _args[i](v);
+					else
+						break;
+				}
+
+				return _res;
+    		}
+    	}
+
+    	var fn = dispatch(
+    			function(n){ return (n instanceof String) ? n : '' },
+    			function(n){ return (n instanceof Object) ? JSON.stringify(n) : '' },
+    			function(n){ return n }
+    		);
+
+    	console.log( fn('apple') );
+    	console.log( 'apple' instanceof String );  //false
+    	console.log( String('apple') instanceof String );  //false  前面不加new不是对象类型 ..
+    	console.log( new String('apple') instanceof String );  //true
+    </script>
+</body>
+</html>

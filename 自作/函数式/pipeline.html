@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<title>pipeline</title>
+<meta name="description" content="">
+<meta name="keywords" content="">
+<link href="" rel="stylesheet">
+</head>
+<body>
+    <script type="text/javascript">
+    	function pipeLine()
+    	{
+    		var _args = Array.prototype.slice.call(arguments),
+    			_srt = _args.shift();
+
+			return _args.reduce(function(res, k){
+						return k(res);
+				   }, _srt)
+    	}
+
+    	function add3(n)
+    	{
+    		return n + 3;
+    	}
+    	function ride2(n)
+    	{
+    		return n * 2;
+    	}
+    	function div8(n)
+    	{
+    		return n / 8;
+    	}
+    	//传入第一个参数依次将函数执行结果作为参数传入执行后面的函数
+    	console.log(pipeLine(3, add3, ride2, div8));
+
+    	function testFn()
+    	{
+    		console.log(Array.prototype.slice.call(arguments));
+    		console.log(Array.prototype.concat.call(arguments));  //为什么concat 不可以呢
+    	}
+    	testFn(1, 2, 3);
+    </script>
+</body>
+</html>

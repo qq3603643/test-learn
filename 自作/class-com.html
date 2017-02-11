@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<title>Examples</title>
+<meta name="description" content="">
+<meta name="keywords" content="">
+<link href="" rel="stylesheet">
+</head>
+<body>
+    <script type="text/javascript">
+    	function accessLocation()
+    	{
+    		this.goods = [];
+    		this.location = '中国大陆';
+    	}
+    	accessLocation.prototype.construct = accessLocation;
+    	accessLocation.prototype =
+    	{
+    		register: function(goodsItem)
+    		{
+    			this.goods.push(goodsItem);
+    		},
+    		setLocation: function(country)
+    		{
+    			this.location = country;
+    			this.updatePrice();
+    		},
+    		getLocation: function()
+    		{
+    			return this.location;
+    		},
+    		updatePrice: function()
+    		{
+    			function update(item)
+    			{
+    				item.setPrice();
+    			}
+    			this.goods.forEach(update);
+    		}
+    	};
+
+    	var container = new accessLocation();
+
+    	function goods(price)
+    	{
+    		this.price = price;
+    		this.forexRates =
+    		{
+    			'美国': .16,
+    			'欧洲': .12,
+    			'日本': 16.11,
+    			'中国大陆': 1
+    		};
+
+    		container.register(this);
+    	}
+    	goods.prototype =
+    	{
+    		setPrice: function()
+    		{
+    			this.price = this.price * this.forexRates[container.getLocation()];
+    		},
+    		getPrice: function()
+    		{
+    			var prefix;
+    			switch (container.getLocation())
+    			{
+    				case '美国' :
+    					prefix = '$';
+    					break;
+					case '中国大陆' :
+    					prefix = '￥';
+    					break;
+    			}
+    			return prefix + this.price;
+    		}
+    	}
+    	var P1 = new goods(20);
+    	console.log(
+				P1.getPrice()
+    		);
+    	container.setLocation('美国');
+    	console.log(
+				P1.getPrice()
+    		);
+
+    </script>
+</body>
+</html>

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<title>underscore</title>
+<meta name="description" content="">
+<meta name="keywords" content="">
+<link href="" rel="stylesheet">
+<script type="text/javascript" src="../jquery-1.11.3.js"></script>
+<script type="text/javascript" src="./underscore-min.js"></script>
+</head>
+<body>
+
+    <!-- <script>
+    	var objT = [{ name: 'apple', age: '26' }, { name: 'tangerine', age: '24' }],
+    		tplHtml = '<ul><li>name； <%= name %></li><li>age: <%= age %></li><li>sex: <%= sex %></li></ul>';
+
+		$(document.body).append(
+				_.reduce(_.sortBy(objT, function(o){ return o.age; }), function(t, o){
+					t += _.template(tplHtml)(o);
+					return t;
+				}, new String)
+			);
+    </script> -->
+
+    <script type="text/javascript">
+    	var data = [{ name: 'apple', age: '26' }, { name: 'tangerine', age: '24' }],
+    		tpl = '<ul>' +
+    				'<% _.each(data, function(p){ %>' +
+						'<li>name: <%= p.name %>; age: <%= p.age %><li>' +
+    				'<% }) %>' +
+				  '</ul>';
+
+	    console.log(
+	    		_.template(tpl)(data)
+	    	);
+    </script>
+</body>
+</html>

@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<title>Examples</title>
+<meta name="description" content="">
+<meta name="keywords" content="">
+<link href="" rel="stylesheet">
+<script type="text/javascript" src="../underscore/underscore-min.js"></script>
+</head>
+<body>
+<!-- dispatch -->
+    <script type="text/javascript">
+    // var list = [1, 2, 3];
+    // _.each(list, function(k){
+    // 	if(k > 1) return false; //和原生forEach一样；没有实现continue的功能
+    // 	console.log(k);
+    // })
+    	function dispatch(/**args*/)
+    	{
+    		var fns = _.toArray(arguments), rst;
+    		if(_.size(fns) == 0)	return;
+
+    		return function()
+    		{
+    			var ags = _.toArray(arguments); //Uncertain Parameter;
+
+    			_.each(fns, function(k){
+    				rst = k.apply(k, ags);
+    				if(rst) return false;
+    			})
+
+    			return rst;
+    		}
+    	}
+		function isName(nm, fn)
+		{
+			return function(obj)
+			{
+				if(nm == obj.name) return fn(obj);
+			}
+		}
+		function isSex(sex, fn)
+		{
+			return function(obj)
+			{
+				if(sex == obj.sex)	return fn(obj);
+			}
+		}
+    	function testName()
+    	{
+    		return dispatch(
+    			isName('apple', function(obj){ alert(1); }),
+    			isName('tangerine', function(obj){ alert(2); }),
+    			isSex('man', function(obj){ alert(3); })
+			);
+    	}
+
+    	// testName()({name: 'apple', sex: 'man'});
+
+    	function curry(fn)
+    	{
+    		return function(v)
+    		{
+    			return fn(v);
+    		}
+    	}
+    	function onlyParseInte2()   //固定一个参数 parse默认第二个参数为二进制转换
+    	{
+    		return curry(parseInt)
+    	}
+    	var _list = [1.5, 2.0, .93];
+
+		function log()
+		{
+			try
+			{
+				console.log.apply(console, _.toArray(arguments))
+			}catch(er){}
+		}
+    	log(
+		  _.chain(_list)
+		   .map(onlyParseInte2())
+		   .value()
+	    );
+
+	    function curry3(fn)
+	    {
+	    	return function(secondArg)
+	    	{
+	    		return function(thirdArg)
+	    		{
+	    			return function(firstArg)
+	    			{
+	    				return fn(firstArg, secondArg, thirdArg);
+	    			}
+	    		}
+	    	}
+	    }
+
+	    function testFn(a, b, c)
+	    {
+	    	return a / b * c;
+	    }
+
+	    var div2 = curry3(testFn)(2)(1);
+	    log(div2(6));
+    </script>
+</body>
+</html>

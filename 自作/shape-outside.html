@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<title>shape-outside</title>
+<meta name="description" content="">
+<meta name="keywords" content="">
+<link href="" rel="stylesheet">
+<style type="text/css">
+	.container
+	{
+		width: 800px;height: 600px;
+		margin: 0 auto 0;
+		box-shadow: 0 0 2px rgba(0, 0, 0, .6);
+	}
+	.circle
+	{
+		float: left;
+		margin-right: 20px;
+		width: 200px;
+		height: 200px;
+		border: 1px solid #ccc;
+		border-radius: 50%;
+		/* shape-outside: circle();
+		-webkit-shape-outside: circle(); */
+		shape-outside: circle(100px at 50% 50%);
+		-webkit-shape-outside: circle(100px at 50% 50%);
+		/**
+				circle($r at $x $y)
+				可自定义半径r 圆心坐标x,y
+				ellipse($rX $rY at $x $y)
+				椭圆函数
+				polygon()
+				多边形
+		 */
+	}
+	.info:first-child
+	{
+		padding-top: 20px;
+	}
+</style>
+</head>
+<body>
+    <div class="container">
+    	<div class="circle"></div>
+    	<div class="txt">
+    		<p class="info">从前有个人</p>
+    		<p class="info">他叫什么名字呢</p>
+    		<p class="info">额</p>
+    		<p class="info">好像我并不关我什么事</p>
+    	</div>
+    </div>
+</body>
+</html>

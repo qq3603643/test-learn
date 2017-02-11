@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<title>Examples</title>
+<meta name="description" content="">
+<meta name="keywords" content="">
+<link href="" rel="stylesheet">
+<script type="text/javascript" src="./pubsub.js"></script>
+</head>
+<body>
+    <script type="text/javascript">
+        //订阅消息 当发布时执行
+    	PubSub.subscribe('showName', function(msg, sName){
+    		console.log(sName);
+    	})
+    	//发布消息
+    	setTimeout(function(){
+    		PubSub.publish('showName', 'apple');
+    	}, 2000)
+    </script>
+</body>
+</html>

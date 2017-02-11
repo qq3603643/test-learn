@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<title>Examples</title>
+<meta name="description" content="">
+<meta name="keywords" content="">
+<link href="" rel="stylesheet">
+</head>
+<body>
+
+<script>
+
+	//此方法的目的 是将各个不同的item关联起来, 可检测各个item是否关联（ 如何解除关联？？？？？？ ）
+	var quickUnion = (function(){
+
+		var
+			totle = 0,ID = [],SE = [],
+			unionE = {
+				inte: function(_arr){
+
+					totle = _arr.length;
+					_arr.forEach(function(a){
+						ID[a] = a;
+						SE[a] = 1;
+					});
+				},
+				find: function(q){
+
+					while(q !== ID[q]) q = ID[q];
+					return q;
+				},
+				union: function(q,p){
+
+					var root_q = unionE.find(q),
+						root_p = unionE.find(p);
+
+					if(root_p == root_q) return;
+					if(SE[root_q]<SE[root_p]) ID[root_q] = root_p;
+					else ID[root_p] = root_q;
+					totle -= 1;
+				},
+				isConnected: function(q,p){
+
+					return unionE.find(q) == unionE.find(p);
+				},
+				chainSize: function(){
+
+					return totle;
+				}
+			};
+		return unionE;
+	})();
+
+	var Log = window.console.log,
+		arrUnion = [2,1,5,7,8,4,6,9];
+	quickUnion.inte(arrUnion);
+	Log(quickUnion.chainSize());
+	Log(quickUnion.isConnected(arrUnion[1],arrUnion[2]));
+	quickUnion.union(arrUnion[1],arrUnion[2]);
+	Log(quickUnion.isConnected(arrUnion[1],arrUnion[2]));
+	quickUnion.union(arrUnion[1],arrUnion[3]);
+	Log(quickUnion.isConnected(arrUnion[2],arrUnion[3]));
+</script>
+</body>
+</html>

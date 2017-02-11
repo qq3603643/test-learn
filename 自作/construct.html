@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<title>construct</title>
+<meta name="description" content="">
+<meta name="keywords" content="">
+<link href="" rel="stylesheet">
+<script src="underscore/underscore-min.js"></script>
+</head>
+<body>
+    <script>
+
+    	function construct () {
+    		return _.reduce(_.toArray(arguments), function(ret, v, k){
+    			if(_.isArray(v))	ret = ret.concat(construct.apply(null, v));
+    			else ret = ret.concat(v);
+
+    			return ret;
+    		}, new Array)
+
+    		// return Array.prototype.reduce.call(arguments, function(){
+    		// })
+    	}
+
+    	console.log(
+    		construct(1, [2, 3], 4)
+    		);
+
+    	function countAgs()
+    	{
+    		Array.prototype.forEach.call(arguments, function(k){
+    			console.log(k);
+    		})
+    	}
+    	countAgs(1, 3, 5);
+    </script>
+</body>
+</html>

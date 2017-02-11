@@ -82,7 +82,7 @@ function getStyle ( obj, attr ) { return obj.currentStyle?obj.currentStyle[attr]
 
 //将一位数转化为两位数
 function toTwo ( n ) {
-	return n < 10 ?  '0' + n : '' + n;
+	return ('0' + (n += '')).substr(-2);
 }
 
 //得到完整的时间

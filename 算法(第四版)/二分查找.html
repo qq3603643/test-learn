@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<title>二分查找</title>
+<meta name="description" content="">
+<meta name="keywords" content="">
+<link href="" rel="stylesheet">
+</head>
+<body>
+
+<script>
+	var arr = [4334,4,454576756,535,2,1,4,345,356,346,4,45],
+		quickSort = function(){
+
+			function exch(arr, i, j)
+			{
+				arr[i] = [arr[j], arr[j]=arr[i]][0];
+			};
+			function compareTo(i, j)
+			{
+				return i > j ? 1 : i < j ? -1 : 0;
+			};
+			return function(arr, lo, hi)
+				   {
+				   		var lo = lo == undefined ? 0 : lo,
+				   			hi = hi == undefined ? arr.length - 1 : hi;
+				   		if(lo >= hi) return;
+				   		var lt = lo,gt = hi,
+				   			i = lo + 1,v = arr[lo];
+
+			   			while(i <= gt){
+			   				var dir = compareTo(arr[i], v);
+			   				dir > 0 ? exch(arr, i, gt--) : dir < 0 ? exch(arr, i++, lt++) : i++;
+			   			}
+
+			   			arguments.callee(arr, lo, lt-1);
+			   			arguments.callee(arr, gt+1, hi);
+				   };
+		}(),
+		findIndex = function(a,b){
+//二分法查找 前提是排序
+			var _a = a.concat([]),
+				low = 0,
+				high = _a.length;
+
+			quickSort(_a);
+			while(low<=high){
+				var mid = ~~((high + low)/2),
+					val = _a[mid];
+				if(b<val)
+					high = mid - 1;
+				if(b>val)
+					low = mid + 1;
+				if(b==val)
+					return mid;
+		    }
+		    return -1;
+		};
+
+		console.log(
+			findIndex(arr,454576756)
+			);
+		quickSort(arr, 0, arr.length-1);
+		console.log(
+			arr
+			);
+//最大公约数
+	var findSome = function(a,b){
+
+		var r = a%b;
+		if(r==0)
+			return b;
+		return arguments.callee(b,r);
+	}
+	console.log(findSome(28,7));
+</script>
+</body>
+</html>
