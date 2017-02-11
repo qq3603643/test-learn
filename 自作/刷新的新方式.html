@@ -7,13 +7,18 @@
 </head>
 
 <body>
+	<input type="button" class="btn1" value="refresh1">
+	<input type="button" class="btn2" value="refresh2">
     <script>
-        document.onclick = function() {
+        document.querySelector('.btn1').onclick = function() {
 
             document.getElementsByTagName('meta')[0].setAttribute('http-equiv', 'refresh');
             document.getElementsByTagName('meta')[0].setAttribute('content', '0');
         }
+        document.querySelector('.btn2').onclick = function(){
 
+        	location = location;
+        }
     </script>
 </body>
 

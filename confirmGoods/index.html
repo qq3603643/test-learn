@@ -6,10 +6,10 @@
     <title>Document</title>
     <!-- https://static2.ypzdw.com/yaoyi/confirmgoods/ -->
     <link href="css/index.css" type="text/css" rel="stylesheet">
-    <script src="js/zepto.min.js"></script>
+    <script type="text/javascript" src="js/zepto.min.js"></script>
     <script>
     	//初始化字体大小
-		$('html').css({'fontSize':$(window).width()/10 +'px'});
+		$('html').css({'fontSize':Math.min($(window).width()/10,50) +'px'});
     </script>
 </head>
 <body>
@@ -50,10 +50,10 @@
  				<dt>广州赛丝化妆品有限公司</dt><dd>x30</dd>
  				<dt>200ml*2</dt>
  			</dl>
- 			<div class="goodsCountAction centerWrap">
+ 			<div class="goodsCountAction centerWrap banSelect">
 				<span class="countMinus">-</span>
 				<!-- data-price：单价；  data-maxCount：初始数量（即可操作最大数量）-->
-				<input type="tel" class="countGoods" data-price="28" data-maxCount="30" value="30" placeholder="全部收货" />
+				<input type="tel" class="countGoods" data-price="28" data-maxCount="30" value="30" />
 				<span class="countPlus">+</span>
 			</div>
  			<div class="rushRed-btnWrap">
@@ -69,9 +69,9 @@
  				<dt>广州赛丝化妆品有限公司</dt><dd>x132</dd>
  				<dt>200ml*2</dt>
  			</dl>
- 			<div class="goodsCountAction centerWrap">
+ 			<div class="goodsCountAction centerWrap banSelect">
 				<span class="countMinus">-</span>
-				<input type="tel" class="countGoods" data-price="18" data-maxCount="132" value="132" placeholder="全部收货" />
+				<input type="tel" class="countGoods" data-price="18" data-maxCount="132" value="132" />
 				<span href="javascript:;" class="countPlus">+</span>
 			</div>
  			<div class="rushRed-btnWrap">
@@ -87,9 +87,9 @@
  				<dt>广州赛丝化妆品有限公司</dt><dd>x58</dd>
  				<dt>200ml*2</dt>
  			</dl>
- 			<div class="goodsCountAction centerWrap">
+ 			<div class="goodsCountAction centerWrap banSelect">
 				<span class="countMinus">-</span>
-				<input type="tel" class="countGoods" data-price="10" data-maxCount="58" value="58" placeholder="全部收货" />
+				<input type="tel" class="countGoods" data-price="10" data-maxCount="58" value="58" />
 				<span class="countPlus">+</span>
 			</div>
  			<div class="rushRed-btnWrap">
@@ -168,6 +168,7 @@
 		<dt>卖家已出库： </dt><dd>2016-02-26 17:51:11</dd>
 	</dl>
 </div>
-<script src="js/index.js"></script>
+<script type="text/javascript" src="js/index.js"></script>
+<!-- <script type="text/javascript" src="js/index.js"></script> -->
 </body>
 </html>

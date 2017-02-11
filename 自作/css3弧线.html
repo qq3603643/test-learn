@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<title>css3弧线</title>
+<meta name="description" content="">
+<meta name="keywords" content="">
+<link href="" rel="stylesheet">
+<style>
+	.wrap{ width:400px;height:400px;margin:40px auto;border:2px dotted #ddd; }
+	.btn{ float:right;margin:10px;padding:.4em .8em;border-radius:4px;background:blue;font:14px/14px 'microsoft yahei';color:#fff;cursor:pointer; }
+	.inner{ width:40px;height:40px;background:transparent; }
+	.inner_in{ height:100%;background:#f00; }
+	.move_x{ -webkit-animation:move_x .8s .2s ease-out forwards; }
+	.move_y{ -webkit-animation:move_y .8s .2s ease-in forwards; }
+	/* 第二个数字为延迟 */
+	@-webkit-keyframes move_x{
+		100%{
+			-webkit-transform:translateX(400px);
+		}
+	}
+	@-webkit-keyframes move_y{
+		100%{
+			-webkit-transform:translateY(400px);
+		}
+	}
+	@keyframes move_x{
+		100%{
+			transform:translateX(400px);
+		}
+	}
+	@keyframes move_y{
+		100%{
+			transform:translateY(400px);
+		}
+	}
+</style>
+</head>
+<body>
+<div class="wrap">
+	<span class="btn">加入购物车</span>
+	<div class="inner">
+		<div class="inner_in"></div>
+	</div>
+</div>
+
+<script>
+	var isSupportAnimation=function(){
+		return 'animation' in document.documentElement.style || '-webkit-animation' in document.documentElement.style;
+	};
+	document.querySelector('.btn').onclick=function(){
+		if(isSupportAnimation()){
+			document.querySelector('.inner').classList.add('move_x');
+			document.querySelector('.inner_in').classList.add('move_y');
+			document.querySelector('.inner_in').addEventListener('webkitAnimationEnd', function tips(){
+				console.log(`加入购物车成功`);
+				//可直接在这里移出事件 oneclick可实现
+				this.removeEventListener('webkitAnimationEnd', tips);
+			},!1)
+		}else {
+			// 用兼容代码，如：$.animete();
+		}
+	}
+</script>
+</body>
+</html>

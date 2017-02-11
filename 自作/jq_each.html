@@ -32,7 +32,21 @@
             var json = $.parseJSON(str);
             alert(json.name)
             var str = JSON.stringify(json);
-            alert(str)
+            alert(str);
+            var arr=[1,2,3];
+            $.each(arr,function(a,b){
+
+            	if(a==1) return false;
+            	console.log(b);
+            })
+            $.each(arr,function(a,b){
+
+            	if(a==1) return true;
+            	console.log(b);
+            })
+
+            //return false 相当于break 直接跳出循环
+            //return true 相当于continue 跳过本次
         });
 
     </script>

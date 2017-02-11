@@ -1,14 +1,22 @@
-/* reset */
+﻿/* reset */
 body, dl, dd, h1, h2, h3, h4, h5, h6, p, form{ margin: 0; }
 h2,h3,h4,h5,b,strong,span{ font-weight: normal; }
 ol,ul{ margin: 0; padding: 0;list-style: none; }
-body{ font: 12px/20px 'microsoft yahei'; }
+body{ font: 12px/20px 'microsoft yahei';max-width:500px;margin:0 auto; }
 i,em{ font-style: normal; }
 a,a:active{ text-decoration: none; color: #000; -webkit-tap-highlight-color:rgba(255,0,0,0);}
 img{ border: none; vertical-align:top; }
 /* reset-mobile-input */
 input{-webkit-appearance:none;border:none;outline:none;border-radius:0;}
 /* global */
+.banSelect{
+	-webkit-user-select:none;
+	user-select:none;
+}
+.hide{
+	display:none;
+	height:0;overflow:hidden;
+}
 .centerWrap{
 	text-align:center;
 	vertical-align:middle;
@@ -44,7 +52,10 @@ input{-webkit-appearance:none;border:none;outline:none;border-radius:0;}
 	margin-bottom:.4rem;
 	position: relative;
 }
-::-webkit-input-placeholder{ font-size:.2rem; }
+.palceHolder{
+	font-size:.44rem !important;
+	color:#ccc;
+}
 /* html */
 html,body{
     background: #EFEFEF;
@@ -62,8 +73,7 @@ body::-webkit-scrollbar{
 	position:absolute;
 	z-index:9999999;
 	margin:auto;
-	left:50%;
-	left:-webkit-calc(50% - 1.8rem);
+	left:3.2rem;
 	left:calc(50% - 1.8rem);
 	width:4.2rem;
 	height:1.6rem;
@@ -179,6 +189,7 @@ header{
 .goodsItem-details,.goodsCountAction{
 	position:absolute;
 	top:.4rem;
+	width:6.8rem;
 	width:calc(100% - 3.2rem);
 	padding-left:2.3rem;
 }
