@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<title>Examples</title>
+<meta name="description" content="">
+<meta name="keywords" content="">
+<link href="" rel="stylesheet">
+<style>
+	div{ display: inline-block;width: 100px;height: 100px;background: #ccc; }
+	.example1{ border-radius: 50%; }
+	.example2{ position: relative;top: 0;height: 50px;border-radius: 50% 50% 0 0/100% 100% 0 0; }
+	.example2:after{ display: block;content: '';position: absolute;left: 0;bottom: 0;width: 100%;height: 30px;
+					border-radius: 50% 50% 0 0/100% 100% 0 0;background: #fff; }
+	.example3{ border-radius: 100% 0 0 0/100% 0 0 0; }
+	.example4{ width: 50px;border-radius: 0 100% 100% 0/0 50% 50% 0;  }
+	.example5{ border-radius: 0 100% 0 0/0 100% 0 0; }
+	/* 前面是x轴的长度 后面是y轴的长度 */
+	.example6{ height:50px;border-radius: 0 0 50% 50%/0 0 100% 100%; }
+	.example7{ border-radius: 0 0 100% 0/0 0 100% 0; }
+	.example8{ width: 50px;border-radius: 100% 0 0 100%/50% 0 0 50%; }
+	.example9{ border-radius: 0 0 0 100%/0 0 0 100%; }
+
+	.rotate{ transform: rotate(3600deg);top:400px;transition: 1s; }
+</style>
+</head>
+<body>
+
+<div class="example1"></div>
+<div class="example2" onclick="this.className = 'example2 rotate';"></div>
+<div class="example3"></div>
+<div class="example4"></div>
+<div class="example5"></div>
+<div class="example6"></div>
+<div class="example7"></div>
+<div class="example8"></div>
+<div class="example9"></div>
+</body>
+</html>
