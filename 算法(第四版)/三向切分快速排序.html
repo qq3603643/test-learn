@@ -32,26 +32,26 @@
 			 	return a > b ? 1 : a < b ? -1 : 0;
 			};
 			return function(arr, lo, hi, option)
-				   {
-			   	       var lo = lo == undefined ? 0 : lo,
-					 	   hi = hi == undefined ? arr.length - 1 : hi;
-				 	   if(lo >= hi) return;
-					   var lt = lo, gt = hi,
-					 	   i  = lo + 1,
-					 	   v  = arr[lo];
+		    {
+	   	        var lo = lo == undefined ? 0 : lo,
+			 	    hi = hi == undefined ? arr.length - 1 : hi;
+		 	    if(lo >= hi)	return;
+			    var lt = lo, gt = hi,
+			 	    i  = lo + 1,
+			 	    v  = arr[lo];
 
-				 	   while(i <= gt)
-				 	   {
-				 	       var dir = compare(arr[i], v),
-				 			   dir = option == undefined || option == true ? dir : -dir;
-				 		   if(dir > 0) 	    exch(arr, i, gt--);
-						   else if(dir < 0) exch(arr, i++, lt++);
-						   else 			i++;
-				 	   }
+		 	    while(i <= gt)
+		 	    {
+		 	        var dir = compare(arr[i], v),
+		 			    dir = option == undefined || option == true ? dir : -dir;
+		 		    if(dir > 0) 	    exch(arr, i, gt--);
+				    else if(dir < 0)	exch(arr, i++, lt++);
+				    else 			i++;
+		 	    }
 
-				 	   arguments.callee(arr, lo, lt-1, option);
-				 	   arguments.callee(arr, gt+1, hi, option);
-				   }
+		 	    arguments.callee(arr, lo, lt-1, option);
+		 	    arguments.callee(arr, gt+1, hi, option);
+		    }
 		}();
 	var time_s = new Date()*1;
 	qkSort_3Dir(arr_test);
@@ -65,7 +65,7 @@
 			 	var left = [],right = [],mid = arr[0],
 			 		handle = function(i,index)
 			 				 {
-			 				 	if(index == 0) return false;
+			 				 	if(index == 0) return true;  //return false == return true == return == continue 跳过本次(forEach)
 			 				 	if(i<mid)      left.push(i);
 			 				 	else           right.push(i);
 			 				 };
@@ -101,7 +101,7 @@
    			_b = b || 2;
 
         return (_n += _n.indexOf('.') > -1 ? '' : '.0').replace(/\d+$/,function($){
-	 		return $.length < _b ? [$, new Array(_b+1-$.length).join('0')].join('') : Math.round(('.'+$)*Math.pow(10, _b));
+	 		return $.length < _b ? [$, Array(_b+1-$.length).join('0')].join('') : Math.round(('.'+$)*Math.pow(10, _b));
 	 	});
     };
     //判断函数中的this 只需判断函数所属对象 例如一般情况下是window.***
