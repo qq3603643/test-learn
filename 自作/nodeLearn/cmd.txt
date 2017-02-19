@@ -1,3 +1,14 @@
 切换盘符  盘符命+：  例如 c：
 cd 进入文件夹
 node node.js 运行
+
+require('./a.js') Or require('a.js')  
+后者到系统自带模块或者node_modules里面找 不代表同目录
+
+npm: NodeJs Package Manager
+npm install *** / npm uninstall ***
+
+npm init 初始化项目信息
+npm publish/unpublish 发布/撤回自己的模块
+
+
