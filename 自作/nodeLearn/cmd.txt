@@ -11,4 +11,56 @@ npm install *** / npm uninstall ***
 npm init 初始化项目信息
 npm publish/unpublish 发布/撤回自己的模块
 
+express
+创建服务 const server = require('express')(); server.listen(port);
+静态资源/请求接口区分开来
+静态资源	const express = require('express'),
+                          expressStatic = require('express-static');
+                          express.use(expressStatic(dir_static));  将在此目录下查找静态文件 如 index.html / jquery.js
+
+中间件
+
+express.use(function(req, res, next)
+{
+    var body = '';
+    req.on('data', function(data){ body += data });
+    req.on('end', function(data){ req.body = body; next(); })
+})
+express.use('/login', function(req, res, next)
+{
+   console.log(req.body);  //此处的req 保留上次修改
+})
+
+cookie && session
+cookie: 空间非常小(省着用)
+             安全性非常差; 校验cookie是否被篡改过
+## 设置 ##
+res.secret = * str;
+res.coookie(key, val, { maxAge: ***ms, path: '', signed: true })
+## 读取 ## 需要中间件
+const cookieParser = require(cookie-parser);
+server.use(cookieParser(res.secret));
+server.use( '/', function(req, res)
+{
+    req.cookies;              //未签名cookies
+    req.signedCookies;   //签名cookies
+})
+## 删除 ##
+res.clearCookie(key);
+
+session
+需要中间件 cookie-session cookSession = require('cookie-session')
+server.use(cookieParser(res.secret));
+server.use(cookSession({
+  keys: [],  // 加密用 必要
+  maxAge: ** ms
+}))
+server.use('/', function(req, res)
+{
+    res.session[key] = * str;  //设置
+    delete res.session[key];            //删除
+})
+
+
+
 
