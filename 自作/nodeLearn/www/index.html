@@ -7,18 +7,62 @@
 		.btn
 		{
 			display: inline-block;
+			padding: 6px 10px;
+			border: 1px solid #ccc;
+			cursor: pointer;
+			-webkit-user-select: none;
+			user-select: none;
+		}
+		.btn:hover
+		{
+			background-image: linear-gradient(to bottom, rgba(0, 0, 0, .2), rgba(0, 0, 0, .2));
 		}
 	</style>
 </head>
 <body>
+	<span class="btn" id="btn">BUTTON	1.ST</span>
+	<span class="btn" id="btn2">BUTTON  2.SD</span>
+
+	<script type="text/javascript" src="./jquery.js"></script>
 	<script type="text/javascript">
-		function Log(self)
-		{
-			console.log(
-				self.innerHTML
-				);
-		}
+		$('#btn').on('click', function(){
+			$.ajax({
+				url:'/login',
+				type: 'GET',
+				data: { userName: 'apple', passWord: 'tangerine' },
+				dataType: 'json',
+				beforeSend: function()
+				{
+					console.log('beforeSend');
+
+				}
+			})
+			  .done(
+		  		function(data)
+		  		{
+		  			console.log(data);
+		  		}
+			  	)
+		})
+		$('#btn2').on('click', function(){
+			$.ajax({
+				url:'/loginPost',
+				type: 'POST',
+				data: { userName: 'apple', passWord: 'tangerine' },
+				dataType: 'json',
+				beforeSend: function()
+				{
+					console.log('beforeSend 2');
+
+				}
+			})
+			  .done(
+		  		function(data)
+		  		{
+		  			console.log(data);
+		  		}
+			  	)
+		})
 	</script>
-	<span class="btn" id="btn" onclick="Log(this)">CLICK</span>
 </body>
 </html>
