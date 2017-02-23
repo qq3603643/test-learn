@@ -39,7 +39,7 @@ server.use(cookSession(
 	));
 
 
-server.use('/', (req, res)=>
+server.use('/', (req, res, next)=>
 {
 	res.cookie('user', 'apple', { path: '/', maxAge: 1*24*60*60 });  //种植cookie用res
 	console.log(req.cookies, req.signedCookies);
@@ -48,6 +48,7 @@ server.use('/', (req, res)=>
 	console.log(`session: ${ req.session['count'] }`);
 
 	res.send({ status: 1 });
+	next();
 })
 
 server.use(expressStatic('./www'));
