@@ -28,7 +28,7 @@
             padding: 10px;
             margin: 15px;
         }
-<<<<<<< HEAD
+
         #box_child{
         	position:absolute;
         	top:20px;
@@ -44,11 +44,11 @@
         /* .list .item_list:nth-child(-n+3){
             color: #0f0;
         } */
-=======
+
         .wrap{ width:200px;height:200px;margin:40px;position:relative;outline:1px dotted;color:#f00; }
         .wrap>.content{ width:80%;height:80%;margin:10%;color:inherit;outline:1px dashed; }
         .item{ background:#f00; }
->>>>>>> 5b0d394c1081d15bc2d8b24e73f805f6f4e43f2e
+
     </style>
     <script src="jquery-1.11.3.js"></script>
     <script>
@@ -90,19 +90,19 @@
             </div>
         </div>
     </div>
-<<<<<<< HEAD
+
     <div id="box">
         box
 		<div id="box_child"></div>
     </div>
-=======
+
     <div id="box"></div>
     <div class="wrap">
         <div class="content">
             <span class="item">apple</span>
         </div>
     </div>
-    <script>
+    <script type="text/javascript">
         console.log($('.item').position()); //返回自身距离最近定位父元素的坐标 自身无定位时同样适用 fixed定位时相对于body
         $('.content').data({
             'name':'apple',
@@ -110,7 +110,7 @@
         // alert($('.content').data('name'));
         //data()作用跟attr类似，但是在dom上不显示,相当于添加的一个属性
     </script>
->>>>>>> 5b0d394c1081d15bc2d8b24e73f805f6f4e43f2e
+
     <script>
         (function(){
             var my,$ele,showList,height,innerheight,outerheight;
@@ -158,7 +158,7 @@
     </ul>
 
     <script>
-        $('.list .item_list:nth-child(-n+3)').css('color','#f00')  //n不管正负都必须写在前面( 可以理解为最大最小为n后面的数字（包括数字） )
+        $('.list .item_list:nth-child(-n+3)').css('color','#f00')  //n不管正负都必须写在前面( 可以理解为最大最小为n后面的数字（包括数字）第1，2，3个 nth表示第 )
     </script>
     <div class="outer">
     outer
@@ -295,6 +295,19 @@
 		$oSpan1.on('click', handlerMove);
 		//点击无需删除原来 直接将其移动即可
 	</script>
+
+    <div class="aaa">
+        <p class="bbb">
+            <span class="ccc">ccc</span>
+        </p>
+    </div>
+
+    <script type="text/javascript">
+        var $c = $('.aaa').css('lineHeight', '30px').find('.ccc').css('color', '#f00');
+
+        //链式操作后可返回最后操作的元素 可保存后续使用 ^_^
+        $c.css('fontSize', '22px')
+    </script>
 
 </body>
 
