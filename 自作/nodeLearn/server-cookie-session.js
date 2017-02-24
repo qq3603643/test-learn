@@ -57,7 +57,6 @@ server.get('/getInfo', (req, res)=>
 				name: 'apple'
 			}
 		);
-
 })
 
 server.use(expressStatic('./www'));
