@@ -39,7 +39,7 @@ server.use(cookSession(
 	));
 
 
-server.use('/', (req, res)=>
+server.use('/', (req, res, next)=>
 {
 	res.cookie('user', 'apple', { path: '/', maxAge: 1*24*60*60 });  //种植cookie用res
 	console.log(req.cookies, req.signedCookies);
@@ -47,7 +47,17 @@ server.use('/', (req, res)=>
 	req.session['count'] = req.session['count'] ? ++ req.session['count'] : 1;  //种植session用req
 	console.log(`session: ${ req.session['count'] }`);
 
-	res.send({ status: 1 });
+	next();
+})
+
+server.get('/getInfo', (req, res)=>
+{
+	res.send(
+			{
+				name: 'apple'
+			}
+		);
+
 })
 
 server.use(expressStatic('./www'));
