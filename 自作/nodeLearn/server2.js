@@ -6,22 +6,9 @@ const express = require('express'),
 	  sessionParser = require('cookie-parser'),
 	  pathLib = require('path'),
 	  fs = require('fs'),
-	  jade = require('jade'),
-	  ejs = require('ejs');
+	  consolidate = require('consolidate');
 
 var server = express();
-
-//Cross domain
-server.all('*', (req, res, next) =>
-{
-	res.header("Access-Control-Allow-Origin", "*");
-	res.header("Access-Control-Allow-Headers", "X-Requested-With");
-	res.header("Access-Control-Allow-Methods","PUT,POST,GET,DELETE,OPTIONS");
-	res.header("X-Powered-By",' 3.2.1');
-	res.header("Content-Type", "application/json;charset=utf-8");
-
-	next();
-});
 
 //cookie
 server.use(cookieParser('19940604'));
@@ -46,8 +33,7 @@ server.use(bodyParser.urlencoded({ extended: !1 }));
 //file
 server.use(multer({dest: './www/upload'}).any());
 
-
-//deal browser req
+//upload
 server.use('/upload', (req, res, next) =>
 {
 	// console.log(req.query, req.body, req.files[0], req.cookies, req.session);
@@ -66,16 +52,15 @@ server.use('/upload', (req, res, next) =>
     })
 })
 
-server.post('/getInfo', (req, res, next) =>
-{
-	console.log(req.body);
-	res.send({ name: 'apple' });
-})
-server.get('/getName', (req, res, next) =>
-{
-	console.log(req.query);
-	res.send({ name: 'tangerine' });
-})
+//typeof input
+server.set('view engine', 'html');
+//original file path
+server.set('views', './www/template');
+//typeof engine
+server.engine('html', consolidate.ejs);
+
+//template render
+server.use('/', require('./routers/index.js')());
 
 //static
 server.use(static('./www'));

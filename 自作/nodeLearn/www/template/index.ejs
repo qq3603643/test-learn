@@ -18,8 +18,16 @@
 			background-image: linear-gradient(to bottom, rgba(0, 0, 0, .2), rgba(0, 0, 0, .2));
 		}
 	</style>
+	<script type="text/javascript">
+		var Da = <%- JSON.stringify(data) %>;
+		console.log(Da);
+	</script>
 </head>
 <body>
+
+	<div>
+		author: <%= name %>
+	</div>
 	<span class="btn" id="btn">BUTTON	1.ST</span>
 	<span class="btn" id="btn2">BUTTON  2.SD</span>
 
