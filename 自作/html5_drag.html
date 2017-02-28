@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<title>drag</title>
+<meta name="description" content="">
+<meta name="keywords" content="">
+<link href="" rel="stylesheet">
+<style type="text/css">
+
+	.wrap
+	{
+		width: 660px;
+		overflow: hidden;
+	}
+	.target
+	{
+		float: left;
+		width: 100px;height: 260px;
+		box-shadow: 0 0 1px rgba(0, 0, 0, .6) inset;
+	}
+	.dragItems
+	{
+		margin: 0;
+		padding: 0;
+		list-style: none;
+		overflow: hidden;
+		cursor: move;
+	}
+	.drag
+	{
+		margin: 10px;
+		height: 44px;
+		line-height: 44px;
+		text-indent: 10px;
+		box-shadow: 0 0 1px rgba(0, 0, 0, .6) inset;
+	}
+</style>
+</head>
+<body>
+    <div class="wrap">
+    	<div class="target"></div>
+    	<ul class="dragItems">
+    		<li class="drag" draggable="true">Drag One</li>
+    		<li class="drag" draggable="true">Drag Two</li>
+    		<li class="drag" draggable="true">Drag There</li>
+    		<li class="drag" draggable="true">Drag Four</li>
+    		<li class="drag" draggable="true">Drag Five</li>
+    	</ul>
+    </div>
+
+    <script type="text/javascript">
+    	function $(selector)
+    	{
+    		return document.querySelectorAll(selector);
+    	}
+
+    	var oTarget = $('.target')[0],
+    	    drags = [].slice.call($('.drag'));
+
+	    drags.forEach(function(drag)
+	    {
+	    	drag.onselectstart = function(){ return false; }
+	    	drag.ondragstart = function(ev)
+	    	{
+	    		/** 拖拽开始 */
+	    		ev.dataTransfer.effectAllowed = "move";
+		        ev.dataTransfer.setData("text", ev.target.outerHTML);
+		        ev.dataTransfer.setDragImage(ev.target, 0, 0);
+		        return true;
+	    	}
+	    	drag.ondragend = function(ev)
+	    	{
+	    		/* 拖拽结束 **/
+	    		 ev.dataTransfer.clearData("text");
+		         return false;
+	    	}
+	    })
+
+	    oTarget.ondragover = function(ev)
+	    {
+	    	/*拖拽元素在目标元素头上移动的时候*/
+		    ev.preventDefault();
+		    return true;
+	    }
+	    oTarget.ondragenter = function()
+	    {
+	    	/*拖拽元素进入目标元素头上的时候*/
+		    this.style.boxShadow = '0 0 1px rgba(255, 0, 0, .6) inset';
+		    return true;
+	    }
+	    oTarget.ondrop = function(ev)
+	    {
+	    	/*拖拽元素进入目标元素头上，同时鼠标松开的时候*/
+	    	var text = ev.dataTransfer.getData("text");
+	    	ev.target.innerHTML = ev.target.innerHTML + text;
+		    this.style.boxShadow = '0 0 1px rgba(0, 0, 0, .6) inset';
+		    return false;
+	    }
+    </script>
+</body>
+</html>

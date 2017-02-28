@@ -16,13 +16,22 @@
 	{
 		height: 100%;
 	}
-	.wrapper {
+	.wrapper
+    {
 	    min-height: 100%;
 	    height: auto !important; /* 如果你不需要考虑IE6，则可以把这行与下一行代码删除 */
 	    height: 100%;
 	    margin: 0 auto -4em;
 	}
-	.footer, .push {
+    /* after 默认在内容的后面 */
+    .wrapper:after
+    {
+        display: block;
+        content: '';
+        height: 4em;
+    }
+	.footer, .push
+    {
 	    height: 4em;  /* push占位使wrapper内容与footer不冲突 */
 	}
 	.footer
@@ -72,7 +81,7 @@
             <p>Your website content here.</p>
             <p>Your website content here.</p>
             <p>Your website content here1111.</p>
-            <div class="push"></div>
+            <!-- <div class="push"></div> -->
         </div>
         <div class="footer">
             <p>Copyright (c) 2008</p>
