@@ -8,6 +8,7 @@
 		此时process.argv的值为 [ node, process.js, arg_one, arg_two ]
 	## process.env  ##
 		set NODE_ENV=development && node process.js
+		( 实测NODE_ENV与development中间的等号不能有空格 )
 		此时在processs里面获取process.env.NODE_ENV 为 development
 	process.execPath
 	process.stdout
@@ -24,7 +25,7 @@ const environment = process.env;
 // for( var k in environment )
 // 	console.log(k, environment[k]);
 
-console.log(environment.NODE_ENV);
+console.log(`NODE_ENV: ${environment.NODE_ENV}`);
 
 var str = '';
 // process.stdin.resume();
