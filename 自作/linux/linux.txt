@@ -1,0 +1,41 @@
+
+##  编辑 ##
+vim + filename 进去文件编辑模式
+进去编辑模式之后 
+     单击 i  进入insert 模式 
+     单击 a 进入append 模式 
+     单击 r 进入replace模式
+     此时可任意编辑 只能使用上下左右控制光标
+
+shift + z + z 即按住shift连续点击z 保存并退出 vim
+单击esc 进去退出模式的选择
+
+:p    在文件没任何改变的情况下直接退出
+:x    保存修改（如果当前文件有需改过）后退出
+:p!   不做任何保存的情况下退出 放弃保存 
+
+## 文件系统 ##
+touch filename  新建(不存在)  修改文件的创建信息(存在)
+
+cp afilename bfilename  拷贝a至b  cp=>copy
+cp afilename ..  将a拷贝至父目录同级的afilename
+
+mv afilename bfilename 将afilename移动成为bfilename 相当于rename
+mv afilename /dir/dir     将afilename移动到dir目录下
+
+rm afilename  删除afilename
+rm  /dir           删除文件夹dir dir只能为空
+rm -r  /dir       删除dir及其往下的整个*子文件*系统  r->recursive 递归删除
+
+## strea ##
+echo 'content' > a.test 将content 写入到a.test  （echo在屏幕上输入 > 改变输入的指向）
+cat < a.text  将a的完整内容输出到屏幕
+cat < a.text > b.text 将a的完整内容输出到b  箭头方向理解  a>b 来自a 输出至b
+
+
+## 解压缩 ##
+zip a.zip bfilename cfilename  将b&c 文件压缩至a.zip
+unzip  a.zip 解压a.zip
+gzip -c filename > file.gz 将filename 压缩至fiile.gz
+gunzip file.gz 解压file.gz
+
