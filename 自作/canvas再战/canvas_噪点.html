@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<title>Examples</title>
+<meta name="description" content="">
+<meta name="keywords" content="">
+<link href="" rel="stylesheet">
+<style type="text/css">
+	#canvas
+	{
+		background-color: #333;
+	}
+</style>
+</head>
+<body>
+    <canvas id="canvas"></canvas>
+
+    <script type="text/javascript">
+    	function randomNb(max, min)
+    	{
+    		var min = min || 0;
+
+    		return min + Math.floor((max - min + 1)*Math.random())
+    	}
+
+    	var oCanvas = document.querySelector('#canvas'),
+    		context = oCanvas.getContext('2d');
+
+    	oCanvas.width = 400;oCanvas.height = 400;
+
+    	/* wd_p设置过小 片段过多会导致效果不佳.. **/
+    	var wd_p = 100,
+    		ht_p = 100,
+			ctX  = Math.ceil(oCanvas.width / wd_p),
+			ctY  = Math.ceil(oCanvas.height / ht_p),
+			srtX = 0,
+			srtY;
+
+		var piece = piece(wd_p, ht_p);
+
+		while(srtX < ctX)
+		{
+			srtY = 0;
+			while(srtY < ctY)
+			{
+				var nowX = srtX * wd_p,
+					nowY = srtY * ht_p;
+
+				context.drawImage(
+					/* 拿来渲染的画布 **/
+					piece,
+					/* 拿来渲染的画布起点，即 piece */
+					0, 0,
+					/* 拿来渲染的画布区域，即 piece **/
+					wd_p, ht_p,
+					/* 被渲染的画布起点 **/
+					nowX, nowY,
+					/* 被渲染画布的画布区域 **/
+					wd_p, ht_p
+					);
+
+				srtY += 1;
+			}
+			srtX += 1;
+		}
+
+    	/*
+			wd: 块宽度
+			ht: 块高度
+			wd_dot: 噪点宽度
+			ht_dot: 噪点高度
+    	**/
+    	function piece(wd, ht, wd_dot, ht_dot)
+    	{
+    		var canvas_p = document.createElement('canvas'),
+    			ctx_p    = canvas_p.getContext('2d');
+
+			canvas_p.width = wd;
+			canvas_p.height = ht;
+
+			var wd_dot = wd_dot || 1;
+			    ht_dot = ht_dot || 1;
+
+			/*
+				horizontal:水平的 / 水平线
+				vertical:垂直的 / 垂直线
+			**/
+			var posX,
+				posY,
+				ctH  = Math.ceil(wd / wd_dot),
+				ctV  = Math.ceil(ht / ht_dot);
+
+			for(posX = 0; posX < ctH; posX += 1)
+			{
+				for(posY = 0; posY < ctV; posY += 1)
+				{
+					var nowX = posX * wd_dot,
+						nowY = posY * ht_dot,
+						color = randomNb(80, 60);
+
+					ctx_p.fillStyle = 'rgba('+ color +', '+ color +', '+ color +', 1)';
+					ctx_p.fillRect(nowX, nowY, wd_dot, ht_dot);
+				}
+			}
+
+			return canvas_p;
+    	}
+
+    	/*
+			summary:
+				- 全画布都使用fillRect性能消耗过大 解决方案: 绘制较小的噪点canvas平铺整个canvas
+				- drawImage(
+				image / canvas,      插入的图片 / canvas
+				sourceX,             插入图片的位置
+				sourceY,
+				sourceWidth,         插入图片的大小( 在原图片上进行裁剪 )
+				sourceHeight,
+				destX,				 在画布上的位置
+				destY,
+				destYWidth,          在画布上的大小( 对原图片进行缩放 )
+				destHeight
+				)
+    	**/
+    </script>
+</body>
+</html>

@@ -8,15 +8,16 @@
 <meta name="keywords" content="">
 <link href="" rel="stylesheet">
 <style>
-	table{ background: #ccc; }
-	td{ background: #fff; }
-	tr:hover > td{ background: #ddd;cursor: pointer; }
+	table{ background: #ccc;border-spacing: 1px; }
+	tr{ background: #fff; }
+	tr:hover{ background: #ddd;cursor: pointer; }
 	/* table 设置背景色 td设置背景色覆盖 border的颜色即为table的设置背景色 */
 </style>
 </head>
 <body>
-
-	<table cellspacing="1">
+	<table>
+	<!-- 用border-spacing/cellspacing 设置border宽度；用border-spacing吧 css与html分离 -->
+	<!-- <table cellspacing="1"> -->
 		<thead></thead>
 		<tbody>
 			<tr>

@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<title>Examples</title>
+<meta name="description" content="">
+<meta name="keywords" content="">
+<link href="" rel="stylesheet">
+</head>
+<body>
+<form action="">
+	<fieldset>
+		<legend>将文件读取为dataurl</legend>
+		<label>
+			选择文件
+			<input type="file" id="J_file_dataurl">
+		</label>
+	</fieldset>
+	<fieldset>
+		<legend>将文件读取为文本</legend>
+		<label>
+			选择文件
+			<input type="file" id="J_file_binarystring">
+		</label>
+	</fieldset>
+	<fieldset>
+		<legend>将文件读取为二进制编码</legend>
+		<label>
+			选择文件
+			<input type="file" id="J_file_datatext">
+		</label>
+	</fieldset>
+</form>
+<ul id="resultItems">
+	<li class="result"></li>
+	<li class="result"></li>
+	<li class="result"></li>
+</ul>
+<script type="text/javascript">
+	function $(selector)
+	{
+		return document.querySelectorAll(selector);
+	}
+
+	var ipt_dataurl  = $('#J_file_dataurl')[0],
+		ipt_datatext = $('#J_file_datatext')[0],
+		ipt_binarystring = $('#J_file_binarystring')[0],
+		results = $('#resultItems .result');
+
+	function readAsDataURL()
+	{
+		var file = this.files[0],
+			ipt  = this;
+
+		if(!file)
+			return;
+
+		var reader = new FileReader;
+
+		reader.readAsDataURL(file);
+		reader.onload = function()
+		{
+			results[0].innerHTML = '';
+			var _res = this.result;
+
+			console.log('onload', this);
+			results[0].innerHTML = '<img src="'+ _res +'"/>';
+			clearIptFile(ipt, readAsDataURL, 1);
+		}
+		reader.onprogress = function()
+		{
+			console.log('onprogress', this);
+		}
+		reader.onloadstart = function()
+		{
+			console.log('onloadstart', this)
+		}
+		reader.onloadend = function()
+		{
+			console.log('onloadend', this)
+		}
+
+	}
+	function clearIptFile(ipt, event, tag)     /* 清空ipt中file 解决选择相同文件不触发change事件 (需重新绑定一次事件) **/
+	{
+		ipt.outerHTML = ipt.outerHTML;
+
+		(tag == 1
+		 ? $('#J_file_dataurl')[0]
+		 : tag == 2
+		 ? $('#J_file_datatext')[0]
+		 :$('#J_file_binarystring')[0]
+			).onchange  = event;
+	}
+
+	ipt_dataurl.onchange = readAsDataURL;
+
+
+	/* asBinaryString **/
+	function readAsBinaryString()
+	{
+		var file = this.files[0],
+			ipt  = this;
+
+		if(!file)
+			return;
+
+		var reader = new FileReader();
+
+		reader.readAsBinaryString(file);
+		reader.onload = function()
+		{
+			results[1].innerHTML = this.result;
+			clearIptFile(ipt, readAsBinaryString, 2);
+		}
+	}
+
+	ipt_binarystring.onchange = readAsBinaryString;
+
+	/* asText **/
+	function readAsText()
+	{
+		var file = this.files[0],
+			ipt  = this;
+
+		if(!file)	return;
+
+		var reader = new FileReader();
+
+		reader.readAsText(file);
+		reader.onload = function()
+		{
+			results[2].innerHTML = this.result;
+			clearIptFile(ipt, readAsText, 3);
+		}
+	}
+
+	ipt_datatext.onchange = readAsText;
+</script>
+</body>
+</html>

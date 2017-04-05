@@ -1,0 +1,484 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<title>upload</title>
+<meta name="description" content="">
+<meta name="keywords" content="">
+<link href="http://static.ypzdw.com/m/assets/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="layer/layer.js"></script>
+<style type="text/css">
+	*
+	{
+		margin: 0;padding: 0;
+	}
+	body
+	{
+		font: 14px/1.42858 'microsoft yahei';
+	}
+	.form-item
+	{
+		margin-top: 20px;
+		overflow: hidden;
+	}
+	.label
+	{
+		float: left;
+		margin-right: 20px;
+	}
+	.add
+	{
+		width: 70px;height: 70px;
+		text-align: center;
+		font-size: 30px;
+		line-height: 70px;
+		background-color: #D7D7D7;
+		overflow: hidden;
+		cursor: pointer;
+		-webkit-user-select: none;
+		user-select: none;
+	}
+	.upload
+	{
+		display: none;
+		position: fixed;
+		left: 0;right: 0;top: 0;bottom: 0;
+		background-color: rgba(0, 0, 0, .3);
+	}
+	.upload .content
+	{
+		position: absolute;
+		left: 0;right: 0;top: 0;bottom: 0;
+		margin: auto;
+		width: 540px;height: 500px;
+		border-radius: 6px;
+		background: #fff;
+		box-shadow: 0 0 1px rgba(0, 0, 0, .1);
+		overflow: hidden;
+	}
+	.tit
+	{
+		margin: 0;
+		line-height: 50px;
+		font-size: 18px;
+		font-weight: normal;
+		text-indent: 20px;
+		color: #666;
+		background-color: #F7F7F7;
+	}
+	.inner
+	{
+		padding: 20px;
+		min-height: 380px;
+	}
+	.form-control_m
+	{
+		margin-bottom: 20px;
+	}
+	.label_m
+	{
+		float: left;
+		width: 100px;min-height: 10px;
+		line-height: 25px;
+	}
+	.cont
+	{
+		overflow: hidden;
+	}
+	.btn-file
+	{
+		display: inline-block;
+		position: relative;
+		line-height: 25px;
+		padding: 2px 10px;
+		border-radius: 2px;
+		color: #fff;
+		background-color: #69A6F7;
+		cursor: pointer;
+	}
+	.btn-file:hover
+	{
+		background-image: linear-gradient(to right, rgba(0, 0, 0, .15), rgba(0, 0, 0, .15))
+	}
+	.file
+	{
+		position: absolute;
+		width: 0;height: 0;
+		clip: rect(0, 0, 0, 0);
+	}
+	.pic-description
+	{
+		resize: none;
+	}
+	.prePics
+	{
+		width: 380px;max-height: 100px;
+		overflow: auto;
+	}
+	.pic-wrap
+	{
+		position: relative;
+		float: left;
+		margin: 0 10px 10px 0;
+		width: 80px;height: 80px;
+		text-decoration: none;
+		box-shadow: 0 0 1px rgba(0, 0, 0, .25) inset;
+	}
+	.pic-item
+	{
+		position: absolute;
+		left: 0;right: 0;top: 0;bottom: 0;
+		display: block;
+		margin: auto;
+		height: auto;
+		max-width: 100%;max-height: 100%;
+	}
+	.pic-wrap .remove
+	{
+		position: absolute;
+		left: 0;right: 0;top: 0;bottom: 0;
+		z-index: 2;
+		line-height: 80px;
+		font-size: 16px;
+		text-align: center;
+		color: #fff;
+		background-color: rgba(0, 0, 0, .5);
+		opacity: 0;
+		transition: .4s;
+	}
+	.pic-wrap:hover .remove
+	{
+		opacity: 1;
+	}
+	.btn_group
+	{
+		padding: 10px 40px;
+		text-align: right;
+	}
+	.btn_group .btn
+	{
+		display: inline-block;
+		width: 54px;line-height: 25px;
+		padding: 2px 4px;
+		text-align: center;
+		cursor: pointer;
+		border-radius: 2px;
+		color: #fff;
+		-webkit-user-select: none;
+		user-select: none;
+	}
+	.btn_group .btn.btn-cancel
+	{
+		background-color: #ccc;
+	}
+	.btn_group .btn.btn-submit
+	{
+		background-color: #009AD6;
+	}
+
+	/* loaded **/
+	.loadedPic
+	{
+		display: block;
+		width: 100px;height: 100px;
+	}
+</style>
+</head>
+<body>
+    <div class="form-item">
+    	<p class="label_m">上传头图:</p>
+    	<p class="add" id="J_showUpLoad">
+    		&#x271a;
+    	</p>
+    	<ul class="uploaded-items">
+    		<!-- <li class="loaded-item">
+    			<a href="javascript:;" class="loadedPic-wrap">
+    				<img src="" alt="" class="loadedPic">
+    			</a>
+    			<p class="loadedlink">链接：http://www.baidu.com</p>
+    			<p class="loadedDescription">描述：这是一个有故事的图片啊</p>
+    		</li>
+    		<li class="loaded-item">
+    			<a href="javascript:;" class="loadedPic-wrap">
+    				<img src="" alt="" class="loadedPic">
+    			</a>
+    			<p class="loadedlink">链接：http://www.baidu.com</p>
+    			<p class="loadedDescription">描述：这是一个有故事的图片啊</p>
+    		</li> -->
+    	</ul>
+    </div>
+    <div class="upload" id="J_upLoad">
+    	<div class="content">
+    		<div class="form">
+    			<h4 class="tit">上传头图</h4>
+    			<div class="inner">
+	    			<dl class="form-control_m">
+						<dt class="label_m">
+							请选择图片:
+						</dt>
+						<dd class="cont">
+							<label class="btn-file" id="btn-file">
+								选择图片
+								<input type="file" class="file" id="file">
+							</label>
+						</dd>
+	    			</dl>
+	    			<dl class="form-control_m">
+	    				<dt class="label_m"></dt>
+	    				<dd class="cont">
+	    					<div class="prePics" id="J_prePics">
+	    						<!-- <a href="javascript:;" class="pic-wrap">
+	    							<span class="remove">点击删除</span>
+									<img src="img/0.jpg" alt="" class="pic-item">
+								</a>
+								<a href="javascript:;" class="pic-wrap">
+									<span class="remove">点击删除</span>
+									<img src="img/0.jpg" alt="" class="pic-item">
+								</a> -->
+							</div>
+	    				</dd>
+	    			</dl>
+	    			<dl class="form-control_m">
+						<dt class="label_m">
+							图片描述:
+						</dt>
+						<dd class="cont">
+							<textarea class="form-control textarea pic-description" name="" id="J-pic-des" cols="10" rows="3"></textarea>
+						</dd>
+	    			</dl>
+	    			<dl class="form-control_m">
+						<dt class="label_m">
+							图片链接:
+						</dt>
+						<dd class="cont">
+							<input type="text" class="form-control input-sm text pic-link" id="J-pic-link">
+						</dd>
+	    			</dl>
+    			</div>
+    			<div class="ft">
+    				<p class="btn_group">
+    					<span class="btn btn-cancel" id="J-upPic-cancel">取消</span>
+    					<span class="btn btn-submit" id="J-upPic-submit">确定</span>
+    				</p>
+    			</div>
+    		</div>
+    	</div>
+    </div>
+
+    <script type="text/javascript">
+    	function upLoadFile()
+    	{
+    		if(!(this instanceof upLoadFile))
+    			return new upLoadFile();
+
+    		this.files  = [];
+    		this.config =
+    		{
+    			accept : ['jpg', 'png'],
+    			maxSize: 2000,    /* kb **/
+    			maxLen : 3
+    		}
+
+    	};
+
+    	upLoadFile.prototype =
+    	{
+    		constructor: upLoadFile,
+    		init: function(o)
+    		{
+    			o = o || {};
+
+    			this.fileIpt = o.fileIpt || $('input[type=file]').eq(0) || this.fileIpt;
+    			this.preWrap = o.preWrap || this.preWrap;
+    			this.picDescription = o.picDescription || this.picDescription ||$('#J-pic-des');
+    			this.picLink = o.picLink || this.picLink ||$('#J-pic-link');
+
+    			this.run();
+    			return this;
+    		},
+    		limit: function(opt)
+    		{
+    			this.config = $.extend({}, this.config, opt);
+
+    			return this;
+    		},
+    		checkType: function(fileIpt)
+    		{
+    			var value = fileIpt.value;
+
+    			if(!value)
+    				return;
+
+    			var fileExtension = value.substr(value.lastIndexOf('.') + 1),
+    				accept = this.config.accept;
+
+				if(~$.inArray(fileExtension, accept))
+					return true;
+
+				layer.msg('', { content: '不支持的文件类型' });
+				this.clearFile();
+				return false;
+    		},
+    		checkSize: function(fileIpt)
+    		{
+    			var isIE = /msie/i.test(navigator.userAgent) && !window.opera,
+    				fileSize = 0;
+
+    			if(isIE && !fileIpt.files)
+				{
+					var filePath = fileIpt.value,
+						fileSystem = new ActiveXObject("Scripting.FileSystemObject"),
+						file = fileSystem.GetFile(filePath);
+
+					fileSize = file.Size;
+				}else
+					fileSize = fileIpt.files[0].size;
+
+				fileSize /= 1024;
+				fileSize  = Math.random(fileSize*100) / 100;
+
+				if(fileSize > this.config.maxSize)
+				{
+					layer.msg('', { content: '文件大小超出限制' })
+    				this.clearFile();
+					return false;
+				}
+
+				return true;
+    		},
+    		checkLen: function()
+    		{
+    			if(this.files.length >= this.config.maxLen)
+				{
+					layer.msg('', { content: '文件个数超出限制' });
+					this.clearFile();
+					return false;
+				}
+
+				return true;
+    		},
+    		clearFile: function()
+    		{
+    			var fileIpt = this.fileIpt,
+    				_fileIpt = fileIpt.clone().val('');
+
+    			fileIpt.after(_fileIpt)
+    				   .remove();
+
+			    /* 为新的fileIpt添加事件 **/
+    			this.init({ fileIpt: _fileIpt });
+
+    			return this;
+    		},
+    		changeHandler: function(e)
+    		{
+    			var _this = e.currentTarget,
+    				$this = $(_this);
+
+    			if(!this.checkType(_this))
+    				return;
+    			if(!this.checkSize(_this))
+    				return;
+    			if(!this.checkLen())
+    				return;
+
+    			var files = _this.files || e.dataTransfer.files,
+    				reader;
+
+				if(files && files.length)
+				{
+					reader = new FileReader();
+					var $preWrap = this.preWrap;
+
+					reader.onload = function()
+					{
+						$preWrap.append(
+							'<a href="javascript:;" class="pic-wrap">\
+    							<span class="remove">点击删除</span>\
+								<img src="'+ this.result +'" alt="" class="pic-item">\
+							</a>'
+							);
+						/* scroll to bottom **/
+						$preWrap[0].scrollTop = $preWrap[0].scrollHeight;
+					}
+
+					reader.readAsDataURL(files[0]);
+
+					this.files.push(files[0]);
+				}
+
+				this.clearFile();
+    		},
+    		removeHandler: function(e)
+    		{
+    			var _this = e.currentTarget,
+    				$this = $(_this),
+    				_i    = $this.closest('.pic-wrap').index();
+
+    			if(_i < 0)
+    				return;
+
+				$this.closest('.pic-wrap').remove();
+				this.files.splice(_i, 1);
+    		},
+    		reset: function()
+    		{
+    			this.files.length = 0;
+    			this.preWrap.empty();
+    			this.picDescription.val('');
+    			this.picLink.val('');
+    		},
+    		run: function()
+    		{
+    			this.fileIpt.off('change').on('change', this.changeHandler.bind(this));
+    			this.preWrap.off('click').on('click', '.remove', this.removeHandler.bind(this));
+    		}
+    	}
+
+	    var upPics,
+	    	data_ajax   = new Array,
+	    	$btn_cancel = $('#J-upPic-cancel'),
+	   	    $btn_submit = $('#J-upPic-submit');
+
+   	    function upLoadVisibility(tag)
+   	    {
+	    	tag && ($('#J_upLoad').show(), !0) || $('#J_upLoad').hide();
+   	    }
+
+   	    $btn_cancel.on('click', function(){ upLoadVisibility() });
+   	    $btn_submit.on('click', function()
+   	    {
+   			/* 将上传的图片显示在前面 **/
+   			var _sPicLink = upPics.picLink.val(),
+   				_sPicDes  = upPics.picDescription.val();
+
+   			$('.uploaded-items').append(
+   				'<li class="loaded-item">\
+	    			<a href="javascript:;" class="loadedPic-wrap">\
+	    				<img src="'+ upPics.preWrap.find('.pic-wrap img').attr('src') +'" alt="" class="loadedPic">\
+	    			</a>\
+	    			<p class="loadedlink">链接：'+ _sPicLink +'</p>\
+	    			<p class="loadedDescription">描述：'+ _sPicDes +'</p>\
+	    		</li>'
+   				);
+   			/* 将编辑信息添加至上传信息中 **/
+   			console.log(upPics.files, _sPicLink, _sPicDes);
+
+   			upLoadVisibility();
+   			upPics.reset();
+   	    })
+
+   	    $('#J_showUpLoad').on('click', function()
+	    {
+		   	upPics = upLoadFile();
+		   	upPics.init({ fileIpt: $('#file'), preWrap: $('#J_prePics') }).limit({ maxLen: 1 });
+
+		   	upLoadVisibility(!0);
+   	    })
+
+   	    window.data_ajax_upPics = data_ajax;
+    </script>
+</body>
+</html>

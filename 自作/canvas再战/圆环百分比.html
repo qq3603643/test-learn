@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<title>Examples</title>
+<meta name="description" content="">
+<meta name="keywords" content="">
+<link href="" rel="stylesheet">
+<style type="text/css">
+	#canvas
+	{
+		background-color: #eee;
+	}
+</style>
+</head>
+<body>
+    <canvas id="canvas"></canvas>
+
+    <script type="text/javascript">
+    	var cvs = document.querySelector('#canvas'),
+    		cxt = cvs.getContext('2d');
+
+		cvs.width = 400;
+		cvs.height = 400;
+
+		function drawOutline()
+		{
+			cxt.beginPath();
+
+			cxt.strokeStyle = '#ddd';
+			cxt.lineWidth = 10;
+			/* arc(x, y, r, start, end, [tag]) ***/
+			cxt.arc(200, 200, 100, -90 / 180 * Math.PI, 1.5 * Math.PI);
+			cxt.stroke();
+
+			cxt.closePath();
+		}
+
+		function draw(precent)
+		{
+			cxt.clearRect(0, 0, 400, 400);       /* important 清除之前存在的图形 **/
+			drawOutline();
+			if(Math.abs(1 - precent) <= 0.01)
+				precent = 1;
+
+			var srtDeg = -90 / 180 * Math.PI,
+				endDeg = (precent * 360 - 90) / 180 * Math.PI;
+
+			cxt.beginPath();
+			cxt.strokeStyle = '#00f';
+			cxt.lineWidth   = 10;
+			cxt.lineCap = 'round';				/* 线条两端的渲染形式 **/
+			cxt.arc(200, 200, 100, srtDeg, endDeg);
+			cxt.stroke();
+			cxt.closePath();
+		}
+
+		function drawText(precent)
+		{
+			var precent = Math.round(precent * 10000) / 100 + '%',
+				fontSize = cxt.measureText(precent);
+
+			cxt.font = '16px microsoft yahei';
+			cxt.textBaseline = 'middle';
+			cxt.fillText(precent, 200 - fontSize.width / 2, 200);
+		}
+
+		void function()
+		{
+			var srt = 0;
+
+			function run(target)
+			{
+				srt += 0.01;
+				if(srt > target)
+					return;
+
+				draw(srt);drawText(srt);
+				requestAnimationFrame(run.bind(null, target));
+			}
+
+			run(.5);
+		}();
+    </script>
+</body>
+</html>
