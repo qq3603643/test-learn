@@ -36,6 +36,15 @@ module.exports = () =>
 		console.log(req.query);
 		res.send({ status: 1, msg: 'success' })
 	})
+	router.post('/formdataUp', (req, res, next) =>
+	{
+		/* 非文件直接获取 **/
+		const id = req.body.id;console.log(req.body)
+
+		console.log(req.files);
+
+		res.send('done')
+	})
 
 	return router;
 };
