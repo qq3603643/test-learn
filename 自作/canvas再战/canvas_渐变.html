@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<title>canvas_路径</title>
+<meta name="description" content="">
+<meta name="keywords" content="">
+<link href="" rel="stylesheet">
+<style type="text/css">
+	#canvas
+	{
+		background-color: #eee;
+	}
+</style>
+</head>
+<body>
+    <canvas id="canvas"></canvas>
+
+    <script type="text/javascript">
+    	var canvas = document.querySelector('#canvas'),
+    	    context = canvas.getContext('2d');
+
+	    canvas.width = 400;canvas.height = 400;
+
+	    var linear_gradient = context.createLinearGradient(100, 100, 200, 100);
+
+	    linear_gradient.addColorStop(.5, 'red');
+	    linear_gradient.addColorStop(.5, 'white');
+	    linear_gradient.addColorStop(1, 'white');
+
+	    context.beginPath();
+
+	    context.fillStyle = linear_gradient;
+	    context.fillRect(100, 100, 100, 100);
+
+	    context.closePath();
+
+
+	    var radial_gradient = context.createRadialGradient(300, 300, 50, 320, 320, 0);
+
+	    radial_gradient.addColorStop(0, 'red');
+	    radial_gradient.addColorStop(1, 'white');
+
+	    context.beginPath();
+
+	    context.arc(300, 300, 50, 0, Math.PI*2);
+	    context.fillStyle = radial_gradient;
+	    context.fill();
+
+	    context.closePath();
+	    /*
+			##summary##
+			- 线性渐变 createLinearGradient(x, y, endX, endY) 这里的坐标是相对整个画布的......
+			  addColorStop(pos,color)  设置渐变颜色 和csslinear-gradient表现一致 美滋滋啊
+
+		    -径向渐变 createRadialGradient(x, y, r, endx, endy, end2) 坐标相对整个画布
+		     可利用csslinear-gradient 划条纹的方法划出圆环
+
+		     这里有各种情况
+		     大小: cirle 1 > circle2 / cirle 1 < circle2
+			 位置: 圆心重合 / 不重合
+	    **/
+    </script>
+</body>
+</html>

@@ -30,11 +30,14 @@
 	</div>
 	<span class="btn" id="btn">BUTTON	1.ST</span>
 	<span class="btn" id="btn2">BUTTON  2.SD</span>
+	<span class="btn" id="btn3">BUTTON  3.SD</span>
 
 	<img src="./mm.jpg">
 
 	<form action="/upload" method="post" enctype="multipart/form-data">
 		<input type="file" name="file">
+		<input type="file" name="file2">
+		<input type="file" name="file3">
 		<input type="submit" name="" value="up">
 	</form>
 
@@ -77,6 +80,32 @@
 		  			console.log(data);
 		  		}
 			  	)
+		})
+
+		$('#btn3').on('click', function()
+		{
+			var formdata = new FormData();
+
+			formdata.append('formdataFile', $('input[name=file]')[0].files[0]);
+			formdata.append('id', 'formdataTest');
+
+			$.ajax(
+			{
+				url: '/formdataUp',
+				type: 'POST',
+				data: formdata,
+				cache: false,
+				processData: false,
+				contentType: false,
+				beforeSend: function()
+				{
+					console.log('before')
+				},
+				success: function(data)
+				{
+					console.log(data)
+				}
+			})
 		})
 	</script>
 </body>

@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<title>canvas_路径</title>
+<meta name="description" content="">
+<meta name="keywords" content="">
+<link href="" rel="stylesheet">
+<style type="text/css">
+	#canvas
+	{
+		background-color: #eee;
+	}
+</style>
+</head>
+<body>
+    <canvas id="canvas"></canvas>
+
+    <script type="text/javascript">
+    	var canvas = document.querySelector('#canvas'),
+    	    context = canvas.getContext('2d');
+
+	    canvas.width = 400;canvas.height = 400;
+
+	    // var x = 80, y = 50,
+	    // 	scale = x/y;
+	    // context.save();
+	    // context.scale(scale, 1);
+	    // context.beginPath();
+	    // context.arc(100/scale, 100, 50, 0, Math.PI*2);
+	    // context.stroke();
+	    // context.closePath();
+	    // context.restore();
+
+	    context.beginPath();
+	    context.arc(100, 100, 50, 0, Math.PI*2);
+	    context.stroke();
+	    context.beginPath();
+
+	    function drawEllipse(context, x, y, rx, ry)
+	    {
+	    	var r = Math.min(rx, ry),           /* 用较小的作为基础来画圆 **/
+	    		scaleX = rx / r,                /* 相对放大 **/
+	    		scaleY = ry / r;                /* 相对放大 **/
+
+    		context.save();
+    		context.scale(scaleX, scaleY);
+    		context.beginPath();
+
+    		context.arc(x/scaleX, y/scaleY, r, 0, Math.PI*2);    /* 圆心坐标进行了相应的改变 **/
+    		context.stroke();
+    		context.closePath();
+
+    		context.restore();
+	    }
+
+	    drawEllipse(context, 100, 100, 50, 80);
+
+	    /*
+			## summary ##
+			- 储存原来画布
+			- 选定用较小的作为基础画圆  (当然 你可以选择小的)
+			- 计算rx ry 相对的扩大比例 scalex scaley
+			- 画布的大小对应scalex scaley进行扩大
+			- 画圆 (圆心坐标对应缩小比例)
+			- 还原画布
+	    **/
+    </script>
+</body>
+</html>

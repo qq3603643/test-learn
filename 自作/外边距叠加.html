@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<title>Examples</title>
+<meta name="description" content="">
+<meta name="keywords" content="">
+<link href="" rel="stylesheet">
+<style type="text/css">
+	.boxOne
+	{
+		/* 垂直方向取较大设置 **/
+		margin-bottom: 20px;
+		width: 100px;height: 20px;
+		background-color: #eee;
+	}
+	.boxTwo
+	{
+		margin-top: 10px;
+		width: 100px;height: 30px;
+		background-color: #ccc;
+		/* 防止子元素的margin干扰父元素 */
+		overflow: hidden;
+	}
+	.boxT-inner
+	{
+		margin-top: 20px;
+		height: 10px;
+		background-color: #bbb;
+	}
+</style>
+</head>
+<body>
+    <div class="boxOne"></div>
+    <div class="boxTwo">
+    	<div class="boxT-inner"></div>
+    </div>
+</body>
+</html>

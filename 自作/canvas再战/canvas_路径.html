@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<title>canvas_路径</title>
+<meta name="description" content="">
+<meta name="keywords" content="">
+<link href="" rel="stylesheet">
+<style type="text/css">
+	#canvas
+	{
+		background-color: #eee;
+	}
+</style>
+</head>
+<body>
+    <canvas id="canvas"></canvas>
+
+    <script type="text/javascript">
+    	var canvas = document.querySelector('#canvas'),
+    	    context = canvas.getContext('2d');
+
+	    canvas.width = 400;canvas.height = 400;
+
+	    context.beginPath();
+	    context.moveTo(0, 0);
+	    context.lineTo(400, 400);
+	    context.stroke();
+	    context.closePath();
+
+	    context.beginPath();
+	    /* 设置线条样式 **/
+	    context.lineWidth = 4;
+	    context.strokeStyle = 'rgba(255, 0, 0, 1)';
+	    context.moveTo(400, 0);
+	    context.lineTo(0, 400);
+	    context.stroke();
+	    context.closePath();
+
+	    context.beginPath();           /* 样式继承了 = =. **/
+	    context.moveTo(0, 200);
+	    context.strokeStyle = 'rgba(255, 255, 0, 1)';
+	    context.lineTo(150, 200);
+	    context.strokeStyle = 'rgba(0, 255, 0, 1)';      /* 同一个绘制中只能设置一个strokeStyle 后者覆盖前者 **/
+	    context.lineTo(400, 0);
+	    context.stroke();
+	    context.closePath();
+	    /*
+			summary: 用beginPath closePath包裹绘制 使其设置(样式)相互独立 不然会影响前面的样式 = =.
+	    **/
+    </script>
+</body>
+</html>

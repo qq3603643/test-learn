@@ -37,19 +37,39 @@ server.use(multer({dest: './www/upload'}).any());
 server.use('/upload', (req, res, next) =>
 {
 	// console.log(req.query, req.body, req.files[0], req.cookies, req.session);
+	/*
+		文件已经上传成功 只是做个重命名而已
+		例如这里的file.path 为www/upload/**** 已经是在服务端了
+	**/
 
-    const file = req.files[0],
-    	  path = file.path,
-    	  ext  = pathLib.parse(file.originalname).ext,
-    	  newPath = path + ext;
+var error = [];
 
-    fs.rename(path, newPath, function (err)
-    {
-    	if(!err)
-    		res.send('done');
-    	else
-    		res.send('fail');
-    })
+function renameFile(file, i, files)
+{
+	const path = file.path,
+		  orgName = file.originalname,
+		  ext  = orgName.substr(orgName.lastIndexOf('.')),
+		  savePath = path + ext;
+
+	fs.rename(path, savePath, function(err)
+	{
+		if(err)
+		{
+			error.push('file '+ orgName +' is failed to rename');
+		}
+		if(i == files.length-1)
+		{
+			console.log(error);
+			if(error.length)
+				res.send('error: ' + error.join(',')).end();
+			else
+				res.send('done');
+		}
+	})
+}
+
+req.files.forEach(renameFile);
+
 })
 
 //typeof input
@@ -65,4 +85,13 @@ server.use('/', require('./routers/index.js')());
 //static
 server.use(static('./www'));
 
-server.listen(8888);
+server.listen(8888, function(err)
+{
+	if(err)
+	{
+		console.log(err);
+		return;
+	}
+
+	console.log(8888 + ' is listenning')
+});

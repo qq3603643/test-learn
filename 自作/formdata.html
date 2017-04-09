@@ -117,7 +117,7 @@
 				_name = getfname(this);
 
 			$('#filename').html(_name);
-			if(_tp != 'xls')
+			if(_tp != 'xls' && _tp != 'xlsx')
 			{
 				errors.push('只能上传excel表格哟!');
 				return;
@@ -146,7 +146,7 @@
 // console.log(formdata.get('userFile'));
 			$.ajax(
 					{
-						url: '',
+						url: 'https://yaoyi.ypzdw.com/page/ueditor/controller.jsp?action=uploadimage',
 						type: 'POST',
 						data: formdata,
 						cache: false,
