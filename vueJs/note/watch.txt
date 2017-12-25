@@ -1,0 +1,14 @@
+watch: {
+  'obj': {},
+  'obj.attr': {}
+},
+method: {
+  changeObj() {
+    obj = {};
+    /** 可触发( 同时 ) watch-obj, wathc-obj-attr */
+  },
+  changeObjAttr() {
+    obj.attr = '';
+    /** 触发watch-obj-attr */
+  }
+}

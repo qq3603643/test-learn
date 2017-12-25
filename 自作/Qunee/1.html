@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<title>Examples</title>
+<meta name="description" content="">
+<meta name="keywords" content="">
+<link href="" rel="stylesheet">
+<script src="http://demo.qunee.com/lib/qunee-min.js"></script>
+</head>
+<body>
+    <div id="canvas"
+         style="margin: 0 auto;width: 80%;height: 600px;border: 1px solid #ccc;"></div>
+
+    <script type="text/javascript">
+    	var graph = new Q.Graph('canvas');
+    	/**
+		 * 创建一个节点 createNode(description, left, top)
+		 * 个人理解为绝对定位(相对于中心点)
+    	 */
+    	var Hello = graph.createNode('hello', -100, -50);
+    	var Qunee = graph.createNode('world', 100, 50);
+    	var edge = graph.createEdge('line', Hello, Qunee);
+
+    	/**
+		 * 默认节点呈现为一个图标和文字 图标是节点的主体(body) 文字是其ui elemen = body + ui1 + ui2 + ui3 + ...
+    	 */
+    	 var nodeWithLabels = graph.createNode('Node With Labels', 0, 100);
+    	 var Label2 = new Q.LabelUI();
+
+    	 Label2.position = Q.Position.CENTER_TOP;
+    	 Label2.anchorPosition = Q.Position.CENTER_BOTTOM;
+    	 Label2.border = 1;
+    	 Label2.padding = new Q.Insets(2, 5);
+    	 Label2.offsetY = -10;
+    	 Label2.backgroundColor = '#0f0';
+    	 Label2.fontSize = 16;
+    	 Label2.fontStyle = 'microsoft 100';
+    	 // Label2.data = 'another label';
+
+    	 /**
+		  * 新建的时候可直接赋予属性
+		  * 也可在添加的时候交与父级设置权利
+    	  */
+    	 nodeWithLabels.addUI(Label2, [{
+    	 	property: 'Label2.content',
+    	 	propertyType: Q.Consts.PROPERTY_TYPE_CLIENT,
+    	 	bindingProperty : 'data'
+    	 }, {
+    	 	property: 'Label2.color',
+    	 	propertyType: Q.Consts.PROPERTY_TYPE_CLIENT,
+    	 	bindingProperty : 'color'
+    	 }]);
+
+    	 nodeWithLabels.set('Label2.content', 'another lable');
+    	 nodeWithLabels.set('Label2.color', '#f00');
+
+         /**
+          * graph.editable = true; 设置过后 isResizable isRotatable 才能生效
+          * 且默认所有元素 isEditable = isResizable = isRotatable = true;
+          */
+         graph.editable = true;
+         graph.isMovable = (node) => {
+            node.set('isEditable', true);
+            console.log(node);
+            return !(node instanceof Q.Group);
+         };
+
+        var child = graph.createNode('child', -200, -100);
+        var parent = graph.createNode('parent', 200, 100);
+        child.parent = parent;
+
+        graph.onclick = function(e) {
+            var ui = graph.hitTest(e);                       //
+            var elementUI = graph.getUIByMouseEvent(e);      //node+label
+            var element = graph.getElementByMouseEvent(e);   //node
+            var equipment = e.getData();
+
+            console.log(element);
+        }
+         // graph.isEditable = (node) => {
+         //    node.set('isEditable', true);
+         //    return true;
+         // };
+
+         // graph.isResizable = (node) => {
+         //    node.set('isResizable', true);
+         //    return true;
+         // };
+
+         // graph.isRotatable = (node) => {
+         //    node.set('isRotatable', true);
+         //    return true;
+         // };
+    </script>
+</body>
+</html>

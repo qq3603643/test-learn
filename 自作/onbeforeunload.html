@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<title>onbeforeunload</title>
+<meta name="description" content="">
+<meta name="keywords" content="">
+<link href="" rel="stylesheet">
+</head>
+<body>
+	<script type="text/javascript">
+      window.onbeforeunload = function handleBeforeLeave(e) {
+      	setTimeout(() => {
+			console.log('you keep back');
+			/*
+			 * void function noLeave(){}();
+			 */
+      	}, 666);
+      	return '';
+      };
+      window.onunload = function() {
+      	/* 离开页面执行 即在上步操作中点击确认离开 */
+      	setTimeout(() => {
+      		console.log('leave');
+      	}, 7777);
+      	console.log('leave');
+      };
+      /**
+       * handleBeforeLeave 函数 有return值 则弹窗
+       * handleBeforeLeave 函数 return 返回值仅能决定是否有弹窗
+       * handleBeforeLeave 函数体总是执行 包括其内的ajax( 无论有无return值 )
+       * 总是建议用setTimeOut + 一定时间 执行不离开js
+       * 总是建议用无返回值 执行离开事件
+       */
+	</script>
+</body>
+</html>

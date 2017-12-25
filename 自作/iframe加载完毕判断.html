@@ -41,6 +41,7 @@
 			if(oIframe.attachEvent)
 				oIframe.attachEvent('onload', loadC);
 			else
+				// oIframe.addEventListener('load', loadC, false);
 				oIframe.onload = loadC;
 
 			oWrap.appendChild(oIframe);

@@ -1,0 +1,2 @@
+javascript中的事件监听即为该模式
+订阅者listen 缓存事件  发布者trigger(传递参数) 执行事件

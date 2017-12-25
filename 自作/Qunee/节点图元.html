@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<title>node</title>
+<meta name="description" content="">
+<meta name="keywords" content="">
+<link href="" rel="stylesheet">
+<script src="http://demo.qunee.com/lib/qunee-min.js"></script>
+<style type="text/css">
+    .btn
+    {
+        width: 100px;height: 25px;
+        padding: 6px 10px;
+        line-height: 25px;
+        border: 1px solid gray;
+        border-radius: 4px;
+        text-align: center;
+        user-select: none;
+        -webkit-user-select: none;
+    }
+    .btn:hover
+    {
+        background-image: linear-gradient(to bottom, rgba(0, 0, 0, .2), rgba(0, 0, 0, .2));
+        cursor: pointer;
+    }
+</style>
+</head>
+<body>
+    <div id="canvas"
+         style="margin: 0 auto;width: 80%;height: 600px;border: 1px solid #ccc;"></div>
+
+    <div class="operate">
+        <span class="btn" id="exportImg">ExportImg</span>
+    </div>
+    <div class="box">
+        <img src="../pic-piano/3.jpg" id="pic">
+    </div>
+
+    <script type="text/javascript">
+    	var graph = new Q.Graph('canvas');
+
+        graph.interactionMode  = Q.Consts.INTERACTION_MODE_DEFAULT;
+
+    	/**
+    	 * createNode 创建节点
+    	 * @params name, left, top
+    	 */
+    	 var oneNode = graph.createNode('oneNode', -200, -200);
+
+    	/**
+	     * new Q.node(name, x, y); 创建节点实例
+	     * 创建实例然后在画布上添加
+    	 */
+    	 var twoNode = new Q.Node();  // new Q.node 创建的类等于graph.graphModel.data
+
+    	 twoNode.name = 'twoNode';
+    	 twoNode.x = 200;
+    	 twoNode.y = 200;
+    	 graph.graphModel.add(twoNode);
+
+    	 /**
+    	  * anchorPosition 挂载点位置 anchor: 锚点
+    	  * 个人理解为该实体的原心坐标设置 当与其他实体进行位置相关设置时的位置点
+    	  */
+    	  oneNode.location = new Q.Point(0, 0);
+    	  twoNode.location = new Q.Point(0, 0);
+    	  oneNode.anchorPosition = Q.Position.LEFT_TOP;
+    	  twoNode.anchorPosition = Q.Position.RIGHT_TOP;
+
+    	  /**
+		   * 节点跟随
+		   * host: 宿主节点
+		   * follower: 跟随节点
+		   * follower.host = host
+		   * host.addFollower(follower)
+		   * host.clearFollowers()
+    	   */
+    	   var hostNode = graph.createNode('Host', -200, -200);
+    	   var a = graph.createNode('I Follow Host', 200, 200);
+
+    	   a.host = hostNode;
+
+    	   /**
+			* 节点图片
+			* 节点的主体(body)支持 静态图片 Canvas GIF动画 SVG 等
+    	    */
+
+    	    var myIcon = {
+    	    	width: 40,
+    	    	height: 40,
+    	    	draw: function(g, scale) {
+	    			g.beginPath();
+	    			/* 圆心坐标是canvas体系 原点在leftTop */
+	    			g.arc(20, 20, 18, 0, Math.PI * 2);
+	    			// g.fillStyle = '#f00';
+	    			// g.fill();
+	    			g.strokeStyle = '#ddd';
+	    			g.lineWidth = 2;
+	    			g.stroke();
+	    			g.lineWidth = 1;
+	    			g.strokeStyle = '#000';
+	    			g.strokeText('mine', 5, 24);
+
+	    			g.closePath();
+    	    	},
+    	    };
+    	    var node = graph.createNode('myIcon', 0, -200);
+    	    node.image = myIcon;
+
+            // console.log(graph.graphModel.datas);
+    	    /**
+			 * 图片注册
+			 * Q.registerImage('myIcon', myIcon)
+			 * node.image = 'myIcon';
+    	     */
+
+    	     /**
+              * 内置图标 'Q-sever ....'
+              * 内置图形 'oval, rect, arrow ....'
+              * http://doc.qunee.com/pages/viewpage.action?pageId=2097163
+    	      */
+
+              graph.isMovable = function(node) {
+                // node.set('isMovable', false);
+                return true;
+              };
+
+              graph.graphModel.datas.forEach(function(data) {
+                //添加到选择容器中对应的node自动处于选择状态
+                //与 graph.select(data) 效果相同
+                //graph.selectionModel.add(data);
+              })
+
+              console.log(graph.selectionModel.length);
+    </script>
+
+    <script type="text/javascript">
+        function $(sV)
+        {  /** V == Variable 变量 */
+            return document.querySelectorAll(sV);
+        }
+        var addEvent = (function(){
+            var rootEle = document.documentElement;
+            var method  = rootEle.addEventListener ? 'addEventListener' : rootEle.attachEvent ? 'attachEvent' : null;
+
+            return method
+                   ? function(ele, event, fn)
+                     {
+                        var _event = method == 'attachEvent' ? 'on' + event : event;
+
+                        ele[method].apply(ele, [event, fn, false]);
+                     }
+                   : function(ele, event, fn) {
+                         ele['on' + event] = fn;
+                     };
+        })();
+
+        var oBtn = $('#exportImg')[0];
+
+        function downLoadPic()
+        {
+            var _targetPic = $('#pic')[0];
+
+            if (!document.all.picDownload) {
+                var oIframe = document.createElement('iframe');
+
+                document.body.insertBefore(oIframe, document.body.childNodes[0]);
+                oIframe.outerHTML = "<iframe name=picDownload style='width:400px;hieght:300px' src=" + _targetPic.src + "></iframe>";
+
+                _targetPic._idTimeout = setTimeout(arguments.callee, 0);
+
+                return;
+            }
+
+            clearTimeout(_targetPic._idTimeout);
+
+            var _pic = window.open(_targetPic.src, 'picDownload');
+
+            _pic.document.execCommand('SaveAs');
+            document.body.removeChild(document.all.picDownload);
+        }
+        addEvent(oBtn, 'click', downLoadPic);
+    </script>
+</body>
+</html>

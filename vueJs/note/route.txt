@@ -1,0 +1,27 @@
+new VueRouter({
+  routes: [{
+    path,
+    meta: { auth: true },
+    name,
+    /* 按需加载 */
+    component(resolve) {
+      require([''], resolve)
+    }，
+    /** 
+     * 传递参数
+     * 例如前一个页面跳转至此 route.push({
+      *  query: {}, name: ''
+     * })
+     */
+    'props': route => ({
+      property: route.query[...]
+    });
+  }]
+});
+
+route.beforeEach((to, from, next) => {
+  /* to&&from 都是route对象 matched 为其的匹配路由节点 一直到祖先节点  可利用其做登陆验证 /login 单独路由 设置为根路由最好 */
+  if (to.matched.some(route => {
+      return record.meta.auth == true;
+  }))
+})

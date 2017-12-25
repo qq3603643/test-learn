@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<title>setCapture</title>
+<meta name="description" content="">
+<meta name="keywords" content="">
+<link href="" rel="stylesheet">
+<style type="text/css">
+	body { position: relative; }
+	.box { position: absolute;top: 20px;left: 20px; width: 100px;height: 100px;box-shadow: 0 0 2px rgba(0, 0, 0, .6); }
+	.child { margin: 0;width: 80px;height: 80px;border: 10px solid transparent;background-color: #eee;background-clip: padding-box; }
+</style>
+</head>
+<body>
+    <div class="box">
+    	<p class="child"></p>
+    </div>
+
+    <script type="text/javascript">
+    	function $(variable) {
+    		return [].slice.call(document.querySelectorAll(variable));
+    	}
+
+    	var $box = $('.box')[0];
+    	var draggable = false;
+    	var pos = {
+    		mouseX: 0,
+    		mouseY: 0,
+    		divX: 0,
+    		divY: 0
+    	};
+
+    	function getStyle(ele, attr) {
+    		var res = ele.currentStyle ? ele.currentStyle[attr]
+	    			   : window.getComputedStyle
+	    			   ? window.getComputedStyle(ele)[attr]
+	    			   : 0;
+
+		    return parseFloat(res);
+    	};
+
+    	$box.onmousedown = function(e) {
+    		draggable = !draggable;
+
+    		var $self = e.currentTarget;
+
+    		/* 亲测ie支持setCapture 将全部鼠标事件交给该元素
+		     * 避免出现拖动太快而无法跟随
+    		 */
+		    if ($self.setCapture) {
+		      $self.setCapture();
+		    } else if (window.captureEvents) {
+		      window.captureEvents(Event.MOUSEMOVE | Event.MOUSEUP);
+		    }
+
+		    pos.mouseX = e.clientX;
+		    pos.mouseY = e.clientY;
+		    pos.divX = getStyle($self, 'left');
+		    pos.divY = getStyle($self, 'top');
+    	};
+
+    	$box.onmousemove = function(e) {
+		    if (!draggable) {
+		      return;
+		    }
+
+    		var $self = e.currentTarget;
+    		var newPos = {
+    			mouseX: e.clientX,
+    			mouseY: e.clientY
+    		};
+    		var difPos = {
+    			mouseX: newPos.mouseX - pos.mouseX,
+    			mouseY: newPos.mouseY - pos.mouseY
+    		};
+
+    		$self.style.left = pos.divX + difPos.mouseX + 'px';
+    		$self.style.top = pos.divY + difPos.mouseY + 'px';
+    	};
+
+    	$box.onmouseup = function(e) {
+    		draggable = !draggable;
+
+    		var $self = e.currentTarget;
+
+		    if ($self.releaseCapture) {
+		      $self.releaseCapture();
+		    } else if (window.captureEvents) {
+		      window.captureEvents(Event.MOUSEMOVE | Event.MOUSEUP);
+		    }
+    	};
+    </script>
+</body>
+</html>

@@ -10,6 +10,26 @@
 </head>
 <body>
     <script type="text/javascript">
+		Function.prototype.call2 = function()
+		{
+			var _args = arguments.concat();
+			var context = [].splice.call(_args, 0, 1);
+			var __args = _args.reduce(function(res, ___arg){
+				return res.concat(JSON.stringify(___arg));
+			}, []);
+
+			context.fn = this;
+
+			return eval('context.fn(' + __args.join(',') + ');');
+		};
+
+		function showName(who, end) {
+			console.log(who.name + ' say: hello, ' + this.name + end);
+		}
+
+		showName.call({
+			name: 'apple'
+		}, { name: 'tangerine' }, ', 你真是太美了!');
     	Function.prototype.bind = Function.prototype.bind
 				 || function(context)
 					{

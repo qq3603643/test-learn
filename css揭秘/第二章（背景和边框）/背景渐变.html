@@ -9,12 +9,22 @@
 <link href="" rel="stylesheet">
 <style>
 	.box{ margin:100px;width:100px;height:400px;outline:1px solid #888; }
-	/* .gradient{ background:linear-gradient(#700 20%,#060 50%,#005 80%); } */
+	/* .gradient{ background:linear-gradient(#700,#060 50%,#005 80%); } */
 	/* 为0~20%为第一个颜色纯色 20~50为第一个颜色到第二个颜色的渐变 50~80为第二个颜色到第三个的渐变 80以后为第三个颜色纯色*/
-	.gradient{ background:linear-gradient( to bottom,#800 50%,#080 50%);background-size:100% 25%; }
+	/* .gradient{ background:linear-gradient( to bottom,#800 50%, #080 50%);background-size:100% 25%; } */
+	.gradient{ background-image: linear-gradient(to bottom, green 20%, red 80%); }
+	/* 0~20 green 20~80 green~red 80~100 red */
 </style>
 </head>
 <body>
     <div class="box gradient"></div>
+    <!--
+     #summary
+     第一个颜色 不设置位置 默认为零
+     第一个颜色设置位置 则为0~该位置的纯色 该位置到下个位置为才开始渐变
+
+     如果第一个颜色不设置 则默认为第一个设置的颜色
+     如果最后一个颜色不设置 则默认为最后一个设置的颜色
+    -->
 </body>
 </html>

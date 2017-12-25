@@ -73,6 +73,7 @@
 	    	drag.ondragend = function(ev)
 	    	{
 	    		/* 拖拽结束 **/
+	    		 console.log('dragend');
 	    		 ev.dataTransfer.clearData("text");
 		         return false;
 	    	}
@@ -93,11 +94,16 @@
 	    oTarget.ondrop = function(ev)
 	    {
 	    	/*拖拽元素进入目标元素头上，同时鼠标松开的时候*/
+	    	console.log('ondrop');
 	    	var text = ev.dataTransfer.getData("text");
 	    	ev.target.innerHTML = ev.target.innerHTML + text;
 		    this.style.boxShadow = '0 0 1px rgba(0, 0, 0, .6) inset';
 		    return false;
 	    }
+
+	    /**
+	     * 事件顺序: onselectstart ondragstart ondragenter ondragover ondrop ondragend
+	     */
     </script>
 </body>
 </html>

@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<title>cover / contain</title>
+<meta name="description" content="">
+<meta name="keywords" content="">
+<link href="" rel="stylesheet">
+<style type="text/css">
+	.box {
+		margin: 20px;
+		width: 100px; height: 100px;
+		box-shadow: 0 0 2px rgba(0, 0, 0, 1);
+		background-image: url('./pic-piano/1.jpg');
+		background-repeat: no-repeat;
+	}
+	.cover {
+		/**
+		 * 宽高中缩放较小的一边以 ‘塞满’ 整个容器 此时较大边被裁剪
+		 */
+		background-size: cover;
+	}
+	.contain {
+		/**
+		 * 宽高中缩放较大的一边以让此边达到容器 此时较小边留白
+		 */
+		background-size: contain;
+		/**
+		 * 配合background-position: center; 可达到任何比例垂直水平居中的目的！！！！！
+		 */
+		background-position: center;
+	}
+
+
+	/** 利用after实现任何比例垂直水平居中 */
+	.box2 {
+		background-image: none;
+		/* height: 20px; */
+		text-align: center;
+		/**
+		 * important 不设置font-size: 0 将与after之间留有空隙 当宽度100%时不能垂直居中
+		 */
+		font-size: 0;
+	}
+	.box2:after {
+		display: inline-block;
+		content: '';
+		width: 0; height: 100%;
+		vertical-align: middle;
+		overflow: hidden;
+	}
+	.img {
+		/**
+		 * 限制宽高中的任何一个时 另一个如果不做限制 将等比进行缩放
+		 */
+		max-width: 100%;max-height: 100%;
+		vertical-align: middle;
+	}
+
+	/**
+	 * 利用绝对定位实现任何比例垂直水平居中
+	 */
+	.box3 {
+		background-image: none;
+		/* height: 20px; */
+		position: relative;
+	}
+	.img2 {
+		position: absolute;
+		left: 0;right: 0;top: 0;bottom: 0;
+		margin: auto;
+		max-width: 100%; max-height: 100%;
+	}
+
+
+	/**
+	 * 利用flex实现任何比例垂直水平居中
+	 */
+	.box4 {
+		background-image: none;
+		display: flex;
+		align-items: center;
+		justify-content: center;  /** 单行的元素 */
+		align-content: space-around; /** 多行时生效 行的排列方式 */
+	}
+	.img3 {
+		flex: 1;
+		max-width: 100%; max-height: 100%;
+	}
+</style>
+</head>
+<body>
+    <div class="box cover"></div>
+    <div class="box contain"></div>
+
+    <div class="box box2">
+    	<img class="img" src="./pic-piano/1.jpg">
+    </div>
+
+    <div class="box box3">
+    	<img class="img2" src="./pic-piano/1.jpg">
+    </div>
+
+    <div class="box box4">
+    	<img class="img3" src="./pic-piano/1.jpg">
+    </div>
+</body>
+</html>
+
+/**
+ * summary: cover总是能 塞满 整个容器 contain在且仅在宽高比与容器宽高比相同时 填充满整个容器( 此时cover/contain没表现区别了吧 = = )
+   </br>&emsp;&emsp;&ensp;两者都保持原有宽高比不变 ！important
+ </br>*/

@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<title>Examples</title>
+<meta name="description" content="">
+<meta name="keywords" content="">
+<link href="" rel="stylesheet">
+</head>
+<body>
+    <span class="text">hello, word!</span>
+
+    <script>
+    	function $(v) {
+    		return $.fn.init(v);
+    	}
+
+    	$.fn = $.prototype;
+
+    	$.fn = {
+    		constructor: $,
+    		init: function(v) {
+    			var eles = [].slice.call(document.querySelectorAll(v));
+                var _this = this;
+
+                _this.length = eles.length;
+                eles.forEach(function(ele, i){
+                    _this[i] = ele;
+                })
+
+    			return this;   //return this 真的非常巧妙啊！！！
+    		}
+    	}
+
+        $.fn.each = function(fn) {
+            for(var i=0; i<this.length;) {
+                fn.call(this[i], this[i], i);
+
+                i++;
+            }
+        };
+
+    	$.fn.html = function(str) {
+    		if (str) {
+    			this.each(function(ele) {
+    				ele.innerHTML = str;
+    			})
+    		} else {
+    			return this[0].innerHTML;
+    		}
+    	}
+
+    	$('.text').html('333');
+    </script>
+</body>
+</html>

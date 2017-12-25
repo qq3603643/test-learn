@@ -1,0 +1,11 @@
+所有的 JavaScript对象都是从某个对象上克隆而来的。
+  Object.creat = Object.create || function() {
+    var F = function() {};
+    F.prototype = obj;
+
+    return new F();
+  }
+  如果A对象是从B对象克隆而来的，辣么B对象就是A对象的原型。C对象由A对象克隆而来，辣么A对象就是C对象的原型。这样就形成了原型链
+  
+  实例(由构造函数 new ***()) __proto__ == ***.prototype 
+  实例(对象) -> 构造函数的原型(本身也是实例) -> ..... -> Object.prototype = {}(空对象)

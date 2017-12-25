@@ -43,12 +43,22 @@
     	 lis=document.querySelectorAll('ul li');
 
     for(var i=0,len=btns.length;i<len;i+=1){
-
         btns[i].index=i;
     	btns[i].onclick=function(e){
     		e=e||window.event;
+
+            /* 里面的可以有参数true/false，代表该元素是上边缘在顶端 还是下边缘在底端，默认true */
+            /* 或者参数option
+             * {
+             *      behavior: "auto"  | "instant" | "smooth",
+             *      block:    "start" | "end",
+             * }
+             * 亲测option支持不友好
+             */
     		lis[this.index].scrollIntoView();
-    		//里面的可以有参数true/false，代表该元素是上边缘在顶端 还是下边缘在底端，默认true
+
+            /* 会在浏览器居中 但当其可见时不执行此方法 */
+            // lis[this.index].scrollIntoViewIfNeeded();
     		try{
     			e.stopPropagation();
     		}catch(error){
@@ -72,7 +82,7 @@
     	console.log(this.offsetWidth);  //包括边框
     	console.log(this.getBoundingClientRect());
     	try{
-    			e.stopPropagation();
+			e.stopPropagation();
 		}catch(error){
 			e.cancelBubble = !0;
 		}

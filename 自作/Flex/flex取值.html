@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<title>Examples</title>
+<meta name="description" content="">
+<meta name="keywords" content="">
+<link href="" rel="stylesheet">
+<style type="text/css">
+	html, body { height: 100%; }
+	* { margin: 0;padding: 0; }
+	.wrap { display: flex;margin: 80px auto 0;width: 800px;box-shadow: 0 0 2px rgba(0, 0, 0, .6); }
+	.wrap > div { height: 100px; }
+	.item-1 { width: 100px;flex: 1;background-color: #f00; }
+	.item-2 { flex: 25%;background-color: #0f0; }
+	.item-3 { flex: 2 1 200px;background-color: #00f; }
+</style>
+</head>
+<body>
+    <div class="wrap">
+    	<div class="item-1"></div>
+    	<div class="item-2"></div>
+    	<div class="item-3"></div>
+    </div>
+
+    <!--
+		##summary
+		item-1  =>  flex: 1 1 0;
+		item-2  =>  flex: 1 1 200px;   800 * 25%
+		item-3  =>  flex: 2 1 200px;
+
+		flex 为 flex-grow(扩大) & flex-shrink(缩小) & flex-basis(基准) 的缩写
+
+		left Space = 800 - 200 - 200 = 400;
+		item-1     = (400 / (1 + 1 + 2)) * 1 = 100;
+		item-2     = 200 + 400 * 1 / 4 = 300;
+		item-3     = 200 + 400 * 2 / 4 = 400;
+
+		flex: 1   => flex: 1 1 0;
+		flex: auto => flex: 1 1 auto;
+		flex: none => flex: 0 0 auto;
+		flex: 20% => flex: 1 1 20%;
+		flex: 200px => flex: 1 1 200px;
+
+		在基准的基础上分配剩下资源或者缩小
+    -->
+</body>
+</html>

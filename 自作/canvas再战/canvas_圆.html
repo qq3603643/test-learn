@@ -25,13 +25,13 @@
 
 	    context.beginPath();
 
-	    context.arc(200, 200, 100, 0, Math.PI*2, true);
+	    context.arc(200, 200, 100, 0, -Math.PI / 2, false);
 	    context.stroke();   //划线
     	// context.fillStyle = 'rgba(0, 0, 0, .3)';
 	    // context.fill()     //填充
 	    context.closePath();
 	    /*
-			summary: arc(x, y, r, start, end, 顺时针/逆时针)
+			summary: arc(x, y, r, start, end, 顺时针/逆时针(true))
 	    **/
     </script>
 </body>

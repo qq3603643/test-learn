@@ -39,3 +39,10 @@ unzip  a.zip 解压a.zip
 gzip -c filename > file.gz 将filename 压缩至fiile.gz
 gunzip file.gz 解压file.gz
 
+## 查看端口及关闭 ##
+netstat -a 查看已经链接的服务端口 ESTABLISHED
+netstat -ap 查看所有的服务端口 LISTEN，ESTABLISHED
+netstat -ap | grep 8080  查看指定端口，可以结合grep命令
+kill -9 PID   关闭使用端口进程
+
+

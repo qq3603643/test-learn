@@ -1,0 +1,6 @@
+while shims are used for covering up old sins, polyfills are used for bringing future enhancements back in time .
+eg: es5-shim
+     if (!Array.prototype.forEach) { Array.prototype.forEach = function() {} }
+     用旧的API实现 兼容旧的版本
+eg: babel-polyfill
+     实现新的API   如 async 等

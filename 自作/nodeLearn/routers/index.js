@@ -7,6 +7,11 @@ module.exports = () =>
 	router.get('/', (req, res, next) =>
 	{
 		//guess 这里的render为异步操作 所以不能在其后添加res.end() next();
+		/**
+		 * <%- ... %> 不转义输出
+		 * <%= ... %> 转义部分
+		 * <%  ... %> 流程控制 -> 逻辑代码 eg: if for...
+		 */
 		res.render('index.ejs', { name: 'apple', data: [{ a: 'a', b: 'b' }] });
 	})
 

@@ -11,6 +11,13 @@
 	.wrap{ margin:100px;width:300px;height:4px;border:1px solid #678; }
 	.wrap>div{ height:inherit;background:#f00;animation:progress 8s steps(10,start) infinite; }
 	/* 理论上只有当动画重复2次及其以上时steps第二个参数才有意义；接受 start 和 end 两个值，指定在每个间隔的起点或是终点发生阶跃变化，默认为 end。 */
+	/**
+	 * 2个参数都会选择性的跳过前后部分，start跳过0%，end跳过100%
+
+     * step-start在变化过程中，都是以下一帧的显示效果来填充间隔动画，所以0% 到 50%  直接就显示了黄色yellow
+
+     * step-end与上面相反，都是以上一帧的显示效果来填充间隔动画，所以0% 到 50% 直接就显示了红色red
+	 */
 	@-webkit-keyframes progress{
 		0%{ width:0; }
 		100%{ width:100%; }

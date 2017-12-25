@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<title>Group</title>
+<meta name="description" content="">
+<meta name="keywords" content="">
+<link href="" rel="stylesheet">
+<script src="http://demo.qunee.com/lib/qunee-min.js"></script>
+</head>
+<body>
+    <div id="canvas"
+		 style="margin: 0 auto;width: 80%;height: 600px;box-shadow: 0 0 0 2px rgba(0, 0, 0, .4)"
+    ></div>
+
+    <script type="text/javascript">
+    	var graph = new Q.Graph('canvas');
+
+    	function createGroup(sName, expanded) {
+    		expanded = expanded || false;
+
+    		var group = graph.createGroup();
+
+    		group.expanded = expanded;
+
+    		var groupHandle = new Q.LabelUI(expanded ? '-' : '+');
+
+    		groupHandle.backgroundColor = "#2898E0";
+		    groupHandle.color = "#FFF";
+		    groupHandle.padding = new Q.Insets(0, 4);
+		    groupHandle.borderRadius = 0;
+		    groupHandle.position = Q.Position.RIGHT_TOP;
+		    groupHandle.anchorPosition = Q.Position.LEFT_TOP;
+		    groupHandle.type = "GroupHandle";
+
+		    groupHandle.reverseExpanded = function() {
+		    	this.parent.data.expanded = !this.parent.data.expanded;
+		    };
+
+		    group.addUI(groupHandle);
+
+		    return group;
+    	}
+
+    	var nodeA = graph.createNode('AAAA', -100, -100);
+    	var nodeB = graph.createNode('BBBB', 100, 100);
+    	var group = createGroup('Group');
+
+
+    	var myIcon = {
+	    	width: 40,
+	    	height: 40,
+	    	draw: function(g, scale) {
+    			g.beginPath();
+    			/* 圆心坐标是canvas体系 原点在leftTop */
+    			g.arc(20, 20, 18, 0, Math.PI * 2);
+    			// g.fillStyle = '#f00';
+    			// g.fill();
+    			g.strokeStyle = '#ddd';
+    			g.lineWidth = 2;
+    			g.stroke();
+    			g.lineWidth = 1;
+    			g.strokeStyle = '#000';
+    			g.strokeText('group', 5, 24);
+
+    			g.closePath();
+	    	},
+	    };
+    	group.image = myIcon;
+    	group.addChild(nodeA);
+    	group.addChild(nodeB);
+
+    	graph.onclick = function(e) {
+    		var element = graph.getElementByMouseEvent(e);
+
+    		if(element instanceof Q.Group) {
+    			var _switch = graph.hitTest(e);
+
+    			if(_switch && _switch.type == 'GroupHandle') {
+					_switch.data = element.expanded ? '+' : '-';
+					_switch.reverseExpanded();
+    			}
+    		}
+    	};
+    </script>
+</body>
+</html>

@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<title>eventlistener</title>
+<meta name="description" content="">
+<meta name="keywords" content="">
+<link href="" rel="stylesheet">
+<script src="http://demo.qunee.com/lib/qunee-min.js"></script>
+<script src="./lodash.js"></script>
+</head>
+<body>
+    <div id="canvas"
+    	 style="margin: 0 auto;width: 80%;height: 600px;box-shadow: 0 0 0 2px rgba(0, 0, 0, 1)"></div>
+
+    <script type="text/javascript">
+    	var graph = new Q.Graph('canvas');
+    	var node = new Q.Node('Node', 0, 0);
+
+    	graph.graphModel.add(node);
+
+    	var Label = new Q.LabelUI();
+
+    	Label.position = Q.Position.CENTER_TOP;
+    	Label.anchorPosition = Q.Position.CENTER_BOTTOM;
+    	Label.border = 1;
+    	Label.padding = new Q.Insets(2, 5);
+    	Label.offsetY = -10;
+    	Label.backgroundColor = '#0f0';
+    	Label.fontSize = 16;
+    	Label.fontStyle = 'microsoft 100';
+    	Label.data = 'lable';
+
+    	node.addUI(Label);
+
+    	graph.onclick = function(e) {
+    		var ui = graph.hitTest(e);                       //
+    		var elementUI = graph.getUIByMouseEvent(e);      //node+label
+    		var element = graph.getElementByMouseEvent(e);   //node
+            var equipment = e.getData();
+
+            // equipment && console.log(equipment);
+            /** getData() 获得的是node 可直接对其进行设置 */
+            // equipment.x += 10;
+            // equipment.tooltip = '<h2> tit </h2><p> contents </p>';
+            // equipment.enableTooltip = true;
+
+    		// element && console.log(element);
+            // equipment.x += 10;
+            /** 表现和getData()一致 */
+
+            // elementUI && console.log(elementUI.data);
+            // elementUI.data.x += 10;
+            /** node+label */
+
+            // ui && console.log(ui);
+            /** 点击target */
+
+            // console.log(e.getUI());
+            /** 等价getUIByMouseEvent */
+            // console.log(e);
+
+            /**
+             ## summary
+                -graph.hitTest(e);  target
+                -graph.getElementByMouseEvent(e) == e.getData()  element主体
+                -graph.getUIByMouseEvent(e) == e.getUI() 整体
+             */
+    	};
+
+        var nodeBBB = graph.createNode('BBB', -100, -100);
+        var nodeCCC = graph.createNode('CCC', 100, 100);
+
+        var selectedListId = [];
+        graph.selectionChangeDispatcher.addListener(function(e) {
+            if(e.kind == 'add' && e.data) {
+                _.isArray(e.data) && e.data.forEach(function(equipment){
+                    !selectedListId.includes(e.data.id) && selectedListId.push(equipment.id);
+                })
+                !_.isArray(e.data) && !selectedListId.includes(e.data.id) && selectedListId.push(e.data.id);
+            } else if(e.kind == 'remove' && e.data) {
+                selectedListId = _.without(selectedListId, e.data.id);
+            } else if(e.kind == 'clear') {
+                selectedListId = [];
+            }
+            // console.log(selectedListId);
+        })
+
+        // graph.selectionChangeDispatcher.addListener(function(){
+        //     console.log(graph.selectionModel.datas)
+        // })
+
+        /* create a group */
+        var groupA = graph.createGroup('groupA', 200, 200);
+        nodeBBB.parent = groupA;
+        nodeBBB.host = groupA;
+        groupA.expanded = false;
+
+        var expandLabelUI = new Q.LabelUI();
+        expandLabelUI.type = 'groupHandler';
+        expandLabelUI.data = '+';
+        expandLabelUI.position = Q.Position.RIGHT_TOP;
+        expandLabelUI.anchorPosition = Q.Position.LEFT_BOTTOM;
+
+        groupA.addUI(expandLabelUI);
+        // groupA.addUI(expandLabelUI, {
+        //   property: 'expanded',
+        //   callback(value, ui) {
+        //     ui.data = value ? '-' : '+';
+        //   }
+        // });
+
+        groupA.set('node', { name: 'groupA' });
+
+        graph.onclick = function(e) {
+            var element = graph.getElementByMouseEvent(e);
+            var elementUI = graph.getUIByMouseEvent(e);
+            var ui = graph.hitTest(e);
+
+            if (element instanceof Q.Group && ui && ui.type == 'groupHandler') {
+                element.expanded = !element.expanded;
+                ui.data = element.expanded ? '-' : '+';
+            }
+        }
+    </script>
+</body>
+</html>

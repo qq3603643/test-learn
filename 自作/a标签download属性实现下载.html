@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<title>Examples</title>
+<meta name="description" content="">
+<meta name="keywords" content="">
+<link href="" rel="stylesheet">
+<style type="text/css">
+	.btn { border: 0 none;outline: 0 none;padding: 10px 6px;box-shadow: 0 0 2px rgba(0, 0, 0, .6);border-radius: 4px;cursor: pointer; }
+	.btn:hover { background-image: linear-gradient(to right, rgba(0, 0, 0, .15), rgba(0, 0, 0, .15)); }
+	input[type="file"] { display: none; }
+</style>
+</head>
+<body>
+     <a id="aaaaa" href="./img/0.jpg" download="test.png">download</a>
+	 <label class="btn">
+    	select file
+    	<input type="file" name="file" id="fileEle">
+    </label>
+    <button class="btn">downLoad</button>
+
+    <script type="text/javascript">
+    	function $(v) {
+    		return document.querySelectorAll(v);
+    	}
+
+        // setTimeout(() => {
+        //     console.log('click to download');
+        //     $('#aaaaa')[0].click();
+        // }, 1000);
+
+    	var oBtn = $('.btn')[1];
+
+    	function downLoadBy(content, fileName) {
+    		var tempLink = document.createElement('a');
+
+    		tempLink.download = fileName || 'a.txt';
+    		tempLink.style.display = 'none';
+    		/* 将文本内容转化为blob */
+    		var blob = new Blob([content]);
+    		/* createObjectURL 可传入file 如img.src = URL.createObjectURL(ipt.files[0]) */
+    		tempLink.href = URL.createObjectURL(blob);
+
+    		document.body.appendChild(tempLink);
+    		tempLink.click();
+
+    		document.body.removeChild(tempLink);
+    	}
+
+    	var oFile = $('#fileEle')[0];
+
+    	function fileHandler(){
+    		var file = this.files[0];
+  			var preView = document.createElement('img');
+
+  			var fr = new FileReader;
+
+  			fr.readAsDataURL(file);
+  			fr.onload = function() {
+  				preView.src = this.result;
+  			};
+
+  			preView.addEventListener('load', function() {
+  				document.body.appendChild(preView);
+  				URL.revokeObjectURL(preView.src);
+  			});
+
+    		if (!~this.className.indexOf('fileTest')) {
+    			/* 添加唯一标识符 */
+    			this.className = this.className + ' fileTest';
+    		}
+
+    		this.outerHTML = this.outerHTML;
+    		$('.fileTest')[0].addEventListener('change', fileHandler);
+    	}
+
+    	oFile.addEventListener('change', fileHandler);
+
+    	oBtn.addEventListener('click', function() {
+            var oImg = $('img')[0];
+
+            if (!oImg) {
+                return;
+            }
+
+            var canvas = document.createElement('canvas');
+            var ctx = canvas.getContext('2d');
+
+            canvas.width = oImg.width;
+            canvas.height = oImg.height;
+
+            ctx.drawImage(oImg, 0, 0, canvas.width, canvas.height);
+
+            if (window.navigator.msSaveBlob) {
+            	window.navigator.msSaveBlob(canvas.msToBlob(), 'test.png');
+            } else {
+			    var exportLink = document.createElement('a');
+
+			    exportLink.href = canvas.toDataURL();
+			    exportLink.setAttribute('download', 'test.jpg');
+                exportLink.style.cssText = 'display: none;';
+                document.body.appendChild(exportLink);
+			    exportLink.click();
+                setTimeout(function() {
+                    document.body.removeChild(exportLink);
+                }, 0);
+            }
+    	});
+
+
+    	/**
+    	 * summary
+    	 * 用URL.createObjectURL生成的图片 无法用fileReader转化为base64数据
+    	 * canvas转化则总为base64数据
+    	 * 建议总是用fileReader实现预览 用URL.createObjectURL实现文本下载
+    	 */
+    </script>
+</body>
+</html>

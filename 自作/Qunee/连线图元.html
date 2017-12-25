@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<title>edge</title>
+<meta name="description" content="">
+<meta name="keywords" content="">
+<link href="" rel="stylesheet">
+<script src="http://demo.qunee.com/lib/qunee-min.js"></script>
+</head>
+<body>
+    <div id="canvas"
+		 style="margin: 0 auto;width: 80%;height: 600px;box-shadow: 0 0 0 2px rgba(0, 0, 0, .4)"></div>
+
+	<script type="text/javascript">
+		var graph = new Q.Graph('canvas');
+
+		var nodeA = graph.createNode('AAAA', 0, -200);
+		var nodeB = graph.createNode('BBBB', 0, 200);
+
+		/**
+		 * 创建连线
+		 * createEdge(from, to, name)
+		 */
+		 var edgeA_B = graph.createEdge(nodeA, nodeB, 'edgeA_B');
+
+		 /**
+		 * 创建连线
+		 * new Q.Edge(from, to, name)
+		 */
+		 var nodeC = new Q.Node('CCC', -200, 0);
+
+		 graph.graphModel.add(nodeC);
+
+		 var edgeB_C = new Q.Edge(nodeB, nodeC, 'edgeB_C');
+
+		 graph.graphModel.add(edgeB_C);
+		 console.log(edgeB_C.isConnected());
+		 edgeB_C.disconnect();
+		 console.log(edgeB_C.isConnected());
+
+		 /**
+  		  * 子网
+		  */
+
+		  var nodeParent = graph.createNode('Parent(点击计入详情)', 0, 0);
+
+		  nodeParent.enableSubNetwork = !0;
+		  nodeParent.addChild(nodeA);
+		  // nodeA.parent = nodeParent;
+		  nodeB.parent = nodeParent;
+		  edgeA_B.parent = nodeParent;
+
+		  graph.onPropertyChange('currentSubNetwork', function(e) {
+		  	graph.html.style.backgroundColor = graph.currentSubNetwork == nodeParent ? '#DDF' : '#FFF';
+		  })
+
+		  graph.maxScale = 1;
+	</script>
+</body>
+</html>

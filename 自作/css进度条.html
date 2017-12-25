@@ -11,16 +11,15 @@
 	body{
 		height: 3000px;
 		margin: 0;
-		margin-top: 6px;
-		background: linear-gradient(to right top,#ccc 50%,#fff 0) no-repeat;
-		background-size: 100% calc(100% - 100vh + 6px);
-		background-position: -6px 0;
+		background: linear-gradient(to right top, #ccc 50%,#fff 50%) no-repeat;
+		/* 背景的高等于滚动条的高度 当滚动条为最大时 刚好背景到最高处... */
+		background-size: 100% calc(100% - 100vh + 3px);
 		}
 	body:after{
 		position: fixed;
 		display: block;
 		content: '';
-		top: 6px;
+		top: 3px;
 		bottom: 0;
 		left: 0;
 		right: 0;
