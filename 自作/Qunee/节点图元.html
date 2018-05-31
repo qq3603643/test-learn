@@ -108,6 +108,8 @@
     	    };
     	    var node = graph.createNode('myIcon', 0, -200);
     	    node.image = myIcon;
+            // node.image = Q.Shapes.getAllShapes().heart;
+            // node.size = new Q.Size(30, 30);
 
             // console.log(graph.graphModel.datas);
     	    /**
@@ -122,11 +124,6 @@
               * http://doc.qunee.com/pages/viewpage.action?pageId=2097163
     	      */
 
-              graph.isMovable = function(node) {
-                // node.set('isMovable', false);
-                return true;
-              };
-
               graph.graphModel.datas.forEach(function(data) {
                 //添加到选择容器中对应的node自动处于选择状态
                 //与 graph.select(data) 效果相同
@@ -134,6 +131,34 @@
               })
 
               console.log(graph.selectionModel.length);
+
+              console.log(Q.getAllImages());
+              console.log(Q.Shapes.getAllShapes());
+
+
+              let icons = Q.Shapes.getAllShapes();
+              console.log('Q.Styles', Q.Styles);
+
+              Object.keys(icons).forEach((iconName, ix) => {
+                let times = ~~(ix / 8);
+                ix = ix %= 8;
+                ix -= 4;
+
+                const nodeWithShapeImage = graph.createNode(iconName, ix * 60, 60 * times);
+
+                nodeWithShapeImage.image = icons[iconName];
+
+                if (iconName == 'rect') {
+                  nodeWithShapeImage.size = new Q.Size(40, 80);
+                  nodeWithShapeImage.setStyle(Q.Styles.SHAPE_STROKE_STYLE, '#f00');
+                  nodeWithShapeImage.setStyle(Q.Styles.SHAPE_FILL_COLOR, '#ccc');
+                }
+              });
+
+              graph.isMovable = function(node) {
+                // node.set('isMovable', false);
+                return true;
+              };
     </script>
 
     <script type="text/javascript">

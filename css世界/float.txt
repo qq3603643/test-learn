@@ -1,0 +1,2 @@
+元素一旦设置float且值不为none 其display值为block/table 避免以下css
+span {display: block; float: left;}

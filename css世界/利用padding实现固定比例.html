@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<title>padding</title>
+<meta name="description" content="">
+<meta name="keywords" content="">
+<link href="" rel="stylesheet">
+</head>
+<body>
+   <style type="text/css">
+        .box {width: 100px; background-color: black; color: white;}
+        /* padding 按照父级的width 上下10% 实现height: width = 20% : 100% = 1: 5; */
+        .inner {padding: 10% 0;}
+        /** 用伪元素实现 **/
+        .box2:after {margin-top: 10px; display: block; content: ''; padding: 50% 0;}
+    </style>
+    <div class="box">
+        <div class="inner"></div>
+    </div>
+
+    <div class="box box2">
+        <!-- 伪元素也相当于其子元素 如果再添加内容 会继续增加其高度 只能通过绝对定位增加 -->
+        <div style="position: absolute;">2354</div>
+    </div>
+</body>
+</html>

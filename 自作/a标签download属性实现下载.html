@@ -64,8 +64,13 @@
 
   			preView.addEventListener('load', function() {
   				document.body.appendChild(preView);
-  				URL.revokeObjectURL(preView.src);
   			});
+
+            // preView.src = URL.createObjectURL(file);
+            // preView.addEventListener('load', () => {
+            //     document.body.appendChild(preView);
+            //     URL.revokeObjectURL(preView.src);
+            // });
 
     		if (!~this.className.indexOf('fileTest')) {
     			/* 添加唯一标识符 */

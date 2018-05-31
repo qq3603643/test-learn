@@ -9,6 +9,7 @@ import Tangerine from '../components/tangerine'
 import ElementUI from '../components/elementUI'
 import Transition from '../components/transition'
 import Slot from '../components/slot'
+import SlotScope from '../components/slot-scope';
 import LeafLet from '../components/leafLet'
 import RenderFunction from '../components/renderFunction'
 import Emit from '../components/emit'
@@ -52,6 +53,9 @@ export default new Router({
   }, {
     path: '/slot',
     component: Slot
+  }, {
+    path: '/slot-scope',
+    component: SlotScope
   }, {
     path: '/leafLet',
     component: LeafLet

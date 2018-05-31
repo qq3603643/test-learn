@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<title>Examples</title>
+<meta name="description" content="">
+<meta name="keywords" content="">
+<link href="" rel="stylesheet">
+</head>
+<body>
+    <script type="text/javascript">
+       ((f) => {
+       	f();
+       })(() => {
+       	const _me = {
+          name: 'tangerine'
+       	};
+
+       	Object.defineProperty(_me, 'name', {
+       		writable: false
+       	});
+       	/**
+       	 * ##configurable
+       	 * 规定object 能否再次通过defineProperty被定义
+       	 * 1. 当writable = true 时 能再次通过defineProperty定义为false
+       	 * 2. 其他情况皆不能
+       	 */
+       	Object.defineProperty(_me, 'name', {
+          configurable: false
+       	});
+
+	    try {
+    	  // Cannot redefine property: name
+	      Object.defineProperty(_me, 'name', {
+	        writable: true
+	      })
+	    } catch (er) {
+	    }
+
+       	_me.name = 'orange'
+       	console.log(_me);
+
+
+       	const _me2 = {};
+       	/**
+       	 * ##writable
+       	 * 定义属性是否可写
+       	 */
+       	Object.defineProperty(_me2, 'name', {
+   		  value: 'tangerine2',
+       	  writable: false
+       	});
+       	_me2.name = 'orange2';
+       	console.log(_me2, Object.getOwnPropertyDescriptor(_me2, 'name'));
+
+       	const _me3 = Object();
+       	/**
+       	 * ##enumerable
+       	 * 定义属性是否可枚举
+       	 */
+       	Object.defineProperty(_me3, 'age', {
+       	  value: 24,
+   		  enumerable: false
+       	});
+
+       	for (let k in _me3) console.log(k);
+       });
+
+       const peoples = {
+         me: {
+          name: 'tangerine'
+         },
+         you: {
+          name: 'apple'
+         }
+       };
+
+       Object.keys(peoples).forEach((k) => {
+         const v = peoples[k];
+         let age;
+         let isSet = true;
+
+         Object.defineProperty(v, 'age', {
+           configurable: false,
+           enumerable: true,
+           get() {
+             if (isSet) {
+               age = Math.random();
+               isSet = false;
+             }
+
+             return age;
+           },
+           set() {
+             throw new Error('CANT SET VALUE');
+           }
+         });
+       });
+
+       console.log('peoples.me.age', peoples.me.age);
+       console.log('peoples.me.age', peoples.me.age);
+       console.log('peoples.you.age', peoples.you.age);
+       console.log('peoples.you.age', peoples.you.age);
+    </script>
+</body>
+</html>

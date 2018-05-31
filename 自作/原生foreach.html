@@ -11,7 +11,6 @@
         var arr = ['z', 'x', 's'];
         arr.forEach(function(item, i) {
             document.body.innerHTML += item;
-            console.log(i);
         });
 
     </script>
@@ -20,9 +19,22 @@
         var arr2 = [1, 2, 3];
         $.each(arr2, function(i, item) {
             document.body.innerHTML += item;
-            console.log(i);
         })
 
+
+        var _list = [1, 2, 3, 4, 5, 6];
+
+        // _list.forEach((i) => {
+        //     console.log(i);
+        //     if (i > 3) return true;   * return === return false / true  对循环无任何影响 跳过return后的执行 *
+        //     console.log(i);
+        // });
+
+        $.each(_list, (ix, i) => {
+            console.log(i);
+            if (i > 3) return false;   /** return === return true  对循环无任何影响 跳过return后的执行  return false 跳出循环 调过return后的执行 **/
+            console.log(i);
+        });
     </script>
 </body>
 

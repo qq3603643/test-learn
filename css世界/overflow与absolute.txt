@@ -1,0 +1,11 @@
+block元素设置absolute时 默认换行显示
+
+无依赖定位元素
+只设置position: absolute/fixed 受text-align影响
+
+
+与overflow
+父级无定位元素时不会发生裁剪
+如  <div style="height: 100px;overflow: hidden;"><p style="position: absolute;height: 200px;"></p></div>
+中间层有定位元素即发生裁剪
+如  <div style="height: 100px;overflow: hidden;"><div style="position: relative;"><p style="height: 200px;"></p><div></div>

@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<title>Z-INDEX</title>
+<meta name="description" content="">
+<meta name="keywords" content="">
+<link href="" rel="stylesheet">
+<style type="text/css">
+  .p {position: relative;}
+  .one, .two {position: absolute;width: 100px;height: 10px;}
+  .one {z-index: 2; background-color: red}
+  .two {z-index: 2; background-color: blue}
+  .one-c, .two-c {position: absolute;width: 100px;height: 10px;}
+  .one-c {z-index: 100;background-color: green;}
+  .two-c {z-index: 3; background-color: black;}
+</style>
+</head>
+<body>
+    <!-- one-c two-c的显示顺序在 one two 显示顺序之上进行 即 无论one-c two-c如何设置zIndex 只要其父级在上 其就一定显示在上(即使其父级zindex相同 但遵循后来居上) -->
+    <div class="p">
+      <p class="one">
+        <span class="one-c"></span>
+      </p>
+      <p class="two">
+        <span class="two-c"></span>
+      </p>
+    </div>
+</body>
+</html>

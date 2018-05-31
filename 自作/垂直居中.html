@@ -12,8 +12,26 @@
             width: 400px;
             text-align: center;
         }
-        
         #content {}
+
+        .container {
+            height: 400px;
+            width: 400px;
+            text-align: center;
+            box-shadow: 0 0 1px rgba(0, 0, 0, 1.0) inset;
+        }
+        .dialog {
+            display: inline-block;
+            vertical-align: middle;
+            background-color: red;
+        }
+        .container:after {
+            display: inline-block;
+            content: '';
+            height: 100%;
+            width: 0;
+            vertical-align: middle;
+        }
     </style>
 </head>
 
@@ -21,6 +39,11 @@
     <div id="floater">
         <div id="content">
             Content here
+        </div>
+    </div>
+    <div class="container">
+        <div class="dialog">
+            DIALOG
         </div>
     </div>
 </body>

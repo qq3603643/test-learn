@@ -1,0 +1,9 @@
+<p class="text">
+  <span class="content">text</span>
+</p>
+
+.text { text-align: center; }
+.content { text-align: left;  }
+
+原理解析:
+  span，inline，具包裹性且响应textAlign

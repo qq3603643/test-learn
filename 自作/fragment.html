@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>fragment</title>
+</head>
+<body>
+    <div id="app">
+        <h2> h2 </h2>
+        <p> p </p>
+        <span> span </span>
+    </div>
+</body>
+<script>
+    const $el = document.querySelector("#app")
+    const fragment = document.createDocumentFragment()
+    // let child;
+    // while (child = $el.firstChild) {
+    //     console.log('append-before', $el.firstChild)
+    //     fragment.appendChild(child);
+    //     console.log('append-after', $el.firstChild);
+    // }
+    while ($el.firstChild) {
+        fragment.appendChild($el.firstChild);
+    }
+    console.log(fragment)
+
+    /**
+     *  appendChild, insertBefore 等节点操作方法 会把之前的节点干掉!!
+     */
+</script>
+</html>

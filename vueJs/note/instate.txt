@@ -1,0 +1,6 @@
+³õÊ¼»¯Ë³Ðò
+initProps
+initMethods
+initData
+initComputed
+initWatch

@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<title>content嵌套</title>
+<meta name="description" content="">
+<meta name="keywords" content="">
+<link href="" rel="stylesheet">
+</head>
+<body>
+    <div class="reset">
+      <div class="tree">一级
+        <div class="reset">
+          <div class="tree">二级
+            <div class="reset">
+              <div class="tree">三级</div>
+              <div class="tree">三级</div>
+              <div class="tree">三级</div>
+              <div class="tree">三级</div>
+            </div>
+          </div>
+          <div class="tree">二级</div>
+          <div class="tree">二级</div>
+        </div>
+      </div>
+      <div class="tree">一级
+        <div class="reset">
+          <div class="tree">二级</div>
+          <div class="tree">二级</div>
+        </div>
+      </div>
+      <div class="tree">一级
+        <div class="reset">
+          <div class="tree">二级</div>
+          <div class="tree">二级</div>
+        </div>
+      </div>
+    </div>
+
+    <style>
+      .reset {list-style: none;counter-reset: tree;padding-left: 10px;transition: all 1s linear;max-height: 500px;overflow: hidden;}
+      .tree:before {content: counters(tree, '-') '. '; counter-increment: tree;}
+    </style>
+
+    <script type="text/javascript">
+      var data = [{
+        id: 1,
+        name: '一级',
+        children: [{
+          id: 12,
+          name: '二级',
+          children: [{
+            id: 121,
+            name: '三级'
+          }]
+        }, {
+          id: 22,
+          name: '二级'
+        }]
+      }];
+
+      var rootReset = document.createElement('ul');
+      rootReset.className = 'reset';
+      var _create = (d, e) => {
+        var tree = document.createElement('li');
+        tree.className = 'tree';
+        tree.innerHTML = `<span class="switch">${d.name}</span>`;
+
+        e.appendChild(tree);
+        if (d.children && d.children.length) {
+          var reset = document.createElement('ul');
+          reset.className = 'reset';
+          tree.appendChild(reset);
+
+          d.children.forEach((_d) => {
+            _create(_d, reset);
+          });
+        }
+      }
+      data.forEach((_data) => {
+        _create(_data, rootReset);
+      });
+
+      document.body.appendChild(rootReset);
+
+      document.body.addEventListener('click', (e) => {
+        var el = e.target;
+
+        if (el.tagName.toLowerCase() == 'span' && el.className == 'switch') {
+          var reset = el.nextSibling;
+          var height = reset.clientHeight;
+
+          if (!reset) {
+            return;
+          }
+
+          if (!height) {
+            /**
+             * 根据子元素多少设置其maxHight
+             */
+            reset.style.maxHeight = '500px';
+          } else {
+            reset.style.maxHeight = '0';
+          }
+        }
+      })
+    </script>
+</body>
+</html>

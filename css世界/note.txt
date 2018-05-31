@@ -1,0 +1,2 @@
+绝对定位 格式化宽度
+如 left:0, right: 0  其表现与blok外层类似 设置margin padding 均保持在父级内部

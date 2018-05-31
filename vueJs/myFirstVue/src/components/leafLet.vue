@@ -11,6 +11,7 @@
 	import Vue from 'vue';
 	import L from 'leaflet';
 	import '../js/LeafletContextMenu';
+	import '../js/leaflet.areaSelect.js';
 	import 'Leaflet.Graticule-master/L.Graticule';
 	import $ from 'jquery';
 	import * as html2canvas from 'html2canvas/dist/html2canvas.js';
@@ -64,15 +65,11 @@
 	        center: [23.032192, 113.772628],
 	        zoom: 12,
 	        fadeAnimation: false,
-	        attributionControl: false,
+	        // attributionControl: false,
 	        zoomControl: false,
+	        selectArea: true,
 	        contextmenu: true,
-	        contextmenuItems: [{
-	          text: 'Show coordinates',
-	          callback: (e) => {
-	            console.log(e)
-	          }
-	        }]
+	        contextmenuItems: []
 	      });
 
 	      L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {

@@ -1,0 +1,23 @@
+// 无模块 以原名作为方法名
+mapAction(['A', 'B'])
+// 有模块 以原名作为方法名
+mapAction('/a', ['A', 'B'])
+//无模块 重新命名
+mapAction({
+  AA: 'A',
+  BB: 'B'
+})
+//有模块 重新命名
+mapAction('a', {
+  AA: 'A',
+  BB: 'B'
+})
+mapAction({
+  AA: 'a/A',
+  BB: 'a/B'
+})
+
+dispath 与 commit的区别
+commit 直接修改state 同步 在执行方法之前会将committing=true fn() committing=false
+store监听store变化 如果此时committing为false 将会报错 也就是说fn不能回异步
+故用 dispath 处理异步

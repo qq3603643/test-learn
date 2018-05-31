@@ -1,0 +1,18 @@
+core            // 核心的
+general       //一般的
+widget       //装饰
+plugin        //插件
+/** 可用package包归类 **/
+
+
+collapse     //收缩
+expand      //展开
+/** 面板展开收缩行为 **/
+
+internal      //内部的
+
+plus      +
+minus    -
+times     *
+devide   /
+/** 加减乘除 **/

@@ -1,0 +1,25 @@
+层叠上下文 --> 环境        和块状格式化上下文相同
+层叠顺序    --> 显示规则
+
+产生（常用）:
+  0. 对于 position 值为 relative/absolute 以及 Firefox/IE 浏览器 （不包括 Chrome 浏览器）下含有 position:fixed 声明的定位元素，当其 z-index 值不是 auto 的时候
+  1. 元素为flex布局元素 父元素display: flex
+  2. opcity值不是1
+  3. 元素的 transform 值不是 none
+  4. 元素的 filter 值不是 none
+  5. 元素的 will-change 属性值为上面
+  
+1）如果层叠上下文元素不依赖 z-index 数值，则其层叠顺序是 z-index:auto，可看
+成 z:index:0 级别；  如由上面1，2，3，4，5产生的层叠上下文
+2）如果层叠上下文元素依赖 z-index 数值，则其层叠顺序由 z-index 值决定。
+
+
+层叠上下文顺序(由低到高)
+层叠上下文（产生层叠上下文元素的background/border层级最低） background/border  经测试outline等都不是..
+-zindex
+block
+float
+inline
+由css3属性造成的：auto/理解为zindex=0
++zindex
+

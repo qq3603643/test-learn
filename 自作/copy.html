@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<title>COPY</title>
+<meta name="description" content="">
+<meta name="keywords" content="">
+<link href="" rel="stylesheet">
+<script type="text/javascript" src="./jquery.js"></script>
+<script type="text/javascript" src="./mmmm.js"></script>
+</head>
+<body>
+  <div>
+    <h2 id="title">TITLE</h2>
+    <form>
+      <fieldset>
+        <legend>name</legend>
+        <input type="text" name="name">
+      </fieldset>
+
+      	<span
+            style="display: inline-block;margin-top: 10px;padding: 6px 4px;border: 1px solid #ccc;border-radius: 5%;cursor: pointer;"
+            id="btn"
+      	>
+          copy
+      	</span>
+    </form>
+  </div>
+  <script type="text/javascript">
+    const oForm = document.querySelector('form');
+    const oName = oForm.name;
+    const oBtn = document.querySelector('#btn');
+    const oTitle = document.querySelector('#title');
+
+    let i = 0;
+    oBtn.addEventListener('click', (e) => {
+      copy(e, i % 2 == 0 ? oName : oTitle);
+      ++i;
+    }, false);
+
+    function copy(e, trigetEl) {
+      /** 一般元素( 测试无效 = =。 ) **/
+      // const range = document.createRange();
+      // range.selectNode(oTitle);
+      // console.log(window.getSelection(), range);
+      // window.getSelection().addRange(range);
+
+      if (trigetEl.select) {
+      	/** 表单元素 **/
+      	trigetEl.select();
+
+      	try {
+          document.execCommand('copy');
+          trigetEl.blur();
+          alert('COPY INPUT');
+      	} catch (er) {
+  		    alert('please press ctrl/cmd+c to copy');
+      	}
+      } else {
+        const bridgeIpt = document.createElement('input');
+
+        bridgeIpt.setAttribute('readonly', 'readonly');
+        bridgeIpt.setAttribute('value', trigetEl.innerHTML);
+        document.body.appendChild(bridgeIpt);
+
+        // bridgeIpt.setSelectionRange(0, trigetEl.innerHTML.length);
+        bridgeIpt.select();
+        try {
+          document.execCommand('copy');
+          bridgeIpt.blur();
+          alert('COPY OS');
+        } catch (er) {}
+
+        document.body.removeChild(bridgeIpt);
+      }
+    }
+  </script>
+</body>
+</html>

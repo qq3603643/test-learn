@@ -1,0 +1,104 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<title>Examples</title>
+<meta name="description" content="">
+<meta name="keywords" content="">
+<link href="" rel="stylesheet">
+</head>
+<body>
+    <ul>
+      <li>vertical-align: 生效条件， 本身为inline/inline-block/table-cell</li>
+      <li>
+        <h4>取值(常用)：</h4>
+        <ul>
+          <li>baseline: 基线，英文本的四条线的第三条 字母x的底部</li>
+          <li>top: 元素及其后代的顶端与整行的顶端对齐(line-height顶部)</li>
+          <li>bottom: 元素及其后代的底端与整行的底端对齐(line-height底端)</li>
+          <li>text-top: 元素顶端与父元素字体的顶端对齐</li>
+          <li>text-bottom: 元素底端与父元素字体的底端对齐</li>
+          <li>middle: 元素中垂线与父元素的基线加上小写x一半的高度值对齐
+              <br/>
+              受不同字体大小 不同字体影响 并未真正的中间
+              字体越大， 差距越明细
+          </li>
+        </ul>
+      </li>
+    </ul>
+    <div
+      style="line-height: 100px;outline: 1px solid;font-size: 0;"
+    >
+      xxx
+      <p
+        style="display: inline-block;margin: 0;width: 20px;height: 20px;background-color: grey;vertical-align: middle;"
+      ></p>
+    </div>
+
+    <div
+      class="v2"
+      style="height: 100px;outline: 1px solid;"
+    >
+      <style type="text/css">
+        /** height: 100%; 撑开 **/
+        .v2:after { display: inline-block;content: '';width: 0;height: 100%;background: red;vertical-align: middle; }
+        .v2 > * { vertical-align: middle; }
+      </style>
+      xxx
+      <p
+        style="display: inline-block;margin: 0;width: 20px;height: 20px;background-color: grey;"
+      ></p>
+    </div>
+
+    <h4>
+      每行都要考虑，如下：两个p(inline-block), 下方都有空白间隙
+      <br />
+      最后一行表现解释说明:
+      <br />
+      line-height为零时，行距(lineHeight-fontSize) 表现为 -1em, 上下两行均分
+      <br />
+      故xxx向上移动
+      <br />
+      最后宽度为50%的p 默认对其方式baseline 为x的下边缘，故在上方留有空隙
+      <br />
+      解决方案：
+      <br />
+      <ul>
+        <li>
+          vertical-align设置为top/bottom 因为lineHeight为0，故top/bottom在..
+        </li>
+        <li>
+          父级设置fontSize为零，此时所有线都在一条线上(需要line-height设置为1.4 / 140%, 即此时lineheight也为零)
+        </li>
+      </ul>
+    </h4>
+    <div
+      style="outline: 1px solid;line-height: 0;"
+    >
+      <p
+        style="display: inline-block;margin: 0;width: 100%;height: 20px;background-color: grey;"
+      ></p>
+      <p
+        style="display: inline-block;margin: 0;width: 100%;height: 20px;background-color: grey;"
+      ></p>
+      <p
+        style="display: inline-block;margin: 0;width: 50%;height: 2px;background-color: red;vertical-align: top;"
+      ></p>xxx
+    </div>
+
+    <div
+      style="margin-top: 10px;outline: 1px solid;font-size: 0;"
+    >
+      <p
+        style="display: inline-block;margin: 0;width: 100%;height: 20px;background-color: grey;"
+      ></p>
+      <p
+        style="display: inline-block;margin: 0;width: 100%;height: 20px;background-color: grey;"
+      ></p>
+      <p
+        style="display: inline-block;margin: 0;width: 50%;height: 2px;background-color: red;"
+      ></p>xxx
+    </div>
+</body>
+</html>

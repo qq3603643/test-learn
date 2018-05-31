@@ -57,6 +57,55 @@
 		  })
 
 		  graph.maxScale = 1;
+
+		  /** 坐标原点在几何中心(0, 0) 正负跟css left top 表现一致 **/
+		  /** 同时设定两连接 **/
+		  var node1 = graph.createNode('node1', -200, -200);
+		  var node2 = graph.createNode('node2', 0, 200);
+		  var edge1_2 = graph.createEdge(node1, node2, 'edge1_2');
+		  var edge2_1 = graph.createEdge(node1, node2, 'edge2_1');
+		  var bundleEdges = edge1_2.getEdgeBundle();
+		  console.log('Q', Q);
+		  // edge1_2.setStyle(Q.Styles.EDGE_COLOR, '#ff0000');
+		  // edge1_2.setStyle(Q.Styles.ARROW_FROM, true);
+		  // edge1_2.setStyle(Q.Styles.ARROW_FROM_OFFSET, {x: 0.5});
+		  edge1_2.setStyle(Q.Styles.ARROW_TO_OFFSET, {x: -0.5});
+		  edge1_2.setStyle(Q.Styles.ARROW_TO_STROKE_STYLE, '#f00');
+		  edge1_2.setStyle(Q.Styles.EDGE_LINE_DASH, [8, 1]);
+		  edge1_2.setStyle(Q.Styles.EDGE_OUTLINE, 1);
+		  edge1_2.setStyle(Q.Styles.EDGE_OUTLINE_STYLE, '#0f0');
+
+		  var lineOffset = 1;
+		  setInterval(() => {
+		  	edge1_2.setStyle(Q.Styles.EDGE_LINE_DASH_OFFSET, lineOffset--);
+		  }, 100);
+
+		  var arrowOffset = -.95;
+		  edge2_1.setStyle(Q.Styles.ARROW_TO_OFFSET, {x: arrowOffset});
+		  setInterval(() => {
+		  	arrowOffset += .01;
+		  	arrowOffset = arrowOffset > -.05 ? -.95 : arrowOffset;
+
+		  	edge2_1.setStyle(Q.Styles.ARROW_TO_OFFSET, {x: arrowOffset});
+		  }, 100);
+
+		  // edge1_2.addPathSegment([-210, -200], null, 1);
+		  // edge1_2.addPathSegment([-10, 200], null, 2);
+
+		  // edge2_1.addPathSegment([-190, -200]);
+		  // edge2_1.addPathSegment([10, 200]);
+
+		  // removePathSegmentByIndex
+		  // setTimeout(() => {
+		  // 	edge1_2.removePathSegmentByIndex(1);
+		  // 	edge1_2.removePathSegmentByIndex(2);
+		  // }, 1000);
+		  console.log(Q.Styles);
+		  graph.editable = true;
+
+          graph.isEditable = (node) => {
+          	return !(node instanceof Q.Edge);
+          }
 	</script>
 </body>
 </html>

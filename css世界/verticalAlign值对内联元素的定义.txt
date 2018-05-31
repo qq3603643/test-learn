@@ -1,0 +1,2 @@
+vertial-align:top/bottom 内联元素：元素顶/底部和当前行框盒子的顶/底部对齐。
+vertial-align:middle  内联元素：元素的垂直中心点和行框盒子基线往上 1/2 x-height 处对齐。

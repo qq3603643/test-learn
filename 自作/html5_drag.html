@@ -16,8 +16,9 @@
 	}
 	.target
 	{
+		list-style: none;
 		float: left;
-		width: 100px;height: 260px;
+		width: 400px;height: 260px;
 		box-shadow: 0 0 1px rgba(0, 0, 0, .6) inset;
 	}
 	.dragItems
@@ -68,6 +69,7 @@
 	    		ev.dataTransfer.effectAllowed = "move";
 		        ev.dataTransfer.setData("text", ev.target.outerHTML);
 		        ev.dataTransfer.setDragImage(ev.target, 0, 0);
+		        console.log(ev.dataTransfer);
 		        return true;
 	    	}
 	    	drag.ondragend = function(ev)
@@ -82,24 +84,35 @@
 	    oTarget.ondragover = function(ev)
 	    {
 	    	/*拖拽元素在目标元素头上移动的时候*/
+	    	this.style.boxShadow = '0 0 2px rgba(255, 0, 0, .8) inset';
 		    ev.preventDefault();
 		    return true;
 	    }
 	    oTarget.ondragenter = function()
 	    {
 	    	/*拖拽元素进入目标元素头上的时候*/
-		    this.style.boxShadow = '0 0 1px rgba(255, 0, 0, .6) inset';
+	    	console.log('ondragenter');
+		    return true;
+	    }
+	    oTarget.ondragleave = function ()
+	    {
+	    	/*拖拽元素离开目标元素头上的时候*/
+		    this.style.boxShadow = '';
 		    return true;
 	    }
 	    oTarget.ondrop = function(ev)
 	    {
 	    	/*拖拽元素进入目标元素头上，同时鼠标松开的时候*/
-	    	console.log('ondrop');
+	    	console.log('ondrop', ev);
 	    	var text = ev.dataTransfer.getData("text");
-	    	ev.target.innerHTML = ev.target.innerHTML + text;
+	    	this.innerHTML = this.innerHTML + text;
 		    this.style.boxShadow = '0 0 1px rgba(0, 0, 0, .6) inset';
 		    return false;
 	    }
+	    // oTarget.ondragend = function(ev)
+	    // {
+	    // 	console.log('end');
+	    // };
 
 	    /**
 	     * 事件顺序: onselectstart ondragstart ondragenter ondragover ondrop ondragend

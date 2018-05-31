@@ -1,0 +1,18 @@
+在 style 标签上添加scoped
+<template>
+  <div class="box"></div>
+</template>
+
+<style
+  scoped
+>
+  .box {}
+</style>
+
+编译结果:
+
+<div data-*** box></div>
+.box[data-***] {}
+
+原理:
+  在同一个文件的style template 选择器与元素添上相同唯一标识符  如果该template中有其他组件 并且在此文件scoped-style中选中该组件中的元素 则此样式并不会生效

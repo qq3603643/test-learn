@@ -38,6 +38,7 @@
 	    bottom: 0;
 	    margin: 0;
 	    width: auto;height: auto;
+	    background-color: #ffffff;
 	}
 </style>
 </head>
@@ -46,6 +47,15 @@
     	<span class="btn">Full Screen</span>
 
     	<h2>Can You See Me ??</h2>
+    </div>
+    <div
+      class="box"
+      style="position:absolute; z-index: 1000000000000;"
+    >
+      <!-- 当zIndex足够大时会显示在全屏元素之上
+		   但是只限于显示 将失去所有相关操作事件
+       -->
+      I Am Box;
     </div>
 
     <script type="text/javascript">

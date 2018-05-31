@@ -12,3 +12,9 @@ method: {
     /** 触发watch-obj-attr */
   }
 }
+
+watch 选项 immediate 是否在初始化watch时执行handler方法
+<component :id="id" v-if="isShow"></component>
+
+initProps -> initWatch
+当id和isShow同时设置 渲染component时 id 的初始值为父级传入id 首次不会触发handler 需要设置immediate :true 来立即执行
