@@ -9,4 +9,3 @@
       * 撤销C&D， revert B.hash ..HEAD 产生新的提交记录 A -> B -> C -> D -> E -> F （=B）
     - reset
       revert hash 和 revert第二种情况类似
-      xxx
