@@ -1,0 +1,11 @@
+## 撤销操作:
+  1. 红字变无，即撤销工作区，checkout [file | .]
+  2. 绿字变红，即撤销缓存区，checkout HEAD [file | .]
+  3. 撤销commit
+    假设 提交记录为 A -> B -> C -> D
+    - revert
+      * 撤销D， revert D.hash , 产生新的提交记录  A -> B -> C -> D -> E（=C）
+        此时可revert E.hash 再次回到D
+      * 撤销C&D， revert B.hash ..HEAD 产生新的提交记录 A -> B -> C -> D -> E -> F （=B）
+    - reset
+      revert hash 和 revert第二种情况类似
